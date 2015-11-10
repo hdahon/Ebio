@@ -2,7 +2,7 @@
 
 E-BIO is a year project for the last year of study of MIAGE in speciality MBDS. 
 
-That is the link with all the documentation: https://trello.com/b/D5mL8w6O
+That is the link with all the documentation: https://drive.google.com/drive/folders/0Bx78z5vhjfXsS2tfblczSWRXcDQ
 
 ## License
 
@@ -34,5 +34,3 @@ Thank you for considering contributing to the Laravel framework! The contributio
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-
