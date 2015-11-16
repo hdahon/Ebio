@@ -1,8 +1,9 @@
 ## Project E-BIO
 
 E-BIO is a year project for the last year of study of MIAGE in speciality MBDS. 
+There is the schedule here : https://www.tomsplanner.fr/public/ebio
 
-That is the link with all the documentation: https://drive.google.com/drive/folders/0Bx78z5vhjfXsS2tfblczSWRXcDQ
+That is the link with all the documentations, presentations, notes etc ...: https://drive.google.com/drive/folders/0Bx78z5vhjfXsS2tfblczSWRXcDQ
 
 ## License
 
