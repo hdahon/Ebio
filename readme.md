@@ -5,12 +5,14 @@ There is the schedule here : https://www.tomsplanner.fr/public/ebio
 
 That is the link with all the documentations, presentations, notes etc ...: https://drive.google.com/drive/folders/0Bx78z5vhjfXsS2tfblczSWRXcDQ
 
+## Help sources
+
+http://sberfini.developpez.com/tutoriaux/android/nfc/#LIII
+
 ## License
 
 This project is under the license of MBDS and AMAP of Garbejaire
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-
 
 ## Laravel PHP Framework  informations
 
