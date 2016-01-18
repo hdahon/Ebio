@@ -22,6 +22,7 @@ class RedirectIfAuthenticated
      */
     public function __construct(Guard $auth)
     {
+
         $this->auth = $auth;
     }
 
@@ -34,8 +35,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
+
         if ($this->auth->check()) {
-            return redirect('/home');
+            echo "test";
+            return redirect('/auth/home');
+        }else{
+            echo $request['email'];
+            return redirect('/auth/home');
         }
 
         return $next($request);
