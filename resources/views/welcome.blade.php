@@ -36,11 +36,6 @@
         </style>
     </head>
     <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url('/auth/login') }}">Login</a></li>
-        </ul>
-    </nav>
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>

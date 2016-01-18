@@ -1,5 +1,5 @@
 <?php
-// app/database/seeds/RoleAmapienTableSeeder.php
+// app/database/seeds/UserTableSeeder.php
 /**
  * Created by PhpStorm.
  * User: hasso
