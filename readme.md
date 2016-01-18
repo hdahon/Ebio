@@ -5,6 +5,8 @@ There is the schedule here : https://www.tomsplanner.fr/public/ebio
 
 That is the link with all the documentations, presentations, notes etc ...: https://drive.google.com/drive/folders/0Bx78z5vhjfXsS2tfblczSWRXcDQ
 
+some help for git : http://rogerdudler.github.io/git-guide/index.fr.html
+
 ## Help sources
 
 http://sberfini.developpez.com/tutoriaux/android/nfc/#LIII
