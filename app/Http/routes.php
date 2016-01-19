@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('dashboard/home', 'Dash\DashboardController@home');
 Route::get('referent/produit', 'Referent\ReferentController@produit');
-Route::get('referent/adherant', 'Referent\ReferentController@adherant');
+Route::get('referent/adherant', 'Adherant\AdherantController@adherant');
 Route::get('referent/contrat', 'Referent\ReferentController@contrat');
 Route::get('referent/cheque', 'Referent\ReferentController@cheque');
 
