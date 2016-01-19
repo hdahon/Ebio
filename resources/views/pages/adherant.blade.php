@@ -13,6 +13,7 @@
                             <th>Prenom</th>
                             <th>Email</th>
                             <th>Telephone</th>
+                            <th>co-contractant</th>
                             <th>Produits</th>
 
                         </tr>
@@ -33,7 +34,10 @@
                                 {{$row->tel}}
                             </td>
                             <td>
-                                <a href="{{ url('produit/produitAdherant') }}">show</a>
+                                <a href="{{ url('adherant/coContractant') }}">Voir</a>
+                            </td>
+                            <td>
+                                <a href="{{ url('produit/produitAdherant/'.$row->id) }}">Voir</a>
                             </td>
                         </tr>
 

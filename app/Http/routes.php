@@ -24,10 +24,12 @@ Route::get('referent/adherant', 'Adherant\AdherantController@adherant');
 Route::get('referent/contrat', 'Referent\ReferentController@contrat');
 Route::get('referent/cheque', 'Referent\ReferentController@cheque');
 
+Route::get('adherant/coContractant', 'Adherant\AdherantController@adherant');
+
 Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
 Route::get('produit/create', 'Produit\ProduitController@getCreate');
 Route::post('produit/create', 'Produit\ProduitController@postCreate');
-Route::get('produit/produitAdherant', 'Produit\ProduitController@getProduitAdherant');
+Route::get('produit/produitAdherant/{id}', 'Produit\ProduitController@getProduitAdherant');
 
 
 

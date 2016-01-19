@@ -11,20 +11,20 @@ class AdherantController extends Controller
 {
 
 	public function adherant()
-	{
-		$adherants= User::where('id','!=',Auth::user()->id)->get();
+	{		
 		$role = Auth::user()->roleAmapien;
+		echo $role;
+		$niveau = RoleAmapien::find($role);
+		$adherants= User::where('id','!=',Auth::user()->id)->get();
 		$data = array('adherants' => $adherants);
-		$niveau = RoleAmapien::find($role)->niveau;
-
-		// 5 admin
-		if ($role=="administrateur"){
+		if ($niveau ==   5){
 			return view('admin/adherant',$data);
 		}else{
 			return view('pages/adherant',$data);
 		}
+		
+		
 	}
-
-
-
+	
+	
 }
