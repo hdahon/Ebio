@@ -55,7 +55,7 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => 'localhost',
-            'database'  => 'dataEbio',
+            'database'  => 'dataebio',
             'username'  => 'root',
             'password'  => '',
             'charset'   => 'utf8',
