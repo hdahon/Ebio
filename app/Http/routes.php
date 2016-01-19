@@ -22,7 +22,13 @@ Route::get('referent/produit', 'Referent\ReferentController@produit');
 Route::get('referent/adherant', 'Referent\ReferentController@adherant');
 Route::get('referent/contrat', 'Referent\ReferentController@contrat');
 Route::get('referent/cheque', 'Referent\ReferentController@cheque');
+
 Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
+Route::get('produit/create', 'Produit\ProduitController@getCreate');
+Route::post('produit/create', 'Produit\ProduitController@postCreate');
+Route::get('produit/produitAdherant', 'Produit\ProduitController@getProduitAdherant');
+
+
 
 
 // Authentication routes...

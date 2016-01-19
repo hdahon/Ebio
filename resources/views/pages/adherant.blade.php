@@ -6,6 +6,40 @@
                     @include("menu")
                     <div class="panel-body">
                         Bienvenue Sur la pages de gestion des <b>ADHERANT</b>
+                         <table class="table  table-bordered">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Telephone</th>
+                            <th>Produits</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($adherants as $row)
+                        <tr>
+                            <td>
+                                {{$row->nom}}
+                            </td>
+                            <td>
+                                {{$row->prenom}}
+                            </td>
+                            <td>
+                                {{$row->email}}
+                            </td>
+                            <td>
+                                {{$row->tel}}
+                            </td>
+                            <td>
+                                <a href="{{ url('produit/produitAdherant') }}">show</a>
+                            </td>
+                        </tr>
+
+                         @endforeach       
+                        </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

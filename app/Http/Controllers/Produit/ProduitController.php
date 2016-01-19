@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Produit;
 
 use App\Produit;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,28 +12,48 @@ use Illuminate\Support\Facades\Auth;
 class ProduitController extends Controller
 {
 
-    public function create(Request $request)
+
+    public function postCreate(Request $request)
     {
             $nomProduit=$request->input('nom');
-            $referent=Auth::user()->nom;
-            $data['nom']=$nomProduit;
-            $data['referent']=$referent;
+            $referent=Auth::user()->id;
+            $producteur = $request->input('producteur');
             Produit::create(array(
                 'nomProduit' =>$nomProduit,
-                'referent_id' =>Auth::user()->id,
-                'producteur_id' =>Auth::user()->id,
+                'referent_id' =>$referent,
+                'producteur_id' =>$producteur,
 
             ));
 
-           return view('pages/produit',$data);
+           return redirect('produit/list');
 
     }
-    
+
+
+       public function getCreate(Request $request)
+       {             
+            $referent= Auth::user()->id; 
+            $producteurs = User::where('roleamapien_id',2)
+            ->where('id','!=',$referent)
+            ->get();
+            $data = array('producteurs' => $producteurs);
+            return view('pages/newProduit',$data);
+
+        }
+
+
      public function getAllProduits(){
          $produits = Produit::all();
-         $data = array('name' => $produits,
-            'date' => date('Y-m-d'));
-         //$data['nom']=$produits;
+         $data = array('name' => $produits);
          return view('pages/produit',$data);
      }
+
+     public function getProduitAdherant(){
+         $produits = Produit::all();
+         $data = array('name' => $produits);
+         return view('pages/produitAdherant',$data);
+     }
+
+
+
 }
