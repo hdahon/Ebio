@@ -22,8 +22,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
-    //protected $redirectTO ='auth/home';
+    protected $redirectTo = 'dashboard/home';
 
     /**
      * Create a new authentication controller instance.
@@ -31,10 +30,8 @@ class AuthController extends Controller
      * @return void
      */
     public function __construct()
-
     {
         $this->middleware('guest', ['except' => 'getLogout']);
-
     }
 
     /**
@@ -46,7 +43,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'nom' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -61,12 +58,9 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'nom' => $data['nom'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        echo "dans create";
     }
-    
-
 }

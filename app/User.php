@@ -10,6 +10,10 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
@@ -37,11 +41,45 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    /*
-     * Relation producteur produit
+
+    /**
+     * Un amapien sourscrit à un un ou plusieurs contrats
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function produit()
+    public function contrats()
     {
-        return $this->belongsTo('App\Produit');
+        return $this->hasMany('App\Contrat');
+    }
+
+    /**
+     * Un produicteur fournit une liste de produits
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function produits(){
+        return $this->hasMany('App\Produit');
+    }
+
+    /**
+     * Un amapien à un ou plusieurs roles (Ampaien par defaut)
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles(){
+        return $this->belongsToMany('App\roleAmapien');
+    }
+
+    /**
+     * Un producteur effectue une ou plusieurs livraison
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function livraisons(){
+        return $this->hasMany('App\Livraison');
+    }
+
+    /**
+     * Un amapien effectue un ou plusieur paiment
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function paiements(){
+        return $this->hasMany('App\Paiement');
     }
 }

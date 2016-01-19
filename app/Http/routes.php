@@ -16,7 +16,14 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('auth/home', 'Auth\AccountController@home');
+
+Route::get('dashboard/home', 'Dash\DashboardController@home');
+Route::get('referent/produit', 'Referent\ReferentController@produit');
+Route::get('referent/adherant', 'Referent\ReferentController@adherant');
+Route::get('referent/contrat', 'Referent\ReferentController@contrat');
+Route::get('referent/cheque', 'Referent\ReferentController@cheque');
+Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
