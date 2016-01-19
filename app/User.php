@@ -64,7 +64,7 @@ class User extends Model implements AuthenticatableContract,
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles(){
-    }
+        }
 
     /**
      * Un producteur effectue une ou plusieurs livraison
