@@ -13,7 +13,7 @@ class AdherantController extends Controller
     public function adherant()
     {
            $adherants= User::where('id','!=',Auth::user()->id)->get();
-            $data = array('adherants' => $adherants);
+           $data = array('adherants' => $adherants);
             return view('pages/adherant',$data);
 
     }
