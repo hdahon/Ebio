@@ -10,13 +10,7 @@ use App\User;
 class ReferentController extends Controller
 {
 
-    public function adherant(Request $request)
-    {
-           $adherants= User::where('id','!=',Auth::user()->id)->get();
-            $data = array('adherants' => $adherants);
-            return view('pages/adherant',$data);
-
-    }
+    
         
     public function cheque(Request $request)
     {
