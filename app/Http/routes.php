@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('login');
 });
 
+Route::get('admin/adherant', 'Adherant\AdherantController@adherant');
 
 Route::get('dashboard/home', 'Dash\DashboardController@home');
 Route::get('referent/produit', 'Referent\ReferentController@produit');
