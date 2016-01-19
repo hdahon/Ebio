@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nom');
             $table->string('prenom');
@@ -23,10 +24,15 @@ class CreateUsersTable extends Migration
             $table->string('prenomCAdherant');
             $table->string('emailCAdherant');
             $table->string('telCAdherant');
-            $table->rememberToken();
+            $table->integer('roleamapien_id')->unsigned()->nullable();;
             $table->timestamps();
         });
+
+        Schema::table('users', function($table) {
+            $table->foreign('roleamapien_id')->references('id')->on('roleamapiens');
+        });
     }
+
 
     /**
      * Reverse the migrations.

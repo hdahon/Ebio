@@ -27,9 +27,12 @@ class ProduitController extends Controller
            return view('pages/produit',$data);
 
     }
+    
      public function getAllProduits(){
-         $produits = (string) Produit::find(2)->nomProduit;
-         $data['nom']=$produits;
+         $produits = Produit::all();
+         $data = array('name' => $produits,
+            'date' => date('Y-m-d'));
+         //$data['nom']=$produits;
          return view('pages/produit',$data);
      }
 }

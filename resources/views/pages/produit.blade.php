@@ -10,11 +10,11 @@
                 <div class="panel-body">
                     Bienvenue Sur la pages de gestion des <b>PRODUIT</b>
 {{--
-                    <br><button onclick='getProduits()'>list</button>
---}}
+<!--                     <br><button onclick='getProduits()'>list</button>
+ -->--}}
                     <br>
-                    <table class="table">
-                        <thead>
+                    <table class="table  table-bordered">
+                        <thead class="thead-inverse">
                         <tr>
                             <th>Produit</th>
                             <th>Referent</th>
@@ -22,7 +22,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach()
+                        @foreach ($name as $row)
+                        <tr>
+                            <td>
+                                {{$row->nomProduit}}
+                            </td>
+                            <td>
+                                {{$row->referent_id}}
+                            </td>
+                            <td>
+                                {{$row->producteur_id}}
+                            </td>
+                        </tr>
+
+                         @endforeach       
                         </tbody>
                         </table>
                     <div class="container-fluid">

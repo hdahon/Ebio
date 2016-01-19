@@ -64,7 +64,6 @@ class User extends Model implements AuthenticatableContract,
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles(){
-        return $this->belongsToMany('App\roleAmapien');
     }
 
     /**

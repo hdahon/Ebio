@@ -12,12 +12,13 @@ class RoleAmapien extends Model
      * @var string
      */
     protected $table = 'roleamapiens';
+    protected $fillable = ['nomRole','niveau'];
 
     /**
      * Un amapien à un ou plusieurs roles (Ampaien par defaut)
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users(){
-        return $this->belongsToMany('App\User');
+        return $this->hasMany('App\User');
     }
 }
