@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 class UserTableSeeder extends Seeder
 {
+    public $timestamps = false;
     /**
      * Run the database seeds.
      *

@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\RoleAmapien;
 
 class RoleTableSeeder extends Seeder
 {
+    public $timestamps = false;
     /**
      * Run the database seeds.
      *

@@ -13,6 +13,7 @@ class RoleAmapien extends Model
      */
     protected $table = 'roleamapiens';
     protected $fillable = ['nomRole','niveau'];
+    public $timestamps = false;
 
     /**
      * Un amapien à un ou plusieurs roles (Ampaien par defaut)

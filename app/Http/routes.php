@@ -12,9 +12,7 @@
 */
 
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', function () { return view('login'); });
 
 
 Route::get('dashboard/home', 'Dash\DashboardController@home');
