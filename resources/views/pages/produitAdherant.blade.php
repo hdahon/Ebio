@@ -14,8 +14,8 @@
                         <thead class="thead-inverse">
                         <tr>
                             <th>Produit</th>
-                            <th>Referent</th>
-                            <th>Producteur</th>
+                            <th>Type</th>
+                            <th>Periode</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,10 +25,10 @@
                                 {{$row->nomProduit}}
                             </td>
                             <td>
-                                {{$row->referent->nom}}
+                                {{$row->type}}
                             </td>
                             <td>
-                                {{$row->producteur->nom}}
+                                {{$row->periode}}
                             </td>
                         </tr>
 

@@ -5,4 +5,4 @@ Homestead.json
 .env
 composer.json
 composer.lock
-config/database.php
+app/config/database.php

@@ -43,4 +43,6 @@ class Produit extends Model
     public function  producteur(){
         return $this->belongsTo('App\User');
     }
+
+   
 }
