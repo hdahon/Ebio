@@ -19,6 +19,10 @@ Route::get('/', function () {
 Route::get('admin/adherant', 'Adherant\AdherantController@adherant');
 
 Route::get('dashboard/home', 'Dash\DashboardController@home');
+Route::get('dashboard/homeAdmin', 'Dash\DashboardController@home');
+
+Route::get('referent/adherant/{id}', 'Adherant\AdherantController@deleteUser');
+
 Route::get('referent/produit', 'Referent\ReferentController@produit');
 Route::get('referent/adherant', 'Adherant\AdherantController@adherant');
 Route::get('referent/contrat', 'Referent\ReferentController@contrat');
@@ -27,9 +31,14 @@ Route::get('referent/cheque', 'Referent\ReferentController@cheque');
 Route::get('adherant/coContractant', 'Adherant\AdherantController@adherant');
 
 Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
+Route::get('produit/listAdmin', 'Produit\ProduitController@getAllProduitsByAdmin');
+
 Route::get('produit/create', 'Produit\ProduitController@getCreate');
 Route::post('produit/create', 'Produit\ProduitController@postCreate');
 Route::get('produit/produitAdherant/{id}', 'Produit\ProduitController@getProduitAdherant');
+
+
+Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
 
 
 
