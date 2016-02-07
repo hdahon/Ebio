@@ -1,20 +1,17 @@
 @extends('template')
 @section('content')
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    @include("menu")
-                    <div class="panel-body">
+            <div class="col s12">
                         Bienvenue Sur la pages de gestion des <b>ADHERANT</b>
-                         <table class="table  table-bordered">
-                        <thead class="thead-inverse">
+                        <table class="striped">
+                        <thead>
                         <tr>
-                            <th>Nom</th>
-                            <th>Prenom</th>
-                            <th>Email</th>
-                            <th>Telephone</th>
-                            <th>co-contractant</th>
-                            <th>Produits</th>
+                            <th data-field="nom">Nom</th>
+                            <th data-field="prenom">Prenom </th>
+                            <th data-field="mail">Email </th>
+                            <th data-field="telephone">Telephone</th>
+                            <th data-field="cotractant">co-contractant</th>
+                            <th data-field="produits">Produits</th>
 
                         </tr>
                         </thead>
@@ -44,8 +41,6 @@
                          @endforeach       
                         </tbody>
                         </table>
-                    </div>
-                </div>
             </div>
         </div>
 

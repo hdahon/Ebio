@@ -21,7 +21,7 @@ class AccountController extends Controller
         $validator = Validator::make($data, $rules);
         if ($validator->fails()){
             // If validation falis redirect back to login.
-            return Redirect::to('/login')->withInput(Input::except('password'))->withErrors($validator);
+            return Redirect::to('login')->withInput(Input::except('password'))->withErrors($validator);
         }
         else {
             $userdata = array(

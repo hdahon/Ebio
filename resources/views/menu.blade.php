@@ -9,7 +9,7 @@
                             <li><a href="{{ url('produit/create') }}">Ajouter un produit</a></li>	
                 </ul>
             </li>
-            <li><a href="{{ url('referent/adherant') }}">Adhérant</a></li>
+            <li><a href="{{ url('referent/adherant') }}">Amapiens</a></li>
             <li><a href="{{ url('referent/contrat') }}">Contrats</a></li>
             <li><a href="{{ url('referent/cheque') }}">Cheques</a></li>
         </ul>

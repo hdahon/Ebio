@@ -52,7 +52,7 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * Un produicteur fournit une liste de produits
+     * Un producteur fournit une liste de produits
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function produits(){
@@ -60,7 +60,7 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * Un amapien à un ou plusieurs roles (Ampaien par defaut)
+     * Un amapien à un ou plusieurs roles (Amapien par defaut)
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles(){

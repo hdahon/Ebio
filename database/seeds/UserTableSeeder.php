@@ -21,5 +21,20 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make('mypass'),
 
         ));
+
+        User::create(array(
+            'nom'               => 'ok',
+            'prenom'            => 'ok',
+            'email'             => 'ok@gmail',
+            'password'          => Hash::make('pass06'),
+            //'roleamapien_id'    => '2',
+            ));
+         User::create(array(
+            'nom'               => 'amap',
+            'prenom'            => 'amap',
+            'email'             => 'amap@gmail',
+            'password'          => Hash::make('pass06'),
+            //'roleamapien_id'    => '2',
+            ));
     }
 }

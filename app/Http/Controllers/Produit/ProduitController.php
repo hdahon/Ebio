@@ -48,7 +48,8 @@ class ProduitController extends Controller
          return view('pages/produit',$data);
      }
 
-     public function getProduitAdherant($id){
+    // produit du producteur ou produit de l'adherent ?
+     public function getProduitAdherant($id) {
 
          $produits = User::find($id)->produits();
          $data = array('name' => $produits);

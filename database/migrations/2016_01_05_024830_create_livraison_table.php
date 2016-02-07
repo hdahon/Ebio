@@ -15,6 +15,7 @@ class CreateLivraisonTable extends Migration
         Schema::create('livraisons', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("producteur_id")->unsigned();
+            $table->date("dateDeLivraison");
             $table->timestamps();
         });
             Schema::table('livraisons', function($table) {
