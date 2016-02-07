@@ -1,42 +1,38 @@
 @extends('template')
+@section("title")
+Reférent
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             @include("menu")
             <div class="panel-body">
-                Liste des utilisateurs<br><br>
+                Liste des produits<br><br>
+                <br>
                 <table class="table  table-bordered">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>Nom</th>
-                            <th>Prenom</th>
-                            <th>Email</th>
-                            <th>Telephone</th>
-                            <th>Rôle</th>
+                            <th>Produit</th>
+                            <th>Referent</th>
+                            <th>Producteur</th>
                             <th>Opérations</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($adherants as $row)
+                        @foreach ($name as $row)
                         <tr>
                             <td>
-                                {{$row->nom}}
+                                {{$row->nomProduit}}
                             </td>
                             <td>
-                                {{$row->prenom}}
+                                {{$row->referent->nom}}
                             </td>
                             <td>
-                                {{$row->email}}
+                                {{$row->producteur->nom}}
                             </td>
                             <td>
-                                {{$row->tel}}
-                            </td>
-                            <td>
-                                {{$row->roleamapien_id}}
-                            </td>
-                            <td>
-                                <a href="{{ url('referent/adherant/'.$row->id) }}" title="Supprimer">SUPPRIMER</a>
+                                <a href="{{ url('produit/deleteProduit/'.$row->id) }}" title="Supprimer">SUPPRIMER</a>
                                 -
                                 <a href="#" title="Modifier">MODIFIER</a>
                             </td>

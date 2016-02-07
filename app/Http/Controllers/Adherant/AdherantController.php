@@ -17,15 +17,21 @@ class AdherantController extends Controller
 		$niveau = RoleAmapien::find($role)->niveau;
 		$adherants= User::where('id','!=',Auth::user()->id)->get();
 		$data = array('adherants' => $adherants);
-		echo $niveau;
+		//echo $niveau;
 		if ($niveau ==   5) {
 			return view('admin/adherant',$data);
 		}else{
 			return view('pages/adherant',$data);
 		}
-		
-		
 	}
-	
-	
+
+
+
+	public function deleteUser($id)
+	{
+		$user=User::find($id);
+		$user->delete();
+
+		return redirect('referent/adherant');
+	}
 }
