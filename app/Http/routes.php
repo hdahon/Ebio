@@ -28,10 +28,24 @@ Route::get('referent/adherant', 'Adherant\AdherantController@adherant');
 Route::get('referent/contrat', 'Referent\ReferentController@contrat');
 Route::get('referent/cheque', 'Referent\ReferentController@cheque');
 
+Route::get('adherant/update/{id}', 'Adherant\AdherantController@update');
+Route::post('adherant/updateInsert', 'Adherant\AdherantController@updateInsert');
+Route::get('adherant/listAdmin', 'Adherant\AdherantController@adherant');
+Route::get('adherant/insert', 'Adherant\AdherantController@insert');
+Route::post('adherant/postInsert', 'Adherant\AdherantController@postInsert');
+
+
 Route::get('adherant/coContractant', 'Adherant\AdherantController@adherant');
 
 Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
 Route::get('produit/listAdmin', 'Produit\ProduitController@getAllProduitsByAdmin');
+
+Route::get('produit/insert', 'Produit\ProduitController@insert');
+Route::post('produit/postInsert', 'Produit\ProduitController@postInsert');
+Route::post('produit/updateInsert', 'Produit\ProduitController@updateInsert');
+
+
+
 
 Route::get('produit/create', 'Produit\ProduitController@getCreate');
 Route::post('produit/create', 'Produit\ProduitController@postCreate');
@@ -39,6 +53,10 @@ Route::get('produit/produitAdherant/{id}', 'Produit\ProduitController@getProduit
 
 
 Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
+
+Route::get('produit/update/{id}', 'Produit\ProduitController@update');
+
+
 
 
 

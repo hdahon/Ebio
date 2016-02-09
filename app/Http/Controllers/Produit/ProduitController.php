@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
 {
-
-
     public function postCreate(Request $request)
     {
         $nomProduit=$request->input('nom');
@@ -24,10 +22,8 @@ class ProduitController extends Controller
             'producteur_id' =>$producteur,
 
             ));
-
         return redirect('produit/list');
     }
-
 
     public function getCreate(Request $request)
     {             
@@ -37,7 +33,32 @@ class ProduitController extends Controller
         ->get();
         $data = array('producteurs' => $producteurs);
         return view('pages/newProduit',$data);
+    }
 
+    public function postInsert(Request $request)
+    {
+        $nomProduit=$request->input('nom');
+        Produit::create(array(
+            'nomProduit' =>$nomProduit,
+            'referent_id' =>4,
+            'producteur_id' =>4
+            ));
+        return redirect('produit/listAdmin');
+    }
+
+    public function updateInsert(Request $request)
+    {
+        $idProduit=$request->input('idProduit');
+        $nomProduit=$request->input('nom');
+        $produit=Produit::find($idProduit);
+        $produit->nomProduit=$nomProduit;
+        $produit->save();
+        return redirect('produit/listAdmin');
+    }
+
+    public function insert(Request $request)
+    {             
+        return view('admin/newProduit');
     }
 
 
@@ -47,6 +68,12 @@ class ProduitController extends Controller
         $user->delete();
 
         return redirect('produit/listAdmin');
+    }
+
+    public function update($id){
+      $produit=Produit::find($id);
+       $data = array('id' => $id, 'nomProduit' => $produit->nomProduit);
+        return view('admin/updateProduit',$data);
     }
 
     public function getAllProduits(){
@@ -62,12 +89,8 @@ class ProduitController extends Controller
    }
 
    public function getProduitAdherant($id){
-
        $produits = User::find($id)->produits();
        $data = array('name' => $produits);
        return view('pages/produitAdherant',$data);
    }
-
-
-
 }

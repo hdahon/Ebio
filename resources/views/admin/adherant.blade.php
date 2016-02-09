@@ -38,7 +38,7 @@
                             <td>
                                 <a href="{{ url('referent/adherant/'.$row->id) }}" title="Supprimer">SUPPRIMER</a>
                                 -
-                                <a href="#" title="Modifier">MODIFIER</a>
+                                <a href="{{ url('adherant/update/'.$row->id) }}" title="Modifier">MODIFIER</a>
                             </td>
                         </tr>
                         @endforeach       
