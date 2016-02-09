@@ -28,7 +28,8 @@
         "classmap": [
             "tests/TestCase.php",
             "database/seeds/UserTableSeeder.php",
-            "database/seeds/RoleAmapienTableSeeder.php"
+            "database/seeds/RoleAmapienTableSeeder.php",
+            "database/seeds/PeriodiciteTableSeeder.php"
         ]
     },
     "scripts": {

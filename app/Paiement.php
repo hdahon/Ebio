@@ -13,6 +13,11 @@ class Paiement extends Model
      */
     protected $table = 'paiements';
 
+    /**
+     * @var array
+     */
+    protected $fillable = ['amapien_id','referent_id', 'contratClient_id', 'mois','producteur_id',"banque",'cout','montant','titulaire','numeroCheque','quantite','nbPanier','mois'];
+
 
     /**
      * Un paiement est effectué  par un amapien
@@ -22,13 +27,21 @@ class Paiement extends Model
     {
         return $this->belongsTo('App\User');
     }
+     public function producteur()
+    {
+        return $this->belongsTo('App\User');
+    }
 
+     public function referent()
+    {
+        return $this->belongsTo('App\User');
+    }
     /**
-     * Un paiement concerne un contrat
+     * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contrat()
+    public function contratClient()
     {
-        return $this->belongsTo('App\Contrat');
+        return $this->belongsTo('App\ContratClient');
     }
 }

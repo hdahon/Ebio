@@ -14,6 +14,10 @@ class CreateLivraisonTable extends Migration
     {
         Schema::create('livraisons', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamp('dateLivraison');
+            $table->integer('quantite');
+            $table->integer("amapien_id")->unsigned();
+            $table->integer("produit_id")->unsigned();
             $table->integer("producteur_id")->unsigned();
             $table->timestamps();
         });
@@ -21,6 +25,19 @@ class CreateLivraisonTable extends Migration
             $table->foreign('producteur_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('cascade');
+        });
+            Schema::table('livraisons', function($table) {
+            $table->foreign('amapien_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+        });
+           
+            Schema::table('livraisons', function($table) {
+            $table->foreign('produit_id')
+                ->references('id')
+                ->on('produits')
                 ->onDelete('cascade');
         });
     }

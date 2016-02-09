@@ -14,21 +14,16 @@ class Contrat extends Model
     protected $table = 'contrats';
 
 
-    /**
-     * Un contrat est souscrit par un amapien
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function amapien()
-    {
-        return $this->belongsTo('App\User');
-    }
+    protected $fillable = ['titre', 'vacance' , 'categorie_id','debutLivraison','dateDeFinLivraison'];
 
+
+   
     /**
-     * Un contrat concerne un produit
+     * Un contrat concerne une categorie de produit
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function produit()
+    public function categorie()
     {
-        return $this->belongsTo('App\Produit');
+        return $this->belongsTo('App\Categorie');
     }
 }

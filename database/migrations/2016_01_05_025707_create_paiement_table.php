@@ -14,12 +14,18 @@ class CreatePaiementTable extends Migration
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('Montant');
-            $table->integer('quantite');
+            $table->double('montant');
             $table->string('numeroCheque');
-            $table->string('typePrix');
+            $table->integer('quantite');
+            $table->double('cout');
+            $table->string('Banque');
+            $table->string('titulaire');    
+            $table->integer('nbPanier');
             $table->integer("amapien_id")->unsigned();
-            $table->integer("contrat_id")->unsigned();
+            $table->integer("referent_id")->unsigned();
+            $table->integer("contratClient_id")->unsigned();
+            $table->integer("producteur_id")->unsigned();
+            $table->string('mois');
             $table->timestamps();
 
         });
@@ -28,13 +34,26 @@ class CreatePaiementTable extends Migration
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade');
-
-
-                $table->foreign('contrat_id')
+            });
+            Schema::table('paiements', function($table) {
+                $table->foreign('producteur_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+                });
+            Schema::table('paiements', function($table) {
+                $table->foreign('referent_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+                });
+            Schema::table('paiements', function($table) {
+                $table->foreign('contratClient_id')
                 ->references('id')
-                ->on('contrats')
+                ->on('contratClients')
                 ->onDelete('cascade');
-        });
+            });
+    
     }
 
     /**
