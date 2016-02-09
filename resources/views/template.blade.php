@@ -1,3 +1,5 @@
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,6 +8,8 @@
     <title>EBIO - @yield('title')</title>
     <link href="{{ URL::asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/css/css.css')}}" rel="stylesheet">
+
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -26,5 +30,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{{ URL::asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{ URL::asset('assets/js/functions.js')}}"></script>
+
 </body>
 </html>

@@ -10,7 +10,7 @@ class Produit extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nomProduit', 'referent_id', 'producteur_id'];
+    protected $fillable = ['nomProduit', 'unite','prix','categorie_id'];
 
     /**
      * The database table used by the model.
@@ -22,27 +22,11 @@ class Produit extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contrats()
+    public function categorie()
     {
-        return $this->hasMany('App\Contrat');
+        return $this->hasMany('App\Categorie');
     }
 
-    /**
-     * Un produit à un referent
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function referent()
-    {
-        return $this->belongsTo('App\User');
-    }
-
-    /**
-     * un produit à un producteur (à voir si un seul ou plusieur)
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function  producteur(){
-        return $this->belongsTo('App\User');
-    }
 
    
 }

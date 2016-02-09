@@ -20,18 +20,22 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('tel');
-            $table->string('nomCAdherant');
-            $table->string('prenomCAdherant');
-            $table->string('emailCAdherant');
-            $table->string('telCAdherant');
-            $table->integer('roleamapien_id')->unsigned()->nullable();;
+            $table->string('adresse');
+            $table->string('numSiret');
+            $table->integer('roleamapien_id')->unsigned()->nullable();
+            //Id du coadherant
+            $table->integer('coadherant_id')->unsigned()->nullable();
             $table->timestamps();
         });
 
         Schema::table('users', function($table) {
             $table->foreign('roleamapien_id')->references('id')->on('roleamapiens');
         });
+        Schema::table('users', function($table) {
+            $table->foreign('coadherant_id')->references('id')->on('users');
+        });
     }
+
 
 
     /**

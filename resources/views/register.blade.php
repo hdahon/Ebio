@@ -33,12 +33,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">E-Mail Address</label>
+                                <label class="col-md-4 control-label">E-Mail </label>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" name="email" value="{{ old('email') }}">
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Tel</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="tel" value="{{ old('tel')}}">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Password</label>
                                 <div class="col-md-6">
@@ -51,7 +56,30 @@
                                     <input type="password" class="form-control" name="password_confirmation">
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nom Co-contractant</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="nomC" value="{{ old('nomC') }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Prenom Co-contractant</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="prenomC" value="{{ old('prenomC') }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">E-Mail Co-contractant</label>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="emailC" value="{{ old('emailC') }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Tel</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="telC" value="{{ old('telC')}}">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">Inscription</button>

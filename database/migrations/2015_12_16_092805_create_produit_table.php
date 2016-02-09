@@ -14,27 +14,21 @@ class CreateProduitTable extends Migration
     {
         Schema::create('produits', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('nomProduit');
-            $table->integer("referent_id")->unsigned();
-
-            $table->integer("producteur_id")->unsigned();
-
+            $table->string('nomProduit');
+            $table->string('unite');
+            $table->double('prix');
+            $table->integer('categorie_id')->unsigned();
             $table->timestamps();
 
 
 
 
         });
+       
         Schema::table('produits', function($table) {
-            $table->foreign('referent_id')
+            $table->foreign('categorie_id')
                 ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-        });
-        Schema::table('produits', function($table) {
-            $table->foreign('producteur_id')
-                ->references('id')
-                ->on('users')
+                ->on('categories')
                 ->onDelete('cascade');
         });
     }

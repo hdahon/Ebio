@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['nom', 'email', 'password'];
+    protected $fillable = ['nom', 'email', 'prenom', 'password', 'tel', 'coadherant_id','roleamapien_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -41,30 +41,34 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+     /**
+     * Un amapien  à 0 ou 1 coadherant
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function coadherant()
+    {
+        return $this->hasOne('App\User');
+    }
+
 
     /**
      * Un amapien sourscrit à un un ou plusieurs contrats
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contrats()
+    public function contratClients()
     {
-        return $this->hasMany('App\Contrat');
+        return $this->hasMany('App\ContratClient');
     }
 
     /**
      * Un produicteur fournit une liste de produits
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function produits(){
-        return $this->hasMany('App\Produit');
+    public function categories(){
+        return $this->hasMany('App\Categorie');
     }
 
-    /**
-     * Un amapien à un ou plusieurs roles (Ampaien par defaut)
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function roles(){
-        }
+   
 
     /**
      * Un producteur effectue une ou plusieurs livraison
