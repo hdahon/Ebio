@@ -1,4 +1,4 @@
-<ul id="dropdown1" class="dropdown-content">
+<ul id="acces" class="dropdown-content">
 @if (Auth::guest())
             <li><a href="{{ url('/') }}">Home</a></li>
             <li class="divider"></li>
@@ -9,26 +9,50 @@
 @endif
 </ul>
 
-<ul id="dropdown2" class="dropdown-content">
+<ul id="action_produit" class="dropdown-content">
+            <li><a href="{{ url('produit/listAdmin') }}">Liste des produits</a></li>
+            <li><a href="{{ url('produit/listAdmin') }}">Ajouter un produit</a></li>
             <li><a href="{{ url('produit/list') }}">Liste des produits</a></li>
-            <li><a href="{{ url('produit/create') }}">Ajouter un produit</a></li>	
+            <li><a href="{{ url('produit/create') }}">Ajouter un produit</a></li>   	
 </ul>
+
+<ul id="action_user" class="dropdown-content">
+    <li><a href="{{ url('referent/adherant') }}">Liste des utilisateurs</a></li>
+    <li><a href="{{ url('referent/adherant') }}">Ajouter un utilisateur</a></li>
+</ul>
+
+<ul id="action_contrat" class="dropdown-content">
+    <li><a href="{{ url('referent/contrat') }}">Contrats des Amapiens</a></li>
+    <li>{!! link_to_route('getSesContrats','Vos Contrats', array(Auth::user()->id)) !!}</li>
+</ul>
+
+<ul id="action_livraison" class="dropdown-content">
+    <li> {!! link_to_action('Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
+    <li> {!! link_to_route('getSesLivraisons','Vos Livraisons',array(Auth::user()->id))</li>
+</ul>
+
+<ul id="action_argent" class="dropdown-content">
+    <li><a href="{{ url('referent/cheque') }}">Cheques</a></li>
+</ul>
+
 <nav>
     <div class="nav-wrapper light-green accent-3">
         <a href="#" class="brand-logo">Amap de Garbejaire</a>
         <ul class="right hide-on-med-and-down">
         <li><a href="{{ url('dashboard/home') }}"><pan class="accueil">Accueil</pan></a></li>
-        <li><a href="{{ url('referent/adherant') }}">Liste des Amapiens</a></li>
+        
         @if(!Auth::guest())
-        <li> {!! link_to_action('Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
-        <!-- <li> {!! link_to_action('Producteur\ProducteurController@prod','Ma Page',array(Auth::user()->id)) !!}</li> -->
-        <!-- <li> {!! link_to_route('getProd','Ma Page',array(Auth::user()->id)) !!}</li> -->
+
+            <li><a href="{{ url('referent/adherant') }}">Liste des Amapiens</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_argent">Gestion paiements<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_livraison"> Gestion des livraisons<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_contrat">Gestion des Contrats<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_produit">Gestion Produits<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_user">Gestion des Utilisateurs<i class="material-icons right">arrow_drop_down</i></a></li>
         
         @endif
-        <li><a href="{{ url('referent/contrat') }}">Contrats</a></li>
-        <li><a href="{{ url('referent/cheque') }}">Cheques</a></li>
-        <li><a class="dropdown-button2" href="#!" data-activates="dropdown2">Gestion Produits<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Compte<i class="material-icons right">arrow_drop_down</i></a></li>
-   			</ul>
+
+        <li><a class="dropdown-button" href="#!" data-activates="acces">Compte<i class="material-icons right">arrow_drop_down</i></a></li>
+   	    </ul>
     </div>
 </nav>

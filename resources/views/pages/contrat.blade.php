@@ -5,9 +5,7 @@
                 <div class="panel panel-default">
                     
                     <div class="panel-body">
-                        <h1> Voici la liste de vos <b>CONTRATS</b></h1>
-
-                        
+                        Bienvenue Sur la pages de gestion des <b>CONTRATS</b>
 
 
 

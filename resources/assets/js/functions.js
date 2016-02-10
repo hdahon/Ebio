@@ -13,6 +13,7 @@ function getProduits(){
     };
     xhr.send();
 }
+
 function creerTab(r){
     console.log(r);
     var tabBody, tabDatas, line, cell;

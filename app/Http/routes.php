@@ -39,6 +39,7 @@ Route::get('adherant/coContractant', 'Adherant\AdherantController@adherant');
 
 //livraisons
 Route::get('livraison/livraisonProducteur/{id}','Livraison\LivraisonController@getLivraisonsProducteur');
+get('livraison/livraisons/{id}',['uses'=>'Livraison\LivraisonController@getLivraisonsAmap','as'=>'getSesLivraisons']);
 
 //produit
 Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
@@ -55,10 +56,14 @@ get('producteur/prod/{id}',['uses'=>'Producteur\ProducteurController@prod', 'as'
 
 //ses produits
 Route::get('produit/produitProducteur/{id}','Produit\ProduitController@getProduitAdherant');
+
 //ses livraisons
 //Route::get('produit/LivraisonProducteur/{id}','Livraison\LivraisonController@getLivraisonsProducteur');
 Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
 
+// -- Contrats --
+// Renvoie les contrats de l'amapien identifié par l'id 
+get('contrats/getContratAmap/{id}',[ 'uses'=>'Contrat\ContratController@getSesContrats', 'as'=>'getSesContrats');
 
 
 
