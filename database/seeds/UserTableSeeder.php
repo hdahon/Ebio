@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
             'email'    => 'referentplus@gmail.com',
             'password' => Hash::make('mypass'),
             'tel' =>'0700000000',
-            'roleamapien_id' => 3,
+            'roleamapien_id' => 4,
         ));
          User::create(array(
             'nom'     => 'Rou',
