@@ -5,18 +5,18 @@
                 <div class="panel panel-default">
                     @include("/referent/menu")
                     <div class="panel-body">
-                        Bienvenue Sur la pages de gestion des <b>ADHERANT </b>
+                        <h2>Liste des amapiens</h2>
                          <table class="table  table-bordered">
                         <thead class="thead-inverse">
                         <tr>
                             <th>Nom et Prenom</th>
                             <th>Contact</th>
-                            <th>Co_Contractant</th>
+                            <th>Coadherant</th>
                             <th>Produits</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($adherants as $row)
+                         @foreach ($adherants as $key =>$row)
                         <tr>
                             <td>
                                 {{$row->prenom." ".$row->nom}}
@@ -27,9 +27,11 @@
                                 {{$row->tel}}
                             </td>
                             <td>
-                                {{$row->coadherant_id." ".$row->nomCAdherant}}
+                                @if($coadherants[$key] !='')
+                                {{$coadherants[$key]->prenom." ".$coadherants[$key]->nom}}
                                 <br>
-                                {{$row->emailCAdherant}} <br> {{$row->telCAdherant}}
+                                {{$coadherants[$key]->email}} <br> {{$coadherants[$key]->tel}}
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ url('produit/produitAdherant/'.$row->id) }}">Voir</a>
@@ -37,7 +39,7 @@
                              
                         </tr>
 
-                         @endforeach       
+                         @endforeach        
                         </tbody>
                         </table>
                     </div>

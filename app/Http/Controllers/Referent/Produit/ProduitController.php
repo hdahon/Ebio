@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Referent\Produit;
 
 use App\Produit;
 use App\User;
+use App\Categorie;
+use App\Periodicite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,57 +14,45 @@ use Illuminate\Support\Facades\Auth;
 class ProduitController extends Controller
 {
 
-
-    public function postCreate(Request $request)
-    {
-            $nomProduit=$request->input('nom');
-            $typepanier =$request->input('panier');
-            $typePrix =$request->input('typeprix');
-            $prix =$request->input('prixunitaire');
-            $periode =$request->input('periode');
-            $referent=Auth::user()->id;
-            $producteur = $request->input('producteur');
-            Produit::create(array(
-                'nomProduit' =>$nomProduit,
-                'referent_id' =>$referent,
-                'typePanier' =>$typepanier,
-                'typeprix' =>$typePrix,
-                'prix' =>$prix,
-                'producteur_id' =>$producteur,
-                'periodicite_id' =>$periode,
-            ));
-
-           return redirect('produit/list');
-
-    }
-
-
-       public function getCreate(Request $request)
-       {             
-            $referent= Auth::user()->id; 
-            $producteurs = User::where('roleamapien_id',2)
-            ->where('id','!=',$referent)
-            ->get();
-            $data = array('producteurs' => $producteurs);
-            return view('Referent/Produit/newProduit',$data);
-
-        }
-
-
+       /* Liste de tous les produits */
      public function getAllProduits(){
-         $produits = Produit::all();
+         $categories=Categorie::where('referent_id',Auth::user()->id)->get();
+         //$produits[$iter] = Produit::all();
+         $produit="";
+         $producteurs="";
+         $periodicites="";  
+         $iter=0;
+         foreach ($categories as $cat){
+           $produits[$iter] = Produit::where("categorie_id",$cat->id)->get();
+            $cats[$iter]=$cat;
+            $producteurs[$cat->id]=User::find($cat->producteur_id);
+            $periodicites[$cat->id]=Periodicite::find($cat->periodicite_id);
+            $iter++;
+         }
          
-         $data = array('name' => $produits);
-         return view('Referent/Produit/produit',$data);
+                  $data = array('produits' => $produits,
+                        'categories'=>$cats,
+                        'producteurs'=>$producteurs,
+                        'periodicites'=>$periodicites);
+         return view('Referent/Produit/liste_produit',$data);
      }
 
-     public function getProduitAdherant($id){
-
-         $produits = User::find($id)->produits();
-         $data = array('name' => $produits);
-         return view('Referent/Produit/produitAdherant',$data);
+    /* Afficher le detail d'un produit */
+     public function getDetailsProduit($id){
+         $produit =Produit::find($id);
+         $categorie = Categorie::where("id",$produit->categorie_id)->get();
+         $prod=User::find($categorie[0]->producteur_id);
+         $producteur=$prod->prenom.' '.$prod->nom;
+         $ref=User::find($categorie[0]->referent_id);
+         $referent =$ref->prenom.' '.$ref->nom;
+         $periode=Periodicite::find($categorie[0]   ->periodicite_id);
+         $periodicite=$periode->libelle;
+         $data = array('categorie' => $categorie[0],
+                        'referent'=>$referent,
+                        'producteur'=>$producteur,
+                        'periodicite'=>$periodicite,
+                        'produit'=>$produit);
+         return view('Referent/Produit/details_Produits',$data);
      }
-
-
 
 }
