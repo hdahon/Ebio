@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                @include("menu")
+                @include("Referent/menu")
                 <div class="panel-body">
                     Bienvenue Sur la pages de gestion des <b>PRODUIT</b>
                     <br>
@@ -14,8 +14,9 @@
                         <thead class="thead-inverse">
                         <tr>
                             <th>Produit</th>
-                            <th>Type</th>
-                            <th>Periode</th>
+                            <th>Type de Prix</th>
+                            <th>Prix </th>
+                            <th>Producteur</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,10 +26,13 @@
                                 {{$row->nomProduit}}
                             </td>
                             <td>
-                                {{$row->type}}
+                                {{$row->typePanier}}
+                            </td>
+                             <td>
+                                {{$row->prix}}
                             </td>
                             <td>
-                                {{$row->periode}}
+                                {{$row->producteur->nom}}
                             </td>
                         </tr>
 

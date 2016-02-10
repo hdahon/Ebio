@@ -5,7 +5,8 @@
                 <div class="panel panel-default">
                     
                     <div class="panel-body">
-                        Bienvenue Sur la pages de gestion des <b>CHEQUE</b>
+                        Bienvenue Sur la pages de gestion des <b>Report </b>
+                        
                     </div>
                 </div>
             </div>

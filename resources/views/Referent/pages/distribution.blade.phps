@@ -6,7 +6,8 @@
                 <div class="panel panel-default">
                     
                     <div class="panel-body">
-                        Bienvenue <b>{{"  ".$name." "}}</b>
+                        Bienvenue Sur la pages de gestion des <b>Report </b>
+                        
                     </div>
                 </div>
             </div>

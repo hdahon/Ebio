@@ -1,41 +1,38 @@
 @extends('template')
 @section('content')
         <div class="row">
+
             <div class="col s12">
-                        Bienvenue Sur la pages de gestion des <b>ADHERANT</b>
+                        Bienvenue sur la pages de gestion des <b>ADHERANTS</b>
                         <table class="striped">
                         <thead>
                         <tr>
-                            <th data-field="nom">Nom</th>
-                            <th data-field="prenom">Prenom </th>
-                            <th data-field="mail">Email </th>
-                            <th data-field="telephone">Telephone</th>
-                            <th data-field="cotractant">co-contractant</th>
-                            <th data-field="produits">Produits</th>
-
+                            <th data-field="nomPrenom">Nom et Prenom</th>
+                            <th data-field="contact">Contact</th>
+                            <th data-field="coContractant">Co_Contractant</th>
+                            <th data-field="Produit">Produit</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($adherants as $row)
                         <tr>
                             <td>
-                                {{$row->nom}}
-                            </td>
-                            <td>
-                                {{$row->prenom}}
+                                {{$row->prenom." ".$row->nom}}
                             </td>
                             <td>
                                 {{$row->email}}
-                            </td>
-                            <td>
+                                <br>
                                 {{$row->tel}}
                             </td>
                             <td>
-                                <a href="{{ url('adherant/coContractant') }}">Voir</a>
+                                {{$row->coadherant_id." ".$row->nomCAdherant}}
+                                <br>
+                                {{$row->emailCAdherant}} <br> {{$row->telCAdherant}}
                             </td>
                             <td>
                                 <a href="{{ url('produit/produitAdherant/'.$row->id) }}">Voir</a>
                             </td>
+                             
                         </tr>
 
                          @endforeach       

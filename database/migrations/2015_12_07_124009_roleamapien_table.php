@@ -16,6 +16,7 @@ class RoleamapienTable extends Migration
             $table->increments('id');
             $table->string('nomRole');
             $table->integer('niveau');
+            $table->timestamps();
         });
     }
 

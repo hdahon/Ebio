@@ -1,14 +1,10 @@
-@extends('app')
+@extends('template')
 
 @section('content')
 
         <div class="row">
-            <div class="col ">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-                    <div class="panel-body">
-                        You are logged in! {{$name}}
-                    </div>
+            <div class="col s12">
+                        You are logged in! {{$user->nom}}
                 </div>
             </div>
         </div>

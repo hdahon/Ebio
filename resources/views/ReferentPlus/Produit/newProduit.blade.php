@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                @include("menu")
+                @include("ReferentPlus/menu")
                 <div class="panel-body">
                     Bienvenue Sur la pages de gestion des <b>PRODUIT</b>
                     <br>
@@ -27,7 +27,7 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/produit/create') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/create-produit') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Nom Produit</label>
@@ -36,22 +36,34 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Producteur</label>
+                                <label class="col-md-4 control-label">Catégories</label>
                                 <div class="col-md-6">
-                                    <select class=form-control name="producteur">
-                                        @foreach ($producteurs as $prod)                    
-                                        <option value={{$prod->id}}>{{$prod->nom." ".$prod->prenom}}</option>
+                                    <select class=form-control name="categorie">
+                                        @foreach ($categories as $cat)                    
+                                        <option value={{$cat->id}}>{{$cat->libelle}}</option>
                                         @endforeach
                                         
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">créer</button>
+                             <div class="form-group">
+                                <label class="col-md-4 control-label">Unite</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="panier,1kg,0.4kg" name="unite" value="{{ old('typepanier') }}">
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Prix</label>
+                                <div class="col-md-6">
+                                    <input type="number" step="any" class="form-control" name="prix" value="{{ old('prix') }}">
+                                </div>
+                            </div>  
+                            
+                            <div class="form-group">
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn btn-info btn-sm">Ajouter</button>
+                                    <a href="{{url('liste-produit') }}" class="btn btn-info btn-sm">Retour</a>
+                                </div>
                         </form>
 
                     </div>
