@@ -5,7 +5,7 @@
                 <div class="panel panel-default">
                     
                     <div class="panel-body">
-                        <h1>Bienvenue Sur la pages  de vos<b>CONTRATS</b> </h1>
+                        <h1>Voici les <b>CONTRATS</b> disponibles</h1>
 
                         <table class="table  table-bordered">
                             <thead class="thead-inverse">
@@ -15,7 +15,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($name as $row)
+                            @foreach ($sesContrats as $row)
                             <tr>
                                 <td>
                                     {{$row->contrat_id}}

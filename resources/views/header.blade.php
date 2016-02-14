@@ -10,10 +10,11 @@
 </ul>
 
 <ul id="action_produit" class="dropdown-content">
-            <li><a href="{{ url('produit/listAdmin') }}">Liste des produits</a></li>
-            <li><a href="{{ url('produit/listAdmin') }}">Ajouter un produit</a></li>
-            <li><a href="{{ url('produit/list') }}">Liste des produits</a></li>
-            <li><a href="{{ url('produit/create') }}">Ajouter un produit</a></li>   	
+            <li><a href="{{ url('liste-produit') }}">Liste des produits</a></li>
+            <li><a href="{{ url('create-produit') }}">Ajouter un produit</a></li> 
+            <li class="divider"></li> <!-- Categorie à marquer --> 
+            <li><a href="{{ url('liste-categorie') }}">Liste des Catégorie</a></li>
+            <li><a href="{{ url('create-categorie') }}">Ajouter une catégorie</a></li>
 </ul>
 
 <ul id="action_user" class="dropdown-content">
@@ -22,21 +23,25 @@
 </ul>
 
 <ul id="action_contrat" class="dropdown-content">
-    <li><a href="{{ url('referent/contrat') }}">Contrats des Amapiens</a></li>
+    <li><a href="{{ url('liste-contrat') }}">Liste des contats</a></li>
+    <li><a href="{{ url('create-contrat') }}">Ajouter un contrat</a></li>  
     @if (!Auth::guest())
+    <!-- Contrat de l'utilisateur courant -->
     <li>{!! link_to_route('getSesContrats','Vos Contrats', array(Auth::user()->id)) !!}</li>
     @endif
 </ul>
 
 <ul id="action_livraison" class="dropdown-content">
     @if (!Auth::guest())
+    <li>Report</li>
     <li> {!! link_to_action('Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
     <li> {!! link_to_action('Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li>
     @endif
 </ul>
 
 <ul id="action_argent" class="dropdown-content">
-    <li><a href="{{ url('referent/cheque') }}">Cheques</a></li>
+    <li><a href="{{ url('liste-paiement') }}">Historique</a></li>
+    <li><a href="{{ url('create-paiement') }}">Ajouter un paiement</a></li>   
 </ul>
 
 <nav>

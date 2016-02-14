@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("Referent/menu")
+                    
                     <div class="panel-body">
                        <a href="{{url('details-categorie/'.$categorie->id) }}" class="btn btn-info btn-sm">Retour</a>
                        <h2>Détails du produit {{$produit->nomProduit}}</h2>

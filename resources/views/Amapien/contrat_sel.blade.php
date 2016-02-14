@@ -20,9 +20,13 @@
                                 <div class="input-field col s12">
                                     <select multiple>
                                       <option value="" disabled selected>Choissisez vos périodicitées</option>
-                                      <option value="1">Pair</option>
-                                      <option value="2">Inpair</option>
-                                      <option value="3">Spéciale</option>
+                                      <option value="Bi-mensuel semaine paire">Bi-mensuel semaine paire</option>
+                                      <option value="Bi-mensuel semaine impaire">Bi-mensuel semaine impaire</option>
+                                      <option value="Hebdomadaire">Hebdomadaire</option>
+                                      <option value="Ponctuel">Ponctuel</option>
+                                      <option value="Mensuel semaine paire">Mensuel semaine paire</option>
+                                      <option value="Mensuel semaine impaire">Mensuel semaine impaire</option>
+                                      <option value="Hebdomadaire ou Bi-mensuell">Hebdomadaire ou Bi-mensuel</option>
                                     </select>
                                     <label>Choix de périodicité des livraisons</label>
                                 </div>

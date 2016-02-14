@@ -18,14 +18,15 @@ class ContratController extends Controller
 
   /* Liste des tous les modèle de contrat  */
      public function getAllContrat(){
-        if(Auth::user()->roleamapien_id ==4){
+        if(Auth::user()->roleamapien_id == 4){
          $contrats = Contrat::all();
          $data = array('contrats' => $contrats);
          return view('ReferentPlus/contrat/listContrat',$data);
        }else{
-         $referent=Auth::user()->id;
+         $referent = Auth::user()->id;
          $categories=Categorie::where("referent_id",$referent)->get();
          $iter=0;
+         $contrats = array();
          foreach ($categories as $value) {
            $contrats[$iter]=Contrat::where("categorie_id",$value->id)->get();
            $iter++;
@@ -35,9 +36,9 @@ class ContratController extends Controller
        }
      }
      
-       /* Affichage du formulaire d'ajout de modèle de contrat */
-       public function getContrat(Request $request)
-       {             
+    /* Affichage du formulaire d'ajout de modèle de contrat */
+    public function getContrat(Request $request)
+    {             
             $role= Auth::user()->roleamapien_id; 
             if($role == 3){
               $referent= Auth::user()->id; 
@@ -50,7 +51,7 @@ class ContratController extends Controller
               return view('ReferentPlus/contrat/newContrat',$data);
             }
             
-        }
+    }
     /* Ajout d'un modèle de contrat */
 
     public function postContrat(Request $request)

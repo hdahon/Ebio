@@ -35,7 +35,7 @@ Route::get('referent/adherant', 'Referent\Adherant\AdherantController@adherant')
 Route::get('referent/cheque', 'Referent\ReferentController@cheque');
 Route::get('referent/distribution', 'Referent\ReferentController@distribution');
 Route::get('referent/report', 'Referent\ReferentController@report');
-Route::get('referent/contrat','Referent\ReferentController@contrat');
+
 
 /*
 ------------------------Route profil referent --------------------

@@ -53,10 +53,11 @@ class PaiementController extends Controller
 
  public function getnewPaiement(Request $request)
     {
-        $mois=array("janvier", "février", "mars", "avril", "mai", "juin",
+      $mois=array("janvier", "février", "mars", "avril", "mai", "juin",
         "juillet", "août", "septembre", "octobre", "novembre", "décembre");
       $ReferentPlus = Auth::user();
       $producteurs = array();
+      $categories  = array();
       $adherants= User::where('roleamapien_id',1)->get();
       $contrats = ContratClient::all();
       foreach($contrats as $key=>$contrat){
@@ -70,7 +71,7 @@ class PaiementController extends Controller
               'producteurs' =>$producteurs,
                         'mois'=>$mois,
                         'categories'=>$categories);
-        return view('ReferentPlus/pages/cheque',$data  );
+        return view('ReferentPlus/pages/cheque',$data);
 
     }
 

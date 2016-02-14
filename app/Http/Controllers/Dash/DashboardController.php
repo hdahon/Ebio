@@ -33,7 +33,8 @@ class DashboardController extends Controller
         } elseif( $niveau == 3) {
             //echo '3';
             $data = array('name' => Auth::user()->nom,
-            'date' => date('Y-m-d'));
+            'date' => date('Y-m-d'),
+            'role' => RoleAmapien::find($role)->nomRole);
             return view('dashboard/referent')->with($data);
         } elseif( $niveau == 4) {
             //echo '4';

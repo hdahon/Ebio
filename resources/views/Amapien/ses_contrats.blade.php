@@ -5,18 +5,22 @@
                 <div class="panel panel-default">
                     
                     <div class="panel-body">
-                        <h1>Voici les <b>CONTRATS</b> disponibles</h1>
+                        <h1>Bienvenue Sur la pages  de vos <b>CONTRATS</b> </h1>
 
                         <table class="table  table-bordered">
                             <thead class="thead-inverse">
                             <tr>
-                                <th>Contrat id </th>
+                                <th>Id Utilisateur</th>
+                                <th>Id Contrat</th>
                                 <th>Périodicité</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($name as $row)
+                            @foreach ($sesContrats as $row)
                             <tr>
+                            <td>
+                                {{$row->user_id}}
+                            </td>
                                 <td>
                                     {{$row->contrat_id}}
                                 </td>
