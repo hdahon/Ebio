@@ -19,6 +19,7 @@
                             <th>Date de livraison</th>
                             <th>Produit id</th>
                             <th>Producteur id</th>
+                            <th>Quantité </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,9 @@
                             </td>
                             <td>
                             	{{$row->producteur_id}}
+                            </td>
+                            <td>
+                                {{$row->quantite}}
                             </td>
                         </tr>
 

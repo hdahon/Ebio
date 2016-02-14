@@ -93,12 +93,9 @@ class LivraisonController extends Controller
         return view('pages/livraisonProducteur',$data);
     }
 
-    public function getLivraisonsAmap(Request $request, int $id) {
-        /*
-        $livraisons = User::find($id)->livraisons()
+    public function getLivraisonsAmap($id) {
+        $livraisons = User::find($id)->livraisons();
         $data = array('name' => $livraisons);
-        return view('pages/ses_livraisons')->with($data);
-        //*/
-        return view('pages/ses_livraisons');
+        return view('pages/ses_livraisons',$data);
     }
 }

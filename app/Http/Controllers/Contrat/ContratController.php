@@ -13,14 +13,11 @@ class ContratController extends Controller
 {
 
 	// Obtenir les contrats de l'utilisateur identifié par l'id
-	public function getSesContrats(Request $request, int $id)
+	public function getSesContrats($id)
 	{
-		/*
-		$user = User::find($id)->contratclient;
+		$user = User::find($id)->contratclients;
 		$data = array('sesContrats'->$contrats);
-		return view('')->with($data);
-		//*/
-		return view('pages/ses_contrats');
+		return view('pages/ses_contrats')->with($data);
 	}
 
 	public function selContrat(Request $request)

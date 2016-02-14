@@ -35,6 +35,7 @@ Route::get('referent/adherant', 'Referent\Adherant\AdherantController@adherant')
 Route::get('referent/cheque', 'Referent\ReferentController@cheque');
 Route::get('referent/distribution', 'Referent\ReferentController@distribution');
 Route::get('referent/report', 'Referent\ReferentController@report');
+Route::get('referent/contrat','Referent\ReferentController@contrat');
 
 /*
 ------------------------Route profil referent --------------------
@@ -111,11 +112,17 @@ get('producteur/prod/{id}',['uses'=>'Producteur\ProducteurController@prod', 'as'
 //ses produits
 Route::get('produit/produitProducteur/{id}','Produit\ProduitController@getProduitAdherant');
 
-//ses livraisons
-//Route::get('produit/LivraisonProducteur/{id}','Livraison\LivraisonController@getLivraisonsProducteur');
+//-- Livraisons --
+Route::get('produit/LivraisonProducteur/{id}','Livraison\LivraisonController@getLivraisonsProducteur');
 Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
+get('livraison/livraisons/{id}',['uses'=>'Livraison\LivraisonController@getLivraisonsAmap','as'=>'getSesLivraisons']);
+
 
 // -- Contrats --
+/*
+	Les routes pour le contrat sont les même que pour le profil referentPlus vu qu'il font 
+	les même actions
+*/
 // Renvoie les contrats de l'amapien identifié par l'id 
 get('contrats/getContratAmap/{id}',[ 'uses'=>'Contrat\ContratController@getSesContrats', 'as'=>'getSesContrats']);
 

@@ -9,15 +9,9 @@
     <!--
     <link href="{{ URL::asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/style.css')}}" rel="stylesheet">
-<<<<<<< HEAD
     -->
     <link href="{{ URL::asset('assets/css/materialize.min.css')}}" rel="stylesheet">
-=======
-    <link href="{{ URL::asset('assets/css/css.css')}}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
 
-
->>>>>>> f63f07a66d3f8916bd703bc8134ce5070f548dbd
 
     <!-- Fonts -->
     <!--<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->

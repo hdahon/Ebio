@@ -31,7 +31,7 @@
 <ul id="action_livraison" class="dropdown-content">
     @if (!Auth::guest())
     <li> {!! link_to_action('Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
-    <li> {!! link_to_route('getSesLivraisons','Vos Livraisons',array(Auth::user()->id)) !!}</li>
+    <li> {!! link_to_action('Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li>
     @endif
 </ul>
 
