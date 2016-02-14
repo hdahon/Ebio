@@ -3,9 +3,8 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
-            @include("menu")
+            @include("Admin/menu")
             <div class="panel-body">
-                Liste des utilisateurs<br><br>
                 <table class="table  table-bordered">
                     <thead class="thead-inverse">
                         <tr>
@@ -14,7 +13,7 @@
                             <th>Email</th>
                             <th>Telephone</th>
                             <th>Rôle</th>
-                            <th>Opérations</th>
+                            <th><a href="{{ url('create-users') }}" title="Ajouter">[ AJOUTER ]</a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,9 +35,9 @@
                                 {{$row->roleamapien_id}}
                             </td>
                             <td>
-                                <a href="{{ url('referent/adherant/'.$row->id) }}" title="Supprimer">SUPPRIMER</a>
+                                <a href="{{ url('delete-users/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
                                 -
-                                <a href="{{ url('adherant/update/'.$row->id) }}" title="Modifier">MODIFIER</a>
+                                <a href="{{ url('update-users/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
                             </td>
                         </tr>
                         @endforeach       

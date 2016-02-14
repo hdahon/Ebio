@@ -93,4 +93,10 @@ class ProduitController extends Controller
        $data = array('name' => $produits);
        return view('pages/produitAdherant',$data);
    }
+
+   public function select(){
+       $produits = Produit::all();
+       $data = array('name' => $produits);
+       return view('Produit/produit',$data);
+   }
 }

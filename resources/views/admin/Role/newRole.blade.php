@@ -14,31 +14,19 @@ Reférent
                             <div class="panel panel-default">
                                 <div class="panel-heading">NOUVEAU</div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/produits/new') }}">
+                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/roles/new') }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">nomProduit</label>
+                                            <label class="col-md-4 control-label">nomRole</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nomProduit" value="">
+                                                <input type="text" class="form-control" name="nomRole" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">unite</label>
+                                            <label class="col-md-4 control-label">niveau</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="unite" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">prix</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="prix" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">categorie_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="categorie_id" value="">
+                                                <input type="text" class="form-control" name="niveau" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">

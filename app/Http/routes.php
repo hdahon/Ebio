@@ -34,7 +34,101 @@ Route::get('referent/report', 'Referent\ReferentController@report');
 /*
 ------------------------Route profil admin --------------------
 */
-Route::get('Admin/admin', 'Adherant\AdherantController@adherant');
+// -- list
+Route::get('list-users', 'Admin\Adherant\AdherantController@adherant');
+// -- create
+Route::get('create-users', 'Admin\Adherant\AdherantController@insert');
+Route::post('users/new', 'Admin\Adherant\AdherantController@postUser');
+// -- delete
+Route::get('delete-users/{id}', 'Admin\Adherant\AdherantController@deleteUser');
+// -- update
+Route::get('update-users/{id}', 'Admin\Adherant\AdherantController@updateUser');
+Route::post('users/update', 'Admin\Adherant\AdherantController@updateInsert');
+
+/*
+------------------------Route profil role --------------------
+*/
+// -- list
+Route::get('list-roles', 'Admin\Role\RoleController@getAll');
+// -- create
+Route::get('create-roles', 'Admin\Role\RoleController@insert');
+Route::post('roles/new', 'Admin\Role\RoleController@post');
+// -- update
+Route::get('update-roles/{id}', 'Admin\Role\RoleController@update');
+Route::post('roles/update', 'Admin\Role\RoleController@updateInsert');
+// -- delete
+Route::get('delete-roles/{id}', 'Admin\Role\RoleController@delete');
+
+/*
+------------------------Route profil periodicite --------------------
+*/
+// -- list
+Route::get('list-periodicites', 'Admin\Periodicite\PeriodiciteController@getAll');
+// -- create
+Route::get('create-periodicites', 'Admin\Periodicite\PeriodiciteController@insert');
+Route::post('periodicites/new', 'Admin\Periodicite\PeriodiciteController@post');
+// -- update
+Route::get('update-periodicites/{id}', 'Admin\Periodicite\PeriodiciteController@update');
+Route::post('periodicites/update', 'Admin\Periodicite\PeriodiciteController@updateInsert');
+// -- delete
+Route::get('delete-periodicites/{id}', 'Admin\Periodicite\PeriodiciteController@delete');
+
+/*
+------------------------Route profil produit --------------------
+*/
+// -- list
+Route::get('list-produits', 'Admin\Produit\ProduitController@getAll');
+// -- create
+Route::get('create-produits', 'Admin\Produit\ProduitController@insert');
+Route::post('produits/new', 'Admin\Produit\ProduitController@post');
+// -- update
+Route::get('update-produits/{id}', 'Admin\Produit\ProduitController@update');
+Route::post('produits/update', 'Admin\Produit\ProduitController@updateInsert');
+// -- delete
+Route::get('delete-produits/{id}', 'Admin\Produit\ProduitController@delete');
+
+
+/*
+------------------------Route profil categories --------------------
+*/
+// -- list
+Route::get('list-categories', 'Admin\Categorie\CategorieController@getAll');
+// -- create
+Route::get('create-categories', 'Admin\Categorie\CategorieController@insert');
+Route::post('categories/new', 'Admin\Categorie\CategorieController@post');
+// -- update
+Route::get('update-categories/{id}', 'Admin\Categorie\CategorieController@update');
+Route::post('categories/update', 'Admin\Categorie\CategorieController@updateInsert');
+// -- delete
+Route::get('delete-categories/{id}', 'Admin\Categorie\CategorieController@delete');
+
+/*
+------------------------Route profil contrats --------------------
+*/
+// -- list
+Route::get('list-contrats', 'Admin\Contrat\ContratController@getAll');
+// -- create
+Route::get('create-contrats', 'Admin\Contrat\ContratController@insert');
+Route::post('contrats/new', 'Admin\Contrat\ContratController@post');
+// -- update
+Route::get('update-contrats/{id}', 'Admin\Contrat\ContratController@update');
+Route::post('contrats/update', 'Admin\Contrat\ContratController@updateInsert');
+// -- delete
+Route::get('delete-contrats/{id}', 'Admin\Contrat\ContratController@delete');
+
+/*
+------------------------Route profil contratsClients --------------------
+*/
+// -- list
+Route::get('list-contratsClients', 'Admin\ContratClient\ContratClientController@getAll');
+// -- create
+Route::get('create-contratsClients', 'Admin\ContratClient\ContratClientController@insert');
+Route::post('contratsClients/new', 'Admin\ContratClient\ContratClientController@post');
+// -- update
+Route::get('update-contratsClients/{id}', 'Admin\ContratClient\ContratClientController@update');
+Route::post('contratsClients/update', 'Admin\ContratClient\ContratClientController@updateInsert');
+// -- delete
+Route::get('delete-contratsClients/{id}', 'Admin\ContratClient\ContratClientController@delete');
 
 /*
 ------------------------Route profil referent --------------------

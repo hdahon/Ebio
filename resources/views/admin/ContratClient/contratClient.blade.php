@@ -8,24 +8,22 @@
                 <table class="table table-bordered">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>nomProduit</th>
-                            <th>unite</th>
-                            <th>prix</th>
-                            <th>categorie_id</th>
-                            <th><a href="{{ url('create-produits') }}" title="Ajouter">[ AJOUTER ]</a></th>
+                            <th>contrat_id</th>
+                            <th>amapien_id</th>
+                            <th>periodicite_id</th>
+                            <th><a href="{{ url('create-contratsClients') }}" title="Ajouter">[ AJOUTER ]</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($elements as $row)
                         <tr>
-                            <td>{{$row->nomProduit}}</td>
-                            <td>{{$row->unite}}</td>
-                            <td>{{$row->prix}}</td>
-                            <td>{{$row->categorie_id}}</td>
+                            <td>{{$row->contrat_id}}</td>
+                            <td>{{$row->amapien_id}}</td>
+                            <td>{{$row->periodicite_id}}</td>
                             <td>
-                                <a href="{{ url('delete-produits/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
+                                <a href="{{ url('delete-contratsClients/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
                                 -
-                                <a href="{{ url('update-produits/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
+                                <a href="{{ url('update-contratsClients/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
                             </td>
                         </tr>
                         @endforeach       

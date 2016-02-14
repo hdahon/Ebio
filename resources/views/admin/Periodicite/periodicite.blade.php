@@ -8,24 +8,20 @@
                 <table class="table table-bordered">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>nomProduit</th>
-                            <th>unite</th>
-                            <th>prix</th>
-                            <th>categorie_id</th>
-                            <th><a href="{{ url('create-produits') }}" title="Ajouter">[ AJOUTER ]</a></th>
+                            <th>libelle</th>
+                            <th><a href="{{ url('create-periodicites') }}" title="Ajouter">[ AJOUTER ]</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($elements as $row)
                         <tr>
-                            <td>{{$row->nomProduit}}</td>
-                            <td>{{$row->unite}}</td>
-                            <td>{{$row->prix}}</td>
-                            <td>{{$row->categorie_id}}</td>
                             <td>
-                                <a href="{{ url('delete-produits/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
+                                {{$row->libelle}}
+                            </td>
+                            <td>
+                                <a href="{{ url('delete-periodicites/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
                                 -
-                                <a href="{{ url('update-produits/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
+                                <a href="{{ url('update-periodicites/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
                             </td>
                         </tr>
                         @endforeach       

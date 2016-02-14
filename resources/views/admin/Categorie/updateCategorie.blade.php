@@ -14,32 +14,38 @@ Reférent
                             <div class="panel panel-default">
                                 <div class="panel-heading">MODIFIER</div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('produits/update') }}">
+                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('categories/update') }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">nomProduit</label>
+                                            <label class="col-md-4 control-label">libelle</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nomProduit" value="{{$nomProduit}}" >
+                                                <input type="text" class="form-control" name="libelle" value="{{$libelle}}" >
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">unite</label>
+                                            <label class="col-md-4 control-label">producteur_id</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="unite" value="{{$unite}}" >
+                                                <input type="text" class="form-control" name="producteur_id" value="{{$producteur_id}}" >
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">prix</label>
+                                            <label class="col-md-4 control-label">referent_id</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="prix" value="{{$prix}}" >
+                                                <input type="text" class="form-control" name="referent_id" value="{{$referent_id}}" >
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">categorie_id</label>
+                                            <label class="col-md-4 control-label">periodicite_id</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="categorie_id" value="{{$categorie_id}}" >
+                                                <input type="text" class="form-control" name="periodicite_id" value="{{$periodicite_id}}" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">typePanier</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="typePanier" value="{{$typePanier}}" >
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -12,45 +12,48 @@ Reférent
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
-                                <div class="panel-heading">MODIFIER</div>
+                                <div class="panel-heading">NOUVEAU</div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('produits/update') }}">
+                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/contrats/new') }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">nomProduit</label>
+                                            <label class="col-md-4 control-label">titre</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nomProduit" value="{{$nomProduit}}" >
+                                                <input type="text" class="form-control" name="titre" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">unite</label>
+                                            <label class="col-md-4 control-label">vacance</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="unite" value="{{$unite}}" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">prix</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="prix" value="{{$prix}}" >
+                                                <input type="text" class="form-control" name="vacance" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">categorie_id</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="categorie_id" value="{{$categorie_id}}" >
+                                                <input type="text" class="form-control" name="categorie_id" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">debutLivraison</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="debutLivraison" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">dateDeFinLivraison</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="dateDeFinLivraison" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4">
-                                                <button type="submit" class="btn btn-primary">MODIFIER</button>
+                                                <button type="submit" class="btn btn-primary">AJOUTER</button>
                                             </div>
                                         </div>
 
-                                        <input type="hidden" class="form-control" name="id" value="{{$id}}">
                                     </form>
-
                                 </div>
                             </div>
                         </div>

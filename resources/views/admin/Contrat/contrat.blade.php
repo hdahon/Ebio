@@ -8,24 +8,26 @@
                 <table class="table table-bordered">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>nomProduit</th>
-                            <th>unite</th>
-                            <th>prix</th>
+                            <th>titre</th>
+                            <th>vacance</th>
                             <th>categorie_id</th>
-                            <th><a href="{{ url('create-produits') }}" title="Ajouter">[ AJOUTER ]</a></th>
+                            <th>debutLivraison</th>
+                            <th>dateDeFinLivraison</th>
+                            <th><a href="{{ url('create-contrats') }}" title="Ajouter">[ AJOUTER ]</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($elements as $row)
                         <tr>
-                            <td>{{$row->nomProduit}}</td>
-                            <td>{{$row->unite}}</td>
-                            <td>{{$row->prix}}</td>
+                            <td>{{$row->titre}}</td>
+                            <td>{{$row->vacance}}</td>
                             <td>{{$row->categorie_id}}</td>
+                            <td>{{$row->debutLivraison}}</td>
+                            <td>{{$row->dateDeFinLivraison}}</td>
                             <td>
-                                <a href="{{ url('delete-produits/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
+                                <a href="{{ url('delete-contrats/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
                                 -
-                                <a href="{{ url('update-produits/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
+                                <a href="{{ url('update-contrats/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
                             </td>
                         </tr>
                         @endforeach       

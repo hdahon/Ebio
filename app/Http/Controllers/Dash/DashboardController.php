@@ -10,22 +10,13 @@ class DashboardController extends Controller
     {
         $role = Auth::user()->roleamapien_id;
         $niveau = RoleAmapien::find($role)->niveau;
-        $data = array('user' => Auth::user(),
-            'date' => date('Y-m-d'));
+        $data = array('user' => Auth::user(),'date' => date('Y-m-d'));
         if ($role == 5) {
-            //return view('dashboard/home')->with($data);
             return view('Admin/admin')->with($data);
-            /*
-            echo "ok";
-            return;
-            */
-
         } elseif ($role == 4) {
             return view('ReferentPlus/referentPlus')->with($data);
-        }
-        elseif ($role == 3) {
+        } elseif ($role == 3) {
             return view('Referent/referent')->with($data);
         }
     }
-        
 }

@@ -17,6 +17,7 @@ $niveau = RoleAmapien::find($role)->niveau;
 <div class="panel-heading collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <ul class="nav navbar-nav ">
     <?php
+    /*
     if ($niveau ==   5){
         ?>
         <li><a href="{{ url('dashboard/homeAdmin') }}"><pan class="accueil">Accueil</pan></a></li>
@@ -61,7 +62,7 @@ $niveau = RoleAmapien::find($role)->niveau;
         <?php
     }else{
 
-        ?>
+        */?>
         <li><a href="{{ url('dashboard/home') }}"><pan class="accueil">Accueil</pan></a></li>
         <li class="dropdown">
          <a  data-toggle="dropdown" class="dropdown-toggle" href="">Produits<b class="caret"></b></a>
@@ -75,7 +76,7 @@ $niveau = RoleAmapien::find($role)->niveau;
     <li><a href="{{ url('referent/cheque') }}">Cheques</a></li>
 
     <?php
-}
+//}
 ?>
 
 </ul>
