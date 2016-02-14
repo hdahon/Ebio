@@ -68,16 +68,14 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Categorie');
     }
 
-<<<<<<< HEAD
+
     /**
      * Un amapien à un ou plusieurs roles (Amapien par defaut)
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
+     
     public function roles(){
         }
-=======
-   
->>>>>>> 40f047dc2175be9afc5d3bc704ba4511a9adbc4f
+    */
 
     /**
      * Un producteur effectue une ou plusieurs livraison

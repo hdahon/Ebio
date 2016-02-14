@@ -23,12 +23,16 @@
 
 <ul id="action_contrat" class="dropdown-content">
     <li><a href="{{ url('referent/contrat') }}">Contrats des Amapiens</a></li>
+    @if (!Auth::guest())
     <li>{!! link_to_route('getSesContrats','Vos Contrats', array(Auth::user()->id)) !!}</li>
+    @endif
 </ul>
 
 <ul id="action_livraison" class="dropdown-content">
+    @if (!Auth::guest())
     <li> {!! link_to_action('Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
-    <li> {!! link_to_route('getSesLivraisons','Vos Livraisons',array(Auth::user()->id))</li>
+    <li> {!! link_to_route('getSesLivraisons','Vos Livraisons',array(Auth::user()->id)) !!}</li>
+    @endif
 </ul>
 
 <ul id="action_argent" class="dropdown-content">
@@ -43,12 +47,12 @@
         
         @if(!Auth::guest())
 
-            <li><a href="{{ url('referent/adherant') }}">Liste des Amapiens</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="action_argent">Gestion paiements<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="action_livraison"> Gestion des livraisons<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="action_contrat">Gestion des Contrats<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="action_produit">Gestion Produits<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="action_user">Gestion des Utilisateurs<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="{{ url('referent/adherant') }}">Liste Amapien</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_argent">Paiements<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_livraison">Livraisons<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_contrat">Contrats<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_produit">Produits<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="action_user">Utilisateurs<i class="material-icons right">arrow_drop_down</i></a></li>
         
         @endif
 
