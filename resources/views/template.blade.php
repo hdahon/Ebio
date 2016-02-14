@@ -9,8 +9,15 @@
     <!--
     <link href="{{ URL::asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/style.css')}}" rel="stylesheet">
+<<<<<<< HEAD
     -->
     <link href="{{ URL::asset('assets/css/materialize.min.css')}}" rel="stylesheet">
+=======
+    <link href="{{ URL::asset('assets/css/css.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
+
+
+>>>>>>> f63f07a66d3f8916bd703bc8134ce5070f548dbd
 
     <!-- Fonts -->
     <!--<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->
@@ -36,11 +43,13 @@
 </div>
 <div class="section">
 @yield('content')
+
 </div>
 
 <div class="parallax-container">
     <div class="parallax"><img src="{{ URL::asset('assets/img/agr1.jpg')}}"></div>
 </div>
+
 <!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{{ URL::asset('assets/js/bootstrap.min.js')}}"></script>
@@ -51,5 +60,7 @@
 <script type="text/javascript" src="{{ URL::asset('assets/js/materialize.min.js')}}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/js/matAction.js')}}"></script>
 
+ 
+</script>
 </body>
 </html>

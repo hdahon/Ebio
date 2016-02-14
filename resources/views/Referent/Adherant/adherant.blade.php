@@ -14,7 +14,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($adherants as $row)
+                         @foreach ($adherants as $key =>$row)
                         <tr>
                             <td>
                                 {{$row->prenom." ".$row->nom}}
@@ -25,9 +25,11 @@
                                 {{$row->tel}}
                             </td>
                             <td>
-                                {{$row->coadherant_id." ".$row->nomCAdherant}}
+                                @if($coadherants[$key] !='')
+                                {{$coadherants[$key]->prenom." ".$coadherants[$key]->nom}}
                                 <br>
-                                {{$row->emailCAdherant}} <br> {{$row->telCAdherant}}
+                                {{$coadherants[$key]->email}} <br> {{$coadherants[$key]->tel}}
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ url('produit/produitAdherant/'.$row->id) }}">Voir</a>
@@ -35,7 +37,7 @@
                              
                         </tr>
 
-                         @endforeach       
+                         @endforeach        
                         </tbody>
                         </table>
             </div>

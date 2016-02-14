@@ -63,9 +63,4 @@ class DashboardController extends Controller
         }
         */
 
-    public function produit(Request $request)
-    {
-            return view('pages/produit');
-
-    }
 }

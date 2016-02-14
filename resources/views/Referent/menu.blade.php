@@ -3,12 +3,13 @@
         <ul class="nav navbar-nav ">
             <li><a href="{{ url('dashboard/home') }}"><pan class="accueil">Accueil</pan></a></li>
              <li><a href="{{ url('categorie-liste') }}">Catégories</a></li>
-            <li><a href="{{ url('referent/adherant') }}">Adhérant</a></li>
+             <li><a href="{{ url('produit-liste') }}">Produits</a></li>
+            <li><a href="{{ url('referent/adherant') }}">Adhérants</a></li>
             <li class="dropdown">
-                <a  data-toggle="dropdown" class="dropdown-toggle" href="">Contrats</a>
+                <a  data-toggle="dropdown" class="dropdown-toggle" href="">Contrats<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                            <li><a href="{{ url('contrat/list') }}">Liste des contats</a></li>
-                            <li><a href="{{ url('contrat/new') }}">New</a></li>   
+                            <li><a href="{{ url('liste-contrat') }}">Modèle de contrat</a></li>
+                            <li><a href="{{ url('create-contrat') }}">Nouveau</a></li>   
                 </ul>
             </li>
             <li class="dropdown">

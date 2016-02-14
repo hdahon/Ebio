@@ -17,16 +17,15 @@ class AdherantController extends Controller
 		$role = Auth::user()->roleamapien_id;
 		$niveau = RoleAmapien::find($role)->niveau;
 		$adherants= User::where('roleamapien_id',1)->get();
-		/*foreach($adherants as $ad){
-        	$coadherant[$ad->coadherant_id]=User::find($adherants->coadherant_id);  
-      	} */
+		$coadherants="";
+		foreach($adherants as $key => $ad){
+        	$coadherants[$key]=User::find($adherants[$key]->coadherant_id);  
+      	} 
 		$data = array('adherants' => $adherants,
-					);
-		if ($niveau ==   5){
-			return view('admin/adherant',$data);
-		}else{
+						'coadherants'=>$coadherants);
+		
 			return view('Referent/Adherant/adherant',$data);
-		}
+		
 
 	    }
         
