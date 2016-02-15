@@ -43,29 +43,29 @@
                                     </select>
                                 </div>
                             </div>
-                             <div class="form-group">
+                              <div class="form-group">
                                 <label class="col-md-6 control-label">Date de debut</label>
-                                <div class="col-md-8 date">
-                                    <input class="form-control input-lg" id="inputlg" name="dateDebut" value="{{$dateDebut}}" type="date">
+                                <div class="col-md-8 ">
+                                    <input class="form-control input-lg date " value="{{$dateDebut}}"   name="dateDebut" >
                                     </div>
                                 </div>
                         
                          <div class="form-group">
                                 <label class="col-md-6 control-label">Date de fin</label>
-                                <div class="col-md-8 date">
-                                    <input class="form-control input-lg" id="inputlg" name="dateFin" value="{{$dateFin}}" type="date">
+                                <div class="col-md-8 ">
+                                    <input class="form-control input-lg date"  value="{{$dateFin}}" name="dateFin"  >
                                     </div>
                                 </div>
                              <div class="form-group">
                                 <label class="col-xs-6 control-label">Vacances</label>
-                                <div class="col-xs-8 date">
-                                    <input class="form-control input-lg" id="inputlg" name="vacance" placeholder="yyyy-mm-jj" type="date">
+                                <div class="col-xs-8 ">
+                                    <input class="form-control input-lg date"  name="vacance" >
                                     </div>
                                 </div>  
                             <div class="form-group">
                                 <div class="col-md-12 text-right">
                                     <button type="submit" class="btn btn-info btn-sm">Modifier</button>
-                                    <a href="{{url('liste-contrat/') }}" class="btn btn-info btn-sm">Retour</a>
+                                    <a href="{{url('liste-contrat/') }}" class="btn btn-info btn-sm">Annuler</a>
 
                                 </div>
                             </div>

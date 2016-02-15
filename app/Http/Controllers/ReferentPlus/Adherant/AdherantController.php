@@ -23,11 +23,9 @@ class AdherantController extends Controller
       	} 
 		$data = array('adherants' => $adherants,
 						'coadherants'=>$coadherants);
-		if ($niveau ==   5){
-			return view('admin/adherant',$data);
-		}else{
-			return view('ReferentPlus/Adherant/adherant',$data);
-		}
+		
+		return view('ReferentPlus/Adherant/adherant',$data);
+		
 
 	    }
         

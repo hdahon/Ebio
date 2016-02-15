@@ -9,6 +9,8 @@
     <link href="{{ URL::asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/css.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
+
 
 
     <!-- Fonts -->
@@ -24,13 +26,21 @@
     <![endif]-->
 </head>
 <body>
-@include('header');
+@include('header')  
 <div class="container">
     @yield('content')
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{{ URL::asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{ URL::asset('assets/js/functions.js')}}"></script>
+<script src="{{ URL::asset('assets/js/jquery-ui.min.js')}}"></script>
+<script>
+ 
+$('.date').datepicker({
+   dateFormat: 'dd-mm-yy'
+});
 
+ 
+</script>
 </body>
 </html>

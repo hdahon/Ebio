@@ -135,7 +135,8 @@ Route::get('delete-contratsClients/{id}', 'Admin\ContratClient\ContratClientCont
 */
 Route::get('categorie-liste', 'Referent\Categorie\CategorieController@getAllCategories');
 Route::get('details-categorie/{id}', 'Referent\Categorie\CategorieController@getCategorie');
-
+Route::get('produit-liste', 'Referent\Produit\ProduitController@getAllProduits');
+Route::get('details-produit/{id}', 'Referent\Produit\ProduitController@getDetailsProduit');
 
 Route::get('adherant/update/{id}', 'Adherant\AdherantController@update');
 Route::post('adherant/updateInsert', 'Adherant\AdherantController@updateInsert');
@@ -150,10 +151,18 @@ Route::get('contrat/new', 'Referent\Contrat\contratController@getContrat');
 Route::post('contrat/new', 'Referent\Contrat\contratController@postContrat');
 Route::get('contrat/list', 'Referent\Contrat\contratController@getAllContrat');
 Route::get('contrat/{id}', 'Referent\Contrat\contratController@showContrat');
+
+/*
+	Les routes pour le contrat sont les même que pour le profil referentPlus vu qu'il font 
+	les même actions
+*/
  
 Route::get('paiement/new', 'Referent\Paiement\PaiementController@getnewPaiement');
 Route::get('paiement/list', 'Referent\Paiement\PaiementController@getListPaiement');
 Route::post('paiement/new', 'Referent\Paiement\PaiementController@postnewPaiement');
+
+
+
 
 /*
   --------     Route profil referent plus  -------------------
@@ -163,7 +172,6 @@ Route::get('ReferentPlus/adherant', 'ReferentPlus\Adherant\AdherantController@ad
 Route::get('ReferentPlus/cheque', 'ReferentPlus\ReferentPlusController@cheque');
 Route::get('ReferentPlus/distribution', 'ReferentPlus\ReferentPlusController@distribution');
 Route::get('ReferentPlus/report', 'ReferentPlus\ReferentPlusController@report');
-
 /* Categories*/
 Route::get('liste-categorie', 'ReferentPlus\Categorie\CategorieController@getAllCategories');
 Route::get('create-categorie', 'ReferentPlus\Categorie\CategorieController@getCreateCategorie');

@@ -13,7 +13,7 @@
                             <th>Catégories</th>
                             <th>Date Début</th>
                             <th>Date Fin</th>
-                            <th>Details</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -23,13 +23,13 @@
                                 {{$row->titre}}
                                 
                             </td>
-                            <td>
-                                {{$row->debutLivraison}}
+                             <td>
+                                {{date_format(date_create($row>debutLivraison),'d-m-Y')}}
                                 
                             </td>
                             <td>
                                
-                                {{$row->dateDeFinLivraison}}                            
+                                {{date_format(date_create($row->dateDeFinLivraison),'d-m-Y')}}                            
                             </td>
                             
                             <td>

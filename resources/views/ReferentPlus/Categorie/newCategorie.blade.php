@@ -79,7 +79,7 @@
                             <div class="form-group">
                                 <div class="col-md-12 text-right">
                                     <button type="submit" class="btn btn-info btn-sm">Ajouter</button>
-                                    <a href="{{url('liste-categorie/') }}" class="btn btn-info btn-sm">Retour</a>               
+                                    <a href="{{url('liste-categorie/') }}" class="btn btn-info btn-sm">Annuler</a>               
 
                                 </div>
                                 </div>
