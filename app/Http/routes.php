@@ -115,7 +115,7 @@ Route::get('produit/produitProducteur/{id}','Produit\ProduitController@getProdui
 //-- Livraisons --
 Route::get('produit/LivraisonProducteur/{id}','Livraison\LivraisonController@getLivraisonsProducteur');
 Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
-get('livraison/livraisons/{id}',['uses'=>'Livraison\LivraisonController@getLivraisonsAmap','as'=>'getSesLivraisons']);
+get('livraison/livraisons/{id}',['uses'=>'Producteur\Livraison\LivraisonController@getLivraisonsAmap','as'=>'getSesLivraisons']);
 
 
 // -- Contrats --
@@ -124,7 +124,7 @@ get('livraison/livraisons/{id}',['uses'=>'Livraison\LivraisonController@getLivra
 	les même actions
 */
 // Renvoie les contrats de l'amapien identifié par l'id 
-get('contrats/getContratAmap/{id}',[ 'uses'=>'Contrat\ContratController@getSesContrats', 'as'=>'getSesContrats']);
+get('contrats/getContratAmap/{id}',[ 'uses'=>'Amapien\Contrat\ContratController@getSesContrats', 'as'=>'getSesContrats']);
 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Contrat;
+namespace App\Http\Controllers\Amapien\Contrat;
 
 use Illuminate\Http\Request;
 
@@ -9,25 +9,21 @@ use App\Http\Controllers\Controller;
 use App\User;
 
 
+
 class ContratController extends Controller
 {
 
-	// Obtenir les contrats de l'utilisateur identifié par l'id
+	// Utiliser la fonction de Hassatou
 	public function getSesContrats($id)
 	{
+		// récupérer les contrats à jour
 		$allcontrats = User::find($id)->contratClients;
-		/*
-		$today = time();
-		foreach($allcontrats as $contrat)
-		{
-			if($contrat < $today) {
-
-			}
-
-		}
-		*/
 		$data = array('sesContrats' => $contrats);
 		return view('Amapien/ses_contrats')->with($data);
+	}
+
+	public function showContrat($id){
+		
 	}
 
 	public function selContrat(Request $request)
@@ -35,7 +31,8 @@ class ContratController extends Controller
 		return view('Amapien/contrat_list_sel');
 	}
 
+	//
 	public function historique(){
-		
 	}
+
 }
