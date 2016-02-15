@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Dash;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -16,6 +14,7 @@ class DashboardController extends Controller
     {
         $role = Auth::user()->roleamapien_id;
         $niveau = RoleAmapien::find($role)->niveau;
+
         //echo $role; 
         
         if ($niveau == 1) {
@@ -53,15 +52,4 @@ class DashboardController extends Controller
         }
     }
     
-        /* Todo : rajouter si besoin 
-        if ($role == 5) {
-            return view('dashboard/home')->with($data);
-        } elseif ($role == 4) {
-            return view('ReferentPlus/referentPlus')->with($data);
-        }
-        elseif ($role == 3) {
-            return view('Referent/referent')->with($data);
-        }
-        */
-
 }

@@ -23,7 +23,7 @@ class ContratController extends Controller
 	}
 
 	public function showContrat($id){
-		
+
 	}
 
 	public function selContrat(Request $request)
@@ -35,4 +35,4 @@ class ContratController extends Controller
 	public function historique(){
 	}
 
-}
+} 

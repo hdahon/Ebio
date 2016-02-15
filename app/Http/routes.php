@@ -28,6 +28,8 @@ Route::get('dashboard/homeAdmin', 'Dash\DashboardController@home');
 
 
 /* Route pour le profil referent */
+Route::get('dashboard/homeAdmin', 'Dash\DashboardController@home');
+
 
 Route::get('referent/adherant/{id}', 'Adherant\AdherantController@deleteUser');
 Route::get('referent/produit', 'Referent\ReferentController@produit');
@@ -38,12 +40,132 @@ Route::get('referent/report', 'Referent\ReferentController@report');
 
 
 /*
+------------------------Route profil admin --------------------
+*/
+// -- list
+Route::get('list-users', 'Admin\Adherant\AdherantController@adherant');
+// -- create
+Route::get('create-users', 'Admin\Adherant\AdherantController@insert');
+Route::post('users/new', 'Admin\Adherant\AdherantController@postUser');
+// -- delete
+Route::get('delete-users/{id}', 'Admin\Adherant\AdherantController@deleteUser');
+// -- update
+Route::get('update-users/{id}', 'Admin\Adherant\AdherantController@updateUser');
+Route::post('users/update', 'Admin\Adherant\AdherantController@updateInsert');
+
+/*
+------------------------Route profil role --------------------
+*/
+// -- list
+Route::get('list-roles', 'Admin\Role\RoleController@getAll');
+// -- create
+Route::get('create-roles', 'Admin\Role\RoleController@insert');
+Route::post('roles/new', 'Admin\Role\RoleController@post');
+// -- update
+Route::get('update-roles/{id}', 'Admin\Role\RoleController@update');
+Route::post('roles/update', 'Admin\Role\RoleController@updateInsert');
+// -- delete
+Route::get('delete-roles/{id}', 'Admin\Role\RoleController@delete');
+
+/*
+------------------------Route profil periodicite --------------------
+*/
+// -- list
+Route::get('list-periodicites', 'Admin\Periodicite\PeriodiciteController@getAll');
+// -- create
+Route::get('create-periodicites', 'Admin\Periodicite\PeriodiciteController@insert');
+Route::post('periodicites/new', 'Admin\Periodicite\PeriodiciteController@post');
+// -- update
+Route::get('update-periodicites/{id}', 'Admin\Periodicite\PeriodiciteController@update');
+Route::post('periodicites/update', 'Admin\Periodicite\PeriodiciteController@updateInsert');
+// -- delete
+Route::get('delete-periodicites/{id}', 'Admin\Periodicite\PeriodiciteController@delete');
+
+/*
+------------------------Route profil produit --------------------
+*/
+// -- list
+Route::get('list-produits', 'Admin\Produit\ProduitController@getAll');
+// -- create
+Route::get('create-produits', 'Admin\Produit\ProduitController@insert');
+Route::post('produits/new', 'Admin\Produit\ProduitController@post');
+// -- update
+Route::get('update-produits/{id}', 'Admin\Produit\ProduitController@update');
+Route::post('produits/update', 'Admin\Produit\ProduitController@updateInsert');
+// -- delete
+Route::get('delete-produits/{id}', 'Admin\Produit\ProduitController@delete');
+
+
+/*
+------------------------Route profil categories --------------------
+*/
+// -- list
+Route::get('list-categories', 'Admin\Categorie\CategorieController@getAll');
+// -- create
+Route::get('create-categories', 'Admin\Categorie\CategorieController@insert');
+Route::post('categories/new', 'Admin\Categorie\CategorieController@post');
+// -- update
+Route::get('update-categories/{id}', 'Admin\Categorie\CategorieController@update');
+Route::post('categories/update', 'Admin\Categorie\CategorieController@updateInsert');
+// -- delete
+Route::get('delete-categories/{id}', 'Admin\Categorie\CategorieController@delete');
+
+/*
+------------------------Route profil contrats --------------------
+*/
+// -- list
+Route::get('list-contrats', 'Admin\Contrat\ContratController@getAll');
+// -- create
+Route::get('create-contrats', 'Admin\Contrat\ContratController@insert');
+Route::post('contrats/new', 'Admin\Contrat\ContratController@post');
+// -- update
+Route::get('update-contrats/{id}', 'Admin\Contrat\ContratController@update');
+Route::post('contrats/update', 'Admin\Contrat\ContratController@updateInsert');
+// -- delete
+Route::get('delete-contrats/{id}', 'Admin\Contrat\ContratController@delete');
+
+/*
+------------------------Route profil contratsClients --------------------
+*/
+// -- list
+Route::get('list-contratsClients', 'Admin\ContratClient\ContratClientController@getAll');
+// -- create
+Route::get('create-contratsClients', 'Admin\ContratClient\ContratClientController@insert');
+Route::post('contratsClients/new', 'Admin\ContratClient\ContratClientController@post');
+// -- update
+Route::get('update-contratsClients/{id}', 'Admin\ContratClient\ContratClientController@update');
+Route::post('contratsClients/update', 'Admin\ContratClient\ContratClientController@updateInsert');
+// -- delete
+Route::get('delete-contratsClients/{id}', 'Admin\ContratClient\ContratClientController@delete');
+
+/*
 ------------------------Route profil referent --------------------
 */
 Route::get('categorie-liste', 'Referent\Categorie\CategorieController@getAllCategories');
 Route::get('details-categorie/{id}', 'Referent\Categorie\CategorieController@getCategorie');
 Route::get('produit-liste', 'Referent\Produit\ProduitController@getAllProduits');
 Route::get('details-produit/{id}', 'Referent\Produit\ProduitController@getDetailsProduit');
+
+
+Route::get('adherant/update/{id}', 'Adherant\AdherantController@update');
+Route::post('adherant/updateInsert', 'Adherant\AdherantController@updateInsert');
+Route::get('adherant/listAdmin', 'Adherant\AdherantController@adherant');
+Route::get('adherant/insert', 'Adherant\AdherantController@insert');
+Route::post('adherant/postInsert', 'Adherant\AdherantController@postInsert');
+
+
+Route::get('adherant/coContractant', 'Adherant\AdherantController@adherant');
+
+Route::get('contrat/new', 'Referent\Contrat\contratController@getContrat');
+Route::post('contrat/new', 'Referent\Contrat\contratController@postContrat');
+Route::get('contrat/list', 'Referent\Contrat\contratController@getAllContrat');
+Route::get('contrat/{id}', 'Referent\Contrat\contratController@showContrat');
+
+/*
+	Les routes pour le contrat sont les même que pour le profil referentPlus vu qu'il font 
+	les même actions
+*/
+
  
 Route::get('paiement/new', 'Referent\Paiement\PaiementController@getnewPaiement');
 Route::get('paiement/list', 'Referent\Paiement\PaiementController@getListPaiement');
@@ -100,6 +222,13 @@ Route::post('create-paiement', 'ReferentPlus\Paiement\PaiementController@postnew
 Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
 Route::get('produit/listAdmin', 'Produit\ProduitController@getAllProduitsByAdmin');
 
+Route::get('produit/insert', 'Produit\ProduitController@insert');
+Route::post('produit/postInsert', 'Produit\ProduitController@postInsert');
+Route::post('produit/updateInsert', 'Produit\ProduitController@updateInsert');
+
+
+
+
 Route::get('produit/create', 'Produit\ProduitController@getCreate');
 Route::post('produit/create', 'Produit\ProduitController@postCreate');
 Route::get('produit/produitAdherant/{id}', 'Produit\ProduitController@getProduitAdherant');
@@ -116,6 +245,10 @@ Route::get('produit/produitProducteur/{id}','Produit\ProduitController@getProdui
 Route::get('produit/LivraisonProducteur/{id}','Livraison\LivraisonController@getLivraisonsProducteur');
 Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
 get('livraison/livraisons/{id}',['uses'=>'Producteur\Livraison\LivraisonController@getLivraisonsAmap','as'=>'getSesLivraisons']);
+
+Route::get('produit/update/{id}', 'Produit\ProduitController@update');
+
+
 
 
 // -- Contrats --
