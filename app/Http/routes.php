@@ -239,14 +239,14 @@ get('producteur/prod/{id}',['uses'=>'Producteur\ProducteurController@prod', 'as'
 
 
 //ses produits
-Route::get('produit/produitProducteur/{id}','Produit\ProduitController@getProduitAdherant');
+Route::get('produit/produitProducteur/{id}','Producteur\Produit\ProduitController@getProduitAdherant');
 
 //-- Livraisons --
-Route::get('produit/LivraisonProducteur/{id}','Livraison\LivraisonController@getLivraisonsProducteur');
+Route::get('produit/LivraisonProducteur/{id}','Producteur\Livraison\LivraisonController@getLivraisonsProducteur');
 Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
 get('livraison/livraisons/{id}',['uses'=>'Producteur\Livraison\LivraisonController@getLivraisonsAmap','as'=>'getSesLivraisons']);
 
-Route::get('produit/update/{id}', 'Produit\ProduitController@update');
+Route::get('produit/update/{id}', 'Producteur\Produit\ProduitController@update');
 
 
 

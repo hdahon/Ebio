@@ -17,7 +17,7 @@ class AmapienController extends Controller
 	public function change(Request $request)
 	{
 		$data=array();
-		return view('pages/amap_change_info_compte')->with($data);
+		return view('Amapien/amap_change_info_compte')->with($data);
 	}
 
 	public function saveData(Request $request)
@@ -48,7 +48,7 @@ class AmapienController extends Controller
 		}
 
 		$user->save();
-		return view('pages/amap_change_info_compte');
+		return view('Amapien/amap_change_info_compte');
 
 	}
 
@@ -61,7 +61,7 @@ class AmapienController extends Controller
 	{
 		$data=array();
 
-		return view('pages/contrat')->with($data);
+		return view('Amapien/contrat_sel')->with($data);
 	}
 
 }

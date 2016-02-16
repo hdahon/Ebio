@@ -31,6 +31,10 @@ class AccountController extends Controller
             // doing login.
             if (Auth::validate($userdata)) {
                 if (Auth::attempt($userdata)) {
+                    //création d'une session avec le niveau de l'amapien, pour savoir si il est producteur par exemple
+                    $role = Auth::user()->roleamapien_id;
+                    $niveau = RoleAmapien::find($role)->niveau;
+                    Session::put('role',$niveau);
                     return Redirect::intended('/');
                 }
             }
