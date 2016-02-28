@@ -13,7 +13,7 @@
 
 
 //home
-Route::get('/', function () { return view('login'); });
+Route::get('/', function () { return view('Auth/login'); });
 
 //amapien 
 get('amapien/changeData',['uses'=>'Amapien\AmapienController@change','as'=>'amap_change_data']);

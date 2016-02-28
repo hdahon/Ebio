@@ -18,7 +18,7 @@ class ContratController extends Controller
 	{
 		// récupérer les contrats à jour
 		$allcontrats = User::find($id)->contratClients;
-		$data = array('sesContrats' => $contrats);
+		$data = array('sesContrats' => $allcontrats);
 		return view('Amapien/ses_contrats')->with($data);
 	}
 

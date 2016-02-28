@@ -19,8 +19,12 @@ class ProduitController extends Controller
 
        public function getCreate(Request $request)
        {             
-            $categories = Categorie::all()  ;
-            $data = array('categories' => $categories);
+            $categories = Categorie::all();
+            $producteurs= array();
+            foreach ($categories as $cat){
+                $producteurs[$cat->id]=User::find($cat->producteur_id);
+            }
+            $data = array('categories' => $categories,'producteurs'=>$producteurs);
             return view('ReferentPlus/Produit/newProduit',$data);
 
         }
