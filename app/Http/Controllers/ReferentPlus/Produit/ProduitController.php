@@ -20,7 +20,9 @@ class ProduitController extends Controller
        public function getCreate(Request $request)
        {             
             $categories = Categorie::all()  ;
-            $data = array('categories' => $categories);
+            $producteurs=User::where("roleamapien_id",2)->get();
+            $data = array('categories' => $categories,
+                        'producteurs'=>$producteurs);
             return view('ReferentPlus/Produit/newProduit',$data);
 
         }

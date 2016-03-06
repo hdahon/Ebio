@@ -3,7 +3,7 @@ extends('template')
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("ReferentPlus/menu")
+                    
                     <div class="panel-body">
                         Bienvenue Sur la pages de gestion des <b>ADHERANT </b>
                          <table class="table  table-bordered">

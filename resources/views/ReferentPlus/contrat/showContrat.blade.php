@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("/ReferentPlus/menu")
+                    
                     <div class="panel-body">
                         <a href="{{url('liste-contrat/') }}" class="btn btn-info btn-sm">Retour</a>
                         <h1 class='text-center'>Contrat d'engagement solidaire-{{$categorie->libelle}}</h1>
