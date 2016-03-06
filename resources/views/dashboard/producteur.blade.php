@@ -1,7 +1,7 @@
 @extends('template')
 @section('content')
         <div class="row">
-            <div class="col s12">
+            <div class="col-md-12">
                         <h1>Bienvenue sur la page {{$prod->nom}}</b></h1>
    
                         Voici vos informations: 

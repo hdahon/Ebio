@@ -8,7 +8,7 @@ Reférent
 Bienvenue Sur la pages de gestion des <b>PRODUIT</b>
                     @if (count($errors) > 0)
                     <div class="col s12 red lighten-4">
-                        <div class="col S11 offset-s1">
+                        <div class="alert alert-warning">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -19,23 +19,25 @@ Bienvenue Sur la pages de gestion des <b>PRODUIT</b>
                     </div>
                     @endif
 
-                    <form role="form" method="POST" action="{{ url('/produit/create') }}">
-
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/produit/create') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <div class="input-field col s6">
-                                <input id="nom" type="text"  name="nom" value="{{ old('produit') }}">
+
+                            <div class="form-group">
                                 <label for="nom">Nom Produit</label>
+                                <input id="nom" type="text"  name="nom" value="{{ old('produit') }}" class="form-control">
+                                
                             </div>
 
-                            <div class="input-field col s6">
+                            <div class="form-group">
+                                <label>Producteur</label>
                                 <select >
                                     @foreach ($producteurs as $prod)                    
                                     <option value={{$prod->id}}>{{$prod->nom." ".$prod->prenom}}</option>
                                     @endforeach
                                 </select>
-                                <label>Producteur</label>
                             </div>
-                                <button type="submit" class="btn waves-effect waves-light" name="action">créer</button>
+
+                            <button type="submit" class="btn btn-default">créer</button>
 
                     </form>
 </div>

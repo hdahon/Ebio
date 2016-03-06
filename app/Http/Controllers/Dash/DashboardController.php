@@ -32,7 +32,9 @@ class DashboardController extends Controller
         }
         
         if ($niveau) {
-            //echo '1';
+            $role = Auth::user()->roleamapien_id;
+            $niveau = RoleAmapien::find($role)->niveau;
+            session()->put('role',$niveau);
             $data = array('user' => Auth::user(),'role' => RoleAmapien::find($role)->nomRole,'date' => date('Y-m-d'));
             return view('dashboard/amapien_accueil')->with($data);
         } else {

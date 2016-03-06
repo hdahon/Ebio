@@ -54,7 +54,7 @@ Route::get('update-users/{id}', 'Admin\Adherant\AdherantController@updateUser');
 Route::post('users/update', 'Admin\Adherant\AdherantController@updateInsert');
 
 /*
-------------------------Route profil role --------------------
+------------------------Route role --------------------
 */
 // -- list
 Route::get('list-roles', 'Admin\Role\RoleController@getAll');
@@ -68,7 +68,7 @@ Route::post('roles/update', 'Admin\Role\RoleController@updateInsert');
 Route::get('delete-roles/{id}', 'Admin\Role\RoleController@delete');
 
 /*
-------------------------Route profil periodicite --------------------
+------------------------Route periodicite --------------------
 */
 // -- list
 Route::get('list-periodicites', 'Admin\Periodicite\PeriodiciteController@getAll');
@@ -82,7 +82,7 @@ Route::post('periodicites/update', 'Admin\Periodicite\PeriodiciteController@upda
 Route::get('delete-periodicites/{id}', 'Admin\Periodicite\PeriodiciteController@delete');
 
 /*
-------------------------Route profil produit --------------------
+------------------------Route produit --------------------
 */
 // -- list
 Route::get('list-produits', 'Admin\Produit\ProduitController@getAll');
@@ -97,7 +97,7 @@ Route::get('delete-produits/{id}', 'Admin\Produit\ProduitController@delete');
 
 
 /*
-------------------------Route profil categories --------------------
+------------------------Route categories --------------------
 */
 // -- list
 Route::get('list-categories', 'Admin\Categorie\CategorieController@getAll');
@@ -111,7 +111,7 @@ Route::post('categories/update', 'Admin\Categorie\CategorieController@updateInse
 Route::get('delete-categories/{id}', 'Admin\Categorie\CategorieController@delete');
 
 /*
-------------------------Route profil contrats --------------------
+------------------------Route contrats --------------------
 */
 // -- list
 Route::get('list-contrats', 'Admin\Contrat\ContratController@getAll');
@@ -125,7 +125,7 @@ Route::post('contrats/update', 'Admin\Contrat\ContratController@updateInsert');
 Route::get('delete-contrats/{id}', 'Admin\Contrat\ContratController@delete');
 
 /*
-------------------------Route profil contratsClients --------------------
+------------------------Route contratsClients --------------------
 */
 // -- list
 Route::get('list-contratsClients', 'Admin\ContratClient\ContratClientController@getAll');
@@ -139,7 +139,7 @@ Route::post('contratsClients/update', 'Admin\ContratClient\ContratClientControll
 Route::get('delete-contratsClients/{id}', 'Admin\ContratClient\ContratClientController@delete');
 
 /*
-------------------------Route profil referent --------------------
+------------------------Route referent --------------------
 */
 Route::get('categorie-liste', 'Referent\Categorie\CategorieController@getAllCategories');
 Route::get('details-categorie/{id}', 'Referent\Categorie\CategorieController@getCategorie');
@@ -270,6 +270,8 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+// Deconnexion routes
+Route::get('deconnexion','Auth\AuthController@deconnexion');
 
 Route::controllers([
     'password' => 'Auth\PasswordController',

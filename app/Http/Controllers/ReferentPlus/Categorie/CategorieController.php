@@ -58,7 +58,7 @@ public function postCreateCategorie(Request $request)
      /*Liste des tous les categorie */
       public function getAllCategories(){
          $categories = Categorie::all();
-         $refrents = array();
+         $referents = array();
          $producteurs  = array();
          $periodicites = array();
          foreach ($categories as $cat) {

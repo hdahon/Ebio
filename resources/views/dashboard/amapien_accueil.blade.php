@@ -1,7 +1,8 @@
 @extends('template')
 @section('content')
+
         <div class="row">
-            <div class="col s12">
+            <div class="col-md-11 col-md-offset-1">
                         <h1>Bienvenue, {{$user->nom}} sur la page amapien </h1>
                         
                         Voici vos informations: 

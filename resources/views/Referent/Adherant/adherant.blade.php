@@ -1,16 +1,15 @@
 @extends('template')
 @section('content')
         <div class="row">
-
-            <div class="col s12">
+            <div class="col-md-11 col-md-offset-1">
                         Bienvenue sur la pages de gestion des <b>ADHERANTS</b>
-                        <table class="striped">
+                        <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th data-field="nomPrenom">Nom et Prenom</th>
-                            <th data-field="contact">Contact</th>
-                            <th data-field="coContractant">Co_Contractant</th>
-                            <th data-field="Produit">Produit</th>
+                            <th>Nom et Prenom</th>
+                            <th>Contact</th>
+                            <th>Co_Contractant</th>
+                            <th>Produit</th>
                         </tr>
                         </thead>
                         <tbody>

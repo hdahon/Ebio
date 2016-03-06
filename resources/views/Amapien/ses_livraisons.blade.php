@@ -5,15 +5,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+
                 
-                <div class="panel-body">
-                    Bienvenue sur la page de gestion des <b>Livraisons</b>
+                    <h1>Bienvenue sur la page de gestion des <b>Livraisons</b></h1>
                     <br>
 
                     <!-- liste des livraisons livraisons @TODO: implémenter des liens sur la lsite des paniers -->
-                    <table class="table  table-bordered">
-                        <thead class="thead-inverse">
+                    <table class="table  table-striped">
+                        <thead>
                         <tr>
                             <th>Livraison id</th>
                             <th>Date de livraison</th>
@@ -47,12 +46,12 @@
                     </table>
 
 
-                </div>
+
                 <div>
                     Nombre de panier pour la semaine suivante : <!-- requete ici 1ere semaine -->
                     Nombre de panier pour la semaine d'après  : <!-- requete ici 2ième semaine -->
                 </div>
-            </div>
+
         </div>
     </div>
 @endsection

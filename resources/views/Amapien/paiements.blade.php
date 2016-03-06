@@ -5,17 +5,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                
-                <div class="panel-body">
-                    Bienvenue sur la page de gestion des <b>Paiements</b>
-                    <br>
-
-
-                    <div>
+                    <h1>Bienvenue sur la page de gestion des <b>Paiements</b></h1>
 	                    <!-- liste des paiements -->
-	                    <table class="table  table-bordered">
-	                        <thead class="thead-inverse">
+	                    <table class="table  table-striped">
 	                        <tr>
 	                            <th></th>
 	                            <th></th>
@@ -39,9 +31,6 @@
 	                         @endforeach       
 	                        </tbody>
 	                    </table>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endsection

@@ -1,12 +1,10 @@
 @extends('template')
-@section("title")
-    Reférent
-    @endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                @include("ReferentPlus/menu")
+
                 <div class="panel-body">
                     <h2>Liste des catégories </h2>
                     <table class="table  table-bordered">
