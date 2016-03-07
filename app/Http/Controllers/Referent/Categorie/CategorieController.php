@@ -18,6 +18,8 @@ class CategorieController extends Controller
       public function getAllCategories(){
          $referent=Auth::user()->id;
          $categories = Categorie::where('referent_id',$referent)->get();
+         $producteurs=array();
+         $periodicites=array();
          foreach ($categories as $cat) {
             $producteurs[$cat->id]=User::find($cat->producteur_id);
             $periodicites[$cat->id]=Periodicite::find($cat->periodicite_id);
