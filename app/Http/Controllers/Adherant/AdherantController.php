@@ -37,8 +37,8 @@ class AdherantController extends Controller
         $tel=$request->input('tel');
 
         User::create(array('nom'=>$nom,'prenom'=>$prenom));
-        /*return redirect('adherant/listAdmin');*/
-        echo "$nom bien enregistré";
+        return redirect('adherant/listAdmin');
+        //echo "$nom bien enregistré";
         return;
     }
 

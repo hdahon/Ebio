@@ -31,7 +31,7 @@
                                {{$adherant[$key]->prenomCAdherant." ".$adherant[$key]->nomCAdherant}} 
                             </td>
                             <td>
-                                {{$row->banque}}
+                                {{$row->Banque}}
                                 
                             </td>
                             <td>

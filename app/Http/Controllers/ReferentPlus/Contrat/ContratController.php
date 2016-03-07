@@ -45,7 +45,7 @@ class ContratController extends Controller
               $categories = Categorie::where("referent_id",$referent)->get();
               $data = array('categories' =>$categories);
               return view('Referent/contrat/newContrat',$data);
-            }else if($role == 4){
+            }else {
               $categories = Categorie::all();
               $data = array('categories' =>$categories);
               return view('ReferentPlus/contrat/newContrat',$data);
@@ -124,7 +124,7 @@ class ContratController extends Controller
              if(Auth::user()->roleamapien_id == 3 ){
                 return view('Referent/contrat/showContrat',$data);
 
-             }else if(Auth::user()->roleamapien_id == 4 ){
+             }else {
               return view('ReferentPlus/contrat/showContrat',$data);
 
              }
@@ -147,7 +147,7 @@ class ContratController extends Controller
                              'dateFin'=>$dF,);
              if(Auth::user()->roleamapien_id == 3 ){
                return view('Referent/contrat/formModifContrat',$data);
-             }else if(Auth::user()->roleamapien_id == 3 ){
+             }else {
                return view('ReferentPlus/contrat/formModifContrat',$data);
              }
         }

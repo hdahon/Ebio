@@ -31,68 +31,66 @@
                         @endif
                     </ul>
                 </li>
-                    @if($niveau)
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paiements<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                @if ($niveau >= 3)
-                                <li><a href="{{ url('liste-paiement') }}">Historique</a></li>
-                                <li><a href="{{ url('create-paiement') }}">Ajouter un paiement</a></li> 
-                                @endif
-                            </ul>
-                        </li>
-                        <li class="dropdown">
+               <!-- MENUE AMAPIEN  --> 
+                    @if($niveau == 1)
+                    <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Livraisons<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                    @if ($niveau)
                                     <li>Report</li>
                                     <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li>
-                                    @endif
-                                    @if($niveau == 2)
-                                    <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
-                                    @endif
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contrats<span class="caret"></span></a>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produits<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                @if ($niveau >= 3)
-                                <li><a href="{{ url('liste-contrat') }}">Liste des contats</a></li>
-                                <li><a href="{{ url('create-contrat') }}">Ajouter un contrat</a></li>
-                                @endif  
-                                @if ($niveau)
-                                <!-- Contrat de l'utilisateur courant -->
-                                <li>{!! link_to_route('getSesContrats','Vos Contrats', array(Auth::user()->id)) !!}</li>
-                                @endif
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produits<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                @if($niveau)
                                     <li><a href="{{ url('liste-produit') }}">Liste des produits</a></li>
                                     <li><a href="{{ url('liste-categorie') }}">Liste des Catégorie</a></li>
-                                @endif
-                                @if($niveau >=3)
-                                    <li><a href="{{ url('create-produit') }}">Ajouter un produit</a></li> 
-                                    <li class="divider"></li> <!-- Categorie à marquer --> 
-                                    
-                                    <li><a href="{{ url('create-categorie') }}">Ajouter une catégorie</a></li>
-                                @endif
                             </ul>
-                        </li>
-
-                        <li class="dropdown">
+                    </li>
+                    <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilisateurs<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                @if($niveau)
                                 <li><a href="{{ url('referent/adherant') }}">Liste des utilisateurs</a></li>
-                                @endif
-                                @if($niveau >= 3)
-                                <li><a href="{{ url('referent/adherant') }}">Ajouter un utilisateur</a></li>
-                                @endif
                             </ul>
                         </li>
+                    @endif
+                    <!-- MENUE PRODUCTEUR -->
+                    @if($niveau == 2)
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Livraisons<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                   
+                                    <li>Report</li>
+                                    <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li>
+                                    <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
+                                   
+                            </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produits<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="{{ url('liste-produit') }}">Liste des produits</a></li>
+                                    <li><a href="{{ url('liste-categorie') }}">Liste des Catégorie</a></li>
+                            </ul>
+                    </li>
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilisateurs<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('referent/adherant') }}">Liste des utilisateurs</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    <!-- MENUE REFERENT -->
+                    @if($niveau == 3)
+                    @include("Referent/menu")
+                    @endif
+                    <!-- MENUE REFERENT PLUS -->
+                    @if($niveau == 4)
+                    @include("ReferentPlus/menu")
+                    @endif
+                <!-- MENUE ADMIN -->
+                    @if($niveau == 5)
+                         @include("Admin/menu")
                     @endif
                 </ul>
         </div>

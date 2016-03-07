@@ -58,7 +58,7 @@ return [
             'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
             'database'  => 'dataEbio',
             'username'  => 'root',
-            'password'  => 'root',
+            'password'  => '',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

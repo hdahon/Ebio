@@ -31,7 +31,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ url('produit/produitAdherant/'.$row->id) }}">Voir</a>
+                                <a href="">Voir</a>
                             </td>
                              
                         </tr>

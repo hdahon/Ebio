@@ -23,7 +23,7 @@
                                 
                             </td>
                              <td>
-                                {{date_format(date_create($row>debutLivraison),'d-m-Y')}}
+                                {{date_format(date_create($row->debutLivraison),'d-m-Y')}}
                                 
                             </td>
                             <td>

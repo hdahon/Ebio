@@ -9,7 +9,7 @@ use App\User;
 use App\Periodicite;
 use App\Categorie;
 use App\Contrat;
-use App\ContratClient;
+use App\ContratClient; 
 use App\RoleAmapien;
 
 class ContratClientController extends Controller

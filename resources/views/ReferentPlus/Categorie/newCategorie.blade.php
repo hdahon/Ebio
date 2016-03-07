@@ -1,8 +1,9 @@
 @extends('template')
 
 @section('content')
-    <div class="row">
-        <div class="col s11 offset-s1">
+     <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
             <h1>Ajouter une nouvelle catégorie de produit</h1>
             <br>
             <h2>Nouvelle catégorie</h2>       
@@ -17,7 +18,7 @@
                     </div>
                 @endif
 
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/create-categorie') }}">
+            <form  role="form" method="POST" action="{{ url('/create-categorie') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 
@@ -30,7 +31,7 @@
                 @if($producteurs)
                 <div class="form-group">
                     <label>Producteur</label>
-                    <select>
+                    <select name="producteur" class="brower-default">
                         <option value=""> choix</option>
                         @foreach ($producteurs as $prod)                  
                         <option value={!!"\"".$prod->id."\"" !!}>{!! $prod->nom." ".$prod->prenom!!}</option>
@@ -44,9 +45,9 @@
                     <input id="typePanier" type="text" class="form-control" name="typePanier" value="{!! old('typePanier') !!}"> 
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-lg-12">
                          <label>Periodicite</label><br><br>
-                         <select>
+                         <select name="periode">
                             <option value=""> choix</option>
                             <option value="1">Bi-mensuel semaine paire</option>
                             <option value="2">Bi-mensuel semaine impaire</option>
@@ -63,7 +64,7 @@
                 @if($referents)
                 <div class="form-group">
                     <label>Referent</label><br><br>
-                    <select class="brower-default">
+                    <select class="brower-default" name="referent">
                     @foreach ($referents as $ref)                    
                     <option value={!! "\"". $ref->id."\"" !!}>{!! $ref->nom." ".$ref->prenom !!}</option>
                     @endforeach

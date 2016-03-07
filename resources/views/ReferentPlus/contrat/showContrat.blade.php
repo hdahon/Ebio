@@ -65,14 +65,18 @@
                         <div class="row drop-shadow">  
                             <h3 class="text-center">Distributions</h3>
                                      <p><b>Semaine Paire</b></p>
+                                     @if ($semainePaire)
                                       @foreach ($semainePaire as $key => $date)
                                 
                                          {{$date.""}}<b>----</b>
                                       @endforeach 
+                                      @endif
                                      <p><b>Semaine Impaire</b></p>
-                                     @foreach ($semainePaire as $key => $date)
+                                     @if ($semainePaire)
+                                     @foreach ($semaineImpaire as $key => $date)
                                          {{$semaineImpaire[$key]." "}}<b>----</b>
-                                       @endforeach   
+                                       @endforeach 
+                                       @endif  
                                  <p><b>Vacances</b></p>
                                     <p>{{$vacance}}</p>
                         </div>

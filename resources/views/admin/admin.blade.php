@@ -3,7 +3,6 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<div class="panel panel-default">
-			@include("Admin/menu")
 
 			<div class="panel-body">
                 Bienvenue <b>{{"  ".$user->prenom." ".$user->nom}}</b>

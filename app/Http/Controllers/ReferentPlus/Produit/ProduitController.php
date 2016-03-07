@@ -20,11 +20,7 @@ class ProduitController extends Controller
        public function getCreate(Request $request)
        {             
             $categories = Categorie::all();
-            $producteurs= array();
-            foreach ($categories as $cat){
-                $producteurs[$cat->id]=User::find($cat->producteur_id);
-            }
-            $data = array('categories' => $categories,'producteurs'=>$producteurs);
+            $data = array('categories' => $categories);
             return view('ReferentPlus/Produit/newProduit',$data);
 
         }
@@ -37,6 +33,7 @@ class ProduitController extends Controller
             $unite =$request->input('unite');
             $prix =$request->input('prix');
             $categorie = $request->input('categorie');
+            
             Produit::create(array(
                 'nomProduit' =>$nomProduit,
                 'categorie_id' =>$categorie,

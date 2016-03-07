@@ -22,9 +22,11 @@ class PaiementController extends Controller
             $ReferentPlus= Auth::user()->id;
 
             $produit=$request->input('produit');
+            $contrat=Contrat::find(ContratClient::find($produit)->contrat_id);
+            $categorie=Categorie::find($contrat->categorie_id);
             $amapien =$request->input('amapien');
-            echo $amapien;
-            $producteur =$request->input('producteur');
+            echo $categorie;
+            $producteur =$categorie->producteur_id;
             $mois =$request->input('mois');
             $numCheque = $request->input('numero');
             $banque=$request->input('banque');
@@ -40,13 +42,13 @@ class PaiementController extends Controller
                 'titulaire' =>$titulaire,
                 'nbPanier' =>$nbPanier,
                 'amapien_id' =>$amapien,
-                'ReferentPlus_id' =>$ReferentPlus,
-                'produit_id' =>$produit,
+                'referent_id' =>$ReferentPlus,
+                'contratClient_id' =>$produit,
                 'producteur_id' =>$producteur,
                 'mois' =>$mois,
 
             ));
-          return redirect('paiement/list');
+          return redirect('liste-paiement');
     }
 
 
@@ -81,9 +83,10 @@ public function getListPaiement(){
          $mois="";
          $produit="";
          $adherant="";
+         //echo $paiements[0]->mois;
          if(count($paiements) > 0){
-            $mois = $paiements[0]['mois'];
-            $produit =Produit::find($paiements[0]['produit_id'])->nomProduit;
+            $mois = $paiements[0]->mois;;
+            //$produit =Contrat::find(ContratClient::find($paiements[0]->contrat_id));
          }
          foreach($paiements as $p){
             $adherant[]=User::find($p->amapien_id);

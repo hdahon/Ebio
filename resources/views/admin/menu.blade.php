@@ -1,17 +1,37 @@
-<div class="panel-heading collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav ">
-
-        <li><a href="{{ url('dashboard/home') }}">Accueil</a></li>
 
         <li><a href="{{ url('list-users') }}">Utilisateurs</a></li>
         <li><a href="{{ url('list-roles') }}">Rôles</a></li>
-        <li><a href="{{ url('list-produits') }}">Produits</a></li>
         <li><a href="{{ url('list-periodicites') }}">Periodicité</a></li>
-        <li><a href="{{ url('list-paiements') }}">Paiements</a></li>
-        <li><a href="{{ url('list-livraisons') }}">Livraisons</a></li>
+        <li class="dropdown">
+                 <a  data-toggle="dropdown" class="dropdown-toggle" href="">Paiements<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                            <li><a href="{{ url('liste-paiement') }}">Historique</a></li>
+                            <li><a href="{{ url('create-paiement') }}">Ajouter un paiement</a></li>   
+                </ul>
+            </li> 
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Livraisons<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>Report</li>
+                     <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li>
+                </ul>
+        </li>
+         <li class="dropdown">
+                <a  data-toggle="dropdown" class="dropdown-toggle" href="">Produits<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                            <li><a href="{{ url('liste-produit') }}">Liste des produits</a></li>
+                            <li><a href="{{ url('categorie-liste') }}">Listes des catégories</a></li>
+                            <li><a href="{{ url('create-produit') }}">Ajouter un produit</a></li> 
+                            <li><a href="{{ url('create-categorie') }}">Ajouter une catégorie</a></li>   
+                </ul>
+            </li>
         <li><a href="{{ url('list-contratsClients') }}">Contrats clients</a></li>
-        <li><a href="{{ url('list-contrats') }}">Contrats</a></li>
-        <li><a href="{{ url('list-categories') }}">Catégorie</a></li>
-        <li><a href="{{ url('list-reports') }}">Reports</a></li>
-    </ul>
-</div>
+        <li class="dropdown">
+                <a  data-toggle="dropdown" class="dropdown-toggle" href="">Contrats<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                            <li><a href="{{ url('liste-contrat') }}">Modèle de contrat</a></li>
+                            <li><a href="{{ url('create-contrat') }}">Nouveau</a></li>   
+                </ul>
+            </li>
+        
+  

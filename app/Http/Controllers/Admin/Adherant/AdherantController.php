@@ -26,7 +26,7 @@ class AdherantController extends Controller
 		if ($niveau ==   5){
 			return view('Admin/Adherant/adherant',$data);
 		}else{
-			return view('pages/adherant',$data);
+			return view('referentPlus/Adherant/adherant',$data);
 		}
 	}
 
@@ -63,8 +63,8 @@ class AdherantController extends Controller
 				'roleamapien_id'=>$roleamapien_id,
 				'coadherant_id'=>$coadherant_id
 				));
-		/*return redirect('adherant/listAdmin');*/
-		echo "$nom bien enregistré";
+		return redirect('list-users');
+		/*echo "$nom bien enregistré";*/
 		return;
 	}
 
