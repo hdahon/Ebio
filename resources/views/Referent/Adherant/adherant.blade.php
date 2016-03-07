@@ -1,22 +1,19 @@
 @extends('template')
 @section('content')
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    @include("/referent/menu")
-                    <div class="panel-body">
-                        Bienvenue Sur la pages de gestion des <b>ADHERANT </b>
-                         <table class="table  table-bordered">
-                        <thead class="thead-inverse">
+            <div class="col-md-11 col-md-offset-1">
+                        Bienvenue sur la pages de gestion des <b>ADHERANTS</b>
+                        <table class="table table-striped">
+                        <thead>
                         <tr>
                             <th>Nom et Prenom</th>
                             <th>Contact</th>
                             <th>Co_Contractant</th>
-                            <th>Produits</th>
+                            <th>Produit</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($adherants as $row)
+                         @foreach ($adherants as $key =>$row)
                         <tr>
                             <td>
                                 {{$row->prenom." ".$row->nom}}
@@ -27,21 +24,21 @@
                                 {{$row->tel}}
                             </td>
                             <td>
-                                {{$row->coadherant_id." ".$row->nomCAdherant}}
+                                @if($coadherants[$key] !='')
+                                {{$coadherants[$key]->prenom." ".$coadherants[$key]->nom}}
                                 <br>
-                                {{$row->emailCAdherant}} <br> {{$row->telCAdherant}}
+                                {{$coadherants[$key]->email}} <br> {{$coadherants[$key]->tel}}
+                                @endif
                             </td>
                             <td>
-                                <a href="{{ url('produit/produitAdherant/'.$row->id) }}">Voir</a>
+                                <a href="">Voir</a>
                             </td>
                              
                         </tr>
 
-                         @endforeach       
+                         @endforeach        
                         </tbody>
                         </table>
-                    </div>
-                </div>
             </div>
         </div>
 

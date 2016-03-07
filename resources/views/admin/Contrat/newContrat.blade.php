@@ -6,8 +6,7 @@ Reférent
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
-            @include("Admin/menu")
-            <div class="panel-body">
+                    <div class="panel-body">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">

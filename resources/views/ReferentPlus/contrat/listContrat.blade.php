@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("/ReferentPlus/menu")
                     <div class="panel-body">
                         <h2>Liste des modèles de contrat</h2>
                         <br> 
@@ -13,7 +12,7 @@
                             <th>Catégories</th>
                             <th>Date Début</th>
                             <th>Date Fin</th>
-                            <th>Details</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -23,13 +22,13 @@
                                 {{$row->titre}}
                                 
                             </td>
-                            <td>
-                                {{$row->debutLivraison}}
+                             <td>
+                                {{date_format(date_create($row->debutLivraison),'d-m-Y')}}
                                 
                             </td>
                             <td>
                                
-                                {{$row->dateDeFinLivraison}}                            
+                                {{date_format(date_create($row->dateDeFinLivraison),'d-m-Y')}}                            
                             </td>
                             
                             <td>

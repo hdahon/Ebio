@@ -15,6 +15,43 @@ use Illuminate\Support\Facades\Auth;
 class ContratController extends Controller
 {
 
+
+  /* Liste des tous les modèle de contrat  */
+     public function getAllContrat(){
+        if(Auth::user()->roleamapien_id == 4){
+         $contrats = Contrat::all();
+         $data = array('contrats' => $contrats);
+         return view('ReferentPlus/contrat/listContrat',$data);
+       }else{
+         $referent = Auth::user()->id;
+         $categories=Categorie::where("referent_id",$referent)->get();
+         $iter=0;
+         $contrats = array();
+         foreach ($categories as $value) {
+           $contrats[$iter]=Contrat::where("categorie_id",$value->id)->get();
+           $iter++;
+         }
+         $data = array('contrats' => $contrats);
+         return view('Referent/contrat/listContrat',$data);
+       }
+     }
+     
+    /* Affichage du formulaire d'ajout de modèle de contrat */
+    public function getContrat(Request $request)
+    {             
+            $role= Auth::user()->roleamapien_id; 
+            if($role == 3){
+              $referent= Auth::user()->id; 
+              $categories = Categorie::where("referent_id",$referent)->get();
+              $data = array('categories' =>$categories);
+              return view('Referent/contrat/newContrat',$data);
+            }else {
+              $categories = Categorie::all();
+              $data = array('categories' =>$categories);
+              return view('ReferentPlus/contrat/newContrat',$data);
+            }
+            
+    }
     /* Ajout d'un modèle de contrat */
 
     public function postContrat(Request $request)
@@ -33,17 +70,14 @@ class ContratController extends Controller
                 'dateDeFinLivraison' =>$dateFin,
                 'vacance' =>$vacance,
             ));
-          return redirect('liste-contrat');
+          if(Auth::user()->roleamapien_id == 3 ){
+            return redirect('liste-contrat');
+          } else{ 
+            return redirect('liste-contrat');
+          }
     }
 
-        /* Affichage du formulaire d'ajout de modèle de contrat */
-       public function getContrat(Request $request)
-       {             
-            $ReferentPlus= Auth::user()->id; 
-            $categories = Categorie::all();
-            $data = array('categories' =>$categories);
-            return view('ReferentPlus/contrat/newContrat',$data);
-        }
+      
 
         /* Afficher le details d'un contrat */
       public function showContrat($id)
@@ -87,15 +121,17 @@ class ContratController extends Controller
                              'dateDebut'=>date_format($dL,"d-m-Y"),
                              'dateFin'=>date_format($dF,"d-m-Y")
                              );
-            return view('ReferentPlus/contrat/showContrat',$data);
+             if(Auth::user()->roleamapien_id == 3 ){
+                return view('Referent/contrat/showContrat',$data);
+
+             }else {
+              return view('ReferentPlus/contrat/showContrat',$data);
+
+             }
 
         }
 
-     public function getAllContrat(){
-         $contrats = Contrat::all();
-         $data = array('contrats' => $contrats);
-         return view('ReferentPlus/contrat/listContrat',$data);
-     }
+
 
      
         /* Affichage du formulaire de modification du modèle de contrat */
@@ -109,7 +145,11 @@ class ContratController extends Controller
                             'contrat'=>$contrat,
                              'dateDebut'=>$dD,
                              'dateFin'=>$dF,);
-            return view('ReferentPlus/contrat/formModifContrat',$data);
+             if(Auth::user()->roleamapien_id == 3 ){
+               return view('Referent/contrat/formModifContrat',$data);
+             }else {
+               return view('ReferentPlus/contrat/formModifContrat',$data);
+             }
         }
 
 

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("/ReferentPlus/menu")
+                    
                     <div class="panel-body">
                         Bienvenue Sur la pages de gestion des <b>CHEQUE</b>
                         <br>  
@@ -24,7 +24,7 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/paiement/new') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('create-paiement') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Mois</label>

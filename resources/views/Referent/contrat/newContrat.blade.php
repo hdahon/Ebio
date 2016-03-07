@@ -6,11 +6,9 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                @include("menu")
+                
                 <div class="panel-body">
-                   <h1 class="text-center"> Ajouter un nouveau modèle de contrat</h1>
-                    <br>
-                    <br>
+                   <h2> Ajouter un nouveau modèle de contrat</h2>
         <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -28,14 +26,14 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/contrat/new') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('create-contrat') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                              <div class="form-group">
-                                <label class="col-md-6 control-label">Produit</label>
+                                <label class="col-md-6 control-label">Catégorie de produit</label>
                                 <div class="col-md-8">
-                                    <select class=form-control name="produit">
-                                        @foreach ($produits as $prod)                    
-                                        <option value={{$prod->id}}>{{$prod->nomProduit}}</option>
+                                    <select class=form-control name="categorie">
+                                        @foreach ($categories as $cat)                    
+                                        <option value={{$cat->id}}>{{$cat->libelle}}</option>
                                         @endforeach
                                         
                                     </select>
@@ -43,26 +41,27 @@
                             </div>
                              <div class="form-group">
                                 <label class="col-md-6 control-label">Date de debut</label>
-                                <div class="col-md-8 date">
-                                    <input class="form-control input-lg" id="inputlg" name="dateDebut" placeholder="yyyy-mm-jj" type="date">
+                                <div class="col-md-8 ">
+                                    <input class="form-control input-lg date "    name="dateDebut" >
                                     </div>
                                 </div>
                         
                          <div class="form-group">
                                 <label class="col-md-6 control-label">Date de fin</label>
-                                <div class="col-md-8 date">
-                                    <input class="form-control input-lg" id="inputlg" name="dateFin" placeholder="yyyy-mm-jj" type="date">
+                                <div class="col-md-8 ">
+                                    <input class="form-control input-lg date"  name="dateFin"  >
                                     </div>
                                 </div>
                              <div class="form-group">
                                 <label class="col-xs-6 control-label">Vacances</label>
-                                <div class="col-xs-8 date">
-                                    <input class="form-control input-lg" id="inputlg" name="vacance" placeholder="yyyy-mm-jj" type="date">
+                                <div class="col-xs-8 ">
+                                    <input class="form-control input-lg date"   name="vacance" >
                                     </div>
                                 </div>  
                             <div class="form-group">
                                 <div class="col-md-12 text-right">
-                                    <button type="submit" class="btn btn-primary">créer</button>
+                                    <button type="submit" class="btn btn-info btn-sm">Ajouter</button>
+                                    <a href="{{url('liste-contrat/') }}" class="btn btn-info btn-sm">Annuler</a>                             
                                 </div>
                             </div>
 

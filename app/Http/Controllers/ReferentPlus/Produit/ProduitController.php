@@ -19,7 +19,7 @@ class ProduitController extends Controller
 
        public function getCreate(Request $request)
        {             
-            $categories = Categorie::all()  ;
+            $categories = Categorie::all();
             $data = array('categories' => $categories);
             return view('ReferentPlus/Produit/newProduit',$data);
 
@@ -33,6 +33,7 @@ class ProduitController extends Controller
             $unite =$request->input('unite');
             $prix =$request->input('prix');
             $categorie = $request->input('categorie');
+            
             Produit::create(array(
                 'nomProduit' =>$nomProduit,
                 'categorie_id' =>$categorie,

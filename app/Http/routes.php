@@ -12,24 +12,32 @@
 */
 
 
-Route::get('/', function () {
-    return view('login');
-});
+//home
+Route::get('/', function () { return view('Auth/login'); });
 
+//amapien 
+get('amapien/changeData',['uses'=>'Amapien\AmapienController@change','as'=>'amap_change_data']);
+post('amapien/save',['uses'=>'Amapien\AmapienController@saveData','as'=>'amapien_save_data']);
+
+//admin
 Route::get('admin/adherant', 'Adherant\AdherantController@adherant');
 
+//dashboard
 Route::get('dashboard/home', 'Dash\DashboardController@home');
+Route::get('dashboard/homeAdmin', 'Dash\DashboardController@home');
+
 
 /* Route pour le profil referent */
 Route::get('dashboard/homeAdmin', 'Dash\DashboardController@home');
 
-Route::get('referent/adherant/{id}', 'Adherant\AdherantController@deleteUser');
 
+Route::get('referent/adherant/{id}', 'Adherant\AdherantController@deleteUser');
 Route::get('referent/produit', 'Referent\ReferentController@produit');
 Route::get('referent/adherant', 'Referent\Adherant\AdherantController@adherant');
 Route::get('referent/cheque', 'Referent\ReferentController@cheque');
 Route::get('referent/distribution', 'Referent\ReferentController@distribution');
 Route::get('referent/report', 'Referent\ReferentController@report');
+
 
 /*
 ------------------------Route profil admin --------------------
@@ -46,7 +54,7 @@ Route::get('update-users/{id}', 'Admin\Adherant\AdherantController@updateUser');
 Route::post('users/update', 'Admin\Adherant\AdherantController@updateInsert');
 
 /*
-------------------------Route profil role --------------------
+------------------------Route role --------------------
 */
 // -- list
 Route::get('list-roles', 'Admin\Role\RoleController@getAll');
@@ -60,7 +68,7 @@ Route::post('roles/update', 'Admin\Role\RoleController@updateInsert');
 Route::get('delete-roles/{id}', 'Admin\Role\RoleController@delete');
 
 /*
-------------------------Route profil periodicite --------------------
+------------------------Route periodicite --------------------
 */
 // -- list
 Route::get('list-periodicites', 'Admin\Periodicite\PeriodiciteController@getAll');
@@ -74,7 +82,7 @@ Route::post('periodicites/update', 'Admin\Periodicite\PeriodiciteController@upda
 Route::get('delete-periodicites/{id}', 'Admin\Periodicite\PeriodiciteController@delete');
 
 /*
-------------------------Route profil produit --------------------
+------------------------Route produit --------------------
 */
 // -- list
 Route::get('list-produits', 'Admin\Produit\ProduitController@getAll');
@@ -89,7 +97,7 @@ Route::get('delete-produits/{id}', 'Admin\Produit\ProduitController@delete');
 
 
 /*
-------------------------Route profil categories --------------------
+------------------------Route categories --------------------
 */
 // -- list
 Route::get('list-categories', 'Admin\Categorie\CategorieController@getAll');
@@ -103,7 +111,7 @@ Route::post('categories/update', 'Admin\Categorie\CategorieController@updateInse
 Route::get('delete-categories/{id}', 'Admin\Categorie\CategorieController@delete');
 
 /*
-------------------------Route profil contrats --------------------
+------------------------Route contrats --------------------
 */
 // -- list
 Route::get('list-contrats', 'Admin\Contrat\ContratController@getAll');
@@ -117,7 +125,7 @@ Route::post('contrats/update', 'Admin\Contrat\ContratController@updateInsert');
 Route::get('delete-contrats/{id}', 'Admin\Contrat\ContratController@delete');
 
 /*
-------------------------Route profil contratsClients --------------------
+------------------------Route contratsClients --------------------
 */
 // -- list
 Route::get('list-contratsClients', 'Admin\ContratClient\ContratClientController@getAll');
@@ -131,10 +139,12 @@ Route::post('contratsClients/update', 'Admin\ContratClient\ContratClientControll
 Route::get('delete-contratsClients/{id}', 'Admin\ContratClient\ContratClientController@delete');
 
 /*
-------------------------Route profil referent --------------------
+------------------------Route referent --------------------
 */
 Route::get('categorie-liste', 'Referent\Categorie\CategorieController@getAllCategories');
 Route::get('details-categorie/{id}', 'Referent\Categorie\CategorieController@getCategorie');
+Route::get('produit-liste', 'Referent\Produit\ProduitController@getAllProduits');
+Route::get('details-produit/{id}', 'Referent\Produit\ProduitController@getDetailsProduit');
 
 
 Route::get('adherant/update/{id}', 'Adherant\AdherantController@update');
@@ -150,10 +160,19 @@ Route::get('contrat/new', 'Referent\Contrat\contratController@getContrat');
 Route::post('contrat/new', 'Referent\Contrat\contratController@postContrat');
 Route::get('contrat/list', 'Referent\Contrat\contratController@getAllContrat');
 Route::get('contrat/{id}', 'Referent\Contrat\contratController@showContrat');
+
+/*
+	Les routes pour le contrat sont les même que pour le profil referentPlus vu qu'il font 
+	les même actions
+*/
+
  
 Route::get('paiement/new', 'Referent\Paiement\PaiementController@getnewPaiement');
 Route::get('paiement/list', 'Referent\Paiement\PaiementController@getListPaiement');
 Route::post('paiement/new', 'Referent\Paiement\PaiementController@postnewPaiement');
+
+
+
 
 /*
   --------     Route profil referent plus  -------------------
@@ -163,7 +182,6 @@ Route::get('ReferentPlus/adherant', 'ReferentPlus\Adherant\AdherantController@ad
 Route::get('ReferentPlus/cheque', 'ReferentPlus\ReferentPlusController@cheque');
 Route::get('ReferentPlus/distribution', 'ReferentPlus\ReferentPlusController@distribution');
 Route::get('ReferentPlus/report', 'ReferentPlus\ReferentPlusController@report');
-
 /* Categories*/
 Route::get('liste-categorie', 'ReferentPlus\Categorie\CategorieController@getAllCategories');
 Route::get('create-categorie', 'ReferentPlus\Categorie\CategorieController@getCreateCategorie');
@@ -172,6 +190,7 @@ Route::get('categorie-details/{id}', 'ReferentPlus\Categorie\CategorieController
 Route::get('categorie-modifier/{id}', 'ReferentPlus\Categorie\CategorieController@getFormModifierCategorie');
 Route::post('modifier-categorie/{id}', 'ReferentPlus\Categorie\CategorieController@postModifierCategorie');
 Route::post('supprimer-categorie/{id}', 'ReferentPlus\Categorie\CategorieController@postSupprimerCategorie');
+
 /*Produits*/
 Route::get('liste-produit', 'ReferentPlus\Produit\ProduitController@getAllProduits');
 Route::get('create-produit', 'ReferentPlus\Produit\ProduitController@getCreate');
@@ -180,6 +199,12 @@ Route::get('produit-details/{id}', 'ReferentPlus\Produit\ProduitController@getPr
 Route::get('produit-modifier/{id}', 'ReferentPlus\Produit\ProduitController@getFormModifierProduit');
 Route::post('produit-modifier/{id}', 'ReferentPlus\Produit\ProduitController@postModifierProduit');
 Route::post('produit-supprimer/{id}', 'ReferentPlus\Produit\ProduitController@postSupprimerProduit');
+
+/*
+	Les routes pour le contrat sont les même que pour le profil referentPlus vu qu'il font 
+	les même actions
+*/
+
 /* Modèle de Contrat */
 Route::get('create-contrat', 'ReferentPlus\Contrat\contratController@getContrat');
 Route::post('create-contrat', 'ReferentPlus\Contrat\contratController@postContrat');
@@ -208,13 +233,31 @@ Route::get('produit/create', 'Produit\ProduitController@getCreate');
 Route::post('produit/create', 'Produit\ProduitController@postCreate');
 Route::get('produit/produitAdherant/{id}', 'Produit\ProduitController@getProduitAdherant');
 
+//producteur 
+//obtient le producteur courant
+get('producteur/prod/{id}',['uses'=>'Producteur\ProducteurController@prod', 'as'=>'getProd']);
 
+
+//ses produits
+Route::get('produit/produitProducteur/{id}','Producteur\Produit\ProduitController@getProduitAdherant');
+
+//-- Livraisons --
+Route::get('produit/LivraisonProducteur/{id}','Producteur\Livraison\LivraisonController@getLivraisonsProducteur');
 Route::get('produit/deleteProduit/{id}', 'Produit\ProduitController@deleteProduit');
+get('livraison/livraisons/{id}',['uses'=>'Producteur\Livraison\LivraisonController@getLivraisonsAmap','as'=>'getSesLivraisons']);
 
-Route::get('produit/update/{id}', 'Produit\ProduitController@update');
+Route::get('produit/update/{id}', 'Producteur\Produit\ProduitController@update');
 
 
 
+
+// -- Contrats --
+/*
+	Les routes pour le contrat sont les même que pour le profil referentPlus vu qu'il font 
+	les même actions
+*/
+// Renvoie les contrats de l'amapien identifié par l'id 
+get('contrats/getContratAmap/{id}',[ 'uses'=>'Amapien\Contrat\ContratController@getSesContrats', 'as'=>'getSesContrats']);
 
 
 
@@ -227,6 +270,8 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+// Deconnexion routes
+Route::get('deconnexion','Auth\AuthController@deconnexion');
 
 Route::controllers([
     'password' => 'Auth\PasswordController',

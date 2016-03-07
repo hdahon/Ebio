@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("/ReferentPlus/menu")
+                    
                     <div class="panel-body">
                         <a href="{{url('liste-contrat/') }}" class="btn btn-info btn-sm">Retour</a>
                         <h1 class='text-center'>Contrat d'engagement solidaire-{{$categorie->libelle}}</h1>
@@ -65,14 +65,18 @@
                         <div class="row drop-shadow">  
                             <h3 class="text-center">Distributions</h3>
                                      <p><b>Semaine Paire</b></p>
+                                     @if ($semainePaire)
                                       @foreach ($semainePaire as $key => $date)
                                 
                                          {{$date.""}}<b>----</b>
                                       @endforeach 
+                                      @endif
                                      <p><b>Semaine Impaire</b></p>
-                                     @foreach ($semainePaire as $key => $date)
+                                     @if ($semainePaire)
+                                     @foreach ($semaineImpaire as $key => $date)
                                          {{$semaineImpaire[$key]." "}}<b>----</b>
-                                       @endforeach   
+                                       @endforeach 
+                                       @endif  
                                  <p><b>Vacances</b></p>
                                     <p>{{$vacance}}</p>
                         </div>

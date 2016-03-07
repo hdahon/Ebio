@@ -3,29 +3,38 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("menu")
+                    
                     <div class="panel-body">
-                        <h1 class='text-center'>Contrat d'engagement solidaire-{{$produit->nomProduit}}</h1>
+                        <a href="{{url('liste-contrat/') }}" class="btn btn-info btn-sm">Retour</a>
+                        <h1 class='text-center'>Contrat d'engagement solidaire-{{$categorie->libelle}}</h1>
                         <h3 class='text-center'>{{$periode}}</h3>
                          <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                     <h2 class="text-left">Producteur</h2>
-                                    <p>Nom : {{$producteur->nom}}</p>
-                                    <p>Prenom : {{$producteur->prenom}}</p>
-                                    <p>Email : {{$producteur->email}}</p>
-                                    <p>Tel : {{$producteur->tel}}</p>
+                                    <p><b>Nom :</b> {{$producteur->nom}}</p>
+                                    <p><b>Prenom :</b> {{$producteur->prenom}}</p>
+                                    <p><b>Email :</b> {{$producteur->email}}</p>
+                                    <p><b>Tel : </b>{{$producteur->tel}}</p>
 
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <h2 class="text-left">Amapien</h2>
-                                   
-                                    <h2 class='text-left'>Co-contractant</h2>
-                                   
+                                    <p><b>Nom :</b> </p>
+                                    <p><b>Prenom :</b> </p>
+                                    <p><b>Email :</b> </p>
+                                    <p><b>Tel : </b></p>
                                 </div>
+                                <div class="col-sm-4">
+                                    <h2 class='text-left'>Co-contractant</h2>
+                                    <p><b>Nom :</b></p>
+                                    <p><b>Prenom :</b> </p>
+                                    <p><b>Email :</b> </p>
+                                    <p><b>Tel : </b></p>
+                                </div>    
                         </div>
                         <div class="row drop-shadow">  
                              <h3 class="text-center"> Prix et modalité de paiement </h3>
-                             <p>L'Amapien s'engage du <b>{{$contrat->debutLivraison}}</b> au <b>{{$contrat->dateDeFinLivraison }}</b>
+                             <p>L'Amapien s'engage du <b>{{$dateDebut}}</b> au <b>{{$dateFin}}</b>
                                 et donne au responsable de l'AMAP, les chèques indiqués dans le tableau ci-dessous, libellés à l'ordre
                                 du producteur ({{$producteur->prenom." ".$producteur->nom}}): 
                              <table class="table  table-bordered">
@@ -47,8 +56,8 @@
                                 </thead>
                         <tbody>
                             <tr>
-                                <td>{{$produit->typePanier." à ".$produit->prix."€"}}</td>
-                                <td></>
+                                <td>{{$categorie->typePanier}}</td>
+                                        
                             </tr>
                         </tbody>
                         </table>
@@ -56,14 +65,18 @@
                         <div class="row drop-shadow">  
                             <h3 class="text-center">Distributions</h3>
                                      <p><b>Semaine Paire</b></p>
+                                     @if(count($semainePaire)>0)
                                       @foreach ($semainePaire as $key => $date)
                                 
                                          {{$date.""}}<b>----</b>
                                       @endforeach 
+                                      @endif
                                      <p><b>Semaine Impaire</b></p>
-                                     @foreach ($semainePaire as $key => $date)
+                                     @if(count($semaineImpaire)>0)
+                                     @foreach ($semaineImpaire as $key => $date)
                                          {{$semaineImpaire[$key]." "}}<b>----</b>
-                                       @endforeach   
+                                       @endforeach 
+                                    @endif  
                                  <p><b>Vacances</b></p>
                                     <p>{{$vacance}}</p>
                         </div>

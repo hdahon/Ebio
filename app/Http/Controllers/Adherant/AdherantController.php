@@ -13,16 +13,12 @@ class AdherantController extends Controller
 
 	public function adherant()
 	{		
-
-		//$role = Auth::user()->roleAmapien;
 		$role = Auth::user()->roleamapien_id;
-		//echo $role;
 		$niveau = RoleAmapien::find($role)->niveau;
-		//echo $niveau;
 		$adherants= User::where('id','!=',Auth::user()->id)->get();
 		$data = array('adherants' => $adherants);
-
-		if ($niveau ==   5){
+		//echo $niveau;
+		if ($niveau ==   5) {
 			return view('admin/adherant',$data);
 		}else{
 			return view('pages/adherant',$data);
@@ -41,8 +37,8 @@ class AdherantController extends Controller
         $tel=$request->input('tel');
 
         User::create(array('nom'=>$nom,'prenom'=>$prenom));
-        /*return redirect('adherant/listAdmin');*/
-        echo "$nom bien enregistré";
+        return redirect('adherant/listAdmin');
+        //echo "$nom bien enregistré";
         return;
     }
 

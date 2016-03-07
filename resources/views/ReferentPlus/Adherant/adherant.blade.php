@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    @include("/ReferentPlus/menu")
+                    
                     <div class="panel-body">
                         <h2>Liste des amapiens</h2>
                         <table  class="table  table-bordered">
@@ -34,7 +34,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ url('produit/produitAdherant/'.$row->id) }}">Voir</a>
+                                <a href="">Voir</a>
                             </td>
                              
                         </tr>

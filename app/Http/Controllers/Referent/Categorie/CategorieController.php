@@ -14,47 +14,6 @@ use Illuminate\Support\Facades\Auth;
 class CategorieController extends Controller
 {
 
-
-        /*Affiche le formulaire d'ajout d'une nouvelle catégorie de produit*/
-         public function getCreateCategorie(Request $request)
-       {             
-            $ReferentPlus= Auth::user()->id; 
-            $producteurs = User::where('roleamapien_id',2)
-            ->where('id','!=',$ReferentPlus)
-            ->get();
-            $referents = User::where('roleamapien_id',3)
-            ->where('id','!=',$ReferentPlus)
-            ->get();
-            $data = array('producteurs' => $producteurs,
-                        'referents' =>$referents);
-            return view('ReferentPlus/Categorie/newCategorie',$data);
-
-        }
-
-/*
-Ajout d'une nouvelle catégorie dans la Bd
-*/
-public function postCreateCategorie(Request $request)
-    {
-            $nomProduit=$request->input('libelle');
-            $typepanier =$request->input('typePanier');
-            $periode =$request->input('periode');
-            $Referent=$request->input('referent');
-            $producteur = $request->input('producteur');
-            echo $typepanier;
-            Categorie::create(array(
-                'libelle' =>$nomProduit,
-                'typePanier' =>$typepanier,
-                'referent_id' =>$Referent,
-                'producteur_id' =>$producteur,
-                'periodicite_id' =>$periode,
-            ));
-
-           return redirect('liste-categorie');
-
-    }
-
-
      /*Liste des tous les categorie */
       public function getAllCategories(){
          $referent=Auth::user()->id;
@@ -90,53 +49,7 @@ public function postCreateCategorie(Request $request)
          return view('Referent/Categorie/categorie-details',$data);
      }
 
-        /* afficher le formulaire de modification d'une catégorie */
-         public function getFormModifierCategorie($id){
-
-         $categorie = Categorie::find($id);
-         $producteurs=User::where('roleamapien_id',2)->get();
-         $referents =User::where('roleamapien_id',3)->get();
-         $periode=Periodicite::All();
-         $periodicites=$periode;
-         $data = array('categorie' => $categorie,
-                        'referents'=>$referents,
-                        'producteurs'=>$producteurs,
-                        'periodicites'=>$periodicites,
-                       );
-         return view('ReferentPlus/Categorie/FormModifCategorie',$data);
-     }
-
-     /*
-Modifier une categorie catégorie dans la Bd
-*/
-public function postModifierCategorie(Request $request,$id)
-    {
-            $libelle=$request->input('libelle');
-            $typepanier =$request->input('typePanier');
-            $periode =$request->input('periode');
-            $referent=$request->input('referent');
-            $producteur = $request->input('producteur');
-            $categorie=Categorie::find($id);
-            $categorie->libelle=$libelle;
-            $categorie->typePanier=$typepanier;
-            $categorie->referent_id=$referent;
-            $categorie->producteur_id=$producteur;
-            $categorie->periodicite_id=$periode;
-            $categorie->save();
-
-           return redirect('liste-categorie');
-
-    }
-
-   /* Supprimer une categorie catégorie dans la Bd
-*/
-public function postSupprimerCategorie($id)
-    {
-       Categorie::destroy($id);
-       return redirect('liste-categorie');
-           
-
-    }
+        
 
 
 

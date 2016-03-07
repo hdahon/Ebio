@@ -19,6 +19,7 @@ class CreateLivraisonTable extends Migration
             $table->integer("amapien_id")->unsigned();
             $table->integer("produit_id")->unsigned();
             $table->integer("producteur_id")->unsigned();
+            $table->date("dateDeLivraison");
             $table->timestamps();
         });
             Schema::table('livraisons', function($table) {

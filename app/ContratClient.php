@@ -14,7 +14,7 @@ class ContratClient extends Model
     protected $table = 'contratClients';
 
 
-    protected $fillable = ['contrat_id' , 'amapien_id', 'periodicite_id'];
+    protected $fillable = ['contrat_id' , 'user_id', 'periodicite_id',"amapien_id"];
 
 
     /**

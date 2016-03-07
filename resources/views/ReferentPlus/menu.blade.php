@@ -1,7 +1,4 @@
 
-    <div class="panel-heading collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav ">
-            <li><a href="{{ url('dashboard/home') }}"><pan class="accueil">Accueil</pan></a></li>
             <li class="dropdown">
             	<a  data-toggle="dropdown" class="dropdown-toggle" href="">Categories Produits<b class="caret"></b></a>
             	<ul class="dropdown-menu">
@@ -30,8 +27,12 @@
                             <li><a href="{{ url('liste-paiement') }}">Historique</a></li>
                             <li><a href="{{ url('create-paiement') }}">Ajouter un paiement</a></li>   
                 </ul>
-            <li><a href="{{ url('referent/distribution') }}">Planning</a></li>
-            <li><a href="{{ url('referent/report') }}">Reports</a></li>
-        </ul>
-
-    </div>
+            </li>
+           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Livraisons<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>Report</li>
+                     <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li>
+                </ul>
+        </li>
+       

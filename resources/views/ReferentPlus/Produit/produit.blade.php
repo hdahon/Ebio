@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                @include("ReferentPlus/menu")
+                
                 <div class="panel-body">
                     <h2>Liste des Produits</h2>
                     <table class="table  table-bordered">
@@ -40,8 +40,10 @@
                                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/produit-supprimer/'.$row->id) }}">
                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                  <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
+                                 @if(session('role')>=3)
                                  <a href="{{ url('produit-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
                                  <button type="submit"class="btn  btn-info btn-sm">Supprimer</button>
+                                 @endif
                              </form>
                             </td>
                         </tr>
