@@ -55,13 +55,15 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => 'localhost',
-            'database'  => 'dataebio',
+            'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
+            'database'  => 'dataEbio',
             'username'  => 'root',
-            'password'  => '',
+            'password'  => 'root',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
+            
         ],
 
         'pgsql' => [

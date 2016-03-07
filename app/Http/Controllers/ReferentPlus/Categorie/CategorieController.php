@@ -58,9 +58,15 @@ public function postCreateCategorie(Request $request)
      /*Liste des tous les categorie */
       public function getAllCategories(){
          $categories = Categorie::all();
+<<<<<<< HEAD
          $producteurs=array();
          $referents=array();
          $periodicites=array();
+=======
+         $refrents = array();
+         $producteurs  = array();
+         $periodicites = array();
+>>>>>>> 22405344179a9cb6d7f0e6918127bde687719a61
          foreach ($categories as $cat) {
             $referents[$cat->id]=User::find($cat->referent_id);
             $producteurs[$cat->id]=User::find($cat->producteur_id);

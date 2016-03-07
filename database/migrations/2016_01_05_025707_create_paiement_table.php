@@ -26,6 +26,7 @@ class CreatePaiementTable extends Migration
             $table->integer("contratClient_id")->unsigned();
             $table->integer("producteur_id")->unsigned();
             $table->string('mois');
+            $table->boolean('valider');
             $table->timestamps();
 
         });

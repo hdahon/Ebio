@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 class UserTableSeeder extends Seeder
 {
+    public $timestamps = false;
     /**
      * Run the database seeds.
      *
@@ -156,6 +157,7 @@ class UserTableSeeder extends Seeder
             'numSiret' => '45011409500018',
             'adresse'=>'Valescure - 83600 Fréjus',
         )); 
+        
         User::create(array(
             'nom'     => 'PAPONE',
             'prenom' => 'Renaud',
@@ -166,7 +168,23 @@ class UserTableSeeder extends Seeder
             'numSiret' => '51950486400017',
             'adresse'=>'Lavancia - Les hauts des Blanquieries - 06260 PUGET-THENIERS',
         ));
+
+        User::create(array(
+            'nom'               => 'ok',
+            'prenom'            => 'ok',
+            'email'             => 'ok@gmail',
+            'password'          => Hash::make('pass06'),
+            'roleamapien_id'    => '2',
+            ));
          User::create(array(
+            'nom'               => 'amap',
+            'prenom'            => 'amap',
+            'email'             => 'amap@gmail',
+            'password'          => Hash::make('pass06'),
+            'roleamapien_id'    => '1',
+            ));
+
+        User::create(array(
             'nom'     => 'VEDRINES',
             'prenom' => 'Jérôme',
             'email'    => 'jerome@badab.fr',
@@ -177,6 +195,5 @@ class UserTableSeeder extends Seeder
             'adresse'=>'268 route de saint Mathieu - 06130 GRASSE',
         ));       
       
-
     }
 }

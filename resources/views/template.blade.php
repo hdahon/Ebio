@@ -32,17 +32,29 @@
 <body>
 
 @include('header')
+<<<<<<< HEAD
 <!-- div class="parallax-container">
     <div class="parallax"><img src="{{ URL::asset('assets/img/agr2.jpg')}}"></div>
 </div> -->
+=======
+<div class="parallax-container">
+    <div class="parallax"><img src="{{ URL::asset('assets/img/agr2.jpg')}}"></div>
+</div>
+>>>>>>> 22405344179a9cb6d7f0e6918127bde687719a61
 <div class="section">
 @yield('content')
 
 </div>
 
+<<<<<<< HEAD
 <!-- <div class="parallax-container">
     <div class="parallax"><img src="{{ URL::asset('assets/img/agr1.jpg')}}"></div>
 </div> -->
+=======
+<div class="parallax-container">
+    <div class="parallax"><img src="{{ URL::asset('assets/img/agr1.jpg')}}"></div>
+</div>
+>>>>>>> 22405344179a9cb6d7f0e6918127bde687719a61
 
 <!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -6,6 +6,7 @@ use Illuminate\Database\UserTableSeeder;
 use Illuminate\Database\RoleAmapienTableSeeder;
 use Illuminate\Database\PeriodiciteTableSeeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,12 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //Model::unguard();
+
+//      Model::unguard();
 //
 //      $this->call(UserTableSeeder::class);
 //
-//        Model::reguard();
+//      Model::reguard(); 
+
         Eloquent::unguard();
+
         $this->call('RoleAmapienTableSeeder');
         $this->call('UserTableSeeder');
         $this->call('PeriodiciteTableSeeder');
