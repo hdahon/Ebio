@@ -35,7 +35,7 @@
 ?>
         <div class="row">
             <div class="col-md-11 col-md-offset-1">
-                        <h1>Bienvenue, {{$user->nom}} sur la page {{$leRole}}</h1>
+                        <h1>Bienvenue {{$user->nom}} sur la page d'accueil {{$leRole}}</h1>
                   
                         Voici vos informations: 
                         <ul>
