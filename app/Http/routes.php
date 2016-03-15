@@ -66,6 +66,19 @@ Route::get('update-roles/{id}', 'Admin\Role\RoleController@update');
 Route::post('roles/update', 'Admin\Role\RoleController@updateInsert');
 // -- delete
 Route::get('delete-roles/{id}', 'Admin\Role\RoleController@delete');
+/*
+------------------------Route livraison --------------------
+*/
+// -- list
+Route::get('list-livraisons', 'Admin\Livraisons\LivraisonsController@getAll');
+// -- create
+Route::get('create-livraisons', 'Admin\Livraisons\LivraisonsController@insert');
+Route::post('livraisons/new', 'Admin\Livraisons\LivraisonsController@post');
+// -- update
+Route::get('update-livraisons/{id}', 'Admin\Livraisons\LivraisonsController@update');
+Route::post('livraisons/update', 'Admin\Livraisons\LivraisonsController@updateInsert');
+// -- delete
+Route::get('delete-livraisons/{id}', 'Admin\Livraisons\LivraisonsController@delete');
 
 /*
 ------------------------Route periodicite --------------------

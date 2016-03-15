@@ -9,7 +9,7 @@
                         <tr>
                             <th>nomRole</th>
                             <th>niveau</th>
-                            <th><a href="{{ url('create-roles') }}" title="Ajouter">[ AJOUTER ]</a></th>
+                            <th><a href="{{ url('create-roles') }}" title="Ajouter"  class="btn  btn-success btn-sm">AJOUTER</a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,9 +22,8 @@
                                 {{$row->niveau}}
                             </td>
                             <td>
-                                <a href="{{ url('delete-roles/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
-                                -
-                                <a href="{{ url('update-roles/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
+                                <a href="{{ url('update-roles/'.$row->id) }}" title="Modifier" class="btn  btn-warning btn-sm">MODIFIER</a>
+                                <a href="{{ url('delete-roles/'.$row->id) }}" title="Supprimer" class="btn  btn-danger btn-sm">SUPPRIMER</a>
                             </td>
                         </tr>
                         @endforeach       
