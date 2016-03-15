@@ -8,7 +8,6 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>contrat</th>
-                            <th>Amapien</th>
                             <th>periodicite</th>
                             <th>Action</th>
                         </tr>
@@ -17,7 +16,6 @@
                         @foreach ($elements as $key => $row)
                         <tr>
                             <td>{{$contrats[$key][0]->titre}}</td>
-                            <td>{{$amapiens[$key][0]->prenom }} {{$amapiens[$key][0]->nom}}</td>
                             <td>{{$periodicites[$key][0]->libelle}}</td>
                             <td>
                                 <a href="" class="btn btn-default" title="Supprimer">VOIR</a>

@@ -18,14 +18,35 @@ class ContratClientController extends Controller
 	// -- list
 	public function getAll()
 	{	
+		$contratClients=array();
+		$periodicites=array();
+		$amapiens=array();
+		$contrats=array();
+		$iter=0;
 		if(session('role')==1){
-			$contratClients=ContratClient::where("amapien_id",Auth::user()->id);
+			$contratClients=ContratClient::where("amapien_id",Auth::user()->id)->get();
+			foreach ($contratClients as $value) {
+				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
+           		$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();
+           		$iter++;
+         	}
+         	
+			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'contrats'=>$contrats);
+		    return view('Amapien/listcontrat',$data);
+
 		}else{
 			$contratClients=ContratClient::all();
+			foreach ($contratClients as $value) {
+				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
+           		$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();
+           		$amapiens[$iter] =User::where("id",$value->amapien_id)->get();
+           		$iter++;
+         	}
+			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'amapiens'=>$amapiens, 'contrats'=>$contrats);
+		    return view('Admin/ContratClient/contratClient',$data);
 		}
 			
-		$data = array('elements' => $contratsClients);
-		return view('Admin/ContratClient/contratClient',$data);
+		
 	}
 	
 	// ----- create ----- 
@@ -67,20 +88,35 @@ class ContratClientController extends Controller
 	// ----- update ----- 
 	public function update($id)
 	{
+
 		$element=ContratClient::find($id);
+		$contrats = Contrat::all();
+		$amapiens=User::where('roleamapien_id',1)->get();
+		$periodicite=Periodicite::all();
 		$data = array(
 			'id' => $id, 
 			'contrat_id' => $element->contrat_id,
 			'amapien_id' => $element->amapien_id,
-			'periodicite_id' => $element->periodicite_id
+			'periodicite_id' => $element->periodicite_id,
+			'contrats' => $contrats,
+			'amapiens' =>$amapiens,
+			'periodicites'=>$periodicite
 			);
-		return view('Admin/ContratClient/updateContratClient',$data);
+		if(session('role')==1){
+			return view('Amapien/update_contratClient',$data);
+		}else{
+			return view('Admin/ContratClient/updateContratClient',$data);
+		}
 	}	
 	public function updateInsert(Request $request)
 	{
 		$element=ContratClient::find($request->input('id'));
 		$element->contrat_id=($request->input('contrat_id'));
-		$element->amapien_id=($request->input('amapien_id'));
+		if(session('role')==1){
+			$element->amapien_id=Auth::user()->id;
+		}else{
+			$element->amapien_id=($request->input('amapien_id'));
+		}
 		$element->periodicite_id=($request->input('periodicite_id'));
 		$element->save();
 		return redirect('list-contratsClients');

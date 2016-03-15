@@ -25,7 +25,14 @@
                             <li><a href="{{ url('create-categorie') }}">Ajouter une catégorie</a></li>   
                 </ul>
             </li>
-        <li><a href="{{ url('list-contratsClients') }}">Contrats clients</a></li>
+        <li class="dropdown">
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes Contrats<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('create-contratsClients') }}">Souscrire à un contrat </a></li>
+                                    <li> <a href="{{ url('list-contratsClients') }}">Mes contrats</a></li>
+                                </ul>
+                    </li>
         <li class="dropdown">
                 <a  data-toggle="dropdown" class="dropdown-toggle" href="">Contrats<b class="caret"></b></a>
                 <ul class="dropdown-menu">

@@ -19,7 +19,7 @@ Reférent
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Modèle de contrat</label>
                                             <div class="col-md-8">
-                                                <select class=form-control name="categorie">
+                                                <select class=form-control name="contrat_id">
                                                     @foreach ($contrats as $contrat)                    
                                                         <option value={{$contrat->id}}>{{$contrat->titre}}</option>
                                                     @endforeach
@@ -27,15 +27,23 @@ Reférent
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">amapien_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="amapien_id" value="">
+                                            <label class="col-md-4 control-label">Amapiens</label>
+                                            <div class="col-md-8">
+                                                <select class=form-control name="amapien_id">
+                                                    @foreach ($amapiens as $a)                    
+                                                        <option value={{$a->id}}>{{$a->prenom}} {{$a->nom}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">periodicite_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="periodicite_id" value="">
+                                       <div class="form-group">
+                                            <label class="col-md-4 control-label">Periodicite</label>
+                                            <div class="col-md-8">
+                                                <select class=form-control name="periodicite_id">
+                                                    @foreach ($periodicites as $periode)                    
+                                                        <option value={{$periode->id}}>{{$periode->libelle}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
