@@ -17,22 +17,48 @@ class ContratClientController extends Controller
 
 	// -- list
 	public function getAll()
-	{		
-		$data = array('elements' => (ContratClient::all()));
+	{	
+		if(session('role')==1){
+			$contratClients=ContratClient::where("amapien_id",Auth::user()->id);
+		}else{
+			$contratClients=ContratClient::all();
+		}
+			
+		$data = array('elements' => $contratsClients);
 		return view('Admin/ContratClient/contratClient',$data);
 	}
 	
 	// ----- create ----- 
 	public function insert(Request $request)
-	{             
-		return view('Admin/ContratClient/newContratClient');
+	{   
+		$contrats = Contrat::all();
+		$amapiens=User::where('roleamapien_id',1)->get();
+		$periodicite=Periodicite::all();
+		$data = array(
+			 
+			'contrats' => $contrats,
+			'amapiens' =>$amapiens,
+			'periodicites'=>$periodicite
+			
+			);
+		if(session('role')==1){
+			return view('Amapien/contrat_sel',$data);
+		}else{
+			return view('Admin/ContratClient/newContratClient',$data);
+		}
 	}
+
 	public function post(Request $request)
 	{
+		if(session('role')==1){
+			$amapien =Auth::user()->id;
+		}else{
+			$amapien=($request->input('amapien_id'));
+		}
 		ContratClient::create(
 			array(
 				'contrat_id'=>($request->input('contrat_id')),
-				'amapien_id'=>($request->input('amapien_id')),
+				'amapien_id'=>$amapien,
 				'periodicite_id'=>($request->input('periodicite_id'))
 				));
 		return redirect('list-contratsClients');

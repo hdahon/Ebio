@@ -7,11 +7,11 @@
                         
                         Voici vos informations: 
                         <ul>
-                        	<li>Votre nom : {{$user->nom}}</li>
-                        	<li>Votre prénom : {{$user->prenom}}</li>
-                        	<li>Votre mail: {{$user->email}}</li>
-                        	<li>Votre numéro de téléphone: {{$user->tel}}</li> 
-                        	<li>Votre rôle au sein de l'association : {{$role}} </li>
+                        	<li><b>Nom:</b> {{$user->nom}}</li>
+                        	<li><b>Prénom :</b> {{$user->prenom}}</li>
+                        	<li><b>Email: </b> {{$user->email}}</li>
+                        	<li><b>Téléphone: </b> {{$user->tel}}</li> 
+                        	<li><b>Votre rôle au sein de l'association : </b>{{$role}} </li>
                         </ul>
 
                         <h2>Voici les informations de votre conjoint: </h2>
@@ -21,8 +21,10 @@
                         	<li>Mail de votre conjoint: {{$user->emailCAdherant}}</li>
                         	<li>Numéro de téléphone de votre conjoint : {{$user->telCAdherant}}</li> 
                         </ul>
-                        {!! link_to_route('amap_change_data','Changer ses informations',array(),array('class'=>'waves-effect waves-light btn')) !!}
-            </div>
+                        @if(session('role') <5)
+                        {!! link_to_route('amap_change_data','Changer vos informations de compte',array(),array('class'=>'waves-effect waves-light btn')) !!}
+                        @endif     
+       </div>
         </div>
 
 @endsection

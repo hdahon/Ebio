@@ -17,9 +17,13 @@ Reférent
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">contrat_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="contrat_id" value="">
+                                            <label class="col-md-4 control-label">Modèle de contrat</label>
+                                            <div class="col-md-8">
+                                                <select class=form-control name="categorie">
+                                                    @foreach ($contrats as $contrat)                    
+                                                        <option value={{$contrat->id}}>{{$contrat->titre}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
