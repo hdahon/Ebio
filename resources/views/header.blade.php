@@ -34,22 +34,39 @@
                <!-- MENUE AMAPIEN  --> 
                     @if($niveau == 1)
                     <li class="dropdown">
+<<<<<<< HEAD
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes Contrats<span class="caret"></span></a>
+=======
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes livraisons<span class="caret"></span></a>
+>>>>>>> 5c87fd74d8b7c3a57a1c2277089da52899b50ef4
                             <ul class="dropdown-menu">
                                     <li><a href="{{ url('create-contratsClients') }}">Souscrire à un contrat </a></li>
                                     <li> <a href="{{ url('list-contratsClients') }}">Mes contrats</a></li>
                         </ul>
                     </li>
+<<<<<<< HEAD
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes Livraisons<span class="caret"></span></a>
+=======
+                    <!--li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produits<span class="caret"></span></a>
+>>>>>>> 5c87fd74d8b7c3a57a1c2277089da52899b50ef4
                             <ul class="dropdown-menu">
                                     <li>Mes Reports</li>
                                     <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsAmap','Mes Livraisons',array(Auth::user()->id)) !!}</li>
                         </ul>
                     </li>
                     <li class="dropdown">
+<<<<<<< HEAD
                         <a  href="{{ url('liste-paiement') }}">Mes Paiements</a>
                    </li> 
+=======
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilisateurs<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('referent/adherant') }}">Liste des utilisateurs</a></li>
+                            </ul>
+                        </li-->
+>>>>>>> 5c87fd74d8b7c3a57a1c2277089da52899b50ef4
                     @endif
                     <!-- MENUE PRODUCTEUR -->
                     @if($niveau == 2)

@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-md-11 col-md-offset-1">
-                  <h1>Changer vos informations de comptes:</h1>
+                  <h1>Changer vos informations de compte:</h1>
                   <form method="POST" action="{!! url('amapien/save') !!}" accept-charset="UTF-8">
                   {!! csrf_field() !!} 
                   <h2>Vos informations</h2>
@@ -34,7 +34,7 @@
                   </div>
 
 
-                  <h2> Les informations de votre conjoints </h2>
+                  <h2> Les informations de votre conjoint </h2>
                   <br>
 
                   <div class="form-group">

@@ -4,8 +4,13 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+    "hash": "ab56146f76d5af981cf2bf123c65c3ae",
+    "content-hash": "8575ccaf3ee3532c75a007b91ed32fbb",
+=======
     "hash": "15edf7f0482ae2ead11d10fe41f9370b",
     "content-hash": "4f88bbc476ec69b99e792fde2e7d74cc",
+>>>>>>> d9add3d42382067ccff3757513c6ac413c8d70b0
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -410,6 +415,18 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
+            "version": "v5.1.30",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "f00b80d4d33cf67815d1b4aaae8d4b47af2f2a2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f00b80d4d33cf67815d1b4aaae8d4b47af2f2a2a",
+                "reference": "f00b80d4d33cf67815d1b4aaae8d4b47af2f2a2a",
+=======
             "version": "v5.1.29",
             "source": {
                 "type": "git",
@@ -420,6 +437,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/7e7ba568ffbc8f3f00778f2e8f41fb92127944fd",
                 "reference": "7e7ba568ffbc8f3f00778f2e8f41fb92127944fd",
+>>>>>>> d9add3d42382067ccff3757513c6ac413c8d70b0
                 "shasum": ""
             },
             "require": {
@@ -534,6 +552,9 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
+            "time": "2016-02-17 18:00:25"
+=======
             "time": "2016-02-02 14:56:40"
         },
         {
@@ -585,6 +606,7 @@
                 }
             ],
             "time": "2015-11-28 08:27:09"
+>>>>>>> d9add3d42382067ccff3757513c6ac413c8d70b0
         },
         {
             "name": "league/flysystem",
