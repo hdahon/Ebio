@@ -19,13 +19,13 @@ Reférent
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">nomRole</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nomRole" value="">
+                                                <input type="text" class="form-control" requierd="requierd" name="nomRole" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">niveau</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="niveau" value="">
+                                                <input type="text" class="form-control" requierd  name="niveau" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">

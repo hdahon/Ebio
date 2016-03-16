@@ -12,28 +12,18 @@
                         <label for="nom">Votre nom : </label>
                         <input class="form-control" name="nom" type="text" id="nom" placeholder="Nom">   
                   </div>
-
-
-
                   <div class="form-group">
                         <label for="prenom">Votre prenom :</label>
                         <input class="form-control" name="prenom" type="text" id="prenom" placeholder="Prenom">   
                   </div>
-
-                  
-
                   <div class="form-group">
                         <label for="mail">Votre mail :</label>
                         <input class="form-control" name="mail" type="text" id="mail" placeholder="Email@foo.com">
                   </div>
-
-
                   <div class="form-group">
                         <label for="numero">Votre numero :</label>
                         <input name="numero" type="text" id="numero" class="form-control" placeholder="06XXXXXXXX">
                   </div>
-
-
                   <h2> Les informations de votre conjoint </h2>
                   <br>
 

@@ -75,7 +75,7 @@
                 
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Ajouter</button>
-                    <a href="{{url('liste-categorie/') }}">Annuler</a>
+                    <a href="{{url('liste-categorie/') }}" class="btn btn-default">Annuler</a>
                 </div>
 
             </form>

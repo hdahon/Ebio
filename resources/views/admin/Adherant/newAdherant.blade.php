@@ -63,7 +63,7 @@ Reférent
                                             <label class="col-md-4 control-label">Rôle</label>
                                             <div class="col-md-6">
                                                 <select class="form-control" name="roleamapien_id">
-                                                    <option value="1">AMAPIEN</option>
+                                                    <option value="1" selected>AMAPIEN</option>
                                                     <option value="2">PRODUCTEUR</option>
                                                     <option value="3">REFERENT</option>
                                                     <option value="4">REFERENT+</option>
@@ -75,8 +75,10 @@ Reférent
                                             <label class="col-md-4 control-label">Co-adhérant</label>
                                             <div class="col-md-6">
                                                 <select class="form-control" name="coadherant_id">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
+                                                   <option value="" selected>selectionner une personne</option> 
+                                                   @foreach ($adherants as $a)                    
+                                                        <option value={{$a->id}}>{{$a->prenom}} {{$a->nom}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

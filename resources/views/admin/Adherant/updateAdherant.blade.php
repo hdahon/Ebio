@@ -53,16 +53,31 @@ Reférent
                                                 <input type="text" class="form-control" name="tel" value="{{$numSiret}}" >
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Rôle</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="roleamapien_id" value="{{$roleamapien_id}}" >
+                                                <select class="form-control" name="roleamapien_id">
+                                                    <option value="1" selected>AMAPIEN</option>
+                                                    <option value="2">PRODUCTEUR</option>
+                                                    <option value="3">REFERENT</option>
+                                                    <option value="4">REFERENT+</option>
+                                                    <option value="5">ADMIN</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Co-adhérant</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="coadherant_id" value="{{$coadherant_id}}" >
+                                                <select class="form-control" name="coadherant_id">
+                                                   <option value="">selectionner une personne</option> 
+                                                   @foreach ($adherants as $a)  
+                                                        @if($coadherant_id == $a->id)
+                                                            <option selected value={{$a->id}}>{{$a->prenom}} {{$a->nom}}</option>
+                                                        @else                  
+                                                            <option value={{$a->id}}>{{$a->prenom}} {{$a->nom}}</option>
+                                                        @endif   
+                                                 @endforeach
+                                                </select>
                                             </div>
                                         </div>
 

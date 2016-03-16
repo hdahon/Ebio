@@ -1,19 +1,22 @@
 @extends('template')
 @section('content')
         <div class="row">
-            <div class="col-md-11 col-md-offset-1">
-                        Bienvenue sur la pages de gestion des <b>ADHERANTS</b>
-                        <table class="table table-striped">
-                        <thead>
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    
+                    <div class="panel-body">
+                        <h2>Liste des amapiens</h2>
+                        <table  class="table  table-bordered">
+                        <thead class="thead-inverse">
                         <tr>
                             <th>Nom et Prenom</th>
                             <th>Contact</th>
-                            <th>Co_Contractant</th>
-                            <th>Produit</th>
+                            <th>Coadherant</th>
+                            <th>Contrat</th>
                         </tr>
                         </thead>
                         <tbody>
-                         @foreach ($adherants as $key =>$row)
+                        @foreach ($adherants as $key =>$row)
                         <tr>
                             <td>
                                 {{$row->prenom." ".$row->nom}}
@@ -36,9 +39,11 @@
                              
                         </tr>
 
-                         @endforeach        
+                         @endforeach       
                         </tbody>
                         </table>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -3,57 +3,69 @@
 Reférent
 @endsection
 @section('content')
-<div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">NOUVEAU</div>
-                                <div class="panel-body">
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/produits/new') }}">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">nomProduit</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nomProduit" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">unite</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="unite" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">prix</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="prix" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">categorie_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="categorie_id" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-6 col-md-offset-4">
-                                                <button type="submit" class="btn btn-primary">AJOUTER</button>
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                </div>
+ <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                   <h2> Ajouter un Produit</h2>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Nouveau Contrat</div>
+                    <div class="panel-body">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div>
-                    </div>
+                        @endif
+
+                    <form  role="form" method="POST" action="{{ url('create-produit') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                            <div class="form-group">
+                                <label for="nom">Nom Produit</label>
+                                <input id="nom" type="text"  name="nom" value="{{ old('produit') }}" class="form-control">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label>Categorie</label>
+                                <select name="categorie" >
+                                    @foreach ($categories as $cat)                    
+                                    <option value={{$cat->id}}>{{$cat->libelle}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                             <div class="form-group">
+                                <label for="nom">Unité</label>
+                                <input id="nom" type="text"  name="unite" value="{{ old('produit') }}" class="form-control">
+                                
+                            </div>
+                              <div class="form-group">
+                                <label for="nom">Prix</label>
+                                <input id="nom" type="text"  name="prix" value="{{ old('produit') }}" class="form-control">
+                                
+                            </div>
+                            
+
+                            <button type="submit" class="btn btn-default">créer</button>
+
+                    </form>
+      </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
+    </div>
+        </div>
+    </div>
+
 @endsection

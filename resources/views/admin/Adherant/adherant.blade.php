@@ -9,9 +9,9 @@
                         <tr>
                             <th>Nom</th>
                             <th>Prenom</th>
-                            <th>Email</th>
-                            <th>Telephone</th>
+                            <th>Contact</th>
                             <th>Rôle</th>
+                            <th>Coadherant</th>
                             <th><a href="{{ url('create-users') }}" title="Ajouter" class="btn  btn-success btn-sm">AJOUTER</a></th>
                         </tr>
                     </thead>
@@ -25,13 +25,16 @@
                                 {{$row->prenom}}
                             </td>
                             <td>
-                                {{$row->email}}
-                            </td>
-                            <td>
+                                {{$row->email}}<br>
                                 {{$row->tel}}
                             </td>
                             <td>
-                                {{$row->roleamapien_id}}
+                                {{$roleamapiens[$row->id]->nomRole}}
+                            </td>
+                             <td>
+                                @if($coadherants[$row->id] !="")
+                                {{$coadherants[$row->id]->prenom}} {{$coadherants[$row->id]->nom}}
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ url('update-users/'.$row->id) }}" title="Modifier" class="btn  btn-warning btn-sm">MODIFIER</a>

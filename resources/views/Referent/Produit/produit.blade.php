@@ -8,31 +8,43 @@
             <div class="panel panel-default">
                 
                 <div class="panel-body">
-                    Bienvenue Sur la pages de gestion des <b>PRODUIT</b>
-                    <br>
+                    <h2>Liste des Produits</h2>
                     <table class="table  table-bordered">
                         <thead class="thead-inverse">
                         <tr>
                             <th>Produit</th>
-                            <th>Type de Prix</th>
-                            <th>Prix </th>
-                            <th>Producteur</th>
+                            <th>Unité</th>
+                            <th>Prix</th>
+                            <th>Catégorie</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($name as $row)
+                        @foreach ($produits as $key => $row)
                         <tr>
                             <td>
                                 {{$row->nomProduit}}
                             </td>
                             <td>
-                                {{$row->typePanier}}
+                                {{$row->unite}}
                             </td>
                              <td>
-                                {{$row->prix}}
+                                {{$row->prix}} euros
+                            </td>
+                             <td>
+                            <a href="{{ url('categorie-details/'.$categories[$row->id]->id) }}">
+                                {{$categories[$row->id]->libelle}}
+                            </a>
                             </td>
                             <td>
-                                {{$row->producteur->nom}}
+                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/produit-supprimer/'.$row->id) }}">
+                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                 <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
+                                 @if(session('role')>=3)
+                                 <a href="{{ url('produit-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
+                                 <button type="submit"class="btn  btn-info btn-sm">Supprimer</button>
+                                 @endif
+                             </form>
                             </td>
                         </tr>
 

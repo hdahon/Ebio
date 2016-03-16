@@ -1,0 +1,184 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Produit;
+use App\User;
+use App\Categorie; 
+use App\Periodicite;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
+
+class CategorieController extends Controller
+{
+
+
+        /*Affiche le formulaire d'ajout d'une nouvelle catégorie de produit*/
+         public function getCreateCategorie(Request $request)
+       {             
+            $ReferentPlus= Auth::user()->id; 
+            $producteurs = User::where('roleamapien_id',2)
+            ->where('id','!=',$ReferentPlus)
+            ->get();
+            $referents = User::where('roleamapien_id',3)
+            ->where('id','!=',$ReferentPlus)
+            ->get();
+            $data = array('producteurs' => $producteurs,
+                        'referents' =>$referents);
+            if (session('role') ==   5){
+                return view('admin/categorie/newCategorie',$data);
+            }else if (session('role') ==   4){
+                return view('referentPlus/categorie/newCategorie',$data);
+            }
+
+        }
+
+/*
+Ajout d'une nouvelle catégorie dans la Bd
+*/
+public function postCreateCategorie(Request $request)
+    {
+            $nomProduit=$request->input('libelle');
+            $typepanier =$request->input('typePanier');
+            $periode =$request->input('periode');
+            $Referent=$request->input('referent');
+            $producteur = $request->input('producteur');
+            echo $typepanier;
+            Categorie::create(array(
+                'libelle' =>$nomProduit,
+                'typePanier' =>$typepanier,
+                'referent_id' =>$Referent,
+                'producteur_id' =>$producteur,
+                'periodicite_id' =>$periode,
+            ));
+
+           return redirect('liste-categorie');
+
+    }
+
+
+     /*Liste des tous les categorie */
+      public function getAllCategories(){
+         $categories = Categorie::all();
+         $referents = array();
+         $producteurs  = array();
+         $periodicites = array();
+         $iter=0;
+         if(session('role') == 3){
+            foreach ($categories as $cat) {
+                $ref=User::find($cat->referent_id);
+                
+                if($ref->id == Auth::user()->id){
+                    $referents[$iter]= $ref;
+                    $producteurs[$iter]=User::find($cat->producteur_id);
+                    $periodicites[$iter]=Periodicite::find($cat->periodicite_id);
+                    $iter++;
+                }   
+            }
+            
+         }else{
+         foreach ($categories as $cat) {
+            $referents[$cat->id]=User::find($cat->referent_id);
+            $producteurs[$cat->id]=User::find($cat->producteur_id);
+            $periodicites[$cat->id]=Periodicite::find($cat->periodicite_id);
+         }
+        }
+         $data = array(
+                        'categories'=>$categories,
+                        'producteurs'=>$producteurs,
+                        'referents'=>$referents,
+                        'periodicites'=>$periodicites);
+           if (session('role') ==   5){
+                return view('admin/categorie/listCategorie',$data);
+            }else if (session('role') ==   4){
+                return view('referentPlus/categorie/listCategorie',$data);
+            }
+            else if (session('role') ==   3){
+                return view('referent/categorie/listCategorie',$data);
+            }
+
+     
+     }
+
+/* Afficher le detail d'une categorie */
+     public function getCategorie($id){
+
+         $categorie = Categorie::find($id);
+         $prod=User::find($categorie->producteur_id);
+         $producteur=$prod->prenom.' '.$prod->nom;
+         $ref=User::find($categorie->referent_id);
+         $referent =$ref->prenom.' '.$ref->nom;
+         $periode=Periodicite::find($categorie->periodicite_id);
+         $periodicite=$periode->libelle;
+         $produits =Produit::where('categorie_id',$categorie->id)
+            ->get();
+         $data = array('categories' => $categorie,
+                        'referent'=>$referent,
+                        'producteur'=>$producteur,
+                        'periodicite'=>$periodicite,
+                        'produits'=>$produits);
+         if (session('role') ==   5){
+                return view('admin/categorie/categorie-details',$data);
+        }else if (session('role') ==   4){
+                return view('referentPlus/categorie/categorie-details',$data);
+        }
+     }
+
+        /* afficher le formulaire de modification d'une catégorie */
+         public function getFormModifierCategorie($id){
+
+         $categorie = Categorie::find($id);
+         $producteurs=User::where('roleamapien_id',2)->get();
+         $referents =User::where('roleamapien_id',3)->get();
+         $periode=Periodicite::All();
+         $periodicites=$periode;
+         $data = array('categorie' => $categorie,
+                        'referents'=>$referents,
+                        'producteurs'=>$producteurs,
+                        'periodicites'=>$periodicites,
+                       );
+         if (session('role') ==   5){
+                return view('admin/categorie/formModifCategorie',$data);
+        }else if (session('role') ==   4){
+                return view('referentPlus/categorie/formModifCategorie',$data);
+        }
+         
+     }
+
+     /*
+Modifier une categorie catégorie dans la Bd
+*/
+public function postModifierCategorie(Request $request,$id)
+    {
+            $libelle=$request->input('libelle');
+            $typepanier =$request->input('typePanier');
+            $periode =$request->input('periode');
+            $referent=$request->input('referent');
+            $producteur = $request->input('producteur');
+            $categorie=Categorie::find($id);
+            $categorie->libelle=$libelle;
+            $categorie->typePanier=$typepanier;
+            $categorie->referent_id=$referent;
+            $categorie->producteur_id=$producteur;
+            $categorie->periodicite_id=$periode;
+            $categorie->save();
+
+           return redirect('liste-categorie');
+
+    }
+
+   /* Supprimer une categorie catégorie dans la Bd
+*/
+public function postSupprimerCategorie($id)
+    {
+       Categorie::destroy($id);
+       return redirect('liste-categorie');
+           
+
+    }
+
+
+
+}
