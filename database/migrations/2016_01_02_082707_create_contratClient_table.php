@@ -14,13 +14,13 @@ class CreateContratClientTable extends Migration
     {
         Schema::create('contratClients', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("user_id")->unsigned();
+            $table->integer("amapien_id")->unsigned();
             $table->integer("contrat_id")->unsigned();
             $table->integer('periodicite_id')->unsigned();
             $table->timestamps();
         });
         Schema::table('contratClients', function($table) {
-            $table->foreign('user_id')
+            $table->foreign('amapien_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
