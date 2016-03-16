@@ -12,7 +12,7 @@
                             <th>Email</th>
                             <th>Telephone</th>
                             <th>Rôle</th>
-                            <th><a href="{{ url('create-users') }}" title="Ajouter">[ AJOUTER ]</a></th>
+                            <th><a href="{{ url('create-users') }}" title="Ajouter" class="btn  btn-success btn-sm">AJOUTER</a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +34,8 @@
                                 {{$row->roleamapien_id}}
                             </td>
                             <td>
-                                <a href="{{ url('delete-users/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
-                                -
-                                <a href="{{ url('update-users/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
+                                <a href="{{ url('update-users/'.$row->id) }}" title="Modifier" class="btn  btn-warning btn-sm">MODIFIER</a>
+                                <a href="{{ url('delete-users/'.$row->id) }}" title="Supprimer" class="btn  btn-danger btn-sm">SUPPRIMER</a>
                             </td>
                         </tr>
                         @endforeach       

@@ -8,7 +8,7 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>libelle</th>
-                            <th><a href="{{ url('create-periodicites') }}" title="Ajouter">[ AJOUTER ]</a></th>
+                            <th><a href="{{ url('create-periodicites') }}" title="Ajouter" class="btn  btn-success btn-sm">AJOUTER</a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -18,9 +18,8 @@
                                 {{$row->libelle}}
                             </td>
                             <td>
-                                <a href="{{ url('delete-periodicites/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
-                                -
-                                <a href="{{ url('update-periodicites/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
+                                <a href="{{ url('update-periodicites/'.$row->id) }}" title="Modifier"  class="btn  btn-warning btn-sm">MODIFIER</a>
+                                <a href="{{ url('delete-periodicites/'.$row->id) }}" title="Supprimer" class="btn  btn-danger btn-sm">SUPPRIMER</a>
                             </td>
                         </tr>
                         @endforeach       
