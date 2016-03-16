@@ -3,6 +3,7 @@
     Reférent
     @endsection
 @section('content')
+<<<<<<< HEAD
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -11,6 +12,14 @@
                     <h2>Liste des Produits</h2>
                     <table class="table  table-bordered">
                         <thead class="thead-inverse">
+=======
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-inverse">
+>>>>>>> b572a75d4457f439f644ec770d3ec84ee06b2819
                         <tr>
                             <th>Produit</th>
                             <th>Unité</th>
