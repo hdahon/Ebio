@@ -3,7 +3,7 @@
     Reférent
     @endsection
 @section('content')
-<<<<<<< HEAD
+
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -12,14 +12,6 @@
                     <h2>Liste des Produits</h2>
                     <table class="table  table-bordered">
                         <thead class="thead-inverse">
-=======
-<div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-inverse">
->>>>>>> b572a75d4457f439f644ec770d3ec84ee06b2819
                         <tr>
                             <th>Produit</th>
                             <th>Unité</th>
@@ -46,14 +38,11 @@
                             </a>
                             </td>
                             <td>
-                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/produit-supprimer/'.$row->id) }}">
-                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                  <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
                                  @if(session('role')>=3)
                                  <a href="{{ url('produit-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
-                                 <button type="submit"class="btn  btn-info btn-sm">Supprimer</button>
+                                 <a href="{{ url('/produit-supprimer/'.$row->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
                                  @endif
-                             </form>
                             </td>
                         </tr>
 

@@ -1,10 +1,13 @@
 
 <li><a href="{{ url('list-users') }}">Utilisateurs</a></li>
+<li class="dropdown"><a href="{{ url('list-contratsClients') }}" >Contrats Amapiens</a></li> 
 <li class="dropdown">
-<a href="{{ url('list-contratsClients') }}" role="button" aria-haspopup="true" aria-expanded="false">Contrats Amapiens  </span></a>
-</li> 
-<!--li><a href="{{ url('list-roles') }}">Rôles</a></li>
-<li><a href="{{ url('list-periodicites') }}">Periodicité</a></li-->
+<a  data-toggle="dropdown" class="dropdown-toggle" href="">Contrats type<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="{{ url('liste-contrat') }}">Modèle de contrat</a></li>
+<li><a href="{{ url('create-contrat') }}">Nouveau</a></li> 
+</ul>
+
 <li class="dropdown">
 <a  data-toggle="dropdown" class="dropdown-toggle" href="">Paiements<b class="caret"></b></a>
 <ul class="dropdown-menu">
@@ -24,47 +27,16 @@
 <a  data-toggle="dropdown" class="dropdown-toggle" href="">Produits<b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li><a href="{{ url('liste-produit') }}">Liste des produits</a></li>
-<li><a href="{{ url('categorie-liste') }}">Listes des catégories</a></li>
+<li><a href="{{ url('liste-categorie') }}">Listes des catégories</a></li>
 <li><a href="{{ url('create-produit') }}">Ajouter un produit</a></li> 
 <li><a href="{{ url('create-categorie') }}">Ajouter une catégorie</a></li>   
 </ul>
 </li>
-<!--li class="dropdown">
-
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes Contrats<span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li><a href="{{ url('create-contratsClients') }}">Souscrire à un contrat </a></li>
-<li> <a href="{{ url('list-contratsClients') }}">Mes contrats</a></li>
-</ul>
->>>>>>> b572a75d4457f439f644ec770d3ec84ee06b2819
-</li>
-<li class="dropdown">
-<a  data-toggle="dropdown" class="dropdown-toggle" href="">Modèle de contrats<b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li><a href="{{ url('liste-contrat') }}">Modèle de contrat</a></li>
-<li><a href="{{ url('create-contrat') }}">Nouveau</a></li>   
-</ul>
-<<<<<<< HEAD
-</li>
-<li class="dropdown">
-<a  data-toggle="dropdown" class="dropdown-toggle" href="">Paramètre<b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li><a href="{{ url('list-roles') }}">Rôles</a></li>
-<li><a href="{{ url('list-periodicites') }}">Periodicité</a></li> 
-<li><a href="{{ url('create-contratsClients') }}">Ajouter un contrat amapien</a></li>
-</ul>
-</li> 
-=======
-</li-->
-
 <li class="dropdown">
 <a  data-toggle="dropdown" class="dropdown-toggle" href="">Paramètres <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li><a href="{{ url('list-roles') }}">Rôles</a></li>
 <li><a href="{{ url('list-periodicites') }}">Periodicité</a></li>
-<li><a href="{{ url('create-contratsClients') }}">Souscrire à un contrat </a></li>
-<li> <a href="{{ url('list-contratsClients') }}">Mes contrats</a></li>
-<li><a href="{{ url('liste-contrat') }}">Modèle de contrat</a></li>
-<li><a href="{{ url('create-contrat') }}">Nouveau</a></li>   
+<li><a href="{{ url('create-contratsClients') }}">Ajouter un contrat amapien</a></li>
 </ul>
 </li>

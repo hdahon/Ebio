@@ -33,14 +33,11 @@
                                 {{$referents[$row->id]->prenom.' '.$referents[$row->id]->nom}}
                             </td>
                             <td>
-                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/supprimer-categorie/'.$row->id) }}">
-                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                  <a href="{{ url('categorie-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
                                  @if(session('role')>=3)
                                  <a href="{{ url('categorie-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
-                                 <button type="submit"class="btn  btn-info btn-sm">Supprimer</button>
-                                 @endif
-                             </form>
+                                 <a href="{{ url('/supprimer-categorie/'.$row->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
+                                @endif
                             </td>
                         </tr>
 

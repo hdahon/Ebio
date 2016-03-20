@@ -119,7 +119,7 @@ Route::post('create-contrat', 'contratController@postContrat');
 Route::get('modifier-contrat/{id}', 'contratController@getFormModifContrat');
 Route::post('modifier-contrat/{id}', 'contratController@postFormModifContrat');
 // --delete
-Route::post('supprimer-contrat/{id}', 'contratController@supprimerContrat');
+Route::get('supprimer-contrat/{id}', 'contratController@supprimerContrat');
 // --show
 Route::get('details-contrat/{id}', 'contratController@showContrat');
 
@@ -136,7 +136,7 @@ Route::post('create-categorie', 'CategorieController@postCreateCategorie');
 Route::get('categorie-modifier/{id}', 'CategorieController@getFormModifierCategorie');
 Route::post('modifier-categorie/{id}', 'CategorieController@postModifierCategorie');
 // --delete
-Route::post('supprimer-categorie/{id}', 'CategorieController@postSupprimerCategorie');
+Route::get('supprimer-categorie/{id}', 'CategorieController@postSupprimerCategorie');
 // --show
 Route::get('categorie-details/{id}', 'CategorieController@getCategorie');
 
@@ -152,7 +152,7 @@ Route::post('create-produit', 'ProduitController@postCreate');
 Route::get('produit-modifier/{id}', 'ProduitController@getFormModifierProduit');
 Route::post('produit-modifier/{id}', 'ProduitController@postModifierProduit');
 // --delete
-Route::post('produit-supprimer/{id}', 'ProduitController@postSupprimerProduit');
+Route::get('produit-supprimer/{id}', 'ProduitController@postSupprimerProduit');
 // --show
 Route::get('produit-details/{id}', 'ProduitController@getProduit');
 

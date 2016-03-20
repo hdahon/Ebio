@@ -8,7 +8,7 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>dateLivraison</th>
-                            <th>quantite</th>
+                            <th>$se</th>
                             <th>amapien_id</th>
                             <th>produit_id</th>
                             <th>producteur_id</th>

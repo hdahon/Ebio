@@ -24,9 +24,9 @@
                             <td>{{$row->debutLivraison}}</td>
                             <td>{{$row->dateDeFinLivraison}}</td>
                             <td>
-                                <a href="{{ url('delete-contrats/'.$row->id) }}" title="Supprimer">[ SUPPRIMER ]</a>
+                                <a href="{{ url('delete-contrats/'.$row->id)  }}"  class="btn btn-danger btn-sm confirm" title="Supprimer">SUPPRIMER</a>
                                 -
-                                <a href="{{ url('update-contrats/'.$row->id) }}" title="Modifier">[ MODIFIER ]</a>
+                                <a href="{{ url('update-contrats/'.$row->id) }}" class="btn btn-default btn-sm " title="Modifier">MODIFIER</a>
                             </td>
                         </tr>
                         @endforeach       

@@ -7,6 +7,7 @@ use App\User;
 use App\Produit;
 use App\Categorie;
 use App\Periodicite;
+use App\Livraisons;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -71,6 +72,17 @@ class ContratController extends Controller
                 'dateDeFinLivraison' =>$dateFin,
                 'vacance' =>$vacance,
             ));
+            $dates=$this->getDates(date_format(date_create($dateDebut),"d-m-Y"), date_format(date_create($dateFin),"d-m-Y"));
+            for($i=0;$i<count($dates);$i++) {
+             Livraisons::create(
+                    array(
+                        'dateLivraison'=>$dates[$i]['date'],
+                        'quantite'=>0,
+                        'amapien_id'=>8,
+                        'produit_id'=>1,
+                        'producteur_id'=>$libelle->producteur->id,
+                ));
+         }
           if(Auth::user()->roleamapien_id == 3 ){
             return redirect('liste-contrat');
           } else{ 
@@ -107,6 +119,7 @@ class ContratController extends Controller
                 else{
                     $semaineImpaire[] =$dates[$i]['date'];
                 }
+               
               
             }
             $vacance = $contrat->vacance;

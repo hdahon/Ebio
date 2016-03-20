@@ -20,9 +20,9 @@
                             <td>{{$amapiens[$key][0]->prenom }} {{$amapiens[$key][0]->nom}}</td>
                             <td>{{$periodicites[$key][0]->libelle}}</td>
                             <td>
-                                <a href="" class="btn btn-default" title="Supprimer">VOIR</a>
+                                <a href="" class="btn btn-default" title="voir">VOIR</a>
                                 <a href="{{ url('update-contratsClients/'.$row->id) }}" class="btn btn-default" title="Modifier">MODIFIER </a>
-                                <a href="{{ url('delete-contratsClients/'.$row->id) }}" class="btn btn-default" title="Supprimer">SUPPRIMER</a>
+                                <a href="{{ url('delete-contratsClients/'.$row->id) }}" class="btn btn-danger btn-sm confirm" title="Supprimer">SUPPRIMER</a>
 
                             </td>
                         </tr>

@@ -1,16 +1,5 @@
 @extends('template')
 @section('content')
-<script>
-$(document).ready(function() {
-    $(".confirm").click(function(event){
-        if(!confirm('Etes vous sûr(e)?')){
-            event.stopPropagation();
-            event.stopImmediatePropagation();
-            return false;
-        }
-    });
-});
-</script>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
@@ -27,7 +16,7 @@ $(document).ready(function() {
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($adherants as $row)
+                        @foreach ($adherants as $key => $row)
                         <tr>
                             <td>
                                 {{$row->nom}}
@@ -40,16 +29,16 @@ $(document).ready(function() {
                                 {{$row->tel}}
                             </td>
                             <td>
-                                {{$roleamapiens[$row->id]->nomRole}}
+                                {{$roleamapiens[$key]->nomRole}}
                             </td>
                              <td>
-                                @if($coadherants[$row->id] !="")
-                                {{$coadherants[$row->id]->prenom}} {{$coadherants[$row->id]->nom}}
+                                @if($coadherants[$key] !="")
+                                {{$coadherants[$key]->prenom}} {{$coadherants[$key]->nom}}
                                 @endif
                             </td>
                             <td>
                                 <a href="{{ url('update-users/'.$row->id) }}" title="Modifier" class="btn  btn-warning btn-sm">MODIFIER</a>
-                                <a href="{{ url('delete-users/'.$row->id) }}" title="Supprimer" class="confirm btn  btn-danger btn-sm">SUPPRIMER</a>
+                                <a href="{{ url('delete-users/'.$row->id) }}" title="Supprimer" class="confirm btn  btn-danger btn-sm confirm">SUPPRIMER</a>
                             </td>
                         </tr>
                         @endforeach       

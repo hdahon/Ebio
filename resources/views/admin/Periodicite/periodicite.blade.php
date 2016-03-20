@@ -30,7 +30,7 @@ $(document).ready(function() {
                             </td>
                             <td>
                                 <a href="{{ url('update-periodicites/'.$row->id) }}" title="Modifier"  class="btn  btn-warning btn-sm">MODIFIER</a>
-                                <a href="{{ url('delete-periodicites/'.$row->id) }}" title="Supprimer" class="confirm btn  btn-danger btn-sm">SUPPRIMER</a>
+                                <a href="{{ url('delete-periodicites/'.$row->id) }}" title="Supprimer" class="confirm btn  btn-danger btn-sm confirm">SUPPRIMER</a>
                             </td>
                         </tr>
                         @endforeach       

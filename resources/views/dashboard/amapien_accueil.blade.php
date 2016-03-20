@@ -47,7 +47,7 @@
                         	<li><b>Votre rôle au sein de l'association : </b>{{$role}} </li>
                         </ul>
 
-                        @if(session('role') <5)
+                        @if(session('role') <2)
                         <h2>Voici les informations de votre conjoint: </h2>
                         <ul>
                         	<li>Nom  de votre conjoint: {{$user->nomCAdherant}}</li>
