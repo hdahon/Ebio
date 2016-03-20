@@ -3,13 +3,15 @@
 
 <?php  
 
+    $role = Auth::user()->roleamapien_id;
     if(Session::has('role') and Auth::check()){
         $niveau = session('role');
     } else {
         $niveau = 0;
     }
-
-    switch ($niveau){
+    /*echo $niveau;
+    echo $role;*/
+    switch ($role){
         case 1:{
             $role = "amapien";
             break;

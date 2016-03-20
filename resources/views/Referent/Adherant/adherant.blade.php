@@ -6,20 +6,23 @@
                     
                     <div class="panel-body">
                         <h2>Liste des amapiens</h2>
-                        <table  class="table  table-bordered">
+                        <table  class="table  table-bordered table-striped">
                         <thead class="thead-inverse">
                         <tr>
-                            <th>Nom et Prenom</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
                             <th>Contact</th>
                             <th>Coadherant</th>
-                            <th>Contrat</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($adherants as $key =>$row)
                         <tr>
                             <td>
-                                {{$row->prenom." ".$row->nom}}
+                                {{$row->nom}}
+                            </td>
+                            <td>
+                                {{$row->prenom}}
                             </td>
                             <td>
                                 {{$row->email}}
@@ -32,13 +35,8 @@
                                 <br>
                                 {{$coadherants[$key]->email}} <br> {{$coadherants[$key]->tel}}
                                 @endif
-                            </td>
-                            <td>
-                                <a href="">Voir</a>
-                            </td>
-                             
+                            </td>                             
                         </tr>
-
                          @endforeach       
                         </tbody>
                         </table>

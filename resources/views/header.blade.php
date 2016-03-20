@@ -58,14 +58,11 @@
                     <!-- MENUE PRODUCTEUR -->
                     @if($niveau == 2)
                     <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Livraisons<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes Livraisons<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                   
                                     <li>Report</li>
-                                    <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li>
-                                    <li> {!! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsProducteur','Livraison(s)',array(Auth::user()->id)) !!}</li>
-                                   
-                            </ul>
+                                    <li><a href="{{ url('list-livraisons') }}">Livraisons</a></li>
+                           </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produits<span class="caret"></span></a>

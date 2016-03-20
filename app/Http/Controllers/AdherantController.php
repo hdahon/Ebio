@@ -14,15 +14,19 @@ class AdherantController extends Controller
 
 	public function adherant()
 	{		
+		$idUser= Auth::user()->id;
 		$role = Auth::user()->roleamapien_id;
 		$niveau = RoleAmapien::find($role)->niveau;
-		$adherants= User::all();
+		//$adherants= User::where("id","<>",$idUser)->orderBy('nom')->get();
+		$adherants= User::orderBy('nom')->get();
 		$coadherants="";
 		$roleamapiens=array();
+
 		foreach($adherants as $key => $ad){
 			$coadherants[$key]=User::find($adherants[$key]->coadherant_id);  
 			$roleamapiens[$key]=RoleAmapien::find($adherants[$key]->roleamapien_id);
 		} 
+
 		$data = array('adherants' => $adherants,
 			'coadherants'=>$coadherants,'roleamapiens'=>$roleamapiens);
 		if ($niveau ==   5){
@@ -111,6 +115,9 @@ class AdherantController extends Controller
         $nom=$request->input('nom');
         $prenom=$request->input('prenom');
         $email=$request->input('email');
+        $password=bcrypt($request->input('password'));
+        $adresse=$request->input('adresse');
+        $numSiret=$request->input('numSiret');
         $tel=$request->input('tel');
         $roleamapien_id=$request->input('roleamapien_id');
 
@@ -123,6 +130,9 @@ class AdherantController extends Controller
         $user->prenom=$prenom;
         $user->email=$email;
         $user->tel=$tel;
+        $user->password=$password;
+        $user->adresse=$adresse;
+        $user->numSiret=$numSiret;
         $user->roleamapien_id=$roleamapien_id;
         $user->save();
 		return redirect('list-users');

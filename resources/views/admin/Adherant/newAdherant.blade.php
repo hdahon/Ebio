@@ -3,6 +3,7 @@
 Reférent
 @endsection
 @section('content')
+
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
@@ -19,42 +20,35 @@ Reférent
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Nom</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nom" value="">
+                                                <input type="text" required class="form-control" name="nom" value="">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Prenom</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="prenom" value="">
+                                                <input type="text" required class="form-control" name="prenom" value="">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Email</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="email" value="">
+                                                <input type="email" required class="form-control" name="email" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Mot de passe</label>
+                                            <div class="col-md-6">
+                                                <input type="password" required class="form-control" name="password" value="">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Tel</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="tel" value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">Adresse</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="adresse" value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">Num siret</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="numSiret" value="">
+                                                <input type="tel" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" class="form-control" name="tel" value="">
                                             </div>
                                         </div>
 
@@ -62,7 +56,7 @@ Reférent
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Rôle</label>
                                             <div class="col-md-6">
-                                                <select class="form-control" name="roleamapien_id">
+                                                <select id="roleamapien_id" class="form-control" name="roleamapien_id">
                                                     <option value="1" selected>AMAPIEN</option>
                                                     <option value="2">PRODUCTEUR</option>
                                                     <option value="3">REFERENT</option>
@@ -71,27 +65,42 @@ Reférent
                                                 </select>
                                             </div>
                                         </div>
+
+
+                                        <div class="form-group" id="s_adresse">
+                                            <label class="col-md-4 control-label">Adresse</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="adresse" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="s_numSiret">
+                                            <label class="col-md-4 control-label">Num siret</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="numSiret" value="">
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Co-adhérant</label>
                                             <div class="col-md-6">
                                                 <select class="form-control" name="coadherant_id">
-                                                   <option value="" selected>selectionner une personne</option> 
-                                                   @foreach ($adherants as $a)                    
-                                                        <option value={{$a->id}}>{{$a->prenom}} {{$a->nom}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                                 <option value="" selected>selectionner une personne</option> 
+                                                 @foreach ($adherants as $a)                    
+                                                 <option value={{$a->id}}>{{$a->prenom}} {{$a->nom}}</option>
+                                                 @endforeach
+                                             </select>
+                                         </div>
+                                     </div>
+
+                                     <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-4">
+                                            <button type="submit" class="btn btn-primary">AJOUTER</button>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <div class="col-md-6 col-md-offset-4">
-                                                <button type="submit" class="btn btn-primary">AJOUTER</button>
-                                            </div>
-                                        </div>
+                                </form>
 
-                                    </form>
-
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,5 +108,6 @@ Reférent
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
