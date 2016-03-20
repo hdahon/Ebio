@@ -74,13 +74,12 @@ class ContratController extends Controller
             ));
             $dates=$this->getDates(date_format(date_create($dateDebut),"d-m-Y"), date_format(date_create($dateFin),"d-m-Y"));
             for($i=0;$i<count($dates);$i++) {
+                echo $dates[$i]['date'];
              Livraisons::create(
                     array(
-                        'dateLivraison'=>$dates[$i]['date'],
-                        'quantite'=>0,
-                        'amapien_id'=>8,
-                        'produit_id'=>1,
+                        'dateLivraison'=>date("Y-m-d", strtotime($dates[$i]['date'])),
                         'producteur_id'=>$libelle->producteur->id,
+                        'categorie_id'=>$categorie,
                 ));
          }
           if(Auth::user()->roleamapien_id == 3 ){

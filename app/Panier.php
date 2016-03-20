@@ -8,7 +8,7 @@ class Panier extends Model
 {
     protected $table="paniers";
 
-    protected $fillable=['quantite','montant','user_id','livraison_id','produit_id','creationPanier'];
+    protected $fillable=['quantite','montant','user_id','livraison_id','produit_id'];
 
     public function livraisons(){
     	return $this->belongsTo('App\Livraison');

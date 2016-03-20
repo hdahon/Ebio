@@ -165,8 +165,16 @@ Route::get('liste-paiement', 'PaiementController@getListPaiement');
 Route::get('create-paiement', 'PaiementController@getnewPaiement');
 Route::post('create-paiement', 'PaiementController@postnewPaiement');
 
-
- 
+/*
+	----------------route panier----------------------- 
+*/
+//--create
+Route::get('create-panier/{id}', 'PanierController@getnewPanier');
+Route::post('create-panier', 'PanierController@postnewPanier');
+//--valider le panier
+Route::get('valider-panier', 'PanierController@getvaliderPanier');
+// ---delete
+Route::get('delete-panier/{id}', 'PanierController@deletePanier');
 
 /*
 Route::get('produit/list', 'Produit\ProduitController@getAllProduits');

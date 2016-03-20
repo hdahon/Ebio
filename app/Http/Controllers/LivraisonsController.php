@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Livraisons;
 use App\RoleAmapien;
+use App\Categorie;
 
 class LivraisonsController extends Controller
 {
@@ -16,7 +17,15 @@ class LivraisonsController extends Controller
 	public function getAll()
 	{		
 		$livraisons= Livraisons::all();
-		$data = array('livraisons' => $livraisons);
+		$categories=array();
+		$producteurs=array();
+		foreach ($livraisons as $key => $value) {
+           $categories[$key]=Categorie::find($value->categorie_id);
+           $producteurs[$key]=User::find($value->producteur_id);
+         }
+		$data = array('livraisons' => $livraisons,
+					  'categories'=>$categories,
+					  'producteurs' =>$producteurs);
 		return view('Admin/Livraisons/livraison',$data);
 	}
 

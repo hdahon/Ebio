@@ -18,7 +18,7 @@ class Livraisons extends Model
      *
      * @var array
      */
-    protected $fillable = ['dateLivraison', 'quantite', 'amapien_id', 'produit_id', 'producteur_id'];
+    protected $fillable = ['dateLivraison', 'categorie_id', 'producteur_id'];
 
     /**
      * Un livraison est éffectué par un producteur     
@@ -29,12 +29,9 @@ class Livraisons extends Model
         return $this->belongsTo('App\User');
     }
     
-    public function amapien()
-    {
-        return $this->belongsTo('App\User');
-    }
+   
 
-    public function produit()
+    public function categorie()
     {
         return $this->belongsTo('App\Produit');
     }

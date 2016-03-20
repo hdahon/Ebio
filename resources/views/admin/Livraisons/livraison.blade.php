@@ -7,39 +7,33 @@
                 <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>dateLivraison</th>
-                            <th>$se</th>
-                            <th>amapien_id</th>
-                            <th>produit_id</th>
-                            <th>producteur_id</th>
-                            <th>dateDeLivraison</th>
-                            <th><a href="{{ url('create-livraisons') }}" title="Ajouter" class="btn  btn-success btn-sm">AJOUTER</a></th>
-                        </tr>
+                            <th>Produits</th>
+                            <th>Date de livraison</th>
+                            <th>Producteur </th>
+                            <th>Action</th>
+<!--                             <th><a href="{{ url('create-livraisons') }}" title="Ajouter" class="btn  btn-success btn-sm">AJOUTER</a></th>
+ -->                        </tr>
                     </thead>
                     <tbody>
-                        @foreach ($livraisons as $row)
+                        @foreach ($livraisons  as $key=> $row)
                         <tr>
+                            <td>
+                                {{$categories[$key]->libelle}}
+                            </td>
                             <td>
                                 {{$row->dateLivraison}}
                             </td>
                             <td>
-                                {{$row->quantite}}
+                                {{$producteurs[$key]->prenom}} {{$producteurs[$key]->nom}} 
                             </td>
+                            
                             <td>
-                                {{$row->amapien_id}}
-                            </td>
-                            <td>
-                                {{$row->produit_id}}
-                            </td>
-                            <td>
-                                {{$row->producteur_id}}
-                            </td>
-                            <td>
-                                {{$row->dateDeLivraison}}
-                            </td>
-                            <td>
+                                @if(session('role') ==1)
+                                 <a href="{{ url('create-panier/'.$row->id) }}" title="new" class="btn  btn-info btn-sm">Panierr</a>
+                                @else
                                 <a href="{{ url('update-livraisons/'.$row->id) }}" title="Modifier" class="btn  btn-warning btn-sm">MODIFIER</a>
-                                <a href="{{ url('delete-livraisons/'.$row->id) }}" title="Supprimer" class="btn  btn-danger btn-sm">SUPPRIMER</a>
+                                <a href="{{ url('delete-livraisons/'.$row->id) }}" title="Supprimer" class="btn  btn-danger btn-sm confirm">SUPPRIMER</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach       
