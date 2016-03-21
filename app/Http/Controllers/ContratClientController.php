@@ -47,7 +47,7 @@ class ContratClientController extends Controller
 				}
          	}
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'amapiens'=>$amapiens, 'contrats'=>$contrats);
-		    return view('Admin/ContratClient/contratClient',$data);
+		    return view('admin/contratClient/contratClient',$data);
 		}
 		else if(session('role')==4 || session('role')==5 ){
 			$contratClients=ContratClient::all();
@@ -82,7 +82,7 @@ class ContratClientController extends Controller
 			'periode3'=>$periode3
 			);
 		if(session('role')==1){
-			return view('amapien/contratclient/contrat_sel',$data);
+			return view('amapien/contratClient/contrat_sel',$data);
 		}else{
 			return view('admin/contratClient/newContratClient',$data);
 		}
@@ -197,7 +197,7 @@ class ContratClientController extends Controller
                              'dateFin'=>date_format($dF,"d-m-Y")
                              );
             
-                return view('amapien/contratclient/showContrat',$data);
+                return view('amapien/contratClient/showContrat',$data);
 
             
         }
@@ -239,9 +239,9 @@ class ContratClientController extends Controller
           $contrats = Contrat::all();
           $data = array('contrats' => $contrats);
           if(Auth::user()->roleamapien_id == 1){
-             return view('amapien/contratclient/listContratModel',$data);
+             return view('amapien/contratClient/listContratModel',$data);
           }else{
-          	return view('admin/contratclient/listContratModel',$data);
+          	return view('admin/contratClient/listContratModel',$data);
           } 
        
      }

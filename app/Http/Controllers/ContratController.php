@@ -34,7 +34,7 @@ class ContratController extends Controller
           $contrats = Contrat::all();
           $data = array('contrats' => $contrats);
           if(Auth::user()->roleamapien_id == 1){
-             return view('amapien/contratclient/listContratModel',$data);
+             return view('amapien/contratClient/listContratModel',$data);
           }else{
           return view('referentPlus/contrat/listContrat',$data);
           } 
@@ -139,7 +139,7 @@ class ContratController extends Controller
                              'dateFin'=>date_format($dF,"d-m-Y")
                              );
              if(Auth::user()->roleamapien_id == 3 ){
-                return view('Referent/contrat/showContrat',$data);
+                return view('referent/contrat/showContrat',$data);
 
              }else {
               return view('referentPlus/contrat/showContrat',$data);

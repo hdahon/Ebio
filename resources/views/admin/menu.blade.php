@@ -37,6 +37,7 @@
 		<li><a href="{{ url('list-roles') }}">Rôles</a></li>
 		<li><a href="{{ url('list-periodicites') }}">Periodicité</a></li>
 		<li><a href="{{ url('list-contrat') }}">Souscrire un contrat</a></li>
-		<li><a href="{{ url('list-unites') }}">Unités</a></li>
+		<li><a href="{{ url('list-unite') }}">Unité</a></li>
+		<li><a href="{{ url('list-typepanier') }}">Type panier</a></li>
 	</ul>
 </li>
