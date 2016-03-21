@@ -17,7 +17,7 @@ class DropColumnQuantiteLivraison extends Migration
             $table->dropForeign('livraisons_produit_id_foreign');
         });
         Schema::table('livraisons', function ($table) {
-            $table->dropColumn(['amapien_id','produit_id']);
+           $table->dropColumn(['amapien_id','produit_id', 'dateLivraison','dateDeLivraison']);
         });
 
     }

@@ -52,7 +52,7 @@ class AdherantController extends Controller
 		$nom=$request->input('nom');
 		$prenom=$request->input('prenom');
 		$email=$request->input('email');
-		$password='password'; 
+        $password=bcrypt($request->input('password'));
 		$tel=$request->input('tel');
 		$adresse=$request->input('adresse');
 		$numSiret=$request->input('numSiret');

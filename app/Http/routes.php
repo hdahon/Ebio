@@ -83,6 +83,32 @@ Route::get('editer-livraisons/{id}', 'LivraisonsController@editer');
 
 
 /*
+------------------------Route unite --------------------
+*/
+// -- list
+Route::get('list-unite', 'UniteController@getAll');
+// -- create
+Route::get('create-unite', 'UniteController@insert');
+Route::post('unite/new', 'UniteController@post');
+// -- update
+Route::get('update-unite/{id}', 'UniteController@update');
+Route::post('unite/update', 'UniteController@updateInsert');
+// -- delete
+Route::get('delete-unite/{id}', 'UniteController@delete');
+/*
+------------------------Route typepanier --------------------
+*/
+// -- list
+Route::get('list-typepanier', 'TypepanierController@getAll');
+// -- create
+Route::get('create-typepanier', 'TypepanierController@insert');
+Route::post('typepanier/new', 'TypepanierController@post');
+// -- update
+Route::get('update-typepanier/{id}', 'TypepanierController@update');
+Route::post('typepanier/update', 'TypepanierController@updateInsert');
+// -- delete
+Route::get('delete-typepanier/{id}', 'TypepanierController@delete');
+/*
 ------------------------Route periodicite --------------------
 */
 // -- list
