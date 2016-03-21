@@ -47,6 +47,26 @@ public function postCreateCategorie(Request $request)
             $producteur = $request->input('producteur');
             $periode2 =$request->input('periode2');
              $periode3 =$request->input('periode3');
+             if($periode2 == ""){
+            Categorie::create(array(
+                'libelle' =>$nomProduit,
+                'typePanier' =>$typepanier,
+                'referent_id' =>$Referent,
+                'producteur_id' =>$producteur,
+                'periodicite_id' =>$periode,
+              
+            ));
+        }else if($periode3 == ""){
+            Categorie::create(array(
+                'libelle' =>$nomProduit,
+                'typePanier' =>$typepanier,
+                'referent_id' =>$Referent,
+                'producteur_id' =>$producteur,
+                'periodicite_id' =>$periode,
+                'periodicite2_id' =>$periode2,
+                
+            ));
+        }else{
             Categorie::create(array(
                 'libelle' =>$nomProduit,
                 'typePanier' =>$typepanier,
@@ -56,7 +76,7 @@ public function postCreateCategorie(Request $request)
                 'periodicite2_id' =>$periode2,
                 'periodicite3_id' =>$periode3,
             ));
-
+        }
            return redirect('liste-categorie');
 
     }
@@ -94,6 +114,7 @@ public function postCreateCategorie(Request $request)
             $periodicites3[$cat->id]=Periodicite::find($cat->periodicite3_id);
          }
         }
+        echo count($periodicites2);
          $data = array(
                         'categories'=>$categories,
                         'producteurs'=>$producteurs,

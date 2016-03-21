@@ -23,10 +23,15 @@
                             <td>
                                 {{$row->libelle}}
                             </td>
-                            <td>
-                                {{$periodicites[$row->id]->libelle}}<br>
+                            <td>@if(count($periodicites)>0)
+                                    {{$periodicites[$row->id]->libelle}}<br>
+                                @endif
+                                @if(count($periodicites2[$row->id])>0)
                                 {{$periodicites2[$row->id]->libelle}}<br>
+                                @endif
+                                @if(count($periodicites3[$row->id])>0)
                                 {{$periodicites3[$row->id]->libelle}}
+                                @endif
                             </td>
                              <td>
                                 {{$producteurs[$row->id]->prenom." ".$producteurs[$row->id]->nom}}

@@ -109,26 +109,26 @@ Route::post('contratsClients/update', 'ContratClientController@updateInsert');
 // -- delete
 Route::get('delete-contratsClients/{id}', 'ContratClientController@delete');
 // --show
-Route::get('details-contratclient/{id}', 'contratClientController@showContrat');
+Route::get('details-contratclient/{id}', 'ContratClientController@showContrat');
 // --list contat modèle
-Route::get('list-contrat', 'contratClientController@getAllContratM');
+Route::get('list-contrat', 'ContratClientController@getAllContratM');
 
 
 /*
 ------------------------Route contrats (Modèle de contrat)  --------------------
 */
 // --list
-Route::get('liste-contrat', 'contratController@getAllContrat');
+Route::get('liste-contrat', 'ContratController@getAllContrat');
 // --create
-Route::get('create-contrat', 'contratController@getContrat');
-Route::post('create-contrat', 'contratController@postContrat');
+Route::get('create-contrat', 'ContratController@getContrat');
+Route::post('create-contrat', 'ContratController@postContrat');
 // --update
-Route::get('modifier-contrat/{id}', 'contratController@getFormModifContrat');
-Route::post('modifier-contrat/{id}', 'contratController@postFormModifContrat');
+Route::get('modifier-contrat/{id}', 'ContratController@getFormModifContrat');
+Route::post('modifier-contrat/{id}', 'ContratController@postFormModifContrat');
 // --delete
-Route::get('supprimer-contrat/{id}', 'contratController@supprimerContrat');
+Route::get('supprimer-contrat/{id}', 'ContratController@supprimerContrat');
 // --show
-Route::get('details-contrat/{id}', 'contratController@showContrat');
+Route::get('details-contrat/{id}', 'ContratController@showContrat');
 
 
 /*

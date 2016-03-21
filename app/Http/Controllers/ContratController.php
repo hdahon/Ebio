@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 class ContratController extends Controller
 {
 
-
   /* Liste des tous les modèle de contrat  */
      public function getAllContrat(){
         if(Auth::user()->roleamapien_id == 3){
