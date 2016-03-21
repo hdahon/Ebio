@@ -36,7 +36,7 @@
 	<ul class="dropdown-menu">
 		<li><a href="{{ url('list-roles') }}">Rôles</a></li>
 		<li><a href="{{ url('list-periodicites') }}">Periodicité</a></li>
-		<li><a href="{{ url('create-contratsClients') }}">Souscrire un contrat</a></li>
+		<li><a href="{{ url('list-contrat') }}">Souscrire un contrat</a></li>
 		<li><a href="{{ url('list-unites') }}">Unités</a></li>
 	</ul>
 </li>

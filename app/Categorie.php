@@ -14,7 +14,7 @@ class Categorie extends Model
     protected $table = 'categories';
 
 
-    protected $fillable = ['libelle','producteur_id','referent_id','periodicite_id','typePanier'];
+    protected $fillable = ['libelle','producteur_id','referent_id','periodicite_id','typePanier','periodicite2_id','periodicite3_id'];
 
     public function referent(){
     	return $this->belongsTo('App\User');

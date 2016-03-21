@@ -50,6 +50,7 @@
         })
     });
 
+     calInit("calendarMain", "", "champ_date", "jsCalendar", "day", "selectedDay");
     </script>
 </body>
 </html>

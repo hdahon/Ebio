@@ -19,11 +19,8 @@ Reférent
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Modèle de contrat</label>
                                             <div class="col-md-8">
-                                                <select class=form-control name="contrat_id">
-                                                    @foreach ($contrats as $contrat)                    
-                                                        <option value={{$contrat->id}}>{{$contrat->titre}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input value={{$contrats->titre}}></input>
+                                                <input type="hidden" value="{{$contrats->id}}"   name="contrat_id"/>  
                                             </div>
                                         </div>
                                         
@@ -31,9 +28,10 @@ Reférent
                                             <label class="col-md-4 control-label">Periodicite</label>
                                             <div class="col-md-8">
                                                 <select class=form-control name="periodicite_id">
-                                                    @foreach ($periodicites as $periode)                    
-                                                        <option value={{$periode->id}}>{{$periode->libelle}}</option>
-                                                    @endforeach
+                                                        <option value="">Choix</option>
+                                                        <option value={{$periode1->id}}>{{$periode1->libelle}}</option>
+                                                        <option value={{$periode2->id}}>{{$periode2->libelle}}</option>
+                                                        <option value={{$periode3->id}}>{{$periode3->libelle}}</option>
                                                 </select>
                                             </div>
                                         </div>

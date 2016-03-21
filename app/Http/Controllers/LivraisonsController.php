@@ -9,6 +9,11 @@ use App\User;
 use App\Livraisons;
 use App\RoleAmapien;
 use App\Categorie;
+use App\ContratClient;
+use App\Contrat;
+use App\Panier;
+use App\Produit;
+
 
 class LivraisonsController extends Controller
 {
@@ -16,9 +21,43 @@ class LivraisonsController extends Controller
 	// -- list
 	public function getAll()
 	{		
-		$livraisons= Livraisons::all();
+		$livraisons= array();
 		$categories=array();
 		$producteurs=array();
+		if(session('role') ==1 ){
+			$contratClients =ContratClient::where('amapien_id',Auth::user()->id)->get();
+			foreach ($contratClients as $k => $value) {
+				$mcontrat=Contrat::find($value->contrat_id);
+				foreach (Livraisons::All() as $key => $v) {
+					if($value->periodicite_id == 1 && Auth::user()->id == $value->amapien_id){
+						$liv=Livraisons::find($v->id);
+						if($liv->semaine %2 ==0){
+							$livraisons[$key]=$liv;
+						}
+						 
+					}else if($value->periodicite_id == 2 &&  Auth::user()->id == $value->amapien_id){
+						$liv=Livraisons::find($v->id);
+						if($liv->semaine %2 !=0){
+							$livraisons[$key]=$liv;
+						}
+					}else{
+						$livraisons[$key]=Livraisons::find($v->id);
+
+					} 
+					$cat=Categorie::find($mcontrat->categorie_id);
+           			$categories[$key]=$cat;
+           			$producteurs[$key]=User::find($cat->producteur_id);
+				}
+				
+         	} 
+			$data = array('livraisons' => $livraisons,
+					  'categories'=>$categories,
+					  'producteurs' =>$producteurs);
+				return view('amapien/livraisons/livraison',$data);
+
+		}else{
+		$livraisons= Livraisons::all();
+		
 		foreach ($livraisons as $key => $value) {
            $categories[$key]=Categorie::find($value->categorie_id);
            $producteurs[$key]=User::find($value->producteur_id);
@@ -28,6 +67,8 @@ class LivraisonsController extends Controller
 					  'producteurs' =>$producteurs);
 		return view('Admin/Livraisons/livraison',$data);
 	}
+}
+	
 
 	// ----- create ----- 
 	public function insert(Request $request)
@@ -93,5 +134,27 @@ class LivraisonsController extends Controller
 		$element=Livraisons::find($id);
 		$element->delete();
 		return redirect('list-livraisons');
+	}
+
+	// ----- editer ----- 
+	public function editer($id)
+	{
+		$element=Livraisons::find($id);
+		$categories=Categorie::all();
+		$contrats=Contrat::all();
+		$paniers=Panier::where("livraison_id",$element->id)->get();
+		$amapiens=array();
+		$catAmap=array();
+		foreach ($paniers as $key => $value) {
+				$prod=Produit::find($value->produit_id);
+				$amapiens[$key]=User::find($value->user_id);
+				$catAmap[$key]=Categorie::find($prod->categorie_id);
+		}		
+		$data=array('element'=>$element,
+					'categories'=>$categories,
+					'amapiens'=>$amapiens,
+					'catAmapiens'=>$catAmap,
+					'paniers'=>$paniers);
+		return view('admin/livraisons/fichelivraisons',$data);
 	}
 }

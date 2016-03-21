@@ -45,13 +45,16 @@ public function postCreateCategorie(Request $request)
             $periode =$request->input('periode');
             $Referent=$request->input('referent');
             $producteur = $request->input('producteur');
-            echo $typepanier;
+            $periode2 =$request->input('periode2');
+             $periode3 =$request->input('periode3');
             Categorie::create(array(
                 'libelle' =>$nomProduit,
                 'typePanier' =>$typepanier,
                 'referent_id' =>$Referent,
                 'producteur_id' =>$producteur,
                 'periodicite_id' =>$periode,
+                'periodicite2_id' =>$periode2,
+                'periodicite3_id' =>$periode3,
             ));
 
            return redirect('liste-categorie');
@@ -65,6 +68,8 @@ public function postCreateCategorie(Request $request)
          $referents = array();
          $producteurs  = array();
          $periodicites = array();
+         $periodicites2 = array();
+         $periodicites3 = array();
          $iter=0;
          if(session('role') == 3){
             foreach ($categories as $cat) {
@@ -74,6 +79,8 @@ public function postCreateCategorie(Request $request)
                     $referents[$iter]= $ref;
                     $producteurs[$iter]=User::find($cat->producteur_id);
                     $periodicites[$iter]=Periodicite::find($cat->periodicite_id);
+                    $periodicites2[$iter]=Periodicite::find($cat->periodicite2_id);
+                    $periodicites3[$iter]=Periodicite::find($cat->periodicite3_id);
                     $iter++;
                 }   
             }
@@ -83,13 +90,17 @@ public function postCreateCategorie(Request $request)
             $referents[$cat->id]=User::find($cat->referent_id);
             $producteurs[$cat->id]=User::find($cat->producteur_id);
             $periodicites[$cat->id]=Periodicite::find($cat->periodicite_id);
+            $periodicites2[$cat->id]=Periodicite::find($cat->periodicite2_id);
+            $periodicites3[$cat->id]=Periodicite::find($cat->periodicite3_id);
          }
         }
          $data = array(
                         'categories'=>$categories,
                         'producteurs'=>$producteurs,
                         'referents'=>$referents,
-                        'periodicites'=>$periodicites);
+                        'periodicites'=>$periodicites,
+                        'periodicites2'=>$periodicites2,
+                        'periodicites3'=>$periodicites3);
            if (session('role') ==   5){
                 return view('admin/categorie/listCategorie',$data);
             }else if (session('role') ==   4){
@@ -132,12 +143,18 @@ public function postCreateCategorie(Request $request)
          $categorie = Categorie::find($id);
          $producteurs=User::where('roleamapien_id',2)->get();
          $referents =User::where('roleamapien_id',3)->get();
-         $periode=Periodicite::All();
-         $periodicites=$periode;
+         $periode1=Periodicite::find($categorie->periodicite_id);
+         $periode2=Periodicite::find($categorie->periodicite2_id);
+         $periode3=Periodicite::find($categorie->periodicite3_id);
+         $periodicites=Periodicite::All();
          $data = array('categorie' => $categorie,
                         'referents'=>$referents,
                         'producteurs'=>$producteurs,
                         'periodicites'=>$periodicites,
+                        'periode1'=>$periode1,
+                        'periode2'=>$periode2,
+                        'periode3'=>$periode3
+
                        );
          if (session('role') ==   5){
                 return view('admin/categorie/formModifCategorie',$data);
@@ -155,6 +172,8 @@ public function postModifierCategorie(Request $request,$id)
             $libelle=$request->input('libelle');
             $typepanier =$request->input('typePanier');
             $periode =$request->input('periode');
+            $periode2 =$request->input('periode2');
+            $periode3 =$request->input('periode3');
             $referent=$request->input('referent');
             $producteur = $request->input('producteur');
             $categorie=Categorie::find($id);
@@ -163,6 +182,8 @@ public function postModifierCategorie(Request $request,$id)
             $categorie->referent_id=$referent;
             $categorie->producteur_id=$producteur;
             $categorie->periodicite_id=$periode;
+            $categorie->periodicite2_id=$periode2;
+            $categorie->periodicite3_id=$periode3;
             $categorie->save();
 
            return redirect('liste-categorie');

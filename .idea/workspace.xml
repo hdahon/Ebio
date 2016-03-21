@@ -2,36 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffabc828-9264-4af2-8f45-c5c1acaae801" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_20_155139_drop_column_quantite_livraison.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_20_165053_add_dateLivraison.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_20_181104_add_datecreationPanier.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/AccountController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Adherant/AdherantController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Adherant/AdherantController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Categorie/CategorieController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Contrat/ContratController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ContratClient/ContratClientController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Livraisons/LivraisonsController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Periodicite/PeriodiciteController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Produit/ProduitController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Role/RoleController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Amapien/AmapienController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Amapien/Contrat/ContratController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Producteur/Livraison/LivraisonController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Producteur/ProducteurController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Producteur/Produit/ProduitController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Referent/Adherant/AdherantController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Referent/Categorie/CategorieController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Referent/Contrat/ContratController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Referent/Paiement/PaiementController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Referent/Produit/ProduitController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Referent/ReferentController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReferentPlus/Adherant/AdherantController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReferentPlus/Categorie/CategorieController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReferentPlus/Contrat/ContratController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReferentPlus/Paiement/PaiementController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReferentPlus/Produit/ProduitController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReferentPlus/ReferentController.php" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_20_235133_add_periodicite2_3-table_categorie.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_21_010749_add_semaine_table_livraison.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_03_20_150240_update_table_livraison.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_03_20_163201_add_categorieid.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Amapien/contrat_list_sel.blade.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Amapien/contrat_sel.blade.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Amapien/listcontrat.blade.php" afterPath="" />
@@ -53,16 +27,19 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/menu.blade.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/menuAdmin.blade.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/eBio.iml" afterPath="$PROJECT_DIR$/.idea/eBio.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Categorie.php" afterPath="$PROJECT_DIR$/app/Categorie.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CategorieController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategorieController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContratClientController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContratClientController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContratController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContratController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LivraisonsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LivraisonsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Livraisons.php" afterPath="$PROJECT_DIR$/app/Livraisons.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Panier.php" afterPath="$PROJECT_DIR$/app/Panier.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2016_01_05_024830_create_livraison_table.php" afterPath="$PROJECT_DIR$/database/migrations/2016_01_05_024830_create_livraison_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Amapien/contratClient/contrat_sel.blade.php" afterPath="$PROJECT_DIR$/resources/views/Amapien/contratClient/contrat_sel.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/Categorie/formModifCategorie.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/Categorie/formModifCategorie.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/Categorie/listCategorie.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/Categorie/listCategorie.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/Categorie/newCategorie.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/Categorie/newCategorie.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/header.blade.php" />
     </list>
     <ignored path="eBio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -143,10 +120,6 @@
   </component>
   <component name="FrameworkCommandLineHistory">
     <commandsHistory>
-      <command text="php artisan db:seed --class=&quot;database\seeds\PeriodiciteTableSeeder&quot;" />
-      <command text="php artisan db:seed --force" />
-      <command text="php artisan migrate --force --seed" />
-      <command text="php artisan db:seed --force" />
       <command text="php artisan migrate --force --seed" />
       <command text="php composer update" />
       <command text="composer dump-autoload" />
@@ -167,6 +140,10 @@
       <command text="php artisan make:migration  add_dateLivraison" />
       <command text="php artisan migrate --force" />
       <command text="php artisan make:migration  add_datecreationPanier" />
+      <command text="php artisan migrate --force" />
+      <command text="php artisan make:migration  add_periodicite2_3-table_categorie" />
+      <command text="php artisan migrate --force" />
+      <command text="php artisan make:migration  add_semaine_table_livraison" />
       <command text="php artisan migrate --force" />
     </commandsHistory>
   </component>
@@ -323,6 +300,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -456,7 +434,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -530,7 +507,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34565917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35530546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -907,22 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_20_155139_drop_column_quantite_livraison.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_05_150240_update_table_livraison.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -935,6 +896,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1123595">
           <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_20_155139_drop_column_quantite_livraison.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
           <folding />
         </state>
       </provider>

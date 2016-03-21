@@ -18,7 +18,7 @@ class Livraisons extends Model
      *
      * @var array
      */
-    protected $fillable = ['dateLivraison', 'categorie_id', 'producteur_id'];
+    protected $fillable = ['dateLivraison', 'categorie_id', 'producteur_id','semaine'];
 
     /**
      * Un livraison est éffectué par un producteur     

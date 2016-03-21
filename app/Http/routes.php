@@ -25,7 +25,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 // Deconnexion routes
 Route::get('deconnexion','Auth\AuthController@deconnexion');
-
+ 
 Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
@@ -78,6 +78,9 @@ Route::get('update-livraisons/{id}', 'LivraisonsController@update');
 Route::post('livraisons/update', 'LivraisonsController@updateInsert');
 // -- delete
 Route::get('delete-livraisons/{id}', 'LivraisonsController@delete');
+// -- editer
+Route::get('editer-livraisons/{id}', 'LivraisonsController@editer');
+
 
 /*
 ------------------------Route periodicite --------------------
@@ -98,13 +101,17 @@ Route::get('delete-periodicites/{id}', 'PeriodiciteController@delete');
 // -- list
 Route::get('list-contratsClients', 'ContratClientController@getAll');
 // -- create
-Route::get('create-contratsClients', 'ContratClientController@insert');
+Route::get('create-contratsClients/{id}', 'ContratClientController@insert');
 Route::post('contratsClients/new', 'ContratClientController@post');
 // -- update
 Route::get('update-contratsClients/{id}', 'ContratClientController@update');
 Route::post('contratsClients/update', 'ContratClientController@updateInsert');
 // -- delete
 Route::get('delete-contratsClients/{id}', 'ContratClientController@delete');
+// --show
+Route::get('details-contratclient/{id}', 'contratClientController@showContrat');
+// --list contat modèle
+Route::get('list-contrat', 'contratClientController@getAllContratM');
 
 
 /*

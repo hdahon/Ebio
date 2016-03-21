@@ -34,7 +34,11 @@ class ContratController extends Controller
        else{
           $contrats = Contrat::all();
           $data = array('contrats' => $contrats);
+          if(Auth::user()->roleamapien_id == 1){
+             return view('amapien/contratclient/listContratModel',$data);
+          }else{
           return view('ReferentPlus/contrat/listContrat',$data);
+          } 
        }
      }
      
@@ -80,6 +84,7 @@ class ContratController extends Controller
                         'dateLivraison'=>date("Y-m-d", strtotime($dates[$i]['date'])),
                         'producteur_id'=>$libelle->producteur->id,
                         'categorie_id'=>$categorie,
+                        'semaine'=>$dates[$i]['semaine']
                 ));
          }
           if(Auth::user()->roleamapien_id == 3 ){

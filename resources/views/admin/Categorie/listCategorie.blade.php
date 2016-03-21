@@ -24,7 +24,9 @@
                                 {{$row->libelle}}
                             </td>
                             <td>
-                                {{$periodicites[$row->id]->libelle}}
+                                {{$periodicites[$row->id]->libelle}}<br>
+                                {{$periodicites2[$row->id]->libelle}}<br>
+                                {{$periodicites3[$row->id]->libelle}}
                             </td>
                              <td>
                                 {{$producteurs[$row->id]->prenom." ".$producteurs[$row->id]->nom}}

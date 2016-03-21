@@ -55,20 +55,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Periodicite</label>
-                                <div class="col-md-6">
-                                     <select class=form-control name="periode">
-                                        <option value="1">Bi-mensuel semaine paire</option>
-                                        <option value="2">Bi-mensuel semaine impaire</option>
-                                        <option value="3">Hebdomadaire</option>
-                                        <option value="4">Ponctuel</option>
-                                        <option value="5">Mensuel semaine paire</option>
-                                        <option value="6">Mensuel semaine impaire</option>
-                                        <option value="7">Hebomadaire ou Bi-mensuel</option>      
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-md-4 control-label">Referent</label>
                                 <div class="col-md-6">
                                     <select class=form-control name="referent">
@@ -82,6 +68,50 @@
                                     </select>
                                 </div>
                             </div>  
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Periodicite</label>
+                                <div class="col-md-6">
+                                     <select class=form-control name="periode">
+                                     @foreach ($periodicites as $key => $value)
+                                     @if($value->id == $periode1->id)
+                                        <option value="{{$value->id}}" selected>{{$value->libelle}}</option>
+                                     @else
+                                      <option value="{{$value->id}}">{{$value->libelle}}</option>
+                                      @endif
+                                      @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Periodicite</label>
+                                <div class="col-md-6">
+                                     <select class=form-control name="periode2">
+                                     @foreach ($periodicites as $key => $value)
+                                     @if($value->id == $periode1->id)
+                                        <option value="{{$value->id}}" selected>{{$value->libelle}}</option>
+                                     @else
+                                      <option value="{{$value->id}}">{{$value->libelle}}</option>
+                                      @endif
+                                      @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Periodicite</label>
+                                <div class="col-md-6">
+                                     <select class=form-control name="periode3">
+                                     @foreach ($periodicites as $key => $value)
+                                     @if($value->id == $periode1->id)
+                                        <option value="{{$value->id}}" selected>{{$value->libelle}}</option>
+                                     @else
+                                      <option value="{{$value->id}}">{{$value->libelle}}</option>
+                                      @endif
+                                      @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
                             
                             <div class="form-group">
                                 <div class="col-md-12 text-right">

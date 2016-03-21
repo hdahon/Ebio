@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Periodicite;
 use App\Categorie;
-use App\Contrat;
+use App\Contrat; 
 use App\ContratClient; 
 use App\RoleAmapien;
 
@@ -32,7 +32,7 @@ class ContratClientController extends Controller
          	}
          	
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'contrats'=>$contrats);
-		    return view('Amapien/listcontrat',$data);
+		    return view('amapien/contratclient/listcontrat',$data);
 
 		}else if(session('role')==3){
 			$contratClients=ContratClient::all();
@@ -62,23 +62,29 @@ class ContratClientController extends Controller
 		}		
 	}
 	
+
 	// ----- create ----- 
-	public function insert(Request $request)
+	public function insert(Request $request,$id)
 	{   
-		$contrats = Contrat::all();
+		$contrats = Contrat::find($id);
 		$amapiens=User::where('roleamapien_id',1)->get();
+		$categorie=Categorie::find($contrats->categorie_id);
+		$periode1=Periodicite::find($categorie->periodicite_id);
+		$periode2=Periodicite::find($categorie->periodicite2_id);
+		$periode3=Periodicite::find($categorie->periodicite3_id);
 		$periodicite=Periodicite::all();
 		$data = array(
-			 
 			'contrats' => $contrats,
 			'amapiens' =>$amapiens,
-			'periodicites'=>$periodicite
-			
+			'periodicites'=>$periodicite,
+			'periode1'=>$periode1,
+			'periode2'=>$periode2,
+			'periode3'=>$periode3
 			);
 		if(session('role')==1){
-			return view('Amapien/contrat_sel',$data);
+			return view('amapien/contratclient/contrat_sel',$data);
 		}else{
-			return view('Admin/ContratClient/newContratClient',$data);
+			return view('admin/contratClient/newContratClient',$data);
 		}
 	}
 
@@ -142,4 +148,106 @@ class ContratClientController extends Controller
 		$element->delete();
 		return redirect('list-contratsClients');
 	}
+
+	 /* Afficher le details d'un contrat */
+      public function showContrat($id)
+       {        
+            $TabMois=array("janvier", "février", "mars", "avril", "mai", "juin",
+            "juillet", "août", "septembre", "octobre", "novembre", "décembre");
+            $ReferentPlus= Auth::user()->id; 
+            $contratClient = ContratClient::find($id);
+            $contrat=Contrat::find($contratClient->contrat_id);
+            $amapien = User::find(Auth::user()->id);
+            $coadherant=User::find($amapien->coadherant_id);
+            $categorie = Categorie::find($contrat->categorie_id);
+            $producteur = User::find($categorie->producteur_id);
+            $dL=date_create($contrat->debutLivraison);
+            $dF=date_create($contrat->dateDeFinLivraison);
+            $dates=$this->getDates(date_format($dL,"d-m-Y"), date_format($dF,"d-m-Y"));
+            $semaineImpaire=array();
+            $semainePaire =array();
+            $dDebut = $TabMois[intval(explode("-",$contrat->debutLivraison)[1])-1]." ".explode("-",$contrat->debutLivraison)[0];
+            $dFin =$TabMois[intval(explode("-",$contrat->dateDeFinLivraison)[1])-1]." ".explode("-",$contrat->dateDeFinLivraison)[0];
+            $periode =$dDebut."-".$dFin;
+
+            $periodicite=Periodicite::find($contratClient->periodicite_id);
+            $allPeriodicite =Periodicite::all();
+            for($i=0;$i<count($dates);$i++) {
+                if($dates[$i]['semaine']%2 ==0 ){
+                    $semainePaire[] = $dates[$i]['date'];
+                }
+                else{
+                    $semaineImpaire[] =$dates[$i]['date'];
+                }
+               
+              
+            }
+            $vacance = $contrat->vacance;
+            $data = array('amapien' => $amapien,
+            				'coadherant'=>$coadherant,
+                            'categorie' =>$categorie,
+                            'contrat' =>$contrat,
+                            'producteur' =>$producteur,
+                            'semaineImpaire' =>$semaineImpaire,
+                             'semainePaire' =>$semainePaire,
+                             'periode' =>$periode,
+                             'periodicite'=>$periodicite,
+                             'vacance' =>$vacance,
+                             'dateDebut'=>date_format($dL,"d-m-Y"),
+                             'dateFin'=>date_format($dF,"d-m-Y")
+                             );
+             if(Auth::user()->roleamapien_id == 1 ){
+                return view('amapien/contratclient/showContrat',$data);
+
+             }else {
+              return view('ReferentPlus/contrat/showContrat',$data);
+
+             }
+
+        }
+
+     /** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
+     fin  de contrat **/
+    public function getDates($dateDebut, $dateFin){
+            $d=explode("-",$dateDebut);
+            $f=explode("-",$dateFin);
+            $jours=2;
+           
+            $i=mktime(0,0,0,$d[1],$d[0],$d[2]);
+            $j=mktime(0,0,0,$f[1],$f[0],$f[2]);
+            $pas=60*60*24;
+            $fin=$i+(60*60*24*6);
+            for($deb=$i; $deb<= $fin; $deb+=$pas)
+            {
+       
+                if(date("N", $deb)==$jours)
+                {
+                    $premier=$deb;
+                     break;
+                }
+            }
+             $pas=60*60*24*7;
+             $date=array();
+            for($premier; $premier <= $j; $premier+=$pas)
+            {
+                //echo date("l d-m-Y", $premier)." ".date("W",$premier)."<br>";
+
+                    $date[]= array("date" =>date(" d-m-Y", $premier),
+                                  "semaine"=>date("W",$premier));
+            }
+            return $date;
+        }
+
+        /* Liste des tous les modèle de contrat  */
+     public function getAllContratM(){
+          $contrats = Contrat::all();
+          $data = array('contrats' => $contrats);
+          if(Auth::user()->roleamapien_id == 1){
+             return view('amapien/contratclient/listContratModel',$data);
+          }else{
+          	return view('admin/contratclient/listContratModel',$data);
+          } 
+       
+     }
+
 }
