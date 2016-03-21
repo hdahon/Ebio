@@ -32,7 +32,7 @@ class ContratClientController extends Controller
          	}
          	
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'contrats'=>$contrats);
-		    return view('amapien/contratclient/listcontrat',$data);
+		    return view('amapien/contratClient/listcontrat',$data);
 
 		}else if(session('role')==3){
 			$contratClients=ContratClient::all();
@@ -73,6 +73,7 @@ class ContratClientController extends Controller
 		$periode2=Periodicite::find($categorie->periodicite2_id);
 		$periode3=Periodicite::find($categorie->periodicite3_id);
 		$periodicite=Periodicite::all();
+		$produits=Produit::where("categorie_id",$categorie->id)->get();
 		$data = array(
 			'contrats' => $contrats,
 			'amapiens' =>$amapiens,
