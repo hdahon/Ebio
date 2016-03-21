@@ -65,7 +65,7 @@ class LivraisonsController extends Controller
 		$data = array('livraisons' => $livraisons,
 					  'categories'=>$categories,
 					  'producteurs' =>$producteurs);
-		return view('Admin/Livraisons/livraison',$data);
+		return view('admin/livraisons/livraison',$data);
 	}
 }
 	
@@ -73,7 +73,7 @@ class LivraisonsController extends Controller
 	// ----- create ----- 
 	public function insert(Request $request)
 	{             
-		return view('Admin/Livraisons/newLivraison');
+		return view('admin/livraisons/newLivraison');
 	}
 	public function post(Request $request)
 	{
@@ -111,7 +111,7 @@ class LivraisonsController extends Controller
 			'producteur_id'=>$livraison->producteur_id,
 			'dateDeLivraison'=>$livraison->dateDeLivraison
 			);
-		return view('Admin/Livraisons/updateLivraison',$data);
+		return view('admin/livraisons/updateLivraison',$data);
 	}	
 	public function updateInsert(Request $request)
 	{

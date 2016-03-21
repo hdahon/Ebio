@@ -16,13 +16,13 @@ class PeriodiciteController extends Controller
 	public function getAll()
 	{		
 		$data = array('elements' => (Periodicite::all()));
-		return view('Admin/Periodicite/periodicite',$data);
+		return view('admin/periodicite/periodicite',$data);
 	}
 
 	// ----- create ----- 
 	public function insert(Request $request)
 	{             
-		return view('Admin/Periodicite/newPeriodicite');
+		return view('admin/periodicite/newPeriodicite');
 	}
 	public function post(Request $request)
 	{
@@ -41,7 +41,7 @@ class PeriodiciteController extends Controller
 			'id' => $id, 
 			'libelle' => $element->libelle
 			);
-		return view('Admin/Periodicite/updatePeriodicite',$data);
+		return view('admin/periodicite/updatePeriodicite',$data);
 	}	
 	public function updateInsert(Request $request)
 	{

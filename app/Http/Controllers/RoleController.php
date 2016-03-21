@@ -22,7 +22,7 @@ class RoleController extends Controller
 	// ----- create ----- 
 	public function insert(Request $request)
 	{             
-		return view('Admin/Role/newRole');
+		return view('admin/role/newRole');
 	}
 	public function post(Request $request)
 	{
@@ -46,7 +46,7 @@ class RoleController extends Controller
 			'nomRole' => $role->nomRole,
 			'niveau' => $role->niveau
 			);
-		return view('Admin/Role/updateRole',$data);
+		return view('admin/role/updateRole',$data);
 	}	
 	public function updateInsert(Request $request)
 	{

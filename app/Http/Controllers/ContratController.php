@@ -29,7 +29,7 @@ class ContratController extends Controller
            $iter++;
          }
          $data = array('contrats' => $contrats);
-         return view('Referent/contrat/listContrat',$data);
+         return view('referent/contrat/listContrat',$data);
        }
        else{
           $contrats = Contrat::all();
@@ -37,7 +37,7 @@ class ContratController extends Controller
           if(Auth::user()->roleamapien_id == 1){
              return view('amapien/contratclient/listContratModel',$data);
           }else{
-          return view('ReferentPlus/contrat/listContrat',$data);
+          return view('referentPlus/contrat/listContrat',$data);
           } 
        }
      }
@@ -50,11 +50,11 @@ class ContratController extends Controller
               $referent= Auth::user()->id; 
               $categories = Categorie::where("referent_id",$referent)->get();
               $data = array('categories' =>$categories);
-              return view('Referent/contrat/newContrat',$data);
+              return view('referent/contrat/newContrat',$data);
             }else {
               $categories = Categorie::all();
               $data = array('categories' =>$categories);
-              return view('ReferentPlus/contrat/newContrat',$data);
+              return view('referentPlus/contrat/newContrat',$data);
             }
             
     }
@@ -143,7 +143,7 @@ class ContratController extends Controller
                 return view('Referent/contrat/showContrat',$data);
 
              }else {
-              return view('ReferentPlus/contrat/showContrat',$data);
+              return view('referentPlus/contrat/showContrat',$data);
 
              }
 
@@ -164,9 +164,9 @@ class ContratController extends Controller
                              'dateDebut'=>$dD,
                              'dateFin'=>$dF,);
              if(Auth::user()->roleamapien_id == 3 ){
-               return view('Referent/contrat/formModifContrat',$data);
+               return view('referent/contrat/formModifContrat',$data);
              }else {
-               return view('ReferentPlus/contrat/formModifContrat',$data);
+               return view('referentPlus/contrat/formModifContrat',$data);
              }
         }
 

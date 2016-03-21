@@ -58,7 +58,7 @@ class ContratClientController extends Controller
            		$iter++;
          	}
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'amapiens'=>$amapiens, 'contrats'=>$contrats);
-		    return view('Admin/ContratClient/contratClient',$data);
+		    return view('admin/contratClient/contratClient',$data);
 		}		
 	}
 	
@@ -122,9 +122,9 @@ class ContratClientController extends Controller
 			'periodicites'=>$periodicite
 			);
 		if(session('role')==1){
-			return view('Amapien/update_contratClient',$data);
+			return view('amapien/update_contratClient',$data);
 		}else{
-			return view('Admin/ContratClient/updateContratClient',$data);
+			return view('admin/contratClient/updateContratClient',$data);
 		}
 	}	
 	public function updateInsert(Request $request)
