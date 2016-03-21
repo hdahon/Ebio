@@ -32,7 +32,7 @@ class ContratClientController extends Controller
          	}
          	
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'contrats'=>$contrats);
-		    return view('amapien/contratclient/listcontrat',$data);
+		    return view('amapien/contratClient/listcontrat',$data);
 
 		}else if(session('role')==3){
 			$contratClients=ContratClient::all();
