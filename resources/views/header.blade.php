@@ -80,15 +80,15 @@
                     @endif
                     <!-- MENUE REFERENT -->
                     @if($niveau == 3)
-                    @include("Referent/menu")
+                    @include("referent/menu")
                     @endif
                     <!-- MENUE REFERENT PLUS -->
                     @if($niveau == 4)
-                    @include("ReferentPlus/menu")
+                    @include("referentPlus/menu")
                     @endif
                 <!-- MENUE ADMIN -->
                     @if($niveau == 5)
-                         @include("Admin/menu")
+                         @include("admin/menu")
                     @endif
                 </ul>
         </div>
