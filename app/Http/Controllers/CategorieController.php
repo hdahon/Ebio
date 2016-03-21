@@ -87,7 +87,16 @@ public function postCreateCategorie(Request $request)
 
      /*Liste des tous les categorie */
       public function getAllCategories(){
+
+        $idUser= Auth::user()->id; 
+        if (session('role') ==   2){
+            //echo ($idUser);
+
+         $categories = Categorie::where('producteur_id',$idUser)->get();
+        }else{
          $categories = Categorie::all();
+        }
+
          $referents = array();
          $producteurs  = array();
          $periodicites = array();
@@ -117,7 +126,6 @@ public function postCreateCategorie(Request $request)
             $periodicites3[$cat->id]=Periodicite::find($cat->periodicite3_id);
          }
         }
-        echo count($periodicites2);
          $data = array(
                         'categories'=>$categories,
                         'producteurs'=>$producteurs,
@@ -132,6 +140,9 @@ public function postCreateCategorie(Request $request)
             }
             else if (session('role') ==   3){
                 return view('referent/categorie/listCategorie',$data);
+            }
+            else if (session('role') ==   2){
+                return view('producteur/categorie/listCategorie',$data);
             }
 
      
@@ -158,6 +169,8 @@ public function postCreateCategorie(Request $request)
                 return view('admin/categorie/categorie-details',$data);
         }else if (session('role') ==   4){
                 return view('referentPlus/categorie/categorie-details',$data);
+        }else if (session('role') ==   2){
+                return view('producteur/categorie/categorie-details',$data);
         }
      }
 

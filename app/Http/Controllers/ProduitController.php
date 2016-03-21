@@ -54,7 +54,35 @@ class ProduitController extends Controller
 
         /* Liste de tous les produits */
      public function getAllProduits(){
-         $produits = Produit::all();
+
+         $produits=array();
+        $idUser= Auth::user()->id; 
+        if (session('role') ==   2){
+         /*   echo ($idUser);
+
+            $categories = Categorie::where('producteur_id',$idUser)->get();
+            //echo ($categories);
+            $iter=0;
+         foreach ($categories as $categorie) {
+            //echo "=>".$categorie->id;
+            $produits[$iter] = Produit::where("categorie_id",$categorie->id)->get();
+            $iter++;
+         }*/
+/*
+          $produits = Produit::join('categories', function($join)
+        {
+            $join->on('produits.categorie_id', '=', 'categories.id')
+                 ->where('categories.producteur_id', '=',$idUser);
+        })->get();
+          */
+
+            //$produits = Produit::whereIn("categorie_id",$categories->id)->get();
+        }else{
+            $produits = Produit::all();
+        }
+            $produits = Produit::all();
+
+
          $categories="";
          $referents="";
          $producteurs="";
@@ -76,6 +104,8 @@ class ProduitController extends Controller
                 return view('referentPlus/produit/produit',$data);
         }else if (session('role') ==   3){
                 return view('referent/produit/liste_produit',$data);
+        }else if (session('role') ==   2){
+                return view('producteur/produit/produit',$data);
         }
      }
 
@@ -101,6 +131,8 @@ class ProduitController extends Controller
                 return view('referentPlus/produit-details',$data);
             }else if (session('role') ==   3){
                 return view('referent/produit/produit-details',$data);
+            }else if (session('role') ==   2){
+                return view('producteur/produit/produit-details',$data);
             }
      }
 
