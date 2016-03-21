@@ -49,12 +49,28 @@
                                     </select>
                                 </div>
                             </div>
-                             <div class="form-group">
+                             <!--div class="form-group">
                                 <label class="col-md-4 control-label">Unite</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="unite" value="{{$produit->unite}}">
                                 </div>
+                            </div-->
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Unite</label>
+                                <div class="col-md-6">
+                                <select  class="form-control"  name="unite" >
+                                    @foreach ($unites as $unite)          
+                                        @if($unite->libelle == $produit->unite )      
+                                    <option selected value={{$unite->libelle}}>{{$unite->libelle}}</option>                 
+                                        @else    
+                                    <option value={{$unite->libelle}}>{{$unite->libelle}}</option>
+                                         @endif
+                                    @endforeach
+                                </select>
+                                </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Prix</label>
                                 <div class="col-md-6">

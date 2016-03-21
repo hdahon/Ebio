@@ -47,7 +47,7 @@ Reférent
                                 <label>Unite</label>
                                 <select  class="form-control"  name="unite" >
                                     @foreach ($unites as $unite)                    
-                                    <option value={{$unite->id}}>{{$unite->libelle}}</option>
+                                    <option value={{$unite->libelle}}>{{$unite->libelle}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -107,10 +107,12 @@ class ProduitController extends Controller
         /* afficher le formulaire de modification d'un produit*/
          public function getFormModifierProduit($id){
 
+        $unites = Unite::all();
          $produit= Produit::find($id);
          $categories = Categorie::all()  ;
          $data = array('categories' => $categories,
                         'produit'=>$produit,
+                        'unites'=>$unites
                        );
          if (session('role') ==   5){
                 return view('admin/produit/formModifProduit',$data);
