@@ -33,14 +33,14 @@
 
         // ----- SCRIPT POUR : newAdherant.blade.php
         //alert("ok");
-        if ($("#roleamapien_id").find("option:selected").text()!="PRODUCTEUR"){
+        if ($("#roleamapien_id").find("option:selected").text()!="Role_PRODUCTEUR"){
             $("#s_adresse").hide();
             $("#s_numSiret").hide();
         }
         $("#roleamapien_id").unbind("change").bind("change",function(){
             var _laVal=$(this).find("option:selected").text();
             console.log(_laVal);
-            if (_laVal=="PRODUCTEUR"){
+            if (_laVal=="Role_PRODUCTEUR"){
                 $("#s_adresse").show();
                 $("#s_numSiret").show();
             }else{

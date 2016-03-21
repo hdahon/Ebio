@@ -77,11 +77,13 @@ Reférent
                                             <label class="col-md-4 control-label">Rôle</label>
                                             <div class="col-md-6">
                                                 <select class="form-control" id="roleamapien_id" name="roleamapien_id">
-                                                    <option value="1" selected>AMAPIEN</option>
-                                                    <option value="2">PRODUCTEUR</option>
-                                                    <option value="3">REFERENT</option>
-                                                    <option value="4">REFERENT+</option>
-                                                    <option value="5">ADMIN</option>
+                                                    @foreach($roles as $role)
+                                                        @if($roleamapien_id == $role->id)
+                                                        <option selected value={{$role->id}}>{{$role->nomRole}}</option>
+                                                        @else             
+                                                        <option value={{$role->id}}>{{$role->nomRole}}</option>
+                                                        @endif        
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

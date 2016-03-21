@@ -91,6 +91,7 @@ class AdherantController extends Controller
 	}
 
 	public function updateUser($id){
+		$roles=RoleAmapien::All();
 		$user=User::find($id);
 		$adherants= User::where("roleamapien_id",1 || "roleamapien_id",3)->get();   
 		$data = array(
@@ -104,7 +105,8 @@ class AdherantController extends Controller
 			'numSiret'=> $user->numSiret,
 			'roleamapien_id' => $user->roleamapien_id,
 			'coadherant_id'=> $user->coadherant_id,
-			'adherants'=>$adherants
+			'adherants'=>$adherants,
+			'roles'=>$roles
 			);
 		return view('admin/adherant/updateAdherant',$data);
 	}
