@@ -36,12 +36,36 @@ Reférent
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+
+                                        <div id="div_oldMDP" class="form-group">
                                             <label class="col-md-4 control-label">Mot de passe</label>
                                             <div class="col-md-6">
-                                                <input type="password" required class="form-control" name="password" value="{{$password}}">
+                                                <input type="password" disabled class="form-control" id="password" name="password" value="{{$password}}">
                                             </div>
                                         </div>
+
+                                        <div id="div_newMDP">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Nouveau mot de passe</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" class="form-control" id="newPassword" name="newPassword" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Confirmer le mot de passe</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" class="form-control" id="newPassword2" name="newPassword2" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label"></label>
+                                            <div class="col-md-6">
+                                                <button type="button" id="bt_modifMDP" class="btn btn-link btn">Modifier le mot de passe ?</button>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" class="form-control" id="chp_newMDP" name="chp_newMDP" value="false">
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Tel</label>
@@ -91,7 +115,7 @@ Reférent
 
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4">
-                                                <button type="submit" class="btn btn-primary">MODIFIER</button>
+                                                <button type="submit" id="bt_saveUpdateAdherant" class="btn btn-primary">MODIFIER</button>
                                             </div>
                                         </div>
 

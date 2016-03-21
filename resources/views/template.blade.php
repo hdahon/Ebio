@@ -48,9 +48,56 @@
                 $("#s_numSiret").hide();
             }
         })
+
+
+
+        // ----- SCRIPT POUR : updateAdherant.blade.php
+        $("#div_newMDP").hide();
+        $("#bt_modifMDP").unbind("click").bind("click",function(){
+            console.log($("#chp_newMDP").val());
+            if ($("#chp_newMDP").val()=="false"){
+                console.log($("#chp_newMDP").val());
+                $("#div_oldMDP").hide();
+                $("#div_newMDP").show();
+                $("#chp_newMDP").val("true");
+                $("#bt_modifMDP").text("Annuler");
+            }else{
+                $("#div_newMDP").hide();
+                $("#div_oldMDP").show();
+                $("#chp_newMDP").val("false");
+                $("#bt_modifMDP").text("Modifier le mot de passe ?");
+            }
+        });
+
+        $("#bt_saveUpdateAdherant").unbind("click").bind("click",function(){
+            if ($("#chp_newMDP").val()=="true"){                
+                var _newPassord=$.trim($("#newPassword").val());
+                var _newPassord2=$.trim($("#newPassword2").val());
+                if (!_newPassord || !_newPassord2){
+                    alert("Veuillez saisir un nouveau mot de passe");
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    return false;
+                }else if (_newPassord!=_newPassord2){
+                    alert("Les mots de passes saisis doivent être identiques.");
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    return false;
+                }
+            }else{
+                var _password=$.trim($("#password").val());
+                console.log(_password);
+                if (!_password){
+                    alert("Veuillez saisir un mot de passe");
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    return false;
+                }
+            }
+        });
     });
 
-     calInit("calendarMain", "", "champ_date", "jsCalendar", "day", "selectedDay");
-    </script>
+calInit("calendarMain", "", "champ_date", "jsCalendar", "day", "selectedDay");
+</script>
 </body>
 </html>

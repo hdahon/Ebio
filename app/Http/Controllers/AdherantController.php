@@ -115,7 +115,17 @@ class AdherantController extends Controller
         $nom=$request->input('nom');
         $prenom=$request->input('prenom');
         $email=$request->input('email');
-        $password=bcrypt($request->input('password'));
+
+        $newPassword=$request->input('newPassword');
+        $newPassword2=$request->input('newPassword2');
+        $chp_newMDP=$request->input('chp_newMDP');
+
+        if ($chp_newMDP=="false"){
+
+        }else{
+        	$password=bcrypt($request->input('newPassword'));
+        }
+
         $adresse=$request->input('adresse');
         $numSiret=$request->input('numSiret');
         $tel=$request->input('tel');
@@ -130,7 +140,12 @@ class AdherantController extends Controller
         $user->prenom=$prenom;
         $user->email=$email;
         $user->tel=$tel;
-        $user->password=$password;
+
+        if ($chp_newMDP=="false"){
+
+        }else{
+        	$user->password=$password;
+        }
         $user->adresse=$adresse;
         $user->numSiret=$numSiret;
         $user->roleamapien_id=$roleamapien_id;
