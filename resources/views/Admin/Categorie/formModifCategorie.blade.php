@@ -49,9 +49,19 @@
                                 </div>
                             </div>
                              <div class="form-group">
-                                <label class="col-md-4 control-label">type de Panier</label>
+                                <label class="col-md-4 control-label">Type de Panier</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="typePanier" value="{{$categorie->typePanier}}">
+                                        <select class="form-control" name="typePanier">
+                                        @foreach ($typepaniers as $typepanier)
+
+                                        @if($categorie->typePanier == $typepanier->libelle)
+                                        <option selected value={{$typepanier->libelle}}>{{$typepanier->libelle}}</option>
+                                        @else             
+                                        <option value={{$typepanier->libelle}}>{{$typepanier->libelle}}</option>
+                                        @endif        
+
+                                        @endforeach
+                                        </select> 
                                 </div>
                             </div>
                             <div class="form-group">

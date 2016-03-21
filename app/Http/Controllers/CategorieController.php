@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Produit;
 use App\User;
 use App\Categorie; 
+use App\Typepanier; 
 use App\Periodicite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,6 +19,7 @@ class CategorieController extends Controller
         /*Affiche le formulaire d'ajout d'une nouvelle catégorie de produit*/
          public function getCreateCategorie(Request $request)
        {             
+            $typepaniers= Typepanier::All(); 
             $ReferentPlus= Auth::user()->id; 
             $producteurs = User::where('roleamapien_id',2)
             ->where('id','!=',$ReferentPlus)
@@ -26,7 +28,8 @@ class CategorieController extends Controller
             ->where('id','!=',$ReferentPlus)
             ->get();
             $data = array('producteurs' => $producteurs,
-                        'referents' =>$referents);
+                        'referents' =>$referents,
+                        'typepaniers' =>$typepaniers);
             if (session('role') ==   5){
                 return view('admin/categorie/newCategorie',$data);
             }else if (session('role') ==   4){
@@ -161,6 +164,7 @@ public function postCreateCategorie(Request $request)
         /* afficher le formulaire de modification d'une catégorie */
          public function getFormModifierCategorie($id){
 
+            $typepaniers= Typepanier::All(); 
          $categorie = Categorie::find($id);
          $producteurs=User::where('roleamapien_id',2)->get();
          $referents =User::where('roleamapien_id',3)->get();
@@ -174,7 +178,8 @@ public function postCreateCategorie(Request $request)
                         'periodicites'=>$periodicites,
                         'periode1'=>$periode1,
                         'periode2'=>$periode2,
-                        'periode3'=>$periode3
+                        'periode3'=>$periode3,
+                        'typepaniers'=>$typepaniers
 
                        );
          if (session('role') ==   5){
