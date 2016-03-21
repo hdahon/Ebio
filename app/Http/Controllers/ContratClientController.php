@@ -196,14 +196,10 @@ class ContratClientController extends Controller
                              'dateDebut'=>date_format($dL,"d-m-Y"),
                              'dateFin'=>date_format($dF,"d-m-Y")
                              );
-             if(Auth::user()->roleamapien_id == 1 ){
+            
                 return view('amapien/contratclient/showContrat',$data);
 
-             }else {
-              return view('ReferentPlus/contrat/showContrat',$data);
-
-             }
-
+            
         }
 
      /** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
