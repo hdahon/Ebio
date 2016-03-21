@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Produit;
 use App\User;
+use App\Unite;
 use App\Categorie;
 use App\Periodicite;
 use Illuminate\Http\Request;
@@ -19,8 +20,9 @@ class ProduitController extends Controller
 
        public function getCreate(Request $request)
        {             
+            $unites = Unite::all();
             $categories = Categorie::all();
-            $data = array('categories' => $categories);
+            $data = array('categories' => $categories, 'unites' => $unites);
             if (session('role') ==   5){
                 return view('admin/produit/newProduit',$data);
             }else if (session('role') ==   4){

@@ -36,18 +36,27 @@ Reférent
                             </div>
                             <div class="form-group">
                                 <label>Categorie</label>
-                                <select name="categorie" >
+                                <select  class="form-control" name="categorie" >
                                     @foreach ($categories as $cat)                    
                                     <option value={{$cat->id}}>{{$cat->libelle}}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                             <div class="form-group">
+                            <div class="form-group">
+                                <label>Unite</label>
+                                <select  class="form-control"  name="unite" >
+                                    @foreach ($unites as $unite)                    
+                                    <option value={{$unite->id}}>{{$unite->libelle}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                             <!--div class="form-group">
                                 <label for="nom">Unité</label>
                                 <input id="nom" type="text"  name="unite" value="{{ old('produit') }}" class="form-control">
                                 
-                            </div>
+                            </div-->
                               <div class="form-group">
                                 <label for="nom">Prix</label>
                                 <input id="nom" type="text"  name="prix" value="{{ old('produit') }}" class="form-control">
