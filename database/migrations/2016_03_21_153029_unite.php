@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateTableLivraison extends Migration
+class Unite extends Migration
 {
     /**
      * Run the migrations.
@@ -13,6 +13,11 @@ class UpdateTableLivraison extends Migration
     public function up()
     {
         //
+        Schema::create('unite', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('libelle');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,5 +28,6 @@ class UpdateTableLivraison extends Migration
     public function down()
     {
         //
+        Schema::drop('unite');
     }
 }
