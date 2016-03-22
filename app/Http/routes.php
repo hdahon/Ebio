@@ -83,6 +83,19 @@ Route::get('editer-livraisons/{id}', 'LivraisonsController@editer');
 
 
 /*
+------------------------Route report --------------------
+*/
+// -- list
+Route::get('list-report', 'ReportController@getAll');
+// -- create
+Route::get('create-report', 'ReportController@insert');
+Route::post('report/new', 'ReportController@post');
+// -- update
+Route::get('update-report/{id}', 'ReportController@update');
+Route::post('report/update', 'ReportController@updateInsert');
+// -- delete
+Route::get('delete-report/{id}', 'ReportController@delete');
+/*
 ------------------------Route unite --------------------
 */
 // -- list
