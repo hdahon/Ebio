@@ -12,6 +12,7 @@ use App\Contrat;
 use App\ContratClient; 
 use App\RoleAmapien;
 use App\Produit;
+use App\Panier;
 
 class ContratClientController extends Controller
 {
@@ -101,11 +102,11 @@ class ContratClientController extends Controller
 		}
 		$produits=$request->input('produit');
 		$quantites=$request->input('quantite');
-		foreach ($produits as $prod){
+		foreach ($produits as $key=>$prod){
 			$produit=$prod;
-
+			$quantite=$quantites[$key];
 			Panier::create(array(
-              'livraison_id'=>1,
+              'livraison_id'=>629,
                 'user_id'=>$amapien,
                 'produit_id'=>$produit,
                 'quantite'=>$quantite
