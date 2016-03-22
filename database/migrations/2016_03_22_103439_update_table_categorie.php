@@ -16,12 +16,12 @@ class UpdateTableCategorie extends Migration
             $table->integer('typePanier_id')->unsigned()->nullable();
         });
         Schema::table('categories', function ($table) {
-           // $table->dropColumn(['typePanier']);
+           $table->dropColumn(['typePanier']);
         });
         Schema::table('categories', function($table) {
             $table->foreign('typePanier_id')
                 ->references('id')
-                ->on('categories')
+                ->on('typepanier')
                 ->onDelete('cascade');
         });
 

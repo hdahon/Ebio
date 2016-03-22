@@ -61,10 +61,10 @@
                                 <div class="col-md-6">
                                 <select  class="form-control"  name="unite" >
                                     @foreach ($unites as $unite)          
-                                        @if($unite->libelle == $produit->unite )      
-                                    <option selected value={{$unite->libelle}}>{{$unite->libelle}}</option>                 
+                                        @if($unite->id == $produit->unite_id )      
+                                    <option selected value={{$unite->id}}>{{$unite->libelle}}</option>                 
                                         @else    
-                                    <option value={{$unite->libelle}}>{{$unite->libelle}}</option>
+                                    <option value={{$unite->id}}>{{$unite->libelle}}</option>
                                          @endif
                                     @endforeach
                                 </select>

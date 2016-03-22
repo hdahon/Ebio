@@ -54,10 +54,10 @@
                                         <select class="form-control" name="typePanier">
                                         @foreach ($typepaniers as $typepanier)
 
-                                        @if($categorie->typePanier == $typepanier->libelle)
-                                        <option selected value={{$typepanier->libelle}}>{{$typepanier->libelle}}</option>
+                                        @if($categorie->typePanier_id == $typepanier->id)
+                                        <option selected value={{$typepanier->id}}>{{$typepanier->libelle}}</option>
                                         @else             
-                                        <option value={{$typepanier->libelle}}>{{$typepanier->libelle}}</option>
+                                        <option value={{$typepanier->id}}>{{$typepanier->libelle}}</option>
                                         @endif        
 
                                         @endforeach

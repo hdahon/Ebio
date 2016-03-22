@@ -50,7 +50,7 @@
                                         <label for="typePanier">Type de Panier</label>
                                         <select class="form-control" name="typePanier">
                                         @foreach ($typepaniers as $typepanier)
-                                        <option value={{$typepanier->libelle}}>{{$typepanier->libelle}}</option>
+                                        <option value={{$typepanier->id}}>{{$typepanier->libelle}}</option>
                                         @endforeach
                                         </select> 
                                         <!--input id="typePanier" type="text" class="form-control" name="typePanier" value="{!! old('typePanier') !!}"--> 
