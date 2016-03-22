@@ -58,8 +58,8 @@ class ProduitController extends Controller
          $produits=array();
         $idUser= Auth::user()->id; 
         if (session('role') ==   2){
-         /*   echo ($idUser);
-
+           echo ($idUser);
+/* 
             $categories = Categorie::where('producteur_id',$idUser)->get();
             //echo ($categories);
             $iter=0;
