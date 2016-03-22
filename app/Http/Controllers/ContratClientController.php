@@ -65,7 +65,7 @@ class ContratClientController extends Controller
 	}
 	
 
-	// ----- create ----- 
+	// ----- create  affichage du formulaire----- 
 	public function insert(Request $request,$id)
 	{   
 		$contrats = Contrat::find($id);
@@ -82,7 +82,8 @@ class ContratClientController extends Controller
 			'periodicites'=>$periodicite,
 			'periode1'=>$periode1,
 			'periode2'=>$periode2,
-			'periode3'=>$periode3
+			'periode3'=>$periode3,
+			'produits'=>$produits
 			);
 		if(session('role')==1){
 			return view('amapien/contratClient/contrat_sel',$data);
@@ -90,13 +91,26 @@ class ContratClientController extends Controller
 			return view('admin/contratClient/newContratClient',$data);
 		}
 	}
-
+// ----- create  soummission du formulaire----- 
 	public function post(Request $request)
 	{
 		if(session('role')==1){
 			$amapien =Auth::user()->id;
 		}else{
 			$amapien=($request->input('amapien_id'));
+		}
+		$produits=$request->input('produit');
+		$quantites=$request->input('quantite');
+		foreach ($produits as $prod){
+			$produit=$prod;
+
+			Panier::create(array(
+              'livraison_id'=>1,
+                'user_id'=>$amapien,
+                'produit_id'=>$produit,
+                'quantite'=>$quantite
+            ));
+
 		}
 		ContratClient::create(
 			array(
