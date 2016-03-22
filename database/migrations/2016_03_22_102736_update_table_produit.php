@@ -21,7 +21,7 @@ class UpdateTableProduit extends Migration
         Schema::table('produits', function($table) {
             $table->foreign('unite_id')
                 ->references('id')
-                ->on('produits')
+                ->on('unite')
                 ->onDelete('cascade');
         });
 

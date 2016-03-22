@@ -23,7 +23,7 @@ class ContratClientController extends Controller
 		$periodicites=array();
 		$amapiens=array();
 		$contrats=array();
-		$produit=array()
+		$produit=array();
 		$iter=0;
 		if(session('role')==1){
 			$contratClients=ContratClient::where("amapien_id",Auth::user()->id)->get();

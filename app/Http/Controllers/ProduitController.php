@@ -44,7 +44,7 @@ class ProduitController extends Controller
             Produit::create(array(
                 'nomProduit' =>$nomProduit,
                 'categorie_id' =>$categorie,
-                'unite' =>$unite,
+                'unite_id' =>$unite,
                 'prix' =>$prix,
             ));
 
@@ -154,7 +154,7 @@ public function postModifierProduit(Request $request,$id)
             $produit=Produit::find($id);
             $produit->nomProduit=$nomProduit;
             $produit->categorie_id=$categorie;
-            $produit->unite=$unite;
+            $produit->unite_id=$unite;
             $produit->prix=$prix;
             $produit->save();
 

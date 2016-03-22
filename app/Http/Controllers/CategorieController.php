@@ -62,7 +62,7 @@ public function postCreateCategorie(Request $request)
         }else if($periode3 == ""){
             Categorie::create(array(
                 'libelle' =>$nomProduit,
-                'typePanier' =>$typepanier,
+                'typePanier_id' =>$typepanier,
                 'referent_id' =>$Referent,
                 'producteur_id' =>$producteur,
                 'periodicite_id' =>$periode,
@@ -72,7 +72,7 @@ public function postCreateCategorie(Request $request)
         }else{
             Categorie::create(array(
                 'libelle' =>$nomProduit,
-                'typePanier' =>$typepanier,
+                'typePanier_id' =>$typepanier,
                 'referent_id' =>$Referent,
                 'producteur_id' =>$producteur,
                 'periodicite_id' =>$periode,
@@ -217,7 +217,7 @@ public function postModifierCategorie(Request $request,$id)
             $producteur = $request->input('producteur');
             $categorie=Categorie::find($id);
             $categorie->libelle=$libelle;
-            $categorie->typePanier=$typepanier;
+            $categorie->typePanier_id=$typepanier;
             $categorie->referent_id=$referent;
             $categorie->producteur_id=$producteur;
             $categorie->periodicite_id=$periode;
