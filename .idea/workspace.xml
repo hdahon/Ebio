@@ -2,44 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffabc828-9264-4af2-8f45-c5c1acaae801" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_20_235133_add_periodicite2_3-table_categorie.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_21_010749_add_semaine_table_livraison.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_03_20_150240_update_table_livraison.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_03_20_163201_add_categorieid.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Amapien/contrat_list_sel.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Amapien/contrat_sel.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Amapien/listcontrat.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Referent/Categorie/categorie-details.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Referent/Categorie/categorie.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Referent/Categorie/formModifCategorie.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Referent/Categorie/newCategorie.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Referent/Produit/details_Produits.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Referent/Produit/produitAdherant.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/Referent/referent.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/ReferentPlus/Categorie/categorie.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/ReferentPlus/referentPlus.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/admin/Categorie/updateCategorie.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/admin/Produit/updateProduit.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/admin/admin.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/dashboard/home.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/dashboard/producteur.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/header(kev)" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/menu.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/menuAdmin.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_22_102736_update_table_produit.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_03_22_103439_update_table_categorie.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Categorie.php" afterPath="$PROJECT_DIR$/app/Categorie.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CategorieController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategorieController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContratClientController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContratClientController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContratController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContratController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LivraisonsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LivraisonsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Livraisons.php" afterPath="$PROJECT_DIR$/app/Livraisons.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Amapien/contratClient/contrat_sel.blade.php" afterPath="$PROJECT_DIR$/resources/views/Amapien/contratClient/contrat_sel.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/Categorie/formModifCategorie.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/Categorie/formModifCategorie.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/Categorie/listCategorie.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/Categorie/listCategorie.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/Categorie/newCategorie.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/Categorie/newCategorie.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/header.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProduitController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProduitController.php" />
     </list>
     <ignored path="eBio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,48 +36,28 @@
       <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2016_01_05_150240_update_table_livraison.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_05_150240_update_table_livraison.php">
+      <file leaf-file-name="2016_03_22_102736_update_table_produit.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_22_102736_update_table_produit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+            <state vertical-scroll-proportion="-3.2258065">
+              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2016_03_20_165053_add_dateLivraison.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_20_165053_add_dateLivraison.php">
+      <file leaf-file-name="2016_03_22_103439_update_table_categorie.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_22_103439_update_table_categorie.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1123595">
-              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016_03_20_155139_drop_column_quantite_livraison.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_20_155139_drop_column_quantite_livraison.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.45131087">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -120,11 +67,6 @@
   </component>
   <component name="FrameworkCommandLineHistory">
     <commandsHistory>
-      <command text="php artisan migrate --force --seed" />
-      <command text="php composer update" />
-      <command text="composer dump-autoload" />
-      <command text="php artisan migrate --force --seed" />
-      <command text="php artisan migrate :make  update_table_livraison" />
       <command text="php artisan migrate:make  update_table_livraison" />
       <command text="php artisan make:migration  update_table_livraison" />
       <command text="php artisan make:migration  update_table_contratclient" />
@@ -144,6 +86,11 @@
       <command text="php artisan make:migration  add_periodicite2_3-table_categorie" />
       <command text="php artisan migrate --force" />
       <command text="php artisan make:migration  add_semaine_table_livraison" />
+      <command text="php artisan migrate --force" />
+      <command text="php artisan make:migration  add_semaine_table_livraison" />
+      <command text="php artisan make:migration  update_table_produit" />
+      <command text="php artisan migrate --force" />
+      <command text="php artisan make:migration  update_table_categorie" />
       <command text="php artisan migrate --force" />
     </commandsHistory>
   </component>
@@ -184,6 +131,8 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_01_05_150240_update_table_livraison.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_03_20_155139_drop_column_quantite_livraison.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_03_20_165053_add_dateLivraison.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_03_22_102736_update_table_produit.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_03_22_103439_update_table_categorie.php" />
       </list>
     </option>
   </component>
@@ -301,6 +250,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -433,7 +383,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -504,14 +453,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="25" width="1938" height="1064" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35530546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3601286" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3392265" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3392265" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973205" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -551,20 +500,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_01_22_163329_create_periodicite_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Periodicite.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -855,14 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.58426964">
@@ -884,10 +811,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_05_150240_update_table_livraison.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_20_235133_add_periodicite2_3-table_categorie.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.9194757">
+          <caret line="31" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="31" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_20_155139_drop_column_quantite_livraison.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29962546">
+          <caret line="20" column="11" selection-start-line="18" selection-start-column="7" selection-end-line="20" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.041198503">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -900,18 +843,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_20_155139_drop_column_quantite_livraison.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_22_102736_update_table_produit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
+        <state vertical-scroll-proportion="-3.2258065">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_03_22_103439_update_table_categorie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45131087">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding />
         </state>
       </provider>

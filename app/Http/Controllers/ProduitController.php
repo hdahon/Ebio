@@ -56,43 +56,34 @@ class ProduitController extends Controller
      public function getAllProduits(){
 
          $produits=array();
-        $idUser= Auth::user()->id; 
-        if (session('role') ==   2){
-           echo ($idUser);
-/* 
-            $categories = Categorie::where('producteur_id',$idUser)->get();
-            //echo ($categories);
-            $iter=0;
-         foreach ($categories as $categorie) {
-            //echo "=>".$categorie->id;
-            $produits[$iter] = Produit::where("categorie_id",$categorie->id)->get();
-            $iter++;
-         }*/
-/*
-          $produits = Produit::join('categories', function($join)
-        {
-            $join->on('produits.categorie_id', '=', 'categories.id')
-                 ->where('categories.producteur_id', '=',$idUser);
-        })->get();
-          */
-
-            //$produits = Produit::whereIn("categorie_id",$categories->id)->get();
-        }else{
-            $produits = Produit::all();
-        }
-            $produits = Produit::all();
-
-
-         $categories="";
+          $categories="";
          $referents="";
          $producteurs="";
          $periodicites="";  
+              $idUser= Auth::user()->id; 
+        if (session('role') ==   2){
+<<<<<<< HEAD
+           echo ($idUser);
+/* 
+=======
+>>>>>>> 3384e9f42cf49f6c9a23d5f127fd3ea035b7b50c
+            $categories = Categorie::where('producteur_id',$idUser)->get();
+            $iter=0;
+         foreach ($categories as $categorie) {
+            $produits[$iter] = Produit::where("categorie_id",$categorie->id)->get();
+
+            $iter++;
+         }
+        }else{
+            $produits = Produit::all();
+        
          foreach ($produits as $produit) {
             $categories[$produit->id]=Categorie::find($produit->categorie_id);
             $referents[$produit->id]=User::find($categories[$produit->id]->referent_id);
             $producteurs[$produit->id]=User::find($categories[$produit->id]->producteur_id);
             $periodicites[$produit->id]=Periodicite::find($categories[$produit->id]->periodicite_id);
          }
+     }
          $data = array('produits' => $produits,
                         'categories'=>$categories,
                         'producteurs'=>$producteurs,
