@@ -62,14 +62,14 @@ class ProduitController extends Controller
          $periodicites="";  
               $idUser= Auth::user()->id; 
         if (session('role') ==   2){
-            echo $idUser;
+            //echo $idUser;
             $categories = Categorie::where('producteur_id',$idUser)->get();
             $iter=0;
          foreach ($categories as $categorie) {
             $produits[$iter] = Produit::where("categorie_id",$categorie->id)->get();
             $iter++;
          }
-         echo count($produits);
+         //echo count($produits);
         }else{
             $produits = Produit::all();
         
