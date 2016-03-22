@@ -30,24 +30,7 @@ Amapien
                                             	@endforeach
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="id" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">livraison_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="livraison_id" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">user_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="user_id" value="">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Date de report : </label>
                                             <div class="col-md-6">
