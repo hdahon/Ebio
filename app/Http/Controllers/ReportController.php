@@ -9,6 +9,7 @@ use App\User;
 use App\Report;
 use App\RoleAmapien;
 use App\ContratClient;
+use App\Contrat;
 
 class ReportController extends Controller
 {

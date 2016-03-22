@@ -19,7 +19,7 @@ Reférent
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Modèle de contrat</label>
                                             <div class="col-md-8">
-                                                <input value={{$contrats->titre}}></input>
+                                                <input value={{$contrats->titre}} ></input>
                                                 <input type="hidden" value="{{$contrats->id}}"   name="contrat_id"/>  
                                             </div>
                                         </div>
@@ -30,8 +30,12 @@ Reférent
                                                 <select class=form-control name="periodicite_id">
                                                         <option value="">Choix</option>
                                                         <option value={{$periode1->id}}>{{$periode1->libelle}}</option>
-                                                        <option value={{$periode2->id}}>{{$periode2->libelle}}</option>
-                                                        <option value={{$periode3->id}}>{{$periode3->libelle}}</option>
+                                                        @if(count($periode2))
+                                                            <option value={{$periode2->id}}>{{$periode2->libelle}}</option>
+                                                        @endif    
+                                                        @if(count($periode3))
+                                                            <option value={{$periode3->id}}>{{$periode3->libelle}}</option>
+                                                        @endif    
                                                 </select>
                                             </div>
                                         </div>
@@ -41,8 +45,8 @@ Reférent
                                             <label class="col-md-4 control-label">{{$p->nomProduit}}</label>
                                            <div class="col-md-8">
                                                 <input type="checkbox" name="produit[]" value="{{$p->id}}" requierd="requierd" />
-                                                <input type="number" value="0" name='quantite[]'>
-                                              </div>
+                                                <input type="number" value="0" name='quantite[]'/>
+                                                 <input type="hidden" value="{{$p->prix}}" name="prix[]"/>
                                         </div> 
                                          @endforeach 
                                         <div class="form-group">
