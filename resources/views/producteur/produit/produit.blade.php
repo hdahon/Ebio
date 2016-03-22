@@ -24,24 +24,20 @@
                         @foreach ($produits as $key => $row)
                         <tr>
                             <td>
-                                {{$row->nomProduit}}
+                                {{$row[$key]->nomProduit}}
                             </td>
                             <td>
-                                {{$row->unite}}
+                                {{$row[$key]->unite_id}}
                             </td>
                              <td>
-                                {{$row->prix}} euros
+                                {{$row[$key]->prix}} euros
                             </td>
-                             <td>
-                            <a href="{{ url('categorie-details/'.$categories[$row->id]->id) }}">
-                                {{$categories[$row->id]->libelle}}
-                            </a>
-                            </td>
+                             
                             <td>
-                                 <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
+                                 <a href="{{ url('produit-details/'.$row[$key]->id) }}" class="btn  btn-info btn-sm">Détails</a>
                                  @if(session('role')>=3)
-                                 <a href="{{ url('produit-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
-                                 <a href="{{ url('/produit-supprimer/'.$row->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
+                                 <a href="{{ url('produit-modifier/'.$row[$key]->id) }}" class="btn  btn-info btn-sm">Modifier</a>
+                                 <a href="{{ url('/produit-supprimer/'.$row[$key]->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
                                  @endif
                             </td>
                         </tr>

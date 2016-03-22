@@ -11,6 +11,7 @@ use App\Categorie;
 use App\Contrat; 
 use App\ContratClient; 
 use App\RoleAmapien;
+use App\Produit;
 
 class ContratClientController extends Controller
 {
@@ -22,6 +23,7 @@ class ContratClientController extends Controller
 		$periodicites=array();
 		$amapiens=array();
 		$contrats=array();
+		$produit=array()
 		$iter=0;
 		if(session('role')==1){
 			$contratClients=ContratClient::where("amapien_id",Auth::user()->id)->get();
