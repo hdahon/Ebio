@@ -25,8 +25,8 @@ Amapien
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Liste contrats</label>
                                             <div class="col-md-6">
-                                            	@foreach ($contrats as $contrat)
-                                					<input type="checkbox" value="{{$contrat->id}}" />{$contrat->titre}}
+                                            	@foreach ($contrats as $key=>$contrat)
+                                					<input type="checkbox" value="{{$contrat[$key]->id}}" />{{$contrat[$key]->titre}}
                                             	@endforeach
                                             </div>
                                         </div>

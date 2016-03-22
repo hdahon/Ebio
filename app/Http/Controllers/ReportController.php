@@ -9,6 +9,7 @@ use App\User;
 use App\Report;
 use App\RoleAmapien;
 use App\ContratClient;
+use App\Contrat;
 
 class ReportController extends Controller
 {
@@ -37,12 +38,13 @@ class ReportController extends Controller
 	}
 	public function post(Request $request)
 	{
+		$idUser= Auth::user()->id;
 		//'id','livraison_id','user_id','ancienneDateLivraison','nouvelleDateLivraison'
 		Report::create(
 			array(
-				'id'=>($request->input('id')),
+				//'id'=>($request->input('id')),
 				'livraison_id'=>($request->input('livraison_id')),
-				'user_id'=>($request->input('user_id')),
+				'user_id'=>($idUser),
 				'ancienneDateLivraison'=>($request->input('ancienneDateLivraison')),
 				'nouvelleDateLivraison'=>($request->input('nouvelleDateLivraison'))
 				));
