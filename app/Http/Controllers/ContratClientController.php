@@ -13,6 +13,7 @@ use App\ContratClient;
 use App\RoleAmapien;
 use App\Produit;
 use App\Panier;
+use App\Livraisons;
 
 class ContratClientController extends Controller
 {
@@ -77,6 +78,8 @@ class ContratClientController extends Controller
 		$periode3=Periodicite::find($categorie->periodicite3_id);
 		$periodicite=Periodicite::all();
 		$produits=Produit::where("categorie_id",$categorie->id)->get();
+
+		//$livraisons=Livraisons::where("categorie_id",$categorie_id)->get();
 		$data = array(
 			'contrats' => $contrats,
 			'amapiens' =>$amapiens,
@@ -95,6 +98,7 @@ class ContratClientController extends Controller
 // ----- create  soummission du formulaire----- 
 	public function post(Request $request)
 	{
+
 		if(session('role')==1){
 			$amapien =Auth::user()->id;
 		}else{
@@ -102,14 +106,28 @@ class ContratClientController extends Controller
 		}
 		$produits=$request->input('produit');
 		$quantites=$request->input('quantite');
+		$prix=$request->input('prix');
+		$contrat=Contrat::find($request->input('contrat_id'));
+		$periode=$request->input('periodicite_id');
+		$categorie=Categorie::find($contrat->categorie_id);
+		$livraisons=array();
+		$periodicite=Periodicite::find($periode)->libelle;
+		//echo $periodicite;
+		if($periodicite =="Ponctuel"){
+			
+			$livraisons=Livraisons::where("categorie_id",$categorie->id)->get();
+		}
+		echo count($livraisons);
 		foreach ($produits as $key=>$prod){
 			$produit=$prod;
 			$quantite=$quantites[$key];
+			$prixx=$prix[$key];
 			Panier::create(array(
-              'livraison_id'=>629,
+              'livraison_id'=>$livraisons[0]->id,
                 'user_id'=>$amapien,
                 'produit_id'=>$produit,
-                'quantite'=>$quantite
+                'quantite'=>$quantite,
+                'montant'=>$prixx
             ));
 
 		}

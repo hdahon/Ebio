@@ -221,8 +221,16 @@ public function postModifierCategorie(Request $request,$id)
             $categorie->referent_id=$referent;
             $categorie->producteur_id=$producteur;
             $categorie->periodicite_id=$periode;
-            $categorie->periodicite2_id=$periode2;
-            $categorie->periodicite3_id=$periode3;
+            if($periode2 !=""){
+                $categorie->periodicite2_id=$periode2;
+            }else{
+                $categorie->periodicite2_id=null;
+            }
+            if($periode2 !=""){
+                $categorie->periodicite3_id=$periode3;
+            }else{
+                $categorie->periodicite3_id=null;
+            }
             $categorie->save();
 
            return redirect('liste-categorie');
