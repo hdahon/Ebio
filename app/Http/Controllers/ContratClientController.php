@@ -45,7 +45,7 @@ class ContratClientController extends Controller
 		else if(session('role')==3){
 			$contratClients=ContratClient::all();
 			foreach ($contratClients as $value) {
-				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
+				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->paginate(5);
 				$categorie=Categorie::find($contrats[$iter][0]->id);
 				if(count($categorie) > 0){
 				if($categorie->referent_id == Auth::user()->id){
@@ -60,7 +60,7 @@ class ContratClientController extends Controller
 		    return view('referent/contratClient/contratClient',$data);
 		}
 		else if(session('role')==4 || session('role')==5 ){
-			$contratClients=ContratClient::all();
+			$contratClients=ContratClient::paginate(5);
 			foreach ($contratClients as $value) {
 				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
            		$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();

@@ -33,6 +33,8 @@
                         @endforeach       
                     </tbody>
                 </table>
+                 <div class="pagination"><?php echo  $livraisons->render();  ?> </div>   
+
             </div>
         </div>
     </div>

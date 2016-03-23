@@ -40,6 +40,8 @@
                          @endforeach       
                         </tbody>
                         </table>
+                        <div class="pagination"><?php echo  $contrats->render();  ?> </div>   
+
                     </div>
                 </div>
             </div>

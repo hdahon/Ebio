@@ -94,7 +94,7 @@ public function postCreateCategorie(Request $request)
 
          $categories = Categorie::where('producteur_id',$idUser);
         }else{
-         $categories = Categorie::all();
+         $categories = Categorie::paginate(5);
         }
 
          $referents = array();

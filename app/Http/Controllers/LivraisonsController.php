@@ -37,7 +37,7 @@ class LivraisonsController extends Controller
 		}
 		//-- Si autre profil
 		else{
-		$livraisons= Livraisons::all();
+		$livraisons= Livraisons::paginate(5);
 		$data = array('livraisons' => $livraisons);
 		return view('admin/livraisons/livraison',$data);
 	}
