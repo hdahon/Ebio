@@ -34,6 +34,10 @@ class UpdateTableProduit extends Migration
      */
     public function down()
     {
+        Schema::table('produits', function($table) {
+            $table->dropForeign('livraisons_unite_id_foreign');
+            $table->dropColumn('unite_id');
 
+        });
     }
 }

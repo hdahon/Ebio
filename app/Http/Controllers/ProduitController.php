@@ -60,7 +60,8 @@ class ProduitController extends Controller
          $referents="";
          $producteurs="";
          $periodicites="";  
-              $idUser= Auth::user()->id; 
+         $idUser= Auth::user()->id; 
+
         if (session('role') ==   2){
             //echo $idUser;
             $categories = Categorie::where('producteur_id',$idUser)->get();
@@ -70,7 +71,16 @@ class ProduitController extends Controller
             $iter++;
          }
          //echo count($produits);
-        }else{
+        }else if(session('role') ==   3){
+             $cat = Categorie::where('referent_id',$idUser)->get();
+             $iter=0;
+         foreach ($cat as $categorie) {
+            $produits[$iter] = Produit::where("categorie_id",$categorie->id)->get();
+            $categories[$iter] =$categorie;
+            $iter++;
+        }
+       
+    }else{
             $produits = Produit::all();
         
          foreach ($produits as $produit) {
@@ -115,7 +125,7 @@ class ProduitController extends Controller
          if (session('role') ==   5){
                 return view('admin/produit/produit-details',$data);
             }else if (session('role') ==   4){
-                return view('referentPlus/produit-details',$data);
+                return view('referentPlus/produit/produit-details',$data);
             }else if (session('role') ==   3){
                 return view('referent/produit/produit-details',$data);
             }else if (session('role') ==   2){
@@ -136,7 +146,7 @@ class ProduitController extends Controller
          if (session('role') ==   5){
                 return view('admin/produit/formModifProduit',$data);
             }else if (session('role') ==   4){
-                return view('referentPlus/formModifProduit',$data);
+                return view('referentPlus/produit/formModifProduit',$data);
             }else if (session('role') ==   3){
                 return view('referent/produit/formModifProduit',$data);
             }

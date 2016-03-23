@@ -26,17 +26,17 @@
                         <tr>
                             
                            <td>
-                                {{$produits[$key][$key]->nomProduit}}
+                                {{$produits[$key]->nomProduit}}
                             </td>
                              <td>
-                                {{$produits[$key][$key]->unite}}
+                                {{$produits[$key]->unite}}
                             </td>
                              <td>
-                                {{$produits[$key][$key]->prix}} euros
+                                {{$produits[$key]->prix}} euros
                             </td>
                              <td>
-                            <a href="{{ url('categorie-details/'.$categories[$key]->id) }}">
-                                {{$categories[$key]->libelle}}
+                            <a href="{{ url('categorie-details/'.$produits[$key]->id) }}">
+                                {{$categories->libelle}}
                             </a>
                             </td>
                             <td>

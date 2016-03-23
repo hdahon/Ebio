@@ -75,17 +75,8 @@ class ContratController extends Controller
                 'dateDeFinLivraison' =>$dateFin,
                 'vacance' =>$vacance,
             ));
-            $dates=$this->getDates(date_format(date_create($dateDebut),"d-m-Y"), date_format(date_create($dateFin),"d-m-Y"));
-            for($i=0;$i<count($dates);$i++) {
-                echo $dates[$i]['date'];
-             Livraisons::create(
-                    array(
-                        'dateLivraison'=>date("Y-m-d", strtotime($dates[$i]['date'])),
-                        'producteur_id'=>$libelle->producteur->id,
-                        'categorie_id'=>$categorie,
-                        'semaine'=>$dates[$i]['semaine']
-                ));
-         }
+           
+            
           if(Auth::user()->roleamapien_id == 3 ){
             return redirect('liste-contrat');
           } else{ 
@@ -201,37 +192,5 @@ class ContratController extends Controller
     }
 
 
-     /** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
-     fin  de contrat **/
-    public function getDates($dateDebut, $dateFin){
-            $d=explode("-",$dateDebut);
-            $f=explode("-",$dateFin);
-            $jours=2;
-           
-            $i=mktime(0,0,0,$d[1],$d[0],$d[2]);
-            $j=mktime(0,0,0,$f[1],$f[0],$f[2]);
-            $pas=60*60*24;
-            $fin=$i+(60*60*24*6);
-            for($deb=$i; $deb<= $fin; $deb+=$pas)
-            {
-       
-                if(date("N", $deb)==$jours)
-                {
-                    $premier=$deb;
-                     break;
-                }
-            }
-             $pas=60*60*24*7;
-             $date=array();
-            for($premier; $premier <= $j; $premier+=$pas)
-            {
-                //echo date("l d-m-Y", $premier)." ".date("W",$premier)."<br>";
-
-                    $date[]= array("date" =>date(" d-m-Y", $premier),
-                                  "semaine"=>date("W",$premier));
-            }
-            return $date;
-        }
-
-
+     
 }

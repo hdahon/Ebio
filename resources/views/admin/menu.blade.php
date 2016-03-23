@@ -39,5 +39,6 @@
 		<li><a href="{{ url('list-contrat') }}">Souscrire un contrat</a></li>
 		<li><a href="{{ url('list-unite') }}">Unité</a></li>
 		<li><a href="{{ url('list-typepanier') }}">Type panier</a></li>
+		<li><a href="{{ url('create-livraisons') }}">Generer les dates de livraison livraison</a></li>
 	</ul>
 </li>

@@ -215,10 +215,9 @@ Route::post('create-paiement', 'PaiementController@postnewPaiement');
 	----------------route panier----------------------- 
 */
 //--create
-Route::get('create-panier/{id}', 'PanierController@getnewPanier');
-Route::post('create-panier', 'PanierController@postnewPanier');
-//--valider le panier
-Route::get('valider-panier', 'PanierController@getvaliderPanier');
+Route::get('list-panier/{id}', 'PanierController@getAllPanier');
+
+
 // ---delete
 Route::get('delete-panier/{id}', 'PanierController@deletePanier');
 

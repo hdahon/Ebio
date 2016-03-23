@@ -28,7 +28,6 @@ Reférent
                                             <label class="col-md-4 control-label">Periodicite</label>
                                             <div class="col-md-8">
                                                 <select class=form-control name="periodicite_id">
-                                                        <option value="">Choix</option>
                                                         <option value={{$periode1->id}}>{{$periode1->libelle}}</option>
                                                         @if(count($periode2))
                                                             <option value={{$periode2->id}}>{{$periode2->libelle}}</option>
@@ -46,8 +45,19 @@ Reférent
                                            <div class="col-md-8">
                                                 <input type="checkbox" name="produit[]" value="{{$p->id}}" requierd="requierd" />
                                                 <input type="number" value="0" name='quantite[]'/>
-                                                 <input type="hidden" value="{{$p->prix}}" name="prix[]"/>
+                                                <input type="hidden" value="{{$p->prix}}" name="prix[]"/><br></br>
+                                                <select multiple class=form-control name="livraison_id[]" >
+                                                     <option value="" selected>Choix</option>
+                                                    @foreach ($livraisons as $key=>$l)
+                                                        @if($l->semaine %2 ==0)
+                                                            <option class="col-sm-2" value="{{$l->id}}" style="color:blue">{{$l->dateLivraison}} Semaine Paire</option>
+                                                        @else    
+                                                            <option class="col-sm-2" value="{{$l->id}}">{{$l->dateLivraison}} Semaine Impaire</option>
+                                                        @endif
+                                                     @endforeach    
+                                                    </select>    
                                         </div> 
+                                    </div>
                                          @endforeach 
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4">
