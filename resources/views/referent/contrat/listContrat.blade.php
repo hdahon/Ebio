@@ -34,12 +34,9 @@
                             </td>
                             
                             <td>
-                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/supprimer-contrat/'.$row[0]->id) }}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <a href="{{ url('details-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Détails</a>
+                                <a href="{{ url('details-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Détails</a>
                                     <a href="{{ url('modifier-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Modifier</a>
-                                     <button type="submit" class="btn btn-info btn-sm">Supprimer</button>
-                                </form>
+                                    <a href="{{ url('supprimer-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm confirm">Supprimer</a>
                             </td>
                             
                             

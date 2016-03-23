@@ -36,8 +36,10 @@
 
 ?>
 
-        <div class="row">
-            <div class="col-md-11 col-md-offset-1">
+      <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-body">
                         <h1>Bienvenue {{$user->prenom}} {{$user->nom}} sur la page d'accueil <?php echo $role; ?></h1>
                         
                         Voici vos informations: 
@@ -61,5 +63,6 @@
                         @endif     
        </div>
         </div>
+    </div></div>
 
 @endsection

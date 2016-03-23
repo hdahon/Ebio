@@ -1,4 +1,4 @@
-@extends('template')
+    @extends('template')
 @section('content')
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -37,9 +37,11 @@
                                 @endif
                             </td>                             
                         </tr>
-                         @endforeach       
+                         @endforeach    
+
                         </tbody>
                         </table>
+                         <div class="pagination"><?php echo  $adherants->render();  ?> </div>   
                     </div>
                 </div>
             </div>

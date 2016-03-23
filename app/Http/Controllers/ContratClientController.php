@@ -275,6 +275,19 @@ class ContratClientController extends Controller
             
         }
 
+
+        /* Liste des tous les modèle de contrat  */
+     public function getAllContratM(){
+          $contrats = Contrat::all();
+          $data = array('contrats' => $contrats);
+          if(Auth::user()->roleamapien_id == 1){
+             return view('amapien/contratClient/listContratModel',$data);
+          }else{
+          	return view('admin/contratClient/listContratModel',$data);
+          } 
+       
+     }
+     
      /** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
      fin  de contrat **/
     public function getDates($dateDebut, $dateFin){
@@ -306,17 +319,5 @@ class ContratClientController extends Controller
             }
             return $date;
         }
-
-        /* Liste des tous les modèle de contrat  */
-     public function getAllContratM(){
-          $contrats = Contrat::all();
-          $data = array('contrats' => $contrats);
-          if(Auth::user()->roleamapien_id == 1){
-             return view('amapien/contratClient/listContratModel',$data);
-          }else{
-          	return view('admin/contratClient/listContratModel',$data);
-          } 
-       
-     }
 
 }

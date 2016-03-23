@@ -18,7 +18,7 @@ class AdherantController extends Controller
 		$role = Auth::user()->roleamapien_id;
 		$niveau = RoleAmapien::find($role)->niveau;
 		//$adherants= User::where("id","<>",$idUser)->orderBy('nom')->get();
-		$adherants= User::orderBy('nom')->get();
+		$adherants= User::orderBy('nom')->paginate(5);
 		$coadherants="";
 		$roleamapiens=array();
 

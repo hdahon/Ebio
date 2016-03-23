@@ -192,5 +192,36 @@ class ContratController extends Controller
     }
 
 
+     /** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
+     fin  de contrat **/
+    public function getDates($dateDebut, $dateFin){
+            $d=explode("-",$dateDebut);
+            $f=explode("-",$dateFin);
+            $jours=2;
+           
+            $i=mktime(0,0,0,$d[1],$d[0],$d[2]);
+            $j=mktime(0,0,0,$f[1],$f[0],$f[2]);
+            $pas=60*60*24;
+            $fin=$i+(60*60*24*6);
+            for($deb=$i; $deb<= $fin; $deb+=$pas)
+            {
+       
+                if(date("N", $deb)==$jours)
+                {
+                    $premier=$deb;
+                     break;
+                }
+            }
+             $pas=60*60*24*7;
+             $date=array();
+            for($premier; $premier <= $j; $premier+=$pas)
+            {
+                //echo date("l d-m-Y", $premier)." ".date("W",$premier)."<br>";
+
+                    $date[]= array("date" =>date(" d-m-Y", $premier),
+                                  "semaine"=>date("W",$premier));
+            }
+            return $date;
+        }
      
 }
