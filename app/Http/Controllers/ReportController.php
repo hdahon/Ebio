@@ -25,6 +25,7 @@ class ReportController extends Controller
 	public function insert(Request $request)
 	{             
 		$idUser= Auth::user()->id;
+		echo $idUser;
 		$contratClients=ContratClient::where("amapien_id",$idUser)->get();
 		$contrats= array();
 		$iter=0;
