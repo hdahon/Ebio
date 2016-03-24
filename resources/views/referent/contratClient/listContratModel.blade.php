@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    
                     <div class="panel-body">
                         <h2>Liste des modèles de contrat</h2>
                         <br> 
@@ -17,34 +16,32 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($contrats as $key => $row)
-                        @if(count($contrats[$key]) > 0)
+                        @foreach ($contrats as $row)
                         <tr>
                             <td>
-                                {{$contrats[$key][0]->titre}}
+                                {{$row->titre}}
                                 
                             </td>
-                            <td>
-                                {{date_format(date_create($row[0]->debutLivraison),'d-m-Y')}}
+                             <td>
+                                {{date_format(date_create($row->debutLivraison),'d-m-Y')}}
                                 
                             </td>
                             <td>
                                
-                                {{date_format(date_create($row[0]->dateDeFinLivraison),'d-m-Y')}}                            
+                                {{date_format(date_create($row->dateDeFinLivraison),'d-m-Y')}}                            
                             </td>
                             
                             <td>
-                                <a href="{{ url('details-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Détails</a>
-                                    <a href="{{ url('modifier-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Modifier</a>
-                                    <a href="{{ url('supprimer-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm confirm">Supprimer</a>
+                                <a href="{{ url('create-contratsClients/'.$row->id) }}" class="btn btn-info btn-sm">Souscrire</a>
                             </td>
                             
-                            
                         </tr>
-                        @endif
+
                          @endforeach       
                         </tbody>
                         </table>
+                        <div class="pagination"><?php echo  $contrats->render();  ?> </div>   
+
                     </div>
                 </div>
             </div>

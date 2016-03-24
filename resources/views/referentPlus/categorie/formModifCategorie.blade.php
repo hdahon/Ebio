@@ -37,6 +37,7 @@
                                 <label class="col-md-4 control-label">Producteur</label>
                                 <div class="col-md-6">
                                     <select class=form-control name="producteur">
+                                        <option  value="">Choix</option>                
                                         @foreach ($producteurs as $prod)  
                                         @if($prod->id == $categorie->producteur_id )
                                          <option selected value={{$categorie->producteur_id}}>{{$prod->nom." ".$prod->prenom}}</option>                  
@@ -49,29 +50,27 @@
                                 </div>
                             </div>
                              <div class="form-group">
-                                <label class="col-md-4 control-label">type de Panier</label>
+                                <label class="col-md-4 control-label">Type de Panier</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="typePanier" value="{{$categorie->typePanier}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Periodicite</label>
-                                <div class="col-md-6">
-                                     <select class=form-control name="periode">
-                                        <option value="1">Bi-mensuel semaine paire</option>
-                                        <option value="2">Bi-mensuel semaine impaire</option>
-                                        <option value="3">Hebdomadaire</option>
-                                        <option value="4">Ponctuel</option>
-                                        <option value="5">Mensuel semaine paire</option>
-                                        <option value="6">Mensuel semaine impaire</option>
-                                        <option value="7">Hebomadaire ou Bi-mensuel</option>      
-                                    </select>
+                                        <select class="form-control" name="typePanier">
+                                          <option selected value="">Choix</option>       
+                                        @foreach ($typepaniers as $typepanier)
+
+                                        @if($categorie->typePanier_id == $typepanier->id)
+                                        <option selected value={{$typepanier->id}}>{{$typepanier->libelle}}</option>
+                                        @else             
+                                        <option value={{$typepanier->id}}>{{$typepanier->libelle}}</option>
+                                        @endif        
+
+                                        @endforeach
+                                        </select> 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Referent</label>
                                 <div class="col-md-6">
                                     <select class=form-control name="referent">
+                                      <option  value="">Choix</option>       
                                         @foreach ($referents as $ref)   
                                          @if($ref->id == $categorie->referent_id )
                                           <option selected value={{$ref->id}}>{{$ref->prenom." ".$ref->nom}}</option>
@@ -82,6 +81,53 @@
                                     </select>
                                 </div>
                             </div>  
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Periodicite</label>
+                                <div class="col-md-6">
+                                     <select class=form-control name="periode">
+                                      <option value="">Choix</option>       
+                                     @foreach ($periodicites as $key => $value)
+                                     @if($value->id == $periode1->id)
+                                        <option value="{{$value->id}}" selected>{{$value->libelle}}</option>
+                                     @else
+                                      <option value="{{$value->id}}">{{$value->libelle}}</option>
+                                      @endif
+                                      @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Periodicite</label>
+                                <div class="col-md-6">
+                                     <select class=form-control name="periode2">
+                                      <option selected value="">Choix</option>       
+                                     @foreach ($periodicites as $key => $value)
+                                     @if($value->id == $periode1->id)
+                                        <option value="{{$value->id}}" selected>{{$value->libelle}}</option>
+                                     @else
+                                      <option value="{{$value->id}}">{{$value->libelle}}</option>
+                                      @endif
+                                      @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Periodicite</label>
+                                <div class="col-md-6">
+                                     <select class=form-control name="periode3">
+                                      <option selected value="">Choix</option>       
+                                     @foreach ($periodicites as $key => $value)
+                                     @if($value->id == $periode1->id)
+                                        <option value="{{$value->id}}" selected>{{$value->libelle}}</option>
+                                     @else
+                                      <option value="{{$value->id}}">{{$value->libelle}}</option>
+                                      @endif
+                                      @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
                             
                             <div class="form-group">
                                 <div class="col-md-12 text-right">

@@ -43,33 +43,33 @@
                                 <thead class="thead-inverse">
                                     <tr>
                                      <th>Type</th>
-                                     <th><h5 class='text-center'>{{$periodicite->libelle    }}</h5></th>
+                                     <th><h5 class='text-center'>{{$periodicite->libelle }}</h5></th>
                                      </tr>
     
                                 </thead>
                         <tbody>
                             <tr>
-                                <td>{{$categorie->typePanier}} à ...</td>
+                                <td>{{$typePanier}} à ...</td>
                                 <td> 1 chèque de  € </td>
                             </tr> 
                             <tr>
-                                <td>{{$categorie->typePanier}} à ...</td>
+                                <td>{{$typePanier}} à ...</td>
                                 <td> 1 chèque de  € </td>
                             </tr> 
                             <tr>
-                                <td>{{$categorie->typePanier}} à ...</td>
+                                <td>{{$typePanier}} à ...</td>
                                 <td> 1 chèque de  € </td>
                             </tr> 
                             <tr>
-                                <td>{{$categorie->typePanier}} à ...</td>
+                                <td>{{$typePanier}} à ...</td>
                                 <td> 1 chèque de  € </td>
                             </tr>     
                             <tr>
-                                <td>{{$categorie->typePanier}} à ...</td>
+                                <td>{{$typePanier}} à ...</td>
                                 <td> 1 chèque de  € </td>
                             </tr> 
                             <tr>
-                                <td>{{$categorie->typePanier}} à ...</td>
+                                <td>{{$typePanier}} à ...</td>
                                 <td> 1 chèque de  € </td>
                             </tr>         
                             

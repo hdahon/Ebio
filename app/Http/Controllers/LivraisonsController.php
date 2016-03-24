@@ -24,47 +24,21 @@ class LivraisonsController extends Controller
 		$livraisons= array();
 		$categories=array();
 		$producteurs=array();
+		// --Si amapine 
 		if(session('role') ==1 ){
-			$contratClients =ContratClient::where('amapien_id',Auth::user()->id)->get();
-			foreach ($contratClients as $k => $value) {
-				$mcontrat=Contrat::find($value->contrat_id);
-				foreach (Livraisons::All() as $key => $v) {
-					if($value->periodicite_id == 1 && Auth::user()->id == $value->amapien_id){
-						$liv=Livraisons::find($v->id);
-						if($liv->semaine %2 ==0){
-							$livraisons[$key]=$liv;
-						}
-						 
-					}else if($value->periodicite_id == 2 &&  Auth::user()->id == $value->amapien_id){
-						$liv=Livraisons::find($v->id);
-						if($liv->semaine %2 !=0){
-							$livraisons[$key]=$liv;
-						}
-					}else{
-						$livraisons[$key]=Livraisons::find($v->id);
+			$panierAmpaien=Panier::where("user_id",Auth::user()->id)->get()	;
+			$livraisons=array();
+			foreach ($panierAmpaien as $k => $value) {
+					$livraisons[$value->livraison_id]=Livraisons::find($value->livraison_id);
+			}
+			$data = array('livraisons' => $livraisons);
+			return view('amapien/livraisons/livraison',$data);
 
-					} 
-					$cat=Categorie::find($mcontrat->categorie_id);
-           			$categories[$key]=$cat;
-           			$producteurs[$key]=User::find($cat->producteur_id);
-				}
-				
-         	} 
-			$data = array('livraisons' => $livraisons,
-					  'categories'=>$categories,
-					  'producteurs' =>$producteurs);
-				return view('amapien/livraisons/livraison',$data);
-
-		}else{
-		$livraisons= Livraisons::all();
-		
-		foreach ($livraisons as $key => $value) {
-           $categories[$key]=Categorie::find($value->categorie_id);
-           $producteurs[$key]=User::find($value->producteur_id);
-         }
-		$data = array('livraisons' => $livraisons,
-					  'categories'=>$categories,
-					  'producteurs' =>$producteurs);
+		}
+		//-- Si autre profil
+		else{
+		$livraisons= Livraisons::paginate(5);
+		$data = array('livraisons' => $livraisons);
 		return view('admin/livraisons/livraison',$data);
 	}
 }
@@ -77,24 +51,19 @@ class LivraisonsController extends Controller
 	}
 	public function post(Request $request)
 	{
-		$id=$request->input('id');
-		$dateLivraison=$request->input('dateLivraison');
-		$quantite=$request->input('quantite');
-		$amapien_id=$request->input('amapien_id');
-		$produit_id=$request->input('produit_id');
-		$producteur_id=$request->input('producteur_id');
-		$dateDeLivraison=$request->input('dateDeLivraison');
-
-		Livraisons::create(
-			array(
-				'id'=>$id,
-				'dateLivraison'=>$dateLivraison,
-				'quantite'=>$quantite,
-				'amapien_id'=>$amapien_id,
-				'produit_id'=>$produit_id,
-				'producteur_id'=>$producteur_id,
-				'dateDeLivraison'=>$dateDeLivraison
-				));
+		$debut=$request->input('debut');
+		$fin=$request->input('fin');
+		
+		$dates=$this->getDates(date_format(date_create($debut),"d-m-Y"), date_format(date_create($fin),"d-m-Y"));
+            for($i=0;$i<count($dates);$i++) {
+                echo $dates[$i]['date'];
+             Livraisons::create(
+                array(
+                        'dateLivraison'=>date("Y-m-d", strtotime($dates[$i]['date'])),
+                        'semaine'=>$dates[$i]['semaine']
+                ));
+         }
+     
 		return redirect('list-livraisons');
 	}
 	
@@ -148,8 +117,9 @@ class LivraisonsController extends Controller
 		foreach ($paniers as $key => $value) {
 				$prod=Produit::find($value->produit_id);
 				$amapiens[$key]=User::find($value->user_id);
+				//$panier[$value->user_id]=$value;
 				$catAmap[$key]=Categorie::find($prod->categorie_id);
-		}		
+		}	
 		$data=array('element'=>$element,
 					'categories'=>$categories,
 					'amapiens'=>$amapiens,
@@ -157,4 +127,38 @@ class LivraisonsController extends Controller
 					'paniers'=>$paniers);
 		return view('admin/livraisons/fichelivraisons',$data);
 	}
+
+	/** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
+     fin  de contrat **/
+    public function getDates($dateDebut, $dateFin){
+            $d=explode("-",$dateDebut);
+            $f=explode("-",$dateFin);
+            $jours=2;
+           
+            $i=mktime(0,0,0,$d[1],$d[0],$d[2]);
+            $j=mktime(0,0,0,$f[1],$f[0],$f[2]);
+            $pas=60*60*24;
+            $fin=$i+(60*60*24*6);
+            for($deb=$i; $deb<= $fin; $deb+=$pas)
+            {
+       
+                if(date("N", $deb)==$jours)
+                {
+                    $premier=$deb;
+                     break;
+                }
+            }
+             $pas=60*60*24*7;
+             $date=array();
+            for($premier; $premier <= $j; $premier+=$pas)
+            {
+                //echo date("l d-m-Y", $premier)." ".date("W",$premier)."<br>";
+
+                    $date[]= array("date" =>date(" d-m-Y", $premier),
+                                  "semaine"=>date("W",$premier));
+            }
+            return $date;
+        }
+
+
 }

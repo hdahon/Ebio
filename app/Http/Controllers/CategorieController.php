@@ -92,9 +92,9 @@ public function postCreateCategorie(Request $request)
         if (session('role') ==   2){
             //echo ($idUser);
 
-         $categories = Categorie::where('producteur_id',$idUser)->get();
+         $categories = Categorie::where('producteur_id',$idUser);
         }else{
-         $categories = Categorie::all();
+         $categories = Categorie::paginate(5);
         }
 
          $referents = array();
@@ -171,6 +171,8 @@ public function postCreateCategorie(Request $request)
                 return view('referentPlus/categorie/categorie-details',$data);
         }else if (session('role') ==   2){
                 return view('producteur/categorie/categorie-details',$data);
+        }else{
+            return view('referent/categorie/categorie-details',$data);
         }
      }
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -14,6 +14,7 @@ use App\RoleAmapien;
 use App\Produit;
 use App\Panier;
 use App\Livraisons;
+use App\Typepanier;
 
 class ContratClientController extends Controller
 {
@@ -26,7 +27,9 @@ class ContratClientController extends Controller
 		$amapiens=array();
 		$contrats=array();
 		$produit=array();
+		$categorie=array();
 		$iter=0;
+		//--amapien
 		if(session('role')==1){
 			$contratClients=ContratClient::where("amapien_id",Auth::user()->id)->get();
 			foreach ($contratClients as $value) {
@@ -38,23 +41,26 @@ class ContratClientController extends Controller
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'contrats'=>$contrats);
 		    return view('amapien/contratClient/listcontrat',$data);
 
-		}else if(session('role')==3){
+		}
+		else if(session('role')==3){
 			$contratClients=ContratClient::all();
 			foreach ($contratClients as $value) {
-				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
+				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->paginate(5);
 				$categorie=Categorie::find($contrats[$iter][0]->id);
+				if(count($categorie) > 0){
 				if($categorie->referent_id == Auth::user()->id){
 					$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
 					$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();
            			$amapiens[$iter] =User::where("id",$value->amapien_id)->get();
            			$iter++;
 				}
+			}
          	}
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'amapiens'=>$amapiens, 'contrats'=>$contrats);
-		    return view('admin/contratClient/contratClient',$data);
+		    return view('referent/contratClient/contratClient',$data);
 		}
 		else if(session('role')==4 || session('role')==5 ){
-			$contratClients=ContratClient::all();
+			$contratClients=ContratClient::paginate(5);
 			foreach ($contratClients as $value) {
 				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
            		$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();
@@ -78,8 +84,11 @@ class ContratClientController extends Controller
 		$periode3=Periodicite::find($categorie->periodicite3_id);
 		$periodicite=Periodicite::all();
 		$produits=Produit::where("categorie_id",$categorie->id)->get();
-
-		//$livraisons=Livraisons::where("categorie_id",$categorie_id)->get();
+		if($periode1->libelle == "Ponctuel"){
+			$livraisons=Livraisons::where("dateLivraison",$contrats->debutLivraison)->get();
+		}else{
+			$livraisons=Livraisons::all();
+		}
 		$data = array(
 			'contrats' => $contrats,
 			'amapiens' =>$amapiens,
@@ -87,7 +96,8 @@ class ContratClientController extends Controller
 			'periode1'=>$periode1,
 			'periode2'=>$periode2,
 			'periode3'=>$periode3,
-			'produits'=>$produits
+			'produits'=>$produits,
+			'livraisons'=>$livraisons
 			);
 		if(session('role')==1){
 			return view('amapien/contratClient/contrat_sel',$data);
@@ -107,29 +117,37 @@ class ContratClientController extends Controller
 		$produits=$request->input('produit');
 		$quantites=$request->input('quantite');
 		$prix=$request->input('prix');
-		$contrat=Contrat::find($request->input('contrat_id'));
+		$liv=$request->input('livraison_id');
 		$periode=$request->input('periodicite_id');
+		$contrat_id=$request->input('contrat_id');
+
+		$contrat=Contrat::find($contrat_id);
 		$categorie=Categorie::find($contrat->categorie_id);
-		$livraisons=array();
-		$periodicite=Periodicite::find($periode)->libelle;
-		//echo $periodicite;
-		if($periodicite =="Ponctuel"){
-			
-			$livraisons=Livraisons::where("categorie_id",$categorie->id)->get();
-		}
-		echo count($livraisons);
+		
 		foreach ($produits as $key=>$prod){
 			$produit=$prod;
 			$quantite=$quantites[$key];
 			$prixx=$prix[$key];
+			$livraison=$liv[$key];
+			if(count($livraison)>1){
+				foreach ($livraisons[$key] as $key => $value) {
+					Panier::create(array(
+              			'livraison_id'=>$value,
+                		'user_id'=>$amapien,
+                		'produit_id'=>$produit,
+                		'quantite'=>$quantite,
+                		'montant'=>$prixx
+            ));
+				}
+			}else{
 			Panier::create(array(
-              'livraison_id'=>$livraisons[0]->id,
+              'livraison_id'=>$livraison,
                 'user_id'=>$amapien,
                 'produit_id'=>$produit,
                 'quantite'=>$quantite,
                 'montant'=>$prixx
             ));
-
+		}
 		}
 		ContratClient::create(
 			array(
@@ -181,6 +199,7 @@ class ContratClientController extends Controller
 	public function delete($id)
 	{
 		$element=ContratClient::find($id);
+		$categorie=find();
 		$element->delete();
 		return redirect('list-contratsClients');
 	}
@@ -190,6 +209,7 @@ class ContratClientController extends Controller
        {        
             $TabMois=array("janvier", "février", "mars", "avril", "mai", "juin",
             "juillet", "août", "septembre", "octobre", "novembre", "décembre");
+
             $ReferentPlus= Auth::user()->id; 
             $contratClient = ContratClient::find($id);
             $contrat=Contrat::find($contratClient->contrat_id);
@@ -197,6 +217,19 @@ class ContratClientController extends Controller
             $coadherant=User::find($amapien->coadherant_id);
             $categorie = Categorie::find($contrat->categorie_id);
             $producteur = User::find($categorie->producteur_id);
+            //$typePanier=Typepanier::find($categorie->typePanier_id);
+            $typePanier="Panier";
+            $produits=Produit::where("categorie_id",$categorie->id)->get();
+            $montant=0;
+            foreach ($produits as $key => $value) {
+            	$panier=Panier::where("produit_id",$value->id)
+            					->where("user_id",Auth::user()->id)->first();
+
+            		// echo $panier[0]->montant;				
+            	 //   $montant+=$panier->montant;
+            }
+            
+
             $dL=date_create($contrat->debutLivraison);
             $dF=date_create($contrat->dateDeFinLivraison);
             $dates=$this->getDates(date_format($dL,"d-m-Y"), date_format($dF,"d-m-Y"));
@@ -206,7 +239,9 @@ class ContratClientController extends Controller
             $dFin =$TabMois[intval(explode("-",$contrat->dateDeFinLivraison)[1])-1]." ".explode("-",$contrat->dateDeFinLivraison)[0];
             $periode =$dDebut."-".$dFin;
 
+           
             $periodicite=Periodicite::find($contratClient->periodicite_id);
+
             $allPeriodicite =Periodicite::all();
             for($i=0;$i<count($dates);$i++) {
                 if($dates[$i]['semaine']%2 ==0 ){
@@ -230,7 +265,9 @@ class ContratClientController extends Controller
                              'periodicite'=>$periodicite,
                              'vacance' =>$vacance,
                              'dateDebut'=>date_format($dL,"d-m-Y"),
-                             'dateFin'=>date_format($dF,"d-m-Y")
+                             'dateFin'=>date_format($dF,"d-m-Y"),
+                             'typePanier'=>$typePanier, 
+                             'montant'=>$montant
                              );
             
                 return view('amapien/contratClient/showContrat',$data);
@@ -238,6 +275,19 @@ class ContratClientController extends Controller
             
         }
 
+
+        /* Liste des tous les modèle de contrat  */
+     public function getAllContratM(){
+          $contrats = Contrat::all();
+          $data = array('contrats' => $contrats);
+          if(Auth::user()->roleamapien_id == 1){
+             return view('amapien/contratClient/listContratModel',$data);
+          }else{
+          	return view('admin/contratClient/listContratModel',$data);
+          } 
+       
+     }
+     
      /** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
      fin  de contrat **/
     public function getDates($dateDebut, $dateFin){
@@ -269,17 +319,5 @@ class ContratClientController extends Controller
             }
             return $date;
         }
-
-        /* Liste des tous les modèle de contrat  */
-     public function getAllContratM(){
-          $contrats = Contrat::all();
-          $data = array('contrats' => $contrats);
-          if(Auth::user()->roleamapien_id == 1){
-             return view('amapien/contratClient/listContratModel',$data);
-          }else{
-          	return view('admin/contratClient/listContratModel',$data);
-          } 
-       
-     }
 
 }

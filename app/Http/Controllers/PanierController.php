@@ -39,26 +39,40 @@ class PanierController extends Controller
     }
 
 
- public function getnewPanier(Request $request,$id)
+ public function getallPanier(Request $request,$id)
     {
      
       $livraison = Livraisons::find($id);
-      $categorie  = Categorie::find($livraison->categorie_id);
-      $produits=Produit::where('categorie_id',$categorie->id)->get();
-      $lignes=Panier::where('livraison_id',$id)->get();
-      if (count($lignes) == 0){
-        $lignes=array();
+      $userId=Auth::user()->id;
+      $paniers=Panier::where("user_id",$userId)
+                      ->where("livraison_id",$livraison->id)->get();
+      if (count($paniers) == 0){
+        $panniers=array();
       }
       $prods=array();
-      foreach ($lignes as $key => $value) {
-           $prods[$key]=Produit::find($value->produit_id);
+      $categories=array();
+      $producteurs=array();
+      $iter=0;
+      foreach ($paniers as $key => $value) {
+          if($value->livraison_id == $livraison->id){
+            $p=Produit::find($value->produit_id);
+            $prods[$iter]=$p;
+            $cat=Categorie::find($p->categorie_id);
+            $categories[$cat->id]=$cat;
+            $producteurs[$iter]=User::find($cat->producteur_id);
+            $iter++;
+          }
+
          }
-      $data = array('produits' => $produits,
-                    'livraison'=>$livraison,
-                    'lignes'=>$lignes,
-                    'prods'=>$prods);
+       
+      $data = array('livraison'=>$livraison,
+                    'lignes'=>$paniers,
+                    'prods'=>$prods,
+                    'categories'=>$categories,
+                    'producteurs'=>$producteurs
+                    );
               
-        return view('amapien/panier/newpanier',$data);
+        return view('amapien/panier/panier',$data);
 
     }
 

@@ -11,47 +11,24 @@ Reférent
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default">
-                                <div class="panel-heading">NOUVEAU</div>
+                                <div class="panel-heading">Generer les dates de livraisons</div>
                                 <div class="panel-body">
                                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/livraisons/new') }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">dateLivraison</label>
+                                            <label class="col-md-4 control-label">Date de debut</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="dateLivraison" value="">
+                                                <input type="text" class="form-control" name="debut" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">quantite</label>
+                                            <label class="col-md-4 control-label">Date de fin </label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="quantite" value="">
+                                                <input type="text" class="form-control" name="fin" value="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">amapien_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="amapien_id" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">produit_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="produit_id" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">producteur_id</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="producteur_id" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">dateDeLivraison</label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="dateDeLivraison" value="">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4">
                                                 <button type="submit" class="btn btn-primary">AJOUTER</button>

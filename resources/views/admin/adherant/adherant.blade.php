@@ -55,6 +55,8 @@
                         @endforeach       
                     </tbody>
                 </table>
+                <div class="pagination"><?php echo  $adherants->render();  ?> </div>   
+
             </div>
         </div>
     </div>

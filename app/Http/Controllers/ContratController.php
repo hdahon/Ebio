@@ -75,17 +75,8 @@ class ContratController extends Controller
                 'dateDeFinLivraison' =>$dateFin,
                 'vacance' =>$vacance,
             ));
-            $dates=$this->getDates(date_format(date_create($dateDebut),"d-m-Y"), date_format(date_create($dateFin),"d-m-Y"));
-            for($i=0;$i<count($dates);$i++) {
-                echo $dates[$i]['date'];
-             Livraisons::create(
-                    array(
-                        'dateLivraison'=>date("Y-m-d", strtotime($dates[$i]['date'])),
-                        'producteur_id'=>$libelle->producteur->id,
-                        'categorie_id'=>$categorie,
-                        'semaine'=>$dates[$i]['semaine']
-                ));
-         }
+           
+            
           if(Auth::user()->roleamapien_id == 3 ){
             return redirect('liste-contrat');
           } else{ 
@@ -232,6 +223,5 @@ class ContratController extends Controller
             }
             return $date;
         }
-
-
+     
 }
