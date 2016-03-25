@@ -40,8 +40,18 @@ class ReportController extends Controller
 
 		$contrats= array();
 
+		/*
+		Et si l’on veut vraiment être parfait, l’amarine peut reporter jusqu’à une semaine à l’avance
+		Exemple : nous sommes le 1er mars. Il peut reporter sa livraison initialement prévue le 8 mars.
+		Nous sommes le 2 mars ou après : il ne peut plus reporter sa livraison du 8 mars.
+		*/
+		$datetime = date('Y-m-d', time()+(86400*7));
+
 		foreach ($contratClients as $key=>$value) {
-			$contrats[$key]=Contrat::where("id",$value->contrat_id)->get();
+			$dateOK=count(Contrat::where("id",$value->contrat_id)->whereDate('debutLivraison', '>=',$datetime)->get());
+			if ($dateOK>0){
+				$contrats[$key]=Contrat::where("id",$value->contrat_id)->whereDate('debutLivraison', '>=',$datetime)->get();
+			}
 		}
 		//echo json_encode($contrats);
 		$data = array('contrats'=>$contrats, 'amapiens'=>$amapiens);
