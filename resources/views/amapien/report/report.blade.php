@@ -1,8 +1,19 @@
 @extends('template')
 @section("title")
-Amapien
+Report
 @endsection
 @section('content')
+<?php  
+
+    if(Session::has('role') and Auth::check()){
+        $niveau = session('role');
+    } else {
+        $niveau = 0;
+    }
+
+    //echo "<br><br><br>niveau : $niveau<br><br><br>";
+
+?>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
@@ -27,8 +38,10 @@ Amapien
                             <td>{{$row->ancienneDateLivraison}}</td>
                             <td>{{$row->nouvelleDateLivraison}}</td>
                             <td>
+                                @if ($niveau!=1)
                                 <a href="{{ url('update-report/'.$row->id) }}" title="Modifier"  class="btn  btn-warning btn-sm">MODIFIER</a>
                                 <a href="{{ url('delete-report/'.$row->id) }}" title="Supprimer" class="confirm btn  btn-danger btn-sm confirm">SUPPRIMER</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach       

@@ -19,6 +19,8 @@ class ReportController extends Controller
 	// -- list
 	public function getAll()
 	{
+		$idUser= Auth::user()->id;
+		echo "<br><br><br>$idUser<br><br><br>";
 		$data = array('elements' => (Report::all()));
 		return view('amapien/report/report',$data);
 	}
@@ -29,12 +31,6 @@ class ReportController extends Controller
 		$idUser= Auth::user()->id;
 		$contratClients=ContratClient::where("amapien_id",$idUser)->get();
 		$contrats= array();
-
-		$iter=0;
-		foreach ($contratClients as $key=>$value) {
-			$contrats[$key]=Contrat::where("id",$value->contrat_id)->get();
-			$iter++;
-		}
 
 		foreach ($contratClients as $key=>$value) {
 			$contrats[$key]=Contrat::where("id",$value->contrat_id)->get();

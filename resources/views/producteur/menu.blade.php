@@ -1,7 +1,6 @@
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes Livraisons<span class="caret"></span></a>
     <ul class="dropdown-menu">
-        <li>Report</li>
         <li><a href="{{ url('list-livraisons') }}">Livraisons</a></li>
     </ul>
 </li>

@@ -1,6 +1,6 @@
 @extends('template')
 @section("title")
-Amapien
+Report
 @endsection
 @section('content')
 <div class="row">
