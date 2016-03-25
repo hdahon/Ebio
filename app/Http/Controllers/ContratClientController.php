@@ -124,11 +124,78 @@ class ContratClientController extends Controller
 		$contrat=Contrat::find($contrat_id);
 		$categorie=Categorie::find($contrat->categorie_id);
 		
+		ContratClient::create(
+			array(
+				'contrat_id'=>$contrat_id,
+				'amapien_id'=>$amapien,
+				'periodicite_id'=>($request->input('periodicite_id'))
+				));
+		$contrat_id=ContratClient::All()->last();
+		return redirect('date-livraison/'.$contrat_id->id);
+	}
+
+	// ----- create  affichage du formulaire----- 
+	public function getchoixdate(Request $request,$id)
+	{   
+		
+		$contratClient=ContratClient::find($id);
+		$contrats = Contrat::find($contratClient->contrat_id);
+		$amapiens=User::find($contratClient->amapien_id);
+		$categorie=Categorie::find($contrats->categorie_id);
+		$periodicite=Periodicite::find($contratClient->periodicite_id);
+		$produits=Produit::where("categorie_id",$categorie->id)->get();
+		if(strtolower($periodicite->libelle)==strtolower("Ponctuel")){
+			$livraisons=Livraisons::All();
+
+			foreach ($livraisons as $key => $value) {
+				 $debut=$value->dateLivraison;
+
+				 if($debut == date_format(date_create($contrats->debutLivraison),"Y-m-d")){
+				 	$livraisons=$value;
+				 	break;
+				 }
+				 //echo date_format(date_create($categorie->debutLivraison),"Y-m-d");
+			}
+			//echo $livraisons;
+			
+		}else{
+			$livraisons=Livraisons::all();
+		}
+		$data = array(
+			'contrats' => $contrats,
+			'amapiens' =>$amapiens,
+			'periodicite'=>$periodicite,
+			'produits'=>$produits,
+			'livraisons'=>$livraisons
+			);
+		if(session('role')==1){
+			return view('amapien/contratClient/choixDAteLivraison',$data);
+		}else{
+			return view('admin/contratClient/choixDAteLivraison',$data);
+		}
+	}
+	// ----- create  soummission du formulaire----- 
+	public function postchoixdate(Request $request)
+	{
+
+		if(session('role')==1){
+			$amapien =Auth::user()->id;
+		}else{
+			$amapien=($request->input('amapien_id'));
+		}
+		$produits=$request->input('produit');
+		$quantites=$request->input('quantite');
+		$prix=$request->input('prix');
+		$liv=$request->input('livraisons');
+		$periode=$request->input('periodicite_id');
+		$contrat_id=$request->input('contrat_id');
+		echo $amapien;
 		foreach ($produits as $key=>$prod){
 			$produit=$prod;
 			$quantite=$quantites[$key];
 			$prixx=$prix[$key];
 			$livraison=$liv[$key];
+			echo $livraison." ".$prixx;
 			if(count($livraison)>1){
 				foreach ($livraisons[$key] as $key => $value) {
 					Panier::create(array(
@@ -149,14 +216,10 @@ class ContratClientController extends Controller
             ));
 		}
 		}
-		ContratClient::create(
-			array(
-				'contrat_id'=>($request->input('contrat_id')),
-				'amapien_id'=>$amapien,
-				'periodicite_id'=>($request->input('periodicite_id'))
-				));
+		
 		return redirect('list-contratsClients');
 	}
+	
 	
 	// ----- update ----- 
 	public function update($id)
@@ -199,7 +262,7 @@ class ContratClientController extends Controller
 	public function delete($id)
 	{
 		$element=ContratClient::find($id);
-		$categorie=find();
+		//$categorie=find();
 		$element->delete();
 		return redirect('list-contratsClients');
 	}
@@ -217,18 +280,9 @@ class ContratClientController extends Controller
             $coadherant=User::find($amapien->coadherant_id);
             $categorie = Categorie::find($contrat->categorie_id);
             $producteur = User::find($categorie->producteur_id);
-            //$typePanier=Typepanier::find($categorie->typePanier_id);
-            $typePanier="Panier";
-            $produits=Produit::where("categorie_id",$categorie->id)->get();
-            $montant=0;
-            foreach ($produits as $key => $value) {
-            	$panier=Panier::where("produit_id",$value->id)
-            					->where("user_id",Auth::user()->id)->first();
-
-            		// echo $panier[0]->montant;				
-            	 //   $montant+=$panier->montant;
-            }
             
+            $montant=$contratClient->montantParMois;;
+          	
 
             $dL=date_create($contrat->debutLivraison);
             $dF=date_create($contrat->dateDeFinLivraison);
@@ -266,7 +320,7 @@ class ContratClientController extends Controller
                              'vacance' =>$vacance,
                              'dateDebut'=>date_format($dL,"d-m-Y"),
                              'dateFin'=>date_format($dF,"d-m-Y"),
-                             'typePanier'=>$typePanier, 
+   
                              'montant'=>$montant
                              );
             

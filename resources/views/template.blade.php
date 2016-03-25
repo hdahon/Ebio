@@ -110,7 +110,18 @@
         });
     });
 
-
+function recupererPeriodicite(){
+    var selected= $("#selected option:selected").attr("id");
+    if(selected.toLowerCase() === "ponctuel".toLowerCase()){
+        document.getElementById('po').style.visibility="visible";
+        document.getElementById('poD').style.visibility="visible";
+        alert("good p");
+    }
+    else if(selected.toLowerCase() === "Bi-mensuel semaine impaire".toLowerCase()){
+        document.getElementById('bmi').style.visibility="visible";
+        alert("good i");
+    }
+}
 
 
 </script>

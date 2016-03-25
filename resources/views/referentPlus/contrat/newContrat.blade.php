@@ -41,20 +41,20 @@
                              <div class="form-group">
                                 <label class="col-md-6 control-label">Date de debut</label>
                                 <div class="col-md-8 ">
-                                    <input class="form-control input-lg date" name="dateDebut" >
+                                    <input class="form-control input-lg date"  placeholder="yyyy-mm-jj" name="dateDebut" >
                                     </div>
                                 </div>
                         
                          <div class="form-group">
                                 <label class="col-md-6 control-label">Date de fin</label>
                                 <div class="col-md-8 ">
-                                    <input class="form-control input-lg date"  name="dateFin" >
+                                    <input class="form-control input-lg date"  placeholder="yyyy-mm-jj" name="dateFin" >
                                     </div>
                                 </div>
                              <div class="form-group">
                                 <label class="col-xs-6 control-label">Vacances</label>
                                 <div class="col-xs-8 ">
-                                    <input class="form-control input-lg date"  name="vacance" >
+                                    <input class="form-control input-lg date"  placeholder="yyyy-mm-jj" name="vacance" >
                                     </div>
                                 </div>  
                             <div class="form-group">

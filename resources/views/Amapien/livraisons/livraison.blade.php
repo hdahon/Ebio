@@ -15,19 +15,19 @@
                     <tbody>
                         @if(count($livraisons) >0)
                         @foreach ($livraisons  as $key=> $row)
-                      
+                        
                         <tr>
                             
                             <td>
-                                {{$livraisons[$key]->dateLivraison}}
+                                {{$row['dateLivraison']}}
                             </td>
                             
                             <td>
                                 @if(session('role') ==1)
-                                 <a href="{{ url('list-panier/'.$livraisons[$key]->id) }}" title="new" class="btn  btn-info btn-sm">Panierr</a>
+                                 <a href="{{ url('list-panier/'.$row['id']) }}" title="new" class="btn  btn-info btn-sm">Panierr</a>
                                 @else
-                                <a href="{{ url('update-livraisons/'.$livraisons[$key]->id) }}" title="Modifier" class="btn  btn-warning btn-sm">MODIFIER</a>
-                                <a href="{{ url('delete-livraisons/'.$livraisons[$key]->id) }}" title="Supprimer" class="btn  btn-danger btn-sm confirm">SUPPRIMER</a>
+                                <a href="{{ url('update-livraisons/'.$row['id']) }}" title="Modifier" class="btn  btn-warning btn-sm">MODIFIER</a>
+                                <a href="{{ url('delete-livraisons/'.$row['id']) }}" title="Supprimer" class="btn  btn-danger btn-sm confirm">SUPPRIMER</a>
                                 @endif
                             </td>
                         </tr>

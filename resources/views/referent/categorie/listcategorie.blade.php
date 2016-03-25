@@ -17,27 +17,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($periodicites) != 0) 
+                        
                         @foreach ($categories as $key => $row)
+                         
                         <tr>
                             <td>
-                                {{$row->libelle}}
+                                {{$row['libelle']}}
                             </td>
 
                             <td>
-                                {{$periodicites[$key]->libelle}}
+                               @if(count($periodicites) >0) 
+                                    {{$periodicites[$row->id]->libelle}}
+                                @endif
+                                @if(count($periodicites2) >0)
+                                    {{$periodicites2[$row->id]->libelle}}
+                                @endif
+                                @if(count($periodicites3) >0)
+                                    {{$periodicites3[$row->id]->libelle}}
+                                @endif
                             </td>
                              <td>
-                                {{$producteurs[$key]->prenom." ".$producteurs[$key]->nom}}
+                                {{$producteurs[$row->id]->prenom." ".$producteurs[$row->id]->nom}}
                             </td>
                             
                             <td>
                                 <a href="{{ url('categorie-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>                             
                             </td>
                         </tr>
-
+                       
                          @endforeach 
-                         @endif      
+                           
                         </tbody>
                         </table>
     </div>

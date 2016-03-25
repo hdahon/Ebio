@@ -151,6 +151,9 @@ Route::get('delete-contratsClients/{id}', 'ContratClientController@delete');
 Route::get('details-contratclient/{id}', 'ContratClientController@showContrat');
 // --list contat modèle
 Route::get('list-contrat', 'ContratClientController@getAllContratM');
+//--choix date de livraison
+Route::get('date-livraison/{id}', 'ContratClientController@getchoixdate');
+Route::post('date-livraison', 'ContratClientController@postchoixdate');
 
 
 /*

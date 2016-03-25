@@ -48,33 +48,40 @@
     
                                 </thead>
                         <tbody>
+                          @if($periodicite->libelle== "Ponctuel")
                             <tr>
-                                <td>{{$typePanier}} à ...</td>
-                                <td> 1 chèque de  € </td>
+                                <td>Panier à {{$montant}}€</td>
+                                <td> 1 chèque de {{$montant}}€ </td>
+                            </tr> 
+                          @else
+                            <tr>
+                                <td>Panier à {{$montant}}€</td>
+                                <td> 1 chèque de {{$montant}}€ </td>
                             </tr> 
                             <tr>
-                                <td>{{$typePanier}} à ...</td>
-                                <td> 1 chèque de  € </td>
+                                <td>Panier à {{$montant}}€</td>
+                                <td> 1 chèque de {{$montant}}€ </td>
                             </tr> 
                             <tr>
-                                <td>{{$typePanier}} à ...</td>
-                                <td> 1 chèque de  € </td>
+                                <td>Panier à {{$montant}}€</td>
+                                <td> 1 chèque de {{$montant}}€ </td>
                             </tr> 
                             <tr>
-                                <td>{{$typePanier}} à ...</td>
-                                <td> 1 chèque de  € </td>
+                                <td>Panier à {{$montant}}€</td>
+                                <td> 1 chèque de {{$montant}}€ </td>
                             </tr>     
                             <tr>
-                                <td>{{$typePanier}} à ...</td>
-                                <td> 1 chèque de  € </td>
+                                <td>Panier à {{$montant}}€</td>
+                                <td> 1 chèque de {{$montant}}€ </td>
                             </tr> 
                             <tr>
-                                <td>{{$typePanier}} à ...</td>
-                                <td> 1 chèque de  € </td>
+                                <td>Panier à {{$montant}}€</td>
+                                <td> 1 chèque de {{$montant}}€ </td>
                             </tr>         
-                            
+                           @endif 
                         </tbody>
                         </table>
+                        <p>Les chèques seront encaissés par le producteur au début de chaque mois.</p>
                         </div>
                         <div class="row drop-shadow">  
                             <h3 class="text-center">Distributions</h3>
@@ -94,9 +101,21 @@
                                  <p><b>Vacances</b></p>
                                     <p>{{$vacance}}</p>
                         </div>
+                        <p>En cas d’absence, l’Amapien peut demander à décaler son panier - <b>Prévenir une semaine avant la distribution</b> . 
+                         Les paniers décalés doivent être reportés au cours de la même saison.
+                          Si le panier n'est pas récupéré le mardi soir entre 18h et 19h et s'il n'a pas été décalé
+                          dans les temps, le panier sera perdu (pas de remboursement). </p>
+                        <div class="row drop-shadow">  
+                          <p><b>Objet</b></p>
+                          <p>Le présent contrat a pour objet de déterminer les modalités et les conditions de l'engagement des parties signataires pour l’achat d’un « panier » dans le but :</p>
+                          <p >• de soutenir l'exploitation agricole du producteur et encourager ainsi la consommation de produits de saison, cultivés localement et dans le respect de l’environnement,</p>
+                          <p> • de fournir à l’AMAPien des paniers de qualité et recréer un lien d’information entre le producteur et le consommateur, le tout dans le respect du texte et de l'esprit de la Charte des AMAPs.</p>
+                        </div>
+ 
                     </div>
                 </div>
             </div>
         </div>
-
+        
+              
 @endsection

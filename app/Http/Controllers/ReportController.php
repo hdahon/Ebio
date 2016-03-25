@@ -28,8 +28,8 @@ class ReportController extends Controller
 		$contratClients=ContratClient::where("amapien_id",$idUser)->get();
 		$contrats= array();
 		$iter=0;
-		foreach ($contratClients as $value) {
-			$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
+		foreach ($contratClients as $key=>$value) {
+			$contrats[$key]=Contrat::where("id",$value->contrat_id)->get();
 			$iter++;
 		}
 

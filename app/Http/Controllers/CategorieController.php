@@ -106,17 +106,26 @@ public function postCreateCategorie(Request $request)
          if(session('role') == 3){
             foreach ($categories as $cat) {
                 $ref=User::find($cat->referent_id);
-                
-                if($ref->id == Auth::user()->id){
-                    $referents[$iter]= $ref;
-                    $producteurs[$iter]=User::find($cat->producteur_id);
-                    $periodicites[$iter]=Periodicite::find($cat->periodicite_id);
-                    $periodicites2[$iter]=Periodicite::find($cat->periodicite2_id);
-                    $periodicites3[$iter]=Periodicite::find($cat->periodicite3_id);
+                //echo $cat->referent_id;
+                if($cat->referent_id == Auth::user()->id){
+                    //echo $cat->referent_id;
+                    $referents[$cat->id]= $ref;
+                    $producteurs[$cat->id]=User::find($cat->producteur_id);
+
+                    $periodicites[$cat->id]=Periodicite::find($cat->periodicite_id);
+                    if($cat->periodicites2 != ""){
+                        $periodicites2[$cat->id]=Periodicite::find($cat->periodicite2_id);
+                    }
+                    if($cat->periodicites3 != ""){
+                       $periodicites3[$cat->id]=Periodicite::find($cat->periodicite3_id);
+                   }
+                    $cate[$cat->id]=$cat;
                     $iter++;
+                   // echo $iter;
                 }   
             }
-            
+            $categories=$cate;
+            echo count( $periodicites2);
          }else{
          foreach ($categories as $cat) {
             $referents[$cat->id]=User::find($cat->referent_id);

@@ -24,13 +24,15 @@ class LivraisonsController extends Controller
 		$livraisons= array();
 		$categories=array();
 		$producteurs=array();
-		// --Si amapine 
+		// --Si amapien 
 		if(session('role') ==1 ){
 			$panierAmpaien=Panier::where("user_id",Auth::user()->id)->get()	;
 			$livraisons=array();
 			foreach ($panierAmpaien as $k => $value) {
 					$livraisons[$value->livraison_id]=Livraisons::find($value->livraison_id);
+					//echo $livraisons[$value->livraison_id];
 			}
+
 			$data = array('livraisons' => $livraisons);
 			return view('amapien/livraisons/livraison',$data);
 

@@ -35,8 +35,8 @@
                                 {{$produits[$key][0]->prix}} euros
                             </td>
                              <td>
-                            <a href="{{ url('categorie-details/'.$produits[$key][0]->id) }}">
-                                <!--  -->
+                            <a href="{{ url('categorie-details/'.$categories[$key]->id) }}">
+                                {{$categories[$key]->libelle}}
                             </a>
                             </td>
                             <td>
