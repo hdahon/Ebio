@@ -19,8 +19,8 @@ class ReportController extends Controller
 	// -- list
 	public function getAll()
 	{
-		$idUser= Auth::user()->id;
-		echo "<br><br><br>$idUser<br><br><br>";
+		//$idUser= Auth::user()->id;
+		//echo "<br><br><br>$idUser<br><br><br>";
 		$data = array('elements' => (Report::all()));
 		return view('amapien/report/report',$data);
 	}
@@ -29,13 +29,22 @@ class ReportController extends Controller
 	public function insert(Request $request)
 	{             
 		$idUser= Auth::user()->id;
-		$contratClients=ContratClient::where("amapien_id",$idUser)->get();
+		//echo session('role');
+		if (session('role')==1){
+			$contratClients=ContratClient::where("amapien_id",$idUser)->get();
+		}else{
+			$contratClients=ContratClient::All();
+		}
+		$amapiens = User::where('roleamapien_id',1)->get();
+		//echo json_encode($amapiens);
+
 		$contrats= array();
 
 		foreach ($contratClients as $key=>$value) {
 			$contrats[$key]=Contrat::where("id",$value->contrat_id)->get();
 		}
-		$data = array('contrats'=>$contrats);
+		//echo json_encode($contrats);
+		$data = array('contrats'=>$contrats, 'amapiens'=>$amapiens);
 		return view('amapien/report/newReport',$data);
 	}
 	public function post(Request $request)

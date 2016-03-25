@@ -16,7 +16,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <style type="text/css">
-        body{ background: {{ URL::asset("assets/img/agr2.jpg")}} }
+    body{ background: {{ URL::asset("assets/img/agr2.jpg")}} }
     </style> 
 </head>
 <body>
@@ -99,16 +99,26 @@
             }
         });
 
-    $("#form_contratClient").unbind("submit").bind("submit",function(event){
-                    var fields = $("input[name='produit[]']").serializeArray(); 
-                    if (fields.length == 0) { 
-                        alert('Il faut ajouter au moins un produit'); 
-                        event.stopPropagation();
-                        event.stopImmediatePropagation();
-                        return false;
-                    }
+        $("#form_contratClient").unbind("submit").bind("submit",function(event){
+            var fields = $("input[name='produit[]']").serializeArray(); 
+            if (fields.length == 0) { 
+                alert('Il faut ajouter au moins un produit'); 
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                return false;
+            }
         });
-    });
+
+
+
+        var _d="";
+        $.each($("#ancienneDateLivraison").find("option"),function(index,value){
+            _d="";
+            _d=new Date($(this).val());
+            $(this).val(getFormattedDate(_d));
+            $(this).text(getFormattedDate(_d));
+        });
+});
 
 function recupererPeriodicite(){
     var selected= $("#selected option:selected").attr("id");
@@ -123,7 +133,21 @@ function recupererPeriodicite(){
     }
 }
 
+function getFormattedDate(date) {
+  var year = date.getFullYear();
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+  return year + '-' + month + '-' + day;
+}
 
+
+function dateMax(_dateDeFinLivraison){
+    var _d=new Date(_dateDeFinLivraison);
+   // alert(getFormattedDate(_d));
+    $("#nouvelleDateLivraison").attr("max",getFormattedDate(_d));
+}
 </script>
 </body>
 </html>
