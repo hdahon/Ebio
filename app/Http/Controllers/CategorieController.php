@@ -89,6 +89,7 @@ public function postCreateCategorie(Request $request)
       public function getAllCategories(){
 
         $idUser= Auth::user()->id; 
+        //echo ($idUser);
         if (session('role') ==   2){
             //echo ($idUser);
 
@@ -124,8 +125,8 @@ public function postCreateCategorie(Request $request)
                    // echo $iter;
                 }   
             }
-            $categories=$cate;
-            echo count( $periodicites2);
+            //$categories=$cate;
+            //echo count($periodicites2);
          }else{
          foreach ($categories as $cat) {
             $referents[$cat->id]=User::find($cat->referent_id);
