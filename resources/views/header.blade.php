@@ -8,7 +8,7 @@
 
 ?>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="{{ url('dashboard/home') }}" class="navbar-brand">Amap de Garbejaire</a>

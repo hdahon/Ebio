@@ -3,6 +3,12 @@
 
 <?php  
 
+
+use App\User;
+    $idUser= Auth::user()->id;
+    $user=User::find($idUser);
+    $conjointInfo=User::find($user->coadherant_id);
+
     $role = Auth::user()->roleamapien_id;
     if(Session::has('role') and Auth::check()){
         $niveau = session('role');
@@ -42,23 +48,28 @@
             <div class="panel-body">
                         <h1>Bienvenue {{$user->prenom}} {{$user->nom}} sur la page d'accueil <?php echo $role; ?></h1>
                         
-                        Voici vos informations: 
+                        <h3><span class="label label-default">Vos informations</span></h3>
                         <ul>
-                        	<li><b>Nom:</b> {{$user->nom}}</li>
+                        	<li><b>Nom :</b> {{$user->nom}}</li>
                         	<li><b>Prénom :</b> {{$user->prenom}}</li>
-                        	<li><b>Email: </b> {{$user->email}}</li>
-                        	<li><b>Téléphone: </b> {{$user->tel}}</li> 
-                        	<li><b>Votre rôle au sein de l'association : </b>{{$role}} </li>
+                        	<li><b>Email :</b> {{$user->email}}</li>
+                        	<li><b>Téléphone :</b> {{$user->tel}}</li> 
+                            <li><b>Adresse :</b> {{$user->adresse}}</li> 
+                        	<li><b>Votre rôle au sein de l'association :</b> {{$role}}</li>
                         </ul>
 
                         @if(session('role') <2)
-                        <h2>Voici les informations de votre conjoint: </h2>
+
+                        @if (count($conjointInfo)>0)
+                        <h3><span class="label label-default">Les informations de votre conjoint</span></h3>
                         <ul>
-                        	<li>Nom  de votre conjoint: {{$user->nomCAdherant}}</li>
-                        	<li>Prénom de votre conjoint: {{$user->prenomCAdherant}}</li>
-                        	<li>Mail de votre conjoint: {{$user->emailCAdherant}}</li>
-                        	<li>Numéro de téléphone de votre conjoint : {{$user->telCAdherant}}</li> 
+                        	<li><b>Nom :</b> {{$conjointInfo->nom}}</li>
+                        	<li><b>Prénom :</b> {{$conjointInfo->prenom}}</li>
+                        	<li><b>Email :</b> {{$conjointInfo->email}}</li>
+                        	<li><b>Téléphone :</b> {{$conjointInfo->tel}}</li> 
+                            <li><b>Adresse :</b> {{$conjointInfo->adresse}}</li> 
                         </ul>
+                        @endif     
                         @endif     
                         @if(session('role') <4)
                         {!! link_to_route('amap_change_data','Changer vos informations de compte',array(),array('class'=>'waves-effect waves-light btn')) !!}
