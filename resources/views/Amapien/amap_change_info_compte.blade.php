@@ -54,7 +54,7 @@
                                     <input class="form-control" name="adresse" type="text" id="adresse" placeholder="Adresse" value="{{$userInfo->adresse}}">   
                               </div>  
                         </div>
-                        @if ($role==2)
+                        @if (($userInfo->roleamapien_id)==2)
                         <div class="form-group">
                               <label class="col-md-4 control-label" for="numSiret">Num Siret</label>
                               <div class="col-md-6">
@@ -138,7 +138,7 @@
                                     <input class="form-control" name="adresseC" type="text" id="adresseC" placeholder="Adresse" value="{{$conjointInfo->adresse}}">   
                               </div>  
                         </div>
-                        @if ($role==2)
+                        @if (($conjointInfo->roleamapien_id)==2)
                         <div class="form-group">
                               <label class="col-md-4 control-label" for="numSiretC">Num Siret</label>
                               <div class="col-md-6">

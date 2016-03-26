@@ -59,7 +59,10 @@
                         	<li>Mail de votre conjoint: {{$user->emailCAdherant}}</li>
                         	<li>Numéro de téléphone de votre conjoint : {{$user->telCAdherant}}</li> 
                         </ul>
+                        @endif     
+                        @if(session('role') <4)
                         {!! link_to_route('amap_change_data','Changer vos informations de compte',array(),array('class'=>'waves-effect waves-light btn')) !!}
+                        
                         @endif     
        </div>
         </div>
