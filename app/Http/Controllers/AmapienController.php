@@ -39,6 +39,7 @@ class AmapienController extends Controller
 		$user->prenom = $request->input('prenom');
 		$user->email = $request->input('mail');
 		$user->tel = $request->input('tel');
+		$user->adresse = $request->input('adresse');
 
 
 		$newPassword=$request->input('newPassword');
@@ -52,6 +53,9 @@ class AmapienController extends Controller
         	$user->password=$password;
 		}
 
+		if (($user->roleamapien_id)==2){
+			$user->numSiret = $request->input('numSiret');
+		}
 
 		$user->save();
 
@@ -61,6 +65,12 @@ class AmapienController extends Controller
 			$conjoint->prenom = $request->input('prenomC');
 			$conjoint->email = $request->input('mailC');
 			$conjoint->tel = $request->input('telC');
+			$conjoint->adresse = $request->input('adresseC');
+
+			if (($conjoint->roleamapien_id)==2){
+				$conjoint->numSiret = $request->input('numSiretC');
+			}
+
 			$conjoint->save();
 		}
 		$data = array('userInfo' => ($user), 'conjointInfo' => ($conjoint));
