@@ -35,7 +35,7 @@
                                          <tbody>
                                         @foreach ($livraisons as $key=>$l) 
                                         <tr>
-                                            {{$l->semaine}}
+                                            
                                         @if($l->semaine %2 !=0 )
                                             <td>
                                                 {{$l->dateLivraison}} impaire

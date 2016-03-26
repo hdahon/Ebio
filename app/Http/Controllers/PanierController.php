@@ -108,7 +108,7 @@ class PanierController extends Controller
           $vacance=date_format(date_create($contrats->vacance),'Y/m/d');
           $vacance1=date_format(date_create($contrats->vacance1),'Y/m/d');
           $vacance2=date_format(date_create($contrats->vacance2),'Y/m/d');
-
+          $livraisons=array();
           //prendre que les date de livraion applicable au contrat
           foreach ($livraison as $key => $value) {
             $dl=date_format(date_create($value->dateLivraison),'Y/m/d');
@@ -117,11 +117,24 @@ class PanierController extends Controller
             $t3=round((strtotime($dl)-strtotime($vacance))/(60*60*24));
             $t4=round((strtotime($dl)-strtotime($vacance1))/(60*60*24));
             $t5=round((strtotime($dl)-strtotime($vacance2))/(60*60*24));
-            if($t1>0 && $t2<0 && $t3 !=0 && $t4 !=0 && $t5 !=0){
-              
-              $livraisons[$key]=$value;
-          
+            $t6=round(((strtotime($dl))-(strtotime(date('Y/m/d',time()))))/(60*60*24));
+           //**/ echo $t5."  ".$t6;
+              foreach ($produits as $ke => $v) {
+                  $panier=Panier::where("user_id",$amapiens->id)
+                              ->where('livraison_id',$value->id)
+                              ->where('produit_id',$v->id)->get();
+                 
+                  if(count($panier) == 0){
+                     if($t1>0 && $t2<0 && $t3 !=0 && $t4 !=0 && $t5 !=0 && $t6>0 ){
+                         $livraisons[$key]=$value;
+                         //echo $value->dateLivraison." GGG ".$panier;
+
+                  }            
+                  
+              }
+                       
             }
+            
           }
           
                 
@@ -145,6 +158,7 @@ class PanierController extends Controller
   public function postchoixdate(Request $request)
   {
 
+
     if(session('role')==1){
       $amapien =Auth::user()->id;
     }else{
@@ -160,12 +174,15 @@ class PanierController extends Controller
     foreach ($produits as $key=>$prod){
       $produit=$prod;
       $quantite=$quantites[$key];
-      echo $quantite;
       $prixx=$prix[$key];
       $livraison=$liv[$key];
       $montant=$prix;
       if(count($livraison)>1){
+        if($quantite=0){
+          $quantite=1;
+        }
         foreach ($livraisons[$key] as $key => $value) {
+          
           Panier::create(array(
                     'livraison_id'=>$value,
                     'user_id'=>$amapien,
@@ -185,8 +202,7 @@ class PanierController extends Controller
                 'contratclient_id'=>$contrat_id
             ));
     }
-    $element=ContratClient::find($contrat_id);
-    $element->montantParMois=$montant;
+
     }
     
     return redirect('list-contratsClients');

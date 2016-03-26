@@ -19,6 +19,7 @@
                             <td>{{$periodicites[$key][0]->libelle}}</td>
                             <td>
                                 <a href="{{ url('details-contratclient/'.$row->id) }} " class="btn btn-info" title="Supprimer">VOIR</a>
+                                 <a href="{{ url('date-livraison/'.$row->id) }}" class="btn btn-info" title="panier">Prepaer mes panier</a>
                              
                             </td>
                         </tr>

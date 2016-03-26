@@ -4,12 +4,13 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-body">
+
                 <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                         <tr>
                            
                             <th>Date de livraison</th>                            
-                            <th>Action</th>
+                            <th>Action  <a class="btn btn-info">Ancien</a></th>
                       </tr>
                     </thead>
                     <tbody>

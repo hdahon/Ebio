@@ -239,7 +239,14 @@ class ContratController extends Controller
 
     public function postFormModifContrat(Request $request,$id)
     {
-            $categorie=$request->input('categorie');
+          $this->validate($request, [
+                'categorie' => 'required',
+                'dateDebut' => 'required',
+                'dateFin' => 'required',
+                 'debutS' => 'required',  
+                 'finS' => 'required', 
+                 ]);
+           $categorie=$request->input('categorie');
             $libelle=Categorie::find($categorie);
             $titre =$libelle->libelle;
             $dateDebut=  date("Y-m-d", strtotime($request->input('dateDebut')));          
@@ -247,6 +254,8 @@ class ContratController extends Controller
             $vacance = date("Y-m-d", strtotime($request->input('vacance')));
             $vacance1 = date("Y-m-d", strtotime($request->input('vacance1')));
             $vacance2= date("Y-m-d", strtotime($request->input('vacance2')));
+            $debutS=  date("Y-m-d", strtotime($request->input('debutS')));          
+            $finS = date("Y-m-d", strtotime($request->input('finS')));
             $contrat=Contrat::find($id);
             $contrat->titre=$titre;
             $contrat->categorie_id=$categorie;
@@ -255,6 +264,8 @@ class ContratController extends Controller
             $contrat->vacance=$vacance;
             $contrat->vacance1=$vacance1;
             $contrat->vacance2=$vacance2;
+            $contrat->debutSouscription=$debutS;
+            $contrat->finSouscription=$finS;
 
             $contrat->save();
           return redirect('liste-contrat');

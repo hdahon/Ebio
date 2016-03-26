@@ -29,7 +29,12 @@ class LivraisonsController extends Controller
 			$panierAmpaien=Panier::where("user_id",Auth::user()->id)->get()	;
 			$livraisons=array();
 			foreach ($panierAmpaien as $k => $value) {
-					$livraisons[$value->livraison_id]=Livraisons::find($value->livraison_id);
+				$liv=Livraisons::find($value->livraison_id);
+				$dl=date_format(date_create($liv->dateLivraison),'Y/m/d');
+				$t=round(((strtotime($dl))-(strtotime(date('Y/m/d',time()))))/(60*60*24));
+				if($t>=0){
+					$livraisons[$value->livraison_id]=$liv;
+				}
 					//echo $livraisons[$value->livraison_id];
 			}
 
@@ -39,7 +44,21 @@ class LivraisonsController extends Controller
 		}
 		//-- Si autre profil
 		else{
-		$livraisons= Livraisons::paginate(5);
+		$livraison= Livraisons::all();
+		$livraisons=array();
+		foreach ($livraison as $key => $value) {
+			//$liv=$value->id;
+
+			$dl=date_format(date_create($value->dateLivraison),'Y/m/d');
+			$t=round(((strtotime($dl))-(strtotime(date('Y/m/d',time()))))/(60*60*24));
+			//echo $t;
+			if($t>=0){
+				echo $value->dateLivraison ." ggg ".$t." ";
+				$livs[$value->livraison_id]=$value->id;
+			}
+		}
+		echo count($livs);
+		 $livraisons=Livraisons::whereIn('id',$livs)->paginate(10);
 		$data = array('livraisons' => $livraisons);
 		return view('admin/livraisons/livraison',$data);
 	}
