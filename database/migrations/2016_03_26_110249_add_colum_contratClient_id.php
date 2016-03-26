@@ -13,12 +13,12 @@ class AddColumContratClientId extends Migration
    public function up()
      {
         Schema::table('paniers', function($table) {
-            $table->double('contratClient_id');
+            $table->integer('contratclient_id')->unsigned();
         });
         Schema::table('paniers', function($table) {
-            $table->foreign('contratClient_id')
+            $table->foreign('contratclient_id')
                 ->references('id')
-                ->on('contratClients')
+                ->on('contratclients')
                 ->onDelete('cascade');
         });
     }
@@ -31,8 +31,9 @@ class AddColumContratClientId extends Migration
     public function down()
     {
         Schema::table('paniers', function($table) {
-           $table->dropForeign('paniers_contratClient_id_foreign');
-           $table->dropColumn('contratClient_id');
+            $table->dropColumn('contratclient_id');
+           $table->dropForeign('paniers_contratclient_id_foreign');
+           
            
         });
          
