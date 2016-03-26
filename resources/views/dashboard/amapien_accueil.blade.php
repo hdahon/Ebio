@@ -55,6 +55,9 @@ use App\User;
                         	<li><b>Email :</b> {{$user->email}}</li>
                         	<li><b>Téléphone :</b> {{$user->tel}}</li> 
                             <li><b>Adresse :</b> {{$user->adresse}}</li> 
+                            @if (($user->roleamapien_id)==2)
+                            <li><b>Num siret :</b> {{$user->numSiret}}</li> 
+                            @endif     
                         	<li><b>Votre rôle au sein de l'association :</b> {{$role}}</li>
                         </ul>
 
@@ -68,6 +71,9 @@ use App\User;
                         	<li><b>Email :</b> {{$conjointInfo->email}}</li>
                         	<li><b>Téléphone :</b> {{$conjointInfo->tel}}</li> 
                             <li><b>Adresse :</b> {{$conjointInfo->adresse}}</li> 
+                            @if (($conjointInfo->roleamapien_id)==2)
+                            <li><b>Num siret :</b> {{$conjointInfo->numSiret}}</li> 
+                            @endif     
                         </ul>
                         @endif     
                         @endif     

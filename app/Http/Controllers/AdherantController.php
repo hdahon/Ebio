@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\RoleAmapien;
+use App\Categorie;
+use App\Contrat;
+use App\ContratClient;
 
 
 class AdherantController extends Controller
@@ -17,8 +20,36 @@ class AdherantController extends Controller
 		$idUser= Auth::user()->id;
 		$role = Auth::user()->roleamapien_id;
 		$niveau = RoleAmapien::find($role)->niveau;
+
+
+
 		//$adherants= User::where("id","<>",$idUser)->orderBy('nom')->get();
-		$adherants= User::orderBy('nom')->paginate(5);
+		// producteur
+		if ($role==2){
+			$adherants=array();
+
+			$categoriesProducteur = Categorie::where('producteur_id',$idUser)->get();
+			foreach ($categoriesProducteur as $key => $value) {
+				$contratsProd = Contrat::where('categorie_id',$value->id)->get();
+				foreach ($contratsProd as $key => $value) {
+					$contratsClientProd = ContratClient::where('contrat_id',$value->id)->get();
+					foreach ($contratsClientProd as $key => $value) {
+						//$userss = User::where('id',$value->amapien_id)->get();
+						//echo json_encode($userss);
+						$ussers= User::where('id',$value->amapien_id)->get();
+						foreach ($ussers as $key => $value) {
+							//echo ($value->id);
+							$adherants[$key]=$value->id;
+						}
+					}
+				}
+			}
+			//echo json_encode($adherants);
+			$adherants=User::whereIn('id',$adherants)->paginate(5);
+		}else{
+			$adherants= User::orderBy('nom')->paginate(5);
+		}
+
 		$coadherants="";
 		$roleamapiens=array();
 
@@ -33,6 +64,8 @@ class AdherantController extends Controller
 			return view('admin/adherant/adherant',$data);
 		}else if ($niveau == 4  ){
 			return view('referentPlus/adherant/adherant',$data);
+		}else if ($niveau == 2  ){
+			return view('producteur/adherant/adherant',$data);
 		}else {
 			return view('referent/adherant/adherant',$data);
 		}
