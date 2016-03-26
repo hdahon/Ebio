@@ -77,6 +77,95 @@ class PanierController extends Controller
     }
 
 
+
+
+  // ----- create  affichage du formulaire----- 
+  public function getchoixdate(Request $request,$id)
+  {   
+    
+    $contratClient=ContratClient::find($id);
+    $contrats = Contrat::find($contratClient->contrat_id);
+    $amapiens=User::find($contratClient->amapien_id);
+    $categorie=Categorie::find($contrats->categorie_id);
+    $periodicite=Periodicite::find($contratClient->periodicite_id);
+    $produits=Produit::where("categorie_id",$categorie->id)->get();
+    if(strtolower($periodicite->libelle)==strtolower("Ponctuel")){
+      $livraisons=Livraisons::All();
+
+      foreach ($livraisons as $key => $value) {
+         $debut=$value->dateLivraison;
+
+         if($debut == date_format(date_create($contrats->debutLivraison),"Y-m-d")){
+          $livraisons=$value;
+          break;
+         }
+         //echo date_format(date_create($categorie->debutLivraison),"Y-m-d");
+      }
+      //echo $livraisons;
+      
+    }else{
+      $livraisons=Livraisons::all();
+    }
+    $data = array(
+      'contrats' => $contrats,
+      'amapiens' =>$amapiens,
+      'periodicite'=>$periodicite,
+      'produits'=>$produits,
+      'livraisons'=>$livraisons
+      );
+    if(session('role')==1){
+      return view('amapien/panier/choixDAteLivraison',$data);
+    }else{
+      return view('admin/contratClient/choixDAteLivraison',$data);
+    }
+  }
+  // ----- create  soummission du formulaire----- 
+  public function postchoixdate(Request $request)
+  {
+
+    if(session('role')==1){
+      $amapien =Auth::user()->id;
+    }else{
+      $amapien=($request->input('amapien_id'));
+    }
+    $produits=$request->input('produit');
+    $quantites=$request->input('quantite');
+    $prix=$request->input('prix');
+    $liv=$request->input('livraisons');
+    $periode=$request->input('periodicite_id');
+    $contrat_id=$request->input('contrat_id');
+    echo $amapien;
+    foreach ($produits as $key=>$prod){
+      $produit=$prod;
+      $quantite=$quantites[$key];
+      $prixx=$prix[$key];
+      $livraison=$liv[$key];
+      echo $livraison." ".$prixx;
+      if(count($livraison)>1){
+        foreach ($livraisons[$key] as $key => $value) {
+          Panier::create(array(
+                    'livraison_id'=>$value,
+                    'user_id'=>$amapien,
+                    'produit_id'=>$produit,
+                    'quantite'=>$quantite,
+                    'montant'=>$prixx
+            ));
+        }
+      }else{
+      Panier::create(array(
+              'livraison_id'=>$livraison,
+                'user_id'=>$amapien,
+                'produit_id'=>$produit,
+                'quantite'=>$quantite,
+                'montant'=>$prixx
+            ));
+    }
+    }
+    
+    return redirect('list-contratsClients');
+  }
+
+
 public function deletePanier($id){
          $element=Panier::find($id);
          $livraison_id=$element->livraison_id;

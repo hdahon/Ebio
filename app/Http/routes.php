@@ -151,9 +151,7 @@ Route::get('delete-contratsClients/{id}', 'ContratClientController@delete');
 Route::get('details-contratclient/{id}', 'ContratClientController@showContrat');
 // --list contat modèle
 Route::get('list-contrat', 'ContratClientController@getAllContratM');
-//--choix date de livraison
-Route::get('date-livraison/{id}', 'ContratClientController@getchoixdate');
-Route::post('date-livraison', 'ContratClientController@postchoixdate');
+
 
 
 /*
@@ -219,8 +217,9 @@ Route::post('create-paiement', 'PaiementController@postnewPaiement');
 */
 //--create
 Route::get('list-panier/{id}', 'PanierController@getAllPanier');
-
-
+//--choix date de livraison
+Route::get('date-livraison/{id}', 'PanierController@getchoixdate');
+Route::post('date-livraison', 'PanierController@postchoixdate');
 // ---delete
 Route::get('delete-panier/{id}', 'PanierController@deletePanier');
 
