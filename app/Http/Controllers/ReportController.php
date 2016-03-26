@@ -59,69 +59,113 @@ class ReportController extends Controller
 	}
 	public function post(Request $request)
 	{
-		$idUser= Auth::user()->id;
+		if(Auth::user()->roleamapien_id != 1){ 
+			$idUser= $request->input('amapien'); 
+		} else{
+			$idUser= Auth::user()->id;
+		}
 		//echo $idUser;
-
-		// 1 => recuperer l'id dans la table de livraison ou dateLivraion = je ne serais pas là;
-		//echo "<br>// 1 => recuperer l'id dans la table de livraison ou dateLivraion = je ne serais pas là;";
-		$datePasLa=$request->input('ancienneDateLivraison');
-		$elementA = Livraisons::where('dateLivraison',$datePasLa)->get();
-		$idA=$elementA[0]->id;
-		//echo $idA;
+		/*
+		Pr récapituler (avec la nouvelle solution contrat_id ds panier), une fois que l'amapien aura coché les contrats, changer ses dates puis valider le formulaire, voici le process :
+		- ds la table de livraison : je récupère l'id livraison correspondant à la nouvelle date de report
+		*/
 
 		// 2 => recuperer l'id dans la table de livraison ou dateLivraion = reports
 		//echo "<br>// 1 => recuperer l'id dans la table de livraison ou dateLivraion = je ne serais pas là;";
 		$dateReport=$request->input('nouvelleDateLivraison');
+		//echo "dateReport $dateReport";
 		$elementB = Livraisons::where('dateLivraison',$dateReport)->get();
-		$idB=$elementB[0]->id;
-		//echo $idB;
+		//echo "count : ". count($elementB)."<br>";
+		if (count($elementB)>0){
+			$newIdLivraison=$elementB[0]->id;
+			//echo "newIdLivraison : ".$newIdLivraison."<br>";
 
-		// 3 => dans panier changer l'id (de 1) de la livraison des produits (du contrat cocher ) par l'id (de 2)
-		$element=Panier::find($idA);
-		$element->id=$idB;
-		$element->save();
+			$choixContrats=$request->input('choixContrats');
+			if (count($choixContrats)>0){
+				//echo "choixContrats :<br>";
+				//echo json_encode($choixContrats)."<br>";
+				foreach ($choixContrats as $key => $value) {
+					# code...
+					//echo $value."<br>";
 
-		//'id','livraison_id','user_id','ancienneDateLivraison','nouvelleDateLivraison'
-		Report::create(
-			array(
-				//'id'=>($request->input('id')),
-				//'livraison_id'=>($request->input('livraison_id')),
-				'livraison_id'=>$idB,
-				'user_id'=>($idUser),
-				'ancienneDateLivraison'=>($request->input('ancienneDateLivraison')),
-				'nouvelleDateLivraison'=>($request->input('nouvelleDateLivraison'))
-				));
+					$element=Panier::where("user_id",$idUser)->where("contratclient_id",$value)->get();
+					if (count($element)>0){
+						//echo json_encode($element);
+						foreach ($element as $key => $value) {
+							$panier=Panier::find($value->id);
+							# code...
+							//echo "valueZ : ".$panier->id;
+							/*$panier=Panier::find($value[0]->id);
+							//echo json_encode($element);
+							//echo "element Panier: ".$element[0]->id;*/
+							$panier->livraison_id=$newIdLivraison;
+							$panier->save();
+						}
+						
+
+						// 1 => recuperer l'id dans la table de livraison ou dateLivraion = je ne serais pas là;
+						//echo "<br>// 1 => recuperer l'id dans la table de livraison ou dateLivraion = je ne serais pas là;";
+						/*$datePasLa=$request->input('ancienneDateLivraison');
+						echo "datePasLa $datePasLa";
+						$elementA = Livraisons::where('dateLivraison',$datePasLa)->get();
+						$idA=$elementA[0]->id;*/
+						//echo $idA;
+
+
+						// 3 => dans panier changer l'id (de 1) de la livraison des produits (du contrat cocher ) par l'id (de 2)
+						
+						/*$element=Panier::find($idA);
+						$element->id=$idB;
+						$element->save();
+
+						*/
+
+						//'id','livraison_id','user_id','ancienneDateLivraison','nouvelleDateLivraison'
+						Report::create(
+							array(
+								//'id'=>($request->input('id')),
+								//'livraison_id'=>($request->input('livraison_id')),
+								'livraison_id'=>$newIdLivraison,
+								'user_id'=>($idUser),
+								'ancienneDateLivraison'=>($request->input('ancienneDateLivraison')),
+								'nouvelleDateLivraison'=>($request->input('nouvelleDateLivraison'))
+								));
+					}
+				}
+			}
+		}
+		
 		return redirect('list-report');
-	}
-	
+}
+
 	// ----- update ----- 
-	public function update($id)
-	{
-		$idUser= Auth::user()->id;
-		$element=Report::find($id);
-		$data = array(
-			'id' => $id, 
-			'livraison_id'=>($element->livraison_id),
-			'user_id'=>$idUser,
-			'ancienneDateLivraison'=>($element->ancienneDateLivraison),
-			'nouvelleDateLivraison'=>($element->nouvelleDateLivraison)
-			);
-		return view('amapien/report/updateReport',$data);
-	}	
-	public function updateInsert(Request $request)
-	{
-		$element=Report::find($request->input('id'));
-		$element->ancienneDateLivraison=($request->input('ancienneDateLivraison'));
-		$element->nouvelleDateLivraison=($request->input('nouvelleDateLivraison'));
-		$element->save();
-		return redirect('list-report');
-	}
+public function update($id)
+{
+	$idUser= Auth::user()->id;
+	$element=Report::find($id);
+	$data = array(
+		'id' => $id, 
+		'livraison_id'=>($element->livraison_id),
+		'user_id'=>$idUser,
+		'ancienneDateLivraison'=>($element->ancienneDateLivraison),
+		'nouvelleDateLivraison'=>($element->nouvelleDateLivraison)
+		);
+	return view('amapien/report/updateReport',$data);
+}	
+public function updateInsert(Request $request)
+{
+	$element=Report::find($request->input('id'));
+	$element->ancienneDateLivraison=($request->input('ancienneDateLivraison'));
+	$element->nouvelleDateLivraison=($request->input('nouvelleDateLivraison'));
+	$element->save();
+	return redirect('list-report');
+}
 
 	// ----- delete ----- 
-	public function delete($id)
-	{
-		$element=Report::find($id);
-		$element->delete();
-		return redirect('list-report');
-	}
+public function delete($id)
+{
+	$element=Report::find($id);
+	$element->delete();
+	return redirect('list-report');
+}
 }

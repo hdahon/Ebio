@@ -59,7 +59,7 @@ Report
                                             <div class="col-md-6">
                                                 @if(count($contrats) > 0)
                                                 @foreach ($contrats as $key=> $contrat)
-                                                    <input type="checkbox" onclick="dateMax('{{$contrat[0]->dateDeFinLivraison}}')" name="contrat" value="{{$contrat[0]->id}}" /> {{$contrat[0]->titre}}<br>
+                                                    <input type="checkbox" onclick="dateMax('{{$contrat[0]->dateDeFinLivraison}}')" name="choixContrats[]" value="{{$contrat[0]->id}}" /> {{$contrat[0]->titre}}<br>
                                                 @endforeach
                                                 @endif
                                             </div>
