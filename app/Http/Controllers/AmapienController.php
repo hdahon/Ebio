@@ -16,39 +16,55 @@ class AmapienController extends Controller
 
 	public function change(Request $request)
 	{
-		$data=array();
-		return view('amapien/amap_change_info_compte')->with($data);
+		//$data=array();
+		$idUser= Auth::user()->id;
+		$user=User::find($idUser);
+		$conjoint=User::find($user->coadherant_id);
+		//echo $user;
+
+		// view('amapien/amap_change_info_compte')->with($data);
+		$data = array('userInfo' => ($user), 'conjointInfo' => ($conjoint));
+		//return view('amapien/report/report',$data);
+
+		return view('amapien/amap_change_info_compte',$data);
 	}
 
 	public function saveData(Request $request)
 	{
 
-		$user= User::find(Auth::user()->id);
+		$idUser= Auth::user()->id;
+		$user=User::find($idUser);
 
-		if( null != $request->input('nom') ){
-			$user->nom = $request->input('nom');
+		$user->nom = $request->input('nom');
+		$user->prenom = $request->input('prenom');
+		$user->email = $request->input('mail');
+		$user->tel = $request->input('tel');
+
+
+		$newPassword=$request->input('newPassword');
+		$newPassword2=$request->input('newPassword2');
+		$chp_newMDP=$request->input('chp_newMDP');
+
+		if ($chp_newMDP=="false"){
+
+		}else{
+			$password=bcrypt($request->input('newPassword'));
+        	$user->password=$password;
 		}
-		if( null != $request->input('prenom') ){
-			$user->prenom = $request->input('prenom');
-		}
-		if( null != $request->input('mail') ){
-			$user->email = $request->input('mail');
-		}
-		if( null != $request->input('numero') ){
-			$user->numero = $request->input('numero');
-		}
-		if( null != $request->input('nomC') ){
-			$user->nomCAdherant = $request->input('nomC');
-		}
-		if( null != $request->input('prenomC') ){
-			$user->prenomCAdherant = $request->input('prenomC');
-		}
-		if( null != $request->input('numeroC') ){
-			$user->numeroCAdherant = $request->input('numeroC');
-		}
+
 
 		$user->save();
-		return view('amapien/amap_change_info_compte');
+
+		$conjoint=User::find($user->coadherant_id);
+		if (count($conjoint)>0){
+			$conjoint->nom = $request->input('nomC');
+			$conjoint->prenom = $request->input('prenomC');
+			$conjoint->email = $request->input('mailC');
+			$conjoint->tel = $request->input('telC');
+			$conjoint->save();
+		}
+		$data = array('userInfo' => ($user), 'conjointInfo' => ($conjoint));
+		return view('amapien/amap_change_info_compte',$data);
 
 	}
 
