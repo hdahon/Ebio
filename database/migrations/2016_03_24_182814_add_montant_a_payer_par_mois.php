@@ -15,6 +15,9 @@ class AddMontantAPayerParMois extends Migration
         Schema::table('contratClients', function($table) {
             $table->double('montantParMois');
         });
+        Schema::table('panier', function($table) {
+            $table->double('contratClient_id');
+        });
     }
 
     /**
@@ -26,6 +29,9 @@ class AddMontantAPayerParMois extends Migration
     {
         Schema::table('contratClients', function($table) {
            $table->dropColumn('montantParMois');
+        });
+        Schema::table('panier', function($table) {
+           $table->dropColumn('contratClient_id');
         });
     }
 }
