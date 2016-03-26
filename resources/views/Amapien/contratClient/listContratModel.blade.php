@@ -16,7 +16,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($contrats as $row)
+                        @foreach ($contrats as $key=>$row)
                         <tr>
                             <td>
                                 {{$row->titre}}

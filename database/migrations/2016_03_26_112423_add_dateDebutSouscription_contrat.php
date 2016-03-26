@@ -13,8 +13,10 @@ class AddDateDebutSouscriptionContrat extends Migration
     public function up()
     {
          Schema::table('contrats', function (Blueprint $table) {
-            $table->date('debutSouscription');
-            $table->date('finSouscription');
+            $table->timestamp('debutSouscription');
+            $table->timestamp('finSouscription');
+            $table->timestamp('vacance1');
+            $table->timestamp('vacance2');
         });
     }
 
@@ -28,6 +30,8 @@ class AddDateDebutSouscriptionContrat extends Migration
        Schema::table('contrats', function (Blueprint $table) {
             $table->dropColumn('debutSouscription');
             $table->dropColumn('finSouscription');
+             $table->dropColumn('vacance1');
+            $table->dropColumn('vacance2');
         });
     }
 }

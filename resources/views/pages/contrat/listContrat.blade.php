@@ -23,39 +23,40 @@
                         @if(count($contrats[$key]) > 0)
                         <tr>
                             <td>
-                                {{$contrats[$key][0]->titre}}
+                                {{$row->titre}}
                                 
                             </td>
                             <td>
-                                {{date_format(date_create($row[0]->debutLivraison),'d-m-Y')}}
+                                {{date_format(date_create($row->debutLivraison),'d-m-Y')}}
                                 
                             </td>
                             <td>
                                
-                                {{date_format(date_create($row[0]->dateDeFinLivraison),'d-m-Y')}}                            
+                                {{date_format(date_create($row->dateDeFinLivraison),'d-m-Y')}}                            
                             </td>
                             <td>
                                
-                                {{date_format(date_create($row[0]->debutSouscription),'d-m-Y')}}
-                                {{date_format(date_create($row[0]->FinSouscription),'d-m-Y')}}                            
+                                {{date_format(date_create($row->debutSouscription),'d-m-Y')}}
+                                -
+                                {{date_format(date_create($row->FinSouscription),'d-m-Y')}}                            
                             </td>
                             <td>
-                               @if($row[0]->vacance != "0000-00-00 00:00:00")
-                                {{date_format(date_create($row[0]->vacance),'d-m-Y')}}
+                               @if($row->vacance != "0000-00-00 00:00:00")
+                                {{date_format(date_create($row->vacance),'d-m-Y')}}
                                 @endif
                                 <br>
-                                @if($row[0]->vacance1 != "0000-00-00 00:00:00")
-                                {{date_format(date_create($row[0]->vacance1),'d-m-Y')}} 
+                                @if($row->vacance1 != "0000-00-00 00:00:00")
+                                {{date_format(date_create($row->vacance1),'d-m-Y')}} 
                                 @endif
                                 <br>
-                                @if($row[0]->vacance2 != "0000-00-00 00:00:00")
-                                {{date_format(date_create($row[0]->vacance2),'d-m-Y')}}  
+                                @if($row->vacance2 != "0000-00-00 00:00:00")
+                                {{date_format(date_create($row->vacance2),'d-m-Y')}}  
                                 @endif                               
                             </td>
                             <td>
-                                <a href="{{ url('details-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Détails</a>
-                                    <a href="{{ url('modifier-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Modifier</a>
-                                    <a href="{{ url('supprimer-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm confirm">Supprimer</a>
+                                   <a href="{{ url('details-contrat/'.$row->id) }}" class="btn btn-info btn-sm">Détails</a>
+                                    <a href="{{ url('modifier-contrat/'.$row->id) }}" class="btn btn-info btn-sm">Modifier</a>
+                                    <a href="{{ url('supprimer-contrat/'.$row->id) }}" class="btn btn-info btn-sm confirm">Supprimer</a>
                             </td>
                             
                             

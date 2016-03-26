@@ -26,38 +26,55 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('create-contrat') }}">
+                        <form  role="form" method="POST" action="{{ url('create-contrat') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                              <div class="form-group">
-                                <label class="col-md-6 control-label">Catégorie de produit</label>
-                                <div class="col-md-8">
-                                    <select class=form-control name="categorie">
+                                <label for="c">Catégorie de produit</label>
+                                
+                                    <select class="form-control" id="c" name="categorie">
+                                        <option value="" selected>Choix</option>
                                         @foreach ($categories as $cat)                    
                                         <option value={{$cat->id}}>{{$cat->libelle}}</option>
                                         @endforeach
                                         
                                     </select>
-                                </div>
+                                
                             </div>
-                             <div class="form-group">
-                                <label class="col-md-6 control-label">Date de debut</label>
-                                <div class="col-md-8 ">
-                                    <input class="form-control input-lg date "    name="dateDebut" >
-                                    </div>
+                              <div class="form-group">
+                                 <div class="col-xs-6">
+                                <label class="control-label">Debut & fin souscription </label>
+                            </div>
+                             <div class="col-xs-6">
+                                    <input class="form-control " type="date"  placeholder="jj-mm-yyyy"  name="debutS"  >
+                                    <br>
+                                    <input class="form-control col-sm-5 " type="date"  placeholder="jj-mm-yyyy"  name="finS"  >
+                                 </div>   
                                 </div>
+                             <div class="form-group">
+                                <label for="dateDebut">Date de debut</label>
+                                
+                                    <input class="form-control input-lg date " type="date"  placeholder="jj-mm-yyyy" name="dateDebut" >
+                                    
+                                </div>
+                          
                         
                          <div class="form-group">
-                                <label class="col-md-6 control-label">Date de fin</label>
-                                <div class="col-md-8 ">
-                                    <input class="form-control input-lg date"  name="dateFin"  >
-                                    </div>
+                                <label class="control-label">Date de fin</label>
+                                    <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"  name="dateFin"  >
                                 </div>
                              <div class="form-group">
-                                <label class="col-xs-6 control-label">Vacances</label>
-                                <div class="col-xs-8 ">
-                                    <input class="form-control input-lg date"   name="vacance" >
-                                    </div>
+                                <label class="control-label">Vacance</label>
+                                    <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"   name="vacance" >
                                 </div>  
+                              <div class="form-group">
+                                <label class="control-label">Vacance</label>
+                                    <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"   name="vacance1" >
+                                </div>  
+                              <div class="form-group">
+                                <label class="control-label">Vacance</label>
+                                    <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"   name="vacance2" >
+                                </div>        
                             <div class="form-group">
                                 <div class="col-md-12 text-right">
                                     <button type="submit" class="btn btn-info btn-sm">Ajouter</button>

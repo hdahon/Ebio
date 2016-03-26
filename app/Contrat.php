@@ -14,7 +14,7 @@ class Contrat extends Model
     protected $table = 'contrats';
 
 
-    protected $fillable = ['titre', 'vacance' , 'categorie_id','debutLivraison','dateDeFinLivraison'];
+    protected $fillable = ['titre', 'vacance' , 'vacance1' , 'vacance2' , 'categorie_id','debutLivraison','dateDeFinLivraison','debutSouscription','finSouscription'];
 
 
    

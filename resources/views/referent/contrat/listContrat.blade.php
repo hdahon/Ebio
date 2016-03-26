@@ -11,8 +11,10 @@
                         <thead class="thead-inverse">
                         <tr>
                             <th>Catégories</th>
-                            <th>Date Début</th>
-                            <th>Date Fin</th>
+                            <th>Début Livrasion</th>
+                            <th>Fin Livraison</th>
+                            <th>Debut & fin Souscription</th>
+                            <th>Vacances</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -32,7 +34,24 @@
                                
                                 {{date_format(date_create($row[0]->dateDeFinLivraison),'d-m-Y')}}                            
                             </td>
-                            
+                            <td>
+                               
+                                {{date_format(date_create($row[0]->debutSouscription),'d-m-Y')}}
+                                {{date_format(date_create($row[0]->FinSouscription),'d-m-Y')}}                            
+                            </td>
+                            <td>
+                               @if($row[0]->vacance != "0000-00-00 00:00:00")
+                                {{date_format(date_create($row[0]->vacance),'d-m-Y')}}
+                                @endif
+                                <br>
+                                @if($row[0]->vacance1 != "0000-00-00 00:00:00")
+                                {{date_format(date_create($row[0]->vacance1),'d-m-Y')}} 
+                                @endif
+                                <br>
+                                @if($row[0]->vacance2 != "0000-00-00 00:00:00")
+                                {{date_format(date_create($row[0]->vacance2),'d-m-Y')}}  
+                                @endif                               
+                            </td>
                             <td>
                                 <a href="{{ url('details-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Détails</a>
                                     <a href="{{ url('modifier-contrat/'.$row[0]->id) }}" class="btn btn-info btn-sm">Modifier</a>

@@ -18,7 +18,8 @@ class ContratController extends Controller
 
   /* Liste des tous les modèle de contrat  */
      public function getAllContrat(){
-        if(Auth::user()->roleamapien_id == 3){
+        //si referent ne recuperer que les contrats dont il est le referents 
+        if(Auth::user()->roleamapien_id == 3){  
          $referent = Auth::user()->id;
          $categories=Categorie::where("referent_id",$referent)->get();
          $iter=0;
@@ -30,13 +31,31 @@ class ContratController extends Controller
          $data = array('contrats' => $contrats);
          return view('referent/contrat/listContrat',$data);
        }
+         //si admin et referent plus et aussi amapien pour pouvoir souscrire directement à un contrat
        else{
           $contrats = Contrat::all();
-          $data = array('contrats' => $contrats);
+          $contrat=array();
           if(Auth::user()->roleamapien_id == 1){
+            $iter=0;
+            foreach ($contrats as $value) {
+
+                $debutS=date_format(date_create($value->debutSouscription),'Y/m/d');
+                $finS=date_format(date_create($value->finSouscription),'Y/m/d');
+                $jour=date('Y/m/d',time());
+                $t1= round((strtotime($jour)-strtotime($debutS))/(60*60*24));
+                $t2=round((strtotime($jour)-strtotime($finS))/(60*60*24));
+                
+                if($t1>0 && $t2<0){
+                    $contrat[$iter]=$value;
+                    $iter++;
+                }
+            }
+           
+            $data = array('contrats' => $contrat);
              return view('amapien/contratClient/listContratModel',$data);
           }else{
-          return view('referentPlus/contrat/listContrat',$data);
+            $data = array('contrats' => $contrats);
+          return view('pages/contrat/listContrat',$data);
           } 
        }
      }
@@ -45,15 +64,18 @@ class ContratController extends Controller
     public function getContrat(Request $request)
     {             
             $role= Auth::user()->roleamapien_id; 
+            //referent
             if($role == 3){
               $referent= Auth::user()->id; 
               $categories = Categorie::where("referent_id",$referent)->get();
               $data = array('categories' =>$categories);
               return view('referent/contrat/newContrat',$data);
-            }else {
+            }
+            //-- refrent plus et admin
+            else {
               $categories = Categorie::all();
               $data = array('categories' =>$categories);
-              return view('referentPlus/contrat/newContrat',$data);
+              return view('pages/contrat/newContrat',$data);
             }
             
     }
@@ -61,82 +83,115 @@ class ContratController extends Controller
 
     public function postContrat(Request $request)
     {
+             $this->validate($request, [
+                'categorie' => 'required',
+                'dateDebut' => 'required',
+                'dateFin' => 'required',
+                 'debutS' => 'required',  
+                 'finS' => 'required', 
+                 ]);
+
             $categorie=$request->input('categorie');
-            echo $categorie;
             $libelle=Categorie::find($categorie);
             $titre =$libelle->libelle;
             $dateDebut=  date("Y-m-d", strtotime($request->input('dateDebut')));          
             $dateFin = date("Y-m-d", strtotime($request->input('dateFin')));
             $vacance = date("Y-m-d", strtotime($request->input('vacance')));
-            Contrat::create(array(
+            $vacance1 = date("Y-m-d", strtotime($request->input('vacance1')));
+            $vacance2 = date("Y-m-d", strtotime($request->input('vacance2')));
+            $debutS=  date("Y-m-d", strtotime($request->input('debutS')));          
+            $finS = date("Y-m-d", strtotime($request->input('finS')));
+            if($vacance1 ==""){
+                $vacance1=date("Y-m-d",strtotime("0000-00-00"));
+            }
+            if($vacance2 ==""){
+                $vacance2=date("Y-m-d",strtotime("0000-00-00"));
+            }
+                Contrat::create(array(
                 'titre' =>$titre,
                 'categorie_id' =>$categorie,
                 'debutLivraison' =>$dateDebut,
                 'dateDeFinLivraison' =>$dateFin,
+                'debutSouscription' =>$debutS,
+                'finSouscription' =>$finS,
                 'vacance' =>$vacance,
+                'vacance1' =>$vacance1,
+                'vacance2' =>$vacance1,
+
             ));
-           
-            
-          if(Auth::user()->roleamapien_id == 3 ){
+                    
             return redirect('liste-contrat');
-          } else{ 
-            return redirect('liste-contrat');
-          }
     }
 
       
 
-        /* Afficher le details d'un contrat */
+        /* Afficher le un contrat */
       public function showContrat($id)
        {        
             $TabMois=array("janvier", "février", "mars", "avril", "mai", "juin",
             "juillet", "août", "septembre", "octobre", "novembre", "décembre");
-            $ReferentPlus= Auth::user()->id; 
-            $contrat = Contrat::find($id);
-            $amapien = array();
-            $categorie = Categorie::find($contrat->categorie_id);
-            $producteur = User::find($categorie->producteur_id);
-            $dL=date_create($contrat->debutLivraison);
-            $dF=date_create($contrat->dateDeFinLivraison);
-            $dates=$this->getDates(date_format($dL,"d-m-Y"), date_format($dF,"d-m-Y"));
+
             $semaineImpaire=array();
             $semainePaire =array();
+            $vacances=array();
+
+            $ReferentPlus= Auth::user()->id; 
+            $contrat = Contrat::find($id);
+            $categorie = Categorie::find($contrat->categorie_id);
+            $producteur = User::find($categorie->producteur_id);
+            $periodicite=Periodicite::find($categorie->periodicite_id);
+
+            $dL=date_create($contrat->debutLivraison);
+            $dF=date_create($contrat->dateDeFinLivraison);
+            //recuperation de tous les mardi entre date de debut livraison et fin livraison
+            $dates=$this->getDates(date_format($dL,"d-m-Y"), date_format($dF,"d-m-Y"));
+            //titre contrat exmpl octobre2015 -mars2016
             $dDebut = $TabMois[intval(explode("-",$contrat->debutLivraison)[1])-1]." ".explode("-",$contrat->debutLivraison)[0];
             $dFin =$TabMois[intval(explode("-",$contrat->dateDeFinLivraison)[1])-1]." ".explode("-",$contrat->dateDeFinLivraison)[0];
             $periode =$dDebut."-".$dFin;
-            $periodicite=Periodicite::find($categorie->periodicite_id);
-            $allPeriodicite =Periodicite::all();
+            
+            //recuperation des date de vacance 3  au max
+            $vacance[0] = date(" d-m-Y",strtotime($contrat->vacance));
+            $vacance[1] = date(" d-m-Y",strtotime($contrat->vacance2));
+            $vacance[2] = date(" d-m-Y",strtotime($contrat->vacance));
+
             for($i=0;$i<count($dates);$i++) {
-                if($dates[$i]['semaine']%2 ==0 ){
-                    $semainePaire[] = $dates[$i]['date'];
-                }
-                else{
-                    $semaineImpaire[] =$dates[$i]['date'];
-                }
+                
+                if($dates[$i]['date'] == $vacance[0]){
+                    $vacances[]=$vacance[0];
+                }else if($dates[$i]['date'] == $vacance[1] )
+                {
+                    $vacances[]=$vacance[1];
+                }else if($dates[$i]['date'] == $vacance[2] ){
+                    $vacances[]=$vacance[2];
+                }else{
+                   
+                    if($dates[$i]['semaine']%2 ==0 ){
+                        $semainePaire[] = $dates[$i]['date'];
+                    }
+                 else{
+                        $semaineImpaire[] =$dates[$i]['date'];
+                    }
                
-              
-            }
-            $vacance = $contrat->vacance;
-            $data = array('amapien' => $amapien,
-                            'categorie' =>$categorie,
+              }
+          }
+            
+
+            $data = array('categorie' =>$categorie,
                             'contrat' =>$contrat,
                             'producteur' =>$producteur,
                             'semaineImpaire' =>$semaineImpaire,
                              'semainePaire' =>$semainePaire,
                              'periode' =>$periode,
                              'periodicite'=>$periodicite,
-                             'vacance' =>$vacance,
+                             'vacance' =>$vacances,
                              'dateDebut'=>date_format($dL,"d-m-Y"),
                              'dateFin'=>date_format($dF,"d-m-Y")
                              );
-             if(Auth::user()->roleamapien_id == 3 ){
-                return view('referent/contrat/showContrat',$data);
+            
+              return view('pages/contrat/showContrat',$data);
 
-             }else {
-              return view('referentPlus/contrat/showContrat',$data);
-
-             }
-
+             
         }
 
 
@@ -149,14 +204,32 @@ class ContratController extends Controller
             $contrat=Contrat::find($id);
             $dD=date_format(date_create($contrat->debutLivraison),"d-m-Y");
             $dF=date_format(date_create($contrat->dateDeFinLivraison), "d-m-Y");
+            $dS=date_format(date_create($contrat->debutSouscription), "d-m-Y");
+            $fS=date_format(date_create($contrat->finSouscription), "d-m-Y");
+            $vacance=date_format(date_create($contrat->vacance), "d-m-Y");
+            $vacance1=date_format(date_create($contrat->vacance1), "d-m-Y");
+            $vacance2=date_format(date_create($contrat->vacance2), "d-m-Y");
+            if($contrat->vacance=="0000-00-00 00:00:00"){
+                $vacance="";
+            }
+            if($contrat->vacance1=="0000-00-00 00:00:00"){
+                  $vacance1="";
+            }
+            if($contrat->vacance2 =="0000-00-00 00:00:00"){
+                  $vacance2="";
+            }
             $data = array('categories' =>$categories,
                             'contrat'=>$contrat,
                              'dateDebut'=>$dD,
-                             'dateFin'=>$dF,);
+                             'dateFin'=>$dF,
+                             'vacance'=>$vacance,
+                             'vacance1'=>$vacance1,
+                             'vacance2'=>$vacance2,
+                             );
              if(Auth::user()->roleamapien_id == 3 ){
                return view('referent/contrat/formModifContrat',$data);
              }else {
-               return view('referentPlus/contrat/formModifContrat',$data);
+               return view('pages/contrat/formModifContrat',$data);
              }
         }
 
@@ -172,12 +245,16 @@ class ContratController extends Controller
             $dateDebut=  date("Y-m-d", strtotime($request->input('dateDebut')));          
             $dateFin = date("Y-m-d", strtotime($request->input('dateFin')));
             $vacance = date("Y-m-d", strtotime($request->input('vacance')));
+            $vacance1 = date("Y-m-d", strtotime($request->input('vacance1')));
+            $vacance2= date("Y-m-d", strtotime($request->input('vacance2')));
             $contrat=Contrat::find($id);
             $contrat->titre=$titre;
             $contrat->categorie_id=$categorie;
             $contrat->debutLivraison=$dateDebut;
             $contrat->dateDeFinLivraison=$dateFin;
             $contrat->vacance=$vacance;
+            $contrat->vacance1=$vacance1;
+            $contrat->vacance2=$vacance2;
 
             $contrat->save();
           return redirect('liste-contrat');
@@ -223,5 +300,7 @@ class ContratController extends Controller
             }
             return $date;
         }
+
+
      
 }

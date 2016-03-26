@@ -10,6 +10,7 @@ use App\ContratClient;
 use App\Categorie;
 use App\Livraisons;
 use App\Panier;
+use App\Periodicite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -91,7 +92,6 @@ class PanierController extends Controller
     $produits=Produit::where("categorie_id",$categorie->id)->get();
     if(strtolower($periodicite->libelle)==strtolower("Ponctuel")){
       $livraisons=Livraisons::All();
-
       foreach ($livraisons as $key => $value) {
          $debut=$value->dateLivraison;
 
@@ -99,19 +99,41 @@ class PanierController extends Controller
           $livraisons=$value;
           break;
          }
-         //echo date_format(date_create($categorie->debutLivraison),"Y-m-d");
+         
       }
-      //echo $livraisons;
-      
-    }else{
-      $livraisons=Livraisons::all();
+          }else{
+          $livraison=Livraisons::all();
+          $dateD=date_format(date_create($contrats->debutLivraison),'Y/m/d');
+          $dateF=date_format(date_create($contrats->dateDeFinLivraison),'Y/m/d');
+          $vacance=date_format(date_create($contrats->vacance),'Y/m/d');
+          $vacance1=date_format(date_create($contrats->vacance1),'Y/m/d');
+          $vacance2=date_format(date_create($contrats->vacance2),'Y/m/d');
+
+          //prendre que les date de livraion applicable au contrat
+          foreach ($livraison as $key => $value) {
+            $dl=date_format(date_create($value->dateLivraison),'Y/m/d');
+            $t1= round((strtotime($dl)-strtotime($dateD))/(60*60*24));
+            $t2=round((strtotime($dl)-strtotime($dateF))/(60*60*24));
+            $t3=round((strtotime($dl)-strtotime($vacance))/(60*60*24));
+            $t4=round((strtotime($dl)-strtotime($vacance1))/(60*60*24));
+            $t5=round((strtotime($dl)-strtotime($vacance2))/(60*60*24));
+            if($t1>0 && $t2<0 && $t3 !=0 && $t4 !=0 && $t5 !=0){
+              
+              $livraisons[$key]=$value;
+          
+            }
+          }
+          
+                
+
     }
     $data = array(
       'contrats' => $contrats,
       'amapiens' =>$amapiens,
       'periodicite'=>$periodicite,
       'produits'=>$produits,
-      'livraisons'=>$livraisons
+      'livraisons'=>$livraisons,
+      'contratclient_id'=>$contratClient->id
       );
     if(session('role')==1){
       return view('amapien/panier/choixDAteLivraison',$data);
@@ -133,14 +155,15 @@ class PanierController extends Controller
     $prix=$request->input('prix');
     $liv=$request->input('livraisons');
     $periode=$request->input('periodicite_id');
-    $contrat_id=$request->input('contrat_id');
-    echo $amapien;
+    $contrat_id=$request->input('contratclient_id');
+   $montant=0;
     foreach ($produits as $key=>$prod){
       $produit=$prod;
       $quantite=$quantites[$key];
+      echo $quantite;
       $prixx=$prix[$key];
       $livraison=$liv[$key];
-      echo $livraison." ".$prixx;
+      $montant=$prix;
       if(count($livraison)>1){
         foreach ($livraisons[$key] as $key => $value) {
           Panier::create(array(
@@ -148,18 +171,22 @@ class PanierController extends Controller
                     'user_id'=>$amapien,
                     'produit_id'=>$produit,
                     'quantite'=>$quantite,
-                    'montant'=>$prixx
+                    'montant'=>$prixx,
+                    'contratclient_id'=>$contrat_id
             ));
         }
       }else{
-      Panier::create(array(
+        Panier::create(array(
               'livraison_id'=>$livraison,
                 'user_id'=>$amapien,
                 'produit_id'=>$produit,
                 'quantite'=>$quantite,
-                'montant'=>$prixx
+                'montant'=>$prixx,
+                'contratclient_id'=>$contrat_id
             ));
     }
+    $element=ContratClient::find($contrat_id);
+    $element->montantParMois=$montant;
     }
     
     return redirect('list-contratsClients');
