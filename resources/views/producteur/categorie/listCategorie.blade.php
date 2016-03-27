@@ -18,6 +18,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                            
                         @foreach ($categories as $key => $row)
                         <tr>
                             <td>

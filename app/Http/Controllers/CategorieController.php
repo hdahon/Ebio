@@ -89,11 +89,11 @@ public function postCreateCategorie(Request $request)
       public function getAllCategories(){
 
         $idUser= Auth::user()->id; 
-        //echo ($idUser);
+
         if (session('role') ==   2){
             //echo ($idUser);
 
-         $categories = Categorie::where('producteur_id',$idUser);
+         $categories = Categorie::where('producteur_id',$idUser)->get();
         }else{
          $categories = Categorie::paginate(5);
         }

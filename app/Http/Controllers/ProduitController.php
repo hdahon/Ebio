@@ -101,8 +101,40 @@ class ProduitController extends Controller
                 return view('referentPlus/produit/produit',$data);
         }else if (session('role') ==   3){
                 return view('referent/produit/liste_produit',$data);
+        // producteur
         }else if (session('role') ==   2){
-                return view('producteur/produit/produit',$data);
+            $idUser= Auth::user()->id;
+            //echo $idUser."<br>";
+            $categories = Categorie::where("producteur_id",$idUser)->get();
+            $unites=array();
+            //echo json_encode($categories);
+            foreach ($categories as $key => $value) {
+                # code...
+                $produitP = Produit::where("categorie_id",$value->id)->get();
+                foreach ($produitP as $key => $value) {
+                    # code...
+                    $produits[$key]=$value->id;
+                    
+                    /*echo $value->unite_id;
+                    $unite=Unite::where("id",$value->unite_id)->get();
+                    echo $unite->libelle;
+                    echo "unite ".json_encode($unite);
+                    foreach ($unite as $key => $value) {
+                        $unites[$key]=$value->libelle;
+                    }
+                    */
+                }
+            }
+            //echo json_encode($unites);
+            //echo json_encode($produits);
+            $products=Produit::whereIn('id',$produits)->get();
+
+            //$unites=Unite::whereIn('id',$products)
+            $data = array('produits' => $products, 'unites'=>Unite::All());
+
+            //$data = array('produits' => $products);
+            //echo json_encode($data);
+            return view('producteur/produit/produit',$data);
         }
      }
 

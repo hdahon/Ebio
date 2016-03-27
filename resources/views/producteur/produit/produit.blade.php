@@ -1,7 +1,6 @@
 @extends('template')
 @section("title")
-    Reférent
-    @endsection
+@endsection
 @section('content')
 
     <div class="row">
@@ -24,20 +23,24 @@
                         @foreach ($produits as $key => $row)
                         <tr>
                             <td>
-                                {{$row[$key]->nomProduit}}
+                                {{$row->nomProduit}}
                             </td>
                             <td>
-                                {{$row[$key]->unite_id}}
+                                @foreach ($unites as $key => $unite)
+                                @if($row->unite_id==$unite->id)
+                                {{$unite->libelle}}
+                                @endif
+                                @endforeach
                             </td>
                              <td>
-                                {{$row[$key]->prix}} euros
+                                {{$row->prix}} €
                             </td>
                              
                             <td>
-                                 <a href="{{ url('produit-details/'.$row[$key]->id) }}" class="btn  btn-info btn-sm">Détails</a>
+                                 <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
                                  @if(session('role')>=3)
-                                 <a href="{{ url('produit-modifier/'.$row[$key]->id) }}" class="btn  btn-info btn-sm">Modifier</a>
-                                 <a href="{{ url('/produit-supprimer/'.$row[$key]->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
+                                 <a href="{{ url('produit-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
+                                 <a href="{{ url('/produit-supprimer/'.$row->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
                                  @endif
                             </td>
                         </tr>
