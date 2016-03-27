@@ -24,11 +24,10 @@
                         @foreach ($produits as $key=>$row)
                         @if(count($produits[$key]) !=null) 
                         <tr>
-                            
                            <td>
                                 {{$produits[$key][0]->nomProduit}}
                             </td>
-                             <td>
+                             <td>                             
                                 {{$produits[$key][0]->unite_id}}
                             </td>
                              <td>

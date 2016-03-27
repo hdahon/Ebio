@@ -94,7 +94,8 @@ class ProduitController extends Controller
                         'categories'=>$categories,
                         'producteurs'=>$producteurs,
                         'referents'=>$referents,
-                        'periodicites'=>$periodicites);
+                        'periodicites'=>$periodicites,
+                        'unites'=>Unite::All());
          if (session('role') ==   5){
                 return view('admin/produit/produit',$data);
         }else if (session('role') ==   4){
