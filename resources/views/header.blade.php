@@ -22,7 +22,7 @@ if(Session::has('role') and Auth::check()){
 
         <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
             <ul class="nav navbar-nav">
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accueil <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @if (!$niveau)
