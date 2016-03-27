@@ -15,6 +15,7 @@ use App\Produit;
 use App\Panier;
 use App\Livraisons;
 use App\Typepanier;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ContratClientController extends Controller
 {
@@ -239,9 +240,11 @@ class ContratClientController extends Controller
                              'montant'=>$montant
                              );
             
-                return view('amapien/contratClient/showContrat',$data);
-
-            
+/*                return view('amapien/contratClient/showContrat',$data);
+*/
+             $pdf = PDF::loadView('amapien/contratClient/showContrat', $data);
+             return $pdf->stream();
+             //('invoice.pdf');
         }
 
 

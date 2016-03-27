@@ -69,7 +69,7 @@ Route::get('delete-roles/{id}', 'RoleController@delete');
 ------------------------Route livraison --------------------
 */
 // -- list
-Route::get('list-livraisons', 'LivraisonsController@getAll');
+Route::get('list-livraisons/{type}', 'LivraisonsController@getAll');
 // -- create
 Route::get('create-livraisons', 'LivraisonsController@insert');
 Route::post('livraisons/new', 'LivraisonsController@post');
@@ -80,7 +80,8 @@ Route::post('livraisons/update', 'LivraisonsController@updateInsert');
 Route::get('delete-livraisons/{id}', 'LivraisonsController@delete');
 // -- editer
 Route::get('editer-livraisons/{id}', 'LivraisonsController@editer');
-
+//-pdf
+Route::get('imprimer/{id}','LivraisonsController@imprimer');
 
 /*
 ------------------------Route report --------------------

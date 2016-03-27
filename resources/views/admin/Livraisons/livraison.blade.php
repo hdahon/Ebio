@@ -10,7 +10,14 @@
                         <tr>
                            
                             <th>Date de livraison</th>                            
-                            <th>Action  <a class="btn btn-info">Ancien</a></th>
+                            <th>Action 
+                            @if($type == 1)
+                             <a class="btn btn-info" href="{{ url('list-livraisons/2') }}">Ancien</a>
+                             @elseif($type==2)
+                             <a class="btn btn-info" href="{{ url('list-livraisons/1') }}">A Venir</a>
+                             @endif
+
+                         </th>
                       </tr>
                     </thead>
                     <tbody>

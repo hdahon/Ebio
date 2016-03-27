@@ -13,14 +13,16 @@ use App\ContratClient;
 use App\Contrat;
 use App\Panier;
 use App\Produit;
-
+use App;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class LivraisonsController extends Controller
 {
 
 	// -- list
-	public function getAll()
-	{		
+	public function getAll($type)
+	{	
+		//if(session('role')=="" and Auth::check()){
 		$livraisons= array();
 		$categories=array();
 		$producteurs=array();
@@ -53,16 +55,23 @@ class LivraisonsController extends Controller
 			$t=round(((strtotime($dl))-(strtotime(date('Y/m/d',time()))))/(60*60*24));
 			//echo $t;
 			if($t>=0){
-				echo $value->dateLivraison ." ggg ".$t." ";
-				$livs[$value->livraison_id]=$value->id;
+				
+				$livs[$value->id]=$value->id;
 			}
 		}
-		echo count($livs);
-		 $livraisons=Livraisons::whereIn('id',$livs)->paginate(10);
-		$data = array('livraisons' => $livraisons);
+		if($type == 1){
+			$livraisons=Livraisons::whereIn('id',$livs)->paginate(10);
+	    }
+	    else if($type =2 ){
+	    	$livraisons=Livraisons::whereNotIn('id',$livs)->paginate(10);
+	    }
+		$data = array('livraisons' => $livraisons,'type'=>$type);
 		return view('admin/livraisons/livraison',$data);
 	}
+}/*lse{
+	return redirect('auth/logout');
 }
+}*/
 	
 
 	// ----- create ----- 
@@ -181,5 +190,27 @@ class LivraisonsController extends Controller
             return $date;
         }
 
+public function imprimer($id)
+{
+	  $element=Livraisons::find($id);
+		$categories=Categorie::all();
+		$contrats=Contrat::all();
+		$paniers=Panier::where("livraison_id",$element->id)->get();
+		$amapiens=array();
+		$catAmap=array();
+		foreach ($paniers as $key => $value) {
+				$prod=Produit::find($value->produit_id);
+				$amapiens[$key]=User::find($value->user_id);
+				//$panier[$value->user_id]=$value;
+				$catAmap[$key]=Categorie::find($prod->categorie_id);
+		}	
+		$data=array('element'=>$element,
+					'categories'=>$categories,
+					'amapiens'=>$amapiens,
+					'catAmapiens'=>$catAmap,
+					'paniers'=>$paniers);
+	$pdf = PDF::loadView('admin/livraisons/fichelivraisons.html', $data);
+	return $pdf->download('invoice.pdf');
+}
 
 }

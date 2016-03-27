@@ -18,7 +18,7 @@
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Livraisons<span class="caret"></span></a>
 	<ul class="dropdown-menu">
         <li><a href="{{ url('list-report') }}">Report</a></li>
-		<li><a href="{{ url('list-livraisons') }}">Livraisons</a></li>
+		<li><a href="{{ url('list-livraisons/1') }}">Livraisons</a></li>
 		<!--li> { !! link_to_action('Producteur\Livraison\LivraisonController@getLivraisonsAmap','Vos Livraisons',array(Auth::user()->id)) !!}</li-->
 	</ul>
 </li>
