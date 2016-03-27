@@ -131,7 +131,8 @@ class ProduitController extends Controller
             $products=Produit::whereIn('id',$produits)->get();
 
             //$unites=Unite::whereIn('id',$products)
-            $data = array('produits' => $products, 'unites'=>Unite::All());
+            $data = array('produits' => $products, 
+                        'categories'=>$categories,'unites'=>Unite::All());
 
             //$data = array('produits' => $products);
             //echo json_encode($data);

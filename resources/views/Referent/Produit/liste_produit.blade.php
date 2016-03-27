@@ -14,6 +14,7 @@
                         <tr>
                             <th>Produit</th>
                             <th>Unité</th>
+                            <th>Type panier</th>
                             <th>Prix</th>
                             <th>Catégorie</th>
                             <th>Actions</th>
@@ -35,7 +36,10 @@
                                 @endforeach
                             </td>
                              <td>
-                                {{$produits[$key][0]->prix}} euros
+                                {{$categories[$key]->typePanier}}
+                            </td>
+                             <td>
+                                {{$produits[$key][0]->prix}}€
                             </td>
                              <td>
                             <a href="{{ url('categorie-details/'.$categories[$key]->id) }}">

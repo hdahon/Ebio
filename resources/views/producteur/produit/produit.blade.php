@@ -14,6 +14,7 @@
                         <tr>
                             <th>Produit</th>
                             <th>Unité</th>
+                            <th>Type panier</th>
                             <th>Prix</th>
                             <th>Catégorie</th>
                             <th>Actions</th>
@@ -33,7 +34,10 @@
                                 @endforeach
                             </td>
                              <td>
-                                {{$row->prix}} €
+                                {{$categories[$key]->typePanier}}
+                            </td>
+                             <td>
+                                {{$row->prix}}€
                             </td>
                              
                             <td>
