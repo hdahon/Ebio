@@ -27,8 +27,12 @@
                            <td>
                                 {{$produits[$key][0]->nomProduit}}
                             </td>
-                             <td>                             
-                                {{$produits[$key][0]->unite_id}}
+                             <td>           
+                                @foreach ($unites as $keyy => $unite)
+                                @if($produits[$key][0]->unite_id==$unite->id)
+                                {{$unite->libelle}}
+                                @endif
+                                @endforeach
                             </td>
                              <td>
                                 {{$produits[$key][0]->prix}} euros
