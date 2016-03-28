@@ -6,6 +6,7 @@
                     
                     <div class="panel-body">
                         <h2>Liste des amapiens</h2>
+                         <div class="table-responsive">    
                         <table  class="table  table-bordered table-striped">
                         <thead class="thead-inverse">
                         <tr>
@@ -40,7 +41,7 @@
                          @endforeach    
 
                         </tbody>
-                        </table>
+                        </table></div>
                          <div class="pagination"><?php echo  $adherants->render();  ?> </div>   
                     </div>
                 </div>

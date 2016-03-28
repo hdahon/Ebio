@@ -7,6 +7,7 @@
                     <div class="panel-body">
                         <h1 class="text-center">Historique des paiement </h1>
                         <br> 
+                         <div class="table-responsive">    
                          <table class="table  table-bordered">
                             <h3 class="text-center"> {{$produit}}</h3>
                         <thead class="thead-inverse">
@@ -47,6 +48,7 @@
                          @endif     
                         </tbody>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>

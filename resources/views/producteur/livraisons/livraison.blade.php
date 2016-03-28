@@ -4,7 +4,7 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-body">
-
+                 <div class="table-responsive">    
                 <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                         <tr>
@@ -46,6 +46,7 @@
                         @endforeach       
                     </tbody>
                 </table>
+            </div>
                  <div class="pagination"><?php echo  $livraisons->render();  ?> </div>   
 
             </div>

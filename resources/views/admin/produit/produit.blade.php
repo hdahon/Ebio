@@ -10,6 +10,7 @@
                 
                 <div class="panel-body">
                     <h2>Liste des Produits</h2>
+                <div class="table-responsive">    
                     <table class="table  table-bordered">
                         <thead class="thead-inverse">
                         <tr>
@@ -52,6 +53,7 @@
                          @endforeach       
                         </tbody>
                         </table>
+                    </div>
     </div>
     </div>
         </div>

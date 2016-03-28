@@ -1,10 +1,10 @@
-/*
+
 body{
 	background: url("../img/agr2.jpg");
 }
-*/
 
-body{
+
+/*body{
 	background-image: url("http://il9.picdn.net/shutterstock/videos/1934806/thumb/1.jpg?i10c=img.resize(height:160)");
   	background-size: cover;
 }
@@ -14,4 +14,4 @@ body{
     border-radius: 10px;
     
     padding: 20px;
-}
+}*/

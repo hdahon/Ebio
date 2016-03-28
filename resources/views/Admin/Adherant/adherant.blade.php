@@ -7,7 +7,8 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-body">
-                <table class="table  table-bordered table-striped">
+                <div class="table-responsive">    
+                <table class="table  table-bordered  table-responsive">
                     <thead class="thead-inverse">
                         <tr>
                             <th>Nom</th>
@@ -55,6 +56,7 @@
                         @endforeach       
                     </tbody>
                 </table>
+            </div>
                 <div class="pagination"><?php echo  $adherants->render();  ?> </div>   
 
             </div>

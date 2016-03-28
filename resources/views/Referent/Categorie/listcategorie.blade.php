@@ -7,6 +7,7 @@
 
             <div class="panel-body">
                 <h2>Liste des catégories </h2>
+                 <div class="table-responsive">    
                 <table class="table  table-bordered">
                     <thead class="thead-inverse text-center">
                         <tr >
@@ -47,6 +48,7 @@
                     @endif
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 </div>

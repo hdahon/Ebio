@@ -8,7 +8,7 @@
                         @foreach($categories as $c)
                              <h2>Panier pour le contrat {{$c->libelle}} du {{$livraison->dateLivraison}}</h2>
                         @if(count($lignes) >0) 
-                       
+                        <div class="table-responsive">    
                             <table class="table table-bordered table-striped">
                                 <thead class="thead-inverse">
                                     <tr>
@@ -42,6 +42,7 @@
                                  @endforeach   
                                 </tbody> 
                             </table>
+                        </div>
                             <p class="text-right "><b>Total : <?php echo $count;?> €  </b></p>  
                         @endif
                         @endforeach         

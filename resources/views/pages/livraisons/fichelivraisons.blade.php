@@ -7,6 +7,7 @@
                 <a href="{{url('list-livraisons/1') }}" class="btn btn-info btn-sm">Retour</a>
                 <br>
                 <h1>Fiche de distribution du {{$date}}</h1>
+                 <div class="table-responsive">    
                 <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                         <tr>
@@ -31,6 +32,7 @@
                        @endforeach
                     </tbody>
                 </table>
+            </div>
                 <a href="{{url('editer-livraisons/2/'.$element->id)}}" class="btn btn-info">PDF</a>
             </div>
         </div>

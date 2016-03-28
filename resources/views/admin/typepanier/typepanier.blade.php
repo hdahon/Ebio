@@ -1,20 +1,12 @@
 @extends('template')
 @section('content')
 <script>
-$(document).ready(function() {
-    $(".confirm").click(function(event){
-        if(!confirm('Etes vous sûr(e)?')){
-            event.stopPropagation();
-            event.stopImmediatePropagation();
-            return false;
-        }
-    });
-});
 </script>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-body">
+                 <div class="table-responsive">    
                 <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                         <tr>
@@ -36,6 +28,7 @@ $(document).ready(function() {
                         @endforeach       
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

@@ -5,7 +5,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h2>Liste des modèles de contrat</h2>
-                        <br> 
+                        <br>
+                         <div class="table-responsive">     
                          <table class="table  table-bordered">
                         <thead class="thead-inverse">
                         <tr>
@@ -40,6 +41,7 @@
                          @endforeach       
                         </tbody>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>

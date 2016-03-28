@@ -26,7 +26,7 @@
                                     </div>
                                          @endforeach 
                                     @elseif(strtolower($periodicite->libelle)==strtolower("Bi-Mensuel semaine impaire"))
-                            
+                                 <div class="table-responsive">    
                                          <table class="table table-bordered">
                                             <thead class="thead-inverse">
                                                 <th>Date</th>
@@ -59,8 +59,9 @@
                                         </tr>
                                          @endforeach
                                        </tbody></table>
+                                   </div>
                                 @elseif(strtolower($periodicite->libelle)==strtolower("Bi-Mensuel semaine paire"))
-                                         
+                                         <div class="table-responsive">     
                                          <table>
                                             <thead>
                                                 <th>Date</th>
@@ -92,6 +93,7 @@
                                          </tr>
                                          @endforeach
                                           </tbody></table>   
+                                      </div>
                                          @endif
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4">
