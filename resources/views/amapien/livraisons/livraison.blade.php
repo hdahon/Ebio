@@ -9,7 +9,10 @@
                         <tr>
                            
                             <th>Date de livraison</th>
-                            <th>Action</th>
+                            <th>Semaine</th>
+                            <th>Action
+                           
+                             </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -19,9 +22,15 @@
                         <tr>
                             
                             <td>
-                                {{$row['dateLivraison']}}
+                                {{date_format(date_create($row['dateLivraison']),'d-m-Y')}}
                             </td>
-                            
+                            <td>
+                                @if($row->semaine%2 == 0)
+                                  Paire
+                                @else
+                                    Impaire
+                                @endif      
+                            </td>
                             <td>
                                 @if(session('role') ==1)
                                  <a href="{{ url('list-panier/'.$row['id']) }}" title="new" class="btn  btn-info btn-sm">Panierr</a>
@@ -36,6 +45,7 @@
                         @endif     
                     </tbody>
                 </table>
+                 <div class="pagination"><?php echo  $livraisons->render();  ?> </div> 
             </div>
         </div>
     </div>

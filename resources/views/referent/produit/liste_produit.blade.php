@@ -26,20 +26,24 @@
                         @if(count($produits[$key]) !=null) 
                         <tr>
                            <td>
-                                {{$produits[$key][0]->nomProduit}}
+                                {{$row->nomProduit}}
                             </td>
                              <td>           
                                 @foreach ($unites as $keyy => $unite)
-                                @if($produits[$key][0]->unite_id==$unite->id)
+                                @if($row->unite_id==$unite->id)
                                 {{$unite->libelle}}
                                 @endif
                                 @endforeach
                             </td>
                              <td>
-                                {{$categories[$key]->typePanier}}
+                                @foreach ($typePaniers as $keyy => $tp)
+                                @if($categories[$key]->typePanier_id==$tp->id)
+                                {{$tp->libelle}}
+                                @endif
+                                @endforeach
                             </td>
-                             <td>
-                                {{$produits[$key][0]->prix}}€
+                             <td
+                                {{$row->prix}}€
                             </td>
                              <td>
                             <a href="{{ url('categorie-details/'.$categories[$key]->id) }}">
@@ -47,7 +51,10 @@
                             </a>
                             </td>
                             <td>
-                                <a href="{{ url('produit-details/'.$produits[$key][0]->id) }}" class="btn  btn-info btn-sm">Détails</a>
+                                <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
+                                 <a href="{{ url('produit-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
+                                 <a href="{{ url('/produit-supprimer/'.$row->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
+                                 
                             </td>
                         </tr>
                         @endif

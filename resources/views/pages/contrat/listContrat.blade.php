@@ -38,7 +38,7 @@
                                
                                 {{date_format(date_create($row->debutSouscription),'d-m-Y')}}
                                 -
-                                {{date_format(date_create($row->FinSouscription),'d-m-Y')}}                            
+                                {{date_format(date_create($row->finSouscription),'d-m-Y')}}                            
                             </td>
                             <td>
                                @if($row->vacance != "0000-00-00 00:00:00")

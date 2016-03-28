@@ -37,7 +37,7 @@
                                 <label class="col-md-4 control-label">Producteur</label>
                                 <div class="col-md-6">
                                     <select class=form-control name="producteur">
-                                        <option  value="">Choix</option>                
+                                                   
                                         @foreach ($producteurs as $prod)  
                                         @if($prod->id == $categorie->producteur_id )
                                          <option selected value={{$categorie->producteur_id}}>{{$prod->nom." ".$prod->prenom}}</option>                  
@@ -53,7 +53,7 @@
                                 <label class="col-md-4 control-label">Type de Panier</label>
                                 <div class="col-md-6">
                                         <select class="form-control" name="typePanier">
-                                          <option selected value="">Choix</option>       
+                                         
                                         @foreach ($typepaniers as $typepanier)
 
                                         @if($categorie->typePanier_id == $typepanier->id)
@@ -70,7 +70,7 @@
                                 <label class="col-md-4 control-label">Referent</label>
                                 <div class="col-md-6">
                                     <select class=form-control name="referent">
-                                      <option  value="">Choix</option>       
+                                       
                                         @foreach ($referents as $ref)   
                                          @if($ref->id == $categorie->referent_id )
                                           <option selected value={{$ref->id}}>{{$ref->prenom." ".$ref->nom}}</option>

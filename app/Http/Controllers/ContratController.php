@@ -18,7 +18,7 @@ class ContratController extends Controller
 
   /* Liste des tous les modèle de contrat  */
      public function getAllContrat(){
-        //si referent ne recuperer que les contrats dont il est le referents 
+        //si referent ne recuperer que les contrats dont il est le referent
         if(Auth::user()->roleamapien_id == 3){  
          $referent = Auth::user()->id;
          $categories=Categorie::where("referent_id",$referent)->get();
@@ -94,6 +94,7 @@ class ContratController extends Controller
             $categorie=$request->input('categorie');
             $libelle=Categorie::find($categorie);
             $titre =$libelle->libelle;
+
             $dateDebut=  date("Y-m-d", strtotime($request->input('dateDebut')));          
             $dateFin = date("Y-m-d", strtotime($request->input('dateFin')));
             $vacance = date("Y-m-d", strtotime($request->input('vacance')));
@@ -101,6 +102,7 @@ class ContratController extends Controller
             $vacance2 = date("Y-m-d", strtotime($request->input('vacance2')));
             $debutS=  date("Y-m-d", strtotime($request->input('debutS')));          
             $finS = date("Y-m-d", strtotime($request->input('finS')));
+
             if($vacance1 ==""){
                 $vacance1=date("Y-m-d",strtotime("0000-00-00"));
             }
@@ -175,7 +177,6 @@ class ContratController extends Controller
                
               }
           }
-            
 
             $data = array('categorie' =>$categorie,
                             'contrat' =>$contrat,
@@ -190,10 +191,9 @@ class ContratController extends Controller
                              );
             
               return view('pages/contrat/showContrat',$data);
-
+              
              
         }
-
 
 
      
@@ -202,13 +202,15 @@ class ContratController extends Controller
        {             
             $categories = Categorie::all();
             $contrat=Contrat::find($id);
-            $dD=date_format(date_create($contrat->debutLivraison),"d-m-Y");
-            $dF=date_format(date_create($contrat->dateDeFinLivraison), "d-m-Y");
-            $dS=date_format(date_create($contrat->debutSouscription), "d-m-Y");
-            $fS=date_format(date_create($contrat->finSouscription), "d-m-Y");
-            $vacance=date_format(date_create($contrat->vacance), "d-m-Y");
-            $vacance1=date_format(date_create($contrat->vacance1), "d-m-Y");
-            $vacance2=date_format(date_create($contrat->vacance2), "d-m-Y");
+
+            $dD=date_format(date_create($contrat->debutLivraison),"Y-m-d");
+            $dF=date_format(date_create($contrat->dateDeFinLivraison), "Y-m-d");
+            $dS=date_format(date_create($contrat->debutSouscription), "Y-m-d");
+            $fS=date_format(date_create($contrat->finSouscription), "Y-m-d");
+            $vacance=date_format(date_create($contrat->vacance), "Y-m-d");
+            $vacance1=date_format(date_create($contrat->vacance1), "Y-m-d");
+            $vacance2=date_format(date_create($contrat->vacance2), "Y-m-d");
+
             if($contrat->vacance=="0000-00-00 00:00:00"){
                 $vacance="";
             }
@@ -225,6 +227,8 @@ class ContratController extends Controller
                              'vacance'=>$vacance,
                              'vacance1'=>$vacance1,
                              'vacance2'=>$vacance2,
+                             'dS'=>$dS,
+                             'fS'=>$fS
                              );
              if(Auth::user()->roleamapien_id == 3 ){
                return view('referent/contrat/formModifContrat',$data);
@@ -249,6 +253,7 @@ class ContratController extends Controller
            $categorie=$request->input('categorie');
             $libelle=Categorie::find($categorie);
             $titre =$libelle->libelle;
+
             $dateDebut=  date("Y-m-d", strtotime($request->input('dateDebut')));          
             $dateFin = date("Y-m-d", strtotime($request->input('dateFin')));
             $vacance = date("Y-m-d", strtotime($request->input('vacance')));
@@ -256,6 +261,7 @@ class ContratController extends Controller
             $vacance2= date("Y-m-d", strtotime($request->input('vacance2')));
             $debutS=  date("Y-m-d", strtotime($request->input('debutS')));          
             $finS = date("Y-m-d", strtotime($request->input('finS')));
+            
             $contrat=Contrat::find($id);
             $contrat->titre=$titre;
             $contrat->categorie_id=$categorie;

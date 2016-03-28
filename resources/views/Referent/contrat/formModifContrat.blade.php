@@ -1,18 +1,19 @@
 @extends('template')
 @section("title")
     Reférent
- @endsection
+    @endsection
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
+                
                 <div class="panel-body">
-                   <h2> Modification du modèle de contrat</h2>
+                   <h2>Modifier le modèle de contrat</h2>
         <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Modification-contrat</div>
+                    <div class="panel-heading">Modification</div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -25,9 +26,10 @@
                             </div>
                         @endif
 
-                        <form role="form" method="POST" action="{{ url('modifier-contrat/'.$contrat->id) }}">
+                        <form  role="form" method="POST" action="{{ url('modifier-contrat/'.$contrat->id) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                             <div class="form-group">
+
+                              <div class="form-group">
                                 <label class="col-md-6 control-label">Catégorie de produit</label>
                                 
                                     <select class=form-control name="categorie">
@@ -41,12 +43,23 @@
                                         
                                     </select>
                                 </div>
-                                <div class="form-group">
+                              <div class="form-group">
+                                 <div class="col-xs-6">
+                                <label class="control-label">Debut & fin souscription </label>
+                            </div>
+                             <div class="col-xs-6">
+                                    <input class="form-control " type="date" value="{{$dS}}" placeholder="jj-mm-yyyy"  name="debutS"  >
+                                    <br>
+                                    <input class="form-control col-sm-5 " type="date" value="{{$fS}}" placeholder="jj-mm-yyyy"  name="finS"  >
+                                 </div>   
+                                </div>
+                             <div class="form-group">
                                 <label for="dateDebut">Date de debut</label>
                                 
                                     <input class="form-control input-lg date " type="date" value="{{$dateDebut}}" placeholder="jj-mm-yyyy" name="dateDebut" >
                                     
                                 </div>
+                          
                         
                          <div class="form-group">
                                 <label class="control-label">Date de fin</label>
@@ -58,13 +71,13 @@
                                 </div>  
                               <div class="form-group">
                                 <label class="control-label">Vacance</label>
-                                    <input class="form-control input-lg date" type="date" value="{{$vacance1}}"  placeholder="jj-mm-yyyy"   name="vacance1" >
+                                    <input class="form-control input-lg date" type="date" value="{{$vacance1}}" placeholder="jj-mm-yyyy"   name="vacance1" >
                                 </div>  
                               <div class="form-group">
                                 <label class="control-label">Vacance</label>
-                                    <input class="form-control input-lg date" type="date"  value="{{$vacance2}}" placeholder="jj-mm-yyyy"   name="vacance2" >
-                                </div>  
-                            <div class="form-group">
+                                    <input class="form-control input-lg date" type="date" value="{{$vacance2}}"  placeholder="jj-mm-yyyy"   name="vacance2" >
+                                </div>        
+                             <div class="form-group">
                                 <div class="col-md-12 text-right">
                                     <button type="submit" class="btn btn-info btn-sm">Modifier</button>
                                     <a href="{{url('liste-contrat/') }}" class="btn btn-info btn-sm">Annuler</a>

@@ -1,10 +1,11 @@
 
+<li><a href="{{ url('list-contratsClients') }}">Contrats amapiens</a></li> 
 <li class="dropdown">
-    <a  data-toggle="dropdown" class="dropdown-toggle" href="">Contrats<b class="caret"></b></a>
+    <a  data-toggle="dropdown" class="dropdown-toggle" href="">Contrats Type<b class="caret"></b></a>
     <ul class="dropdown-menu">
         <li><a href="{{ url('liste-contrat') }}">Liste des contats</a></li>
         <li><a href="{{ url('create-contrat') }}">Ajouter un contrat</a></li>  
-        <li><a href="{{ url('list-contratsClients') }}">Contrats amapiens</a></li> 
+        
     </ul>
 </li>
 <li class="dropdown">
@@ -25,7 +26,7 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Livraisons<span class="caret"></span></a>
     <ul class="dropdown-menu">
         <li><a href="{{ url('list-report') }}">Report</a></li>
-        <li><a href="{{ url('list-livraisons') }}">Livraisons</a></li>
+        <li><a href="{{ url('list-livraisons/1') }}">Livraisons</a></li>
     </ul>
 </li>
 <li class="dropdown">

@@ -29,9 +29,10 @@ class ContratClientController extends Controller
 		$contrats=array();
 		$produit=array();
 		$categorie=array();
-		$iter=0;
+		
 		//--amapien
 		if(session('role')==1){
+			$iter=0;
 			$contratClients=ContratClient::where("amapien_id",Auth::user()->id)->get();
 			foreach ($contratClients as $value) {
 				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
@@ -43,33 +44,40 @@ class ContratClientController extends Controller
 		    return view('amapien/contratClient/listcontrat',$data);
 
 		}
+		//-Referent
 		else if(session('role')==3){
-			$contratClients=ContratClient::all();
-			foreach ($contratClients as $value) {
-				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->paginate(5);
-				$categorie=Categorie::find($contrats[$iter][0]->id);
-				if(count($categorie) > 0){
+			$iter=0;
+			$contratClient=ContratClient::all();
+			$contraClients=array();
+			foreach ($contratClient as $value) {
+				$ct=Contrat::find($value->contrat_id);
+				$contrats[$iter]=$ct;
+				$categorie=Categorie::find($ct->categorie_id);
+				 
 				if($categorie->referent_id == Auth::user()->id){
 					$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
+					$contratClients[$iter]=$value;
 					$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();
            			$amapiens[$iter] =User::where("id",$value->amapien_id)->get();
            			$iter++;
 				}
+
 			}
-         	}
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'amapiens'=>$amapiens, 'contrats'=>$contrats);
 		    return view('referent/contratClient/contratClient',$data);
 		}
+		//--Admin et referent plus
 		else if(session('role')==4 || session('role')==5 ){
-			$contratClients=ContratClient::paginate(5);
+			$iter=0;
+			$contratClients=ContratClient::all();
 			foreach ($contratClients as $value) {
-				$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
-           		$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();
-           		$amapiens[$iter] =User::where("id",$value->amapien_id)->get();
+				$contrats[$iter]=Contrat::find($value->contrat_id);
+           		$periodicites[$iter]=Periodicite::find($value->periodicite_id);
+           		$amapiens[$iter] =User::find($value->amapien_id);
            		$iter++;
          	}
 			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'amapiens'=>$amapiens, 'contrats'=>$contrats);
-		    return view('admin/contratClient/contratClient',$data);
+		    return view('pages/contratClient/contratClient',$data);
 		}		
 	}
 	
@@ -85,6 +93,7 @@ class ContratClientController extends Controller
 		$periode3=Periodicite::find($categorie->periodicite3_id);
 		$periodicite=Periodicite::all();
 		$produits=Produit::where("categorie_id",$categorie->id)->get();
+
 		if($periode1->libelle == "Ponctuel"){
 			$livraisons=Livraisons::where("dateLivraison",$contrats->debutLivraison)->get();
 		}else{
@@ -100,12 +109,15 @@ class ContratClientController extends Controller
 			'produits'=>$produits,
 			'livraisons'=>$livraisons
 			);
+		//souscrire à un contrat : amapien
 		if(session('role')==1){
 			return view('amapien/contratClient/contrat_sel',$data);
-		}else{
-			return view('admin/contratClient/newContratClient',$data);
+		}//Souscrire un contrat à un amapien par l'admin
+		else{
+			return view('pages/contratClient/newContratClient',$data);
 		}
 	}
+
 // ----- create  soummission du formulaire----- 
 	public function post(Request $request)
 	{
@@ -115,10 +127,6 @@ class ContratClientController extends Controller
 		}else{
 			$amapien=($request->input('amapien_id'));
 		}
-		$produits=$request->input('produit');
-		$quantites=$request->input('quantite');
-		$prix=$request->input('prix');
-		$liv=$request->input('livraison_id');
 		$periode=$request->input('periodicite_id');
 		$contrat_id=$request->input('contrat_id');
 
@@ -137,7 +145,7 @@ class ContratClientController extends Controller
 
 	
 	
-	// ----- update ----- 
+	// ----- update  seul d'admin peut le faire----- 
 	public function update($id)
 	{
 
@@ -154,11 +162,9 @@ class ContratClientController extends Controller
 			'amapiens' =>$amapiens,
 			'periodicites'=>$periodicite
 			);
-		if(session('role')==1){
-			return view('amapien/update_contratClient',$data);
-		}else{
-			return view('admin/contratClient/updateContratClient',$data);
-		}
+		
+			return view('pages/contratClient/updateContratClient',$data);
+		
 	}	
 	public function updateInsert(Request $request)
 	{
@@ -178,18 +184,18 @@ class ContratClientController extends Controller
 	public function delete($id)
 	{
 		$element=ContratClient::find($id);
-		//$categorie=find();
 		$element->delete();
 		return redirect('list-contratsClients');
 	}
 
-	 /* Afficher le details d'un contrat */
-      public function showContrat($id)
+	 /* Afficher d'un contrat : page web ou pdf*/
+      public function showContrat($action,$id)
        {        
             $TabMois=array("janvier", "février", "mars", "avril", "mai", "juin",
             "juillet", "août", "septembre", "octobre", "novembre", "décembre");
-
+           
             $ReferentPlus= Auth::user()->id; 
+
             $contratClient = ContratClient::find($id);
             $contrat=Contrat::find($contratClient->contrat_id);
             $amapien = User::find(Auth::user()->id);
@@ -239,12 +245,13 @@ class ContratClientController extends Controller
    
                              'montant'=>$montant
                              );
-            
-/*                return view('amapien/contratClient/showContrat',$data);
-*/
-             $pdf = PDF::loadView('amapien/contratClient/showContrat', $data);
+            if($action==1){
+                return view('pages/contratClient/showContrat',$data);
+			}else{	
+             $pdf = PDF::loadView('pages/contratClient/imprimerContrat', $data);
              return $pdf->stream();
-             //('invoice.pdf');
+         }
+             
         }
 
 
@@ -255,7 +262,7 @@ class ContratClientController extends Controller
           if(Auth::user()->roleamapien_id == 1){
              return view('amapien/contratClient/listContratModel',$data);
           }else{
-          	return view('admin/contratClient/listContratModel',$data);
+          	return view('pages/contratClient/listContratModel',$data);
           } 
        
      }

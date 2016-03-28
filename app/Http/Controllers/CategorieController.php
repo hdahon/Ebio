@@ -30,11 +30,9 @@ class CategorieController extends Controller
             $data = array('producteurs' => $producteurs,
                         'referents' =>$referents,
                         'typepaniers' =>$typepaniers);
-            if (session('role') ==   5){
-                return view('admin/categorie/newCategorie',$data);
-            }else if (session('role') ==   4){
-                return view('referentPlus/categorie/newCategorie',$data);
-            }
+            
+                return view('pages/categorie/newCategorie',$data);
+            
 
         }
 
@@ -43,6 +41,15 @@ Ajout d'une nouvelle catégorie dans la Bd
 */
 public function postCreateCategorie(Request $request)
     {
+           $this->validate($request, [
+                'libelle' => 'required',
+                'typePanier' => 'required',
+                'periode' => 'required',
+                 'referent' => 'required',  
+                 'producteur' => 'required', 
+
+                 ]);
+
             $nomProduit=$request->input('libelle');
             $typepanier =$request->input('typePanier');
             $periode =$request->input('periode');
@@ -150,9 +157,9 @@ public function postCreateCategorie(Request $request)
                         'periodicites2'=>$periodicites2,
                         'periodicites3'=>$periodicites3);
            if (session('role') ==   5){
-                return view('admin/categorie/listCategorie',$data);
+                return view('pages/categorie/listCategorie',$data);
             }else if (session('role') ==   4){
-                return view('referentPlus/categorie/listCategorie',$data);
+                return view('pages/categorie/listCategorie',$data);
             }
             else if (session('role') ==   3){
                 return view('referent/categorie/listCategorie',$data);
@@ -182,9 +189,9 @@ public function postCreateCategorie(Request $request)
                         'periodicite'=>$periodicite,
                         'produits'=>$produits);
          if (session('role') ==   5){
-                return view('admin/categorie/categorie-details',$data);
+                return view('pages/categorie/categorie-details',$data);
         }else if (session('role') ==   4){
-                return view('referentPlus/categorie/categorie-details',$data);
+                return view('pages/categorie/categorie-details',$data);
         }else if (session('role') ==   2){
                 return view('producteur/categorie/categorie-details',$data);
         }else{
@@ -213,11 +220,9 @@ public function postCreateCategorie(Request $request)
                         'typepaniers'=>$typepaniers
 
                        );
-         if (session('role') ==   5){
-                return view('admin/categorie/formModifCategorie',$data);
-        }else if (session('role') ==   4){
-                return view('referentPlus/categorie/formModifCategorie',$data);
-        }
+         
+                return view('pages/categorie/formModifCategorie',$data);
+        
          
      }
 
@@ -226,6 +231,15 @@ Modifier une categorie catégorie dans la Bd
 */
 public function postModifierCategorie(Request $request,$id)
     {
+            $this->validate($request, [
+                'libelle' => 'required',
+                'typePanier' => 'required',
+                'periode' => 'required',
+                 'referent' => 'required',  
+                 'producteur' => 'required', 
+                 
+                 ]);
+
             $libelle=$request->input('libelle');
             $typepanier =$request->input('typePanier');
             $periode =$request->input('periode');

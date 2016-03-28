@@ -78,9 +78,9 @@ Route::get('update-livraisons/{id}', 'LivraisonsController@update');
 Route::post('livraisons/update', 'LivraisonsController@updateInsert');
 // -- delete
 Route::get('delete-livraisons/{id}', 'LivraisonsController@delete');
-// -- editer
-Route::get('editer-livraisons/{id}', 'LivraisonsController@editer');
-//-pdf
+// -- editer type =1  //-pdf type=2
+
+Route::get('editer-livraisons/{id}/{type}', 'LivraisonsController@editer');
 Route::get('imprimer/{id}','LivraisonsController@imprimer');
 
 /*
@@ -148,8 +148,8 @@ Route::get('update-contratsClients/{id}', 'ContratClientController@update');
 Route::post('contratsClients/update', 'ContratClientController@updateInsert');
 // -- delete
 Route::get('delete-contratsClients/{id}', 'ContratClientController@delete');
-// --show
-Route::get('details-contratclient/{id}', 'ContratClientController@showContrat');
+// --show action=1 voir 2 -imprimer
+Route::get('details-contratclient/{id}/{action}', 'ContratClientController@showContrat');
 // --list contat modèle
 Route::get('list-contrat', 'ContratClientController@getAllContratM');
 
@@ -211,7 +211,13 @@ Route::get('produit-details/{id}', 'ProduitController@getProduit');
 Route::get('liste-paiement', 'PaiementController@getListPaiement');	
 // --create
 Route::get('create-paiement', 'PaiementController@getnewPaiement');
+Route::get('create-paiement-etape2', 'PaiementController@getnewPaiement2');
 Route::post('create-paiement', 'PaiementController@postnewPaiement');
+//--update
+Route::get('update-paiement/{id}', 'PaiementController@getupdatePaiement');
+Route::post('update-paiement/{id}', 'PaiementController@postupdatePaiement');
+//delete
+Route::get('delete-paiement/{id}', 'PaiementController@getdeletePaiement');	
 
 /*
 	----------------route panier----------------------- 
@@ -224,16 +230,7 @@ Route::post('date-livraison', 'PanierController@postchoixdate');
 // ---delete
 Route::get('delete-panier/{id}', 'PanierController@deletePanier');
 
-/*
-Route::get('produit/list', 'Produit\ProduitController@getAllProduits');
-Route::get('produit/listAdmin', 'Produit\ProduitController@getAllProduitsByAdmin');
-Route::get('produit/insert', 'Produit\ProduitController@insert');
-Route::post('produit/postInsert', 'Produit\ProduitController@postInsert');
-Route::post('produit/updateInsert', 'Produit\ProduitController@updateInsert');
-Route::get('produit/create', 'Produit\ProduitController@getCreate');
-Route::post('produit/create', 'Produit\ProduitController@postCreate');
-Route::get('produit/produitAdherant/{id}', 'Produit\ProduitController@getProduitAdherant');
-*/
+
 // Renvoie les contrats de l'amapien identifié par l'id 
 get('contrats/getContratAmap/{id}',[ 'uses'=>'Amapien\Contrat\ContratController@getSesContrats', 'as'=>'getSesContrats']);
 

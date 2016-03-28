@@ -4,17 +4,24 @@
         $niveau = session('role');
     } else {
         $niveau = 0;
+         Auth::logout();
     }
 
 ?>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse container-fluid">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="{{ url('dashboard/home') }}" class="navbar-brand">Amap de Garbejaire</a>
         </div>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+        </button>
 
-
+    
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">

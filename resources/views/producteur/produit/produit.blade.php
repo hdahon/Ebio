@@ -22,24 +22,28 @@
                         </thead>
                         <tbody>
                         @foreach ($produits as $key => $row)
+                           
                         <tr>
                             <td>
                                 {{$row->nomProduit}}
                             </td>
                             <td>
-                                @foreach ($unites as $key => $unite)
-                                @if($row->unite_id==$unite->id)
-                                {{$unite->libelle}}
-                                @endif
-                                @endforeach
+                                
+                                {{$unites[$key]->libelle}}
+                               
                             </td>
-                             <td>
-                                {{$categories[$key]->typePanier}}
+                            <td>
+                              {{$typePaniers[$key]->libelle}}
                             </td>
                              <td>
                                 {{$row->prix}}€
                             </td>
-                             
+                              <td>
+                                <a href="{{ url('categorie-details/'.$categories[$row->id]->id) }}">
+                                {{$categories[$row->id]->libelle}}
+                            </a>
+                   
+                            </td>
                             <td>
                                  <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
                                  @if(session('role')>=3)

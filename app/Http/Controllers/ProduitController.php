@@ -7,6 +7,7 @@ use App\User;
 use App\Unite;
 use App\Categorie;
 use App\Periodicite;
+use App\Typepanier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,13 @@ class ProduitController extends Controller
 */
     public function postCreate(Request $request)
     {
+            $this->validate($request, [
+                'nom' => 'required',
+                'unite' => 'required',
+                'prix' => 'required',
+                 'categorie' => 'required',  
+                 ]);
+
             $nomProduit=$request->input('nom');
             $unite =$request->input('unite');
             $prix =$request->input('prix');
@@ -60,85 +68,78 @@ class ProduitController extends Controller
          $referents="";
          $producteurs="";
          $periodicites="";  
-         $idUser= Auth::user()->id; 
 
-        if (session('role') ==   2){
-            //echo $idUser;
+         $idUser= Auth::user()->id; 
+         //producteur
+         if (session('role') ==   2){
+           //$idUser= Auth::user()->id;
             $categories = Categorie::where('producteur_id',$idUser)->get();
+            $unites=array();
+            $produitP=array();
+            $cat=array();
             $iter=0;
-         foreach ($categories as $categorie) {
-            $produits[$iter] = Produit::where("categorie_id",$categorie->id)->get();
-            $iter++;
-         }
-         //echo count($produits);
+           foreach ($categories as $key => $v) {
+                $produitP = Produit::where("categorie_id",$v->id)->get();
+                foreach ($produitP as $key => $value) {
+                    $produits[$value->id]=$value;
+                    $cat[$value->id]=$v;
+                    $unites[$value->id]=Unite::find($value->unite_id);
+                    $typePaniers[$value->id]=Typepanier::find($v->typePanier_id);
+                    $iter++;
+                }
+            }
+            
+            $products=Produit::whereIn('id',$produits)->paginate(10);   
+            $data = array('produits' => $produits, 
+                          'categories'=>$cat,
+                          'unites'=>$unites,
+                          'typePaniers'=>$typePaniers);
+            return view('producteur/produit/produit',$data);
+        
+         //referent;
         }else if(session('role') ==   3){
-             $cat = Categorie::where('referent_id',$idUser)->get();
-             $iter=0;
-         foreach ($cat as $categorie) {
-            $produits[$iter] = Produit::where("categorie_id",$categorie->id)->get();
-            $categories[$iter] =$categorie;
-            $iter++;
-        }
-       
-    }else{
+            $idUser= Auth::user()->id;
+            $categories = Categorie::where('referent_id',$idUser)->get();
+            $unites=array();
+            $produitP=array();
+            $cat=array();
+           foreach ($categories as $key => $v) {
+                $produitP = Produit::where("categorie_id",$v->id)->get();
+                foreach ($produitP as $key => $value) {
+                    $produits[$key]=$value->id;
+                    $cat[$key]=$v;
+                }
+            }
+            
+            $products=Produit::whereIn('id',$produits)->paginate(10);   
+            $data = array('produits' => $products, 
+                        'categories'=>$cat,
+                        'unites'=>Unite::All(),
+                        'typePaniers'=>Typepanier::All());
+                 return view('referent/produit/liste_produit',$data);
+        }else{
             $produits = Produit::all();
         
          foreach ($produits as $produit) {
-            $categories[$produit->id]=Categorie::find($produit->categorie_id);
+            $cat=Categorie::find($produit->categorie_id);
+            $categories[$produit->id]=$cat;
+            $unites[$produit->id]=Unite::find($produit->unite_id);
+            $typePaniers[$produit->id]=Typepanier::find($cat->typePanier_id);
             $referents[$produit->id]=User::find($categories[$produit->id]->referent_id);
             $producteurs[$produit->id]=User::find($categories[$produit->id]->producteur_id);
             $periodicites[$produit->id]=Periodicite::find($categories[$produit->id]->periodicite_id);
          }
-     }
+     
          $data = array('produits' => $produits,
                         'categories'=>$categories,
                         'producteurs'=>$producteurs,
                         'referents'=>$referents,
                         'periodicites'=>$periodicites,
-                        'unites'=>Unite::All());
-         if (session('role') ==   5){
+                        'unites'=>$unites,
+                        'typePaniers'=>$typePaniers);
                 return view('admin/produit/produit',$data);
-        }else if (session('role') ==   4){
-                return view('referentPlus/produit/produit',$data);
-        }else if (session('role') ==   3){
-                return view('referent/produit/liste_produit',$data);
-        // producteur
-        }else if (session('role') ==   2){
-            $idUser= Auth::user()->id;
-            //echo $idUser."<br>";
-            $categories = Categorie::where("producteur_id",$idUser)->get();
-            $unites=array();
-            //echo json_encode($categories);
-            foreach ($categories as $key => $value) {
-                # code...
-                $produitP = Produit::where("categorie_id",$value->id)->get();
-                foreach ($produitP as $key => $value) {
-                    # code...
-                    $produits[$key]=$value->id;
-                    
-                    /*echo $value->unite_id;
-                    $unite=Unite::where("id",$value->unite_id)->get();
-                    echo $unite->libelle;
-                    echo "unite ".json_encode($unite);
-                    foreach ($unite as $key => $value) {
-                        $unites[$key]=$value->libelle;
-                    }
-                    */
-                }
-            }
-            //echo json_encode($unites);
-            //echo json_encode($produits);
-            $products=Produit::whereIn('id',$produits)->get();
-
-            //$unites=Unite::whereIn('id',$products)
-            $data = array('produits' => $products, 
-                        'categories'=>$categories,'unites'=>Unite::All());
-
-            //$data = array('produits' => $products);
-            //echo json_encode($data);
-            return view('producteur/produit/produit',$data);
-        }
      }
+ }
 
 
 /* Afficher le detail d'un produit */
@@ -191,6 +192,14 @@ Modifier une categorie catégorie dans la Bd
 */
 public function postModifierProduit(Request $request,$id)
     {
+            
+             $this->validate($request, [
+                'nomProduit' => 'required',
+                'unite' => 'required',
+                'prix' => 'required|numeric',
+                 'categorie' => 'required|numeric',  
+                 ]);
+
             $nomProduit=$request->input('nomProduit');
             $categorie =$request->input('categorie');
             $unite =$request->input('unite');

@@ -28,14 +28,10 @@
                                 {{$row->nomProduit}}
                             </td>
                             <td>
-                                @foreach ($unites as $key => $unite)
-                                @if($row->unite_id==$unite->id)
-                                {{$unite->libelle}}
-                                @endif
-                                @endforeach
+                                {{$unites[$row->id]->libelle}}
                             </td>
                              <td>
-                                {{$categories[$row->id]->typePanier}}
+                                {{$typePaniers[$row->id]->libelle}}
                             </td>
                              <td>
                                 {{$row->prix}}€
@@ -47,10 +43,9 @@
                             </td>
                             <td>
                                  <a href="{{ url('produit-details/'.$row->id) }}" class="btn  btn-info btn-sm">Détails</a>
-                                 @if(session('role')>=3)
                                  <a href="{{ url('produit-modifier/'.$row->id) }}" class="btn  btn-info btn-sm">Modifier</a>
                                  <a href="{{ url('/produit-supprimer/'.$row->id) }}" class="btn  btn-danger btn-sm confirm">Supprimer</a>
-                                 @endif
+                                
                             </td>
                         </tr>
 

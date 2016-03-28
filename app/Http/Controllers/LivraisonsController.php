@@ -30,17 +30,31 @@ class LivraisonsController extends Controller
 		if(session('role') ==1 ){
 			$panierAmpaien=Panier::where("user_id",Auth::user()->id)->get()	;
 			$livraisons=array();
+			$livraison=array();
+			$liv=array();
 			foreach ($panierAmpaien as $k => $value) {
 				$liv=Livraisons::find($value->livraison_id);
 				$dl=date_format(date_create($liv->dateLivraison),'Y/m/d');
 				$t=round(((strtotime($dl))-(strtotime(date('Y/m/d',time()))))/(60*60*24));
 				if($t>=0){
-					$livraisons[$value->livraison_id]=$liv;
+					$livraison[$value->livraison_id]=$liv->id;
+
+				}else{
+
+					$liv[$value->livraison_id]=$liv->id;
 				}
 					//echo $livraisons[$value->livraison_id];
 			}
-
-			$data = array('livraisons' => $livraisons);
+			
+			if($type == 1){
+					$livraisons=Livraisons::whereIn('id',$livraison)->paginate(10);
+	    	}
+	    	else if($type =2 ){
+	    		$livraisons=Livraisons::whereIn('id',$liv)
+	    								 ->orderBy('dateLivraison', 'asc')
+	    								 ->paginate(10);
+	    	}
+			$data = array('livraisons' => $livraisons,'type'=>$type);
 			return view('amapien/livraisons/livraison',$data);
 
 		}
@@ -66,7 +80,11 @@ class LivraisonsController extends Controller
 	    	$livraisons=Livraisons::whereNotIn('id',$livs)->paginate(10);
 	    }
 		$data = array('livraisons' => $livraisons,'type'=>$type);
-		return view('admin/livraisons/livraison',$data);
+		if(session('role') == 2){
+			return view('producteur/livraisons/livraison',$data);
+		}else{
+			return view('pages/livraisons/livraison',$data);
+		}
 	}
 }/*lse{
 	return redirect('auth/logout');
@@ -77,7 +95,7 @@ class LivraisonsController extends Controller
 	// ----- create ----- 
 	public function insert(Request $request)
 	{             
-		return view('admin/livraisons/newLivraison');
+		return view('pages/livraisons/newLivraison');
 	}
 	public function post(Request $request)
 	{
@@ -94,56 +112,88 @@ class LivraisonsController extends Controller
                 ));
          }
      
-		return redirect('list-livraisons');
+		return redirect('list-livraisons/1');
 	}
 	
-	// ----- update ----- 
-	public function update($id)
-	{
-		$livraison=Livraisons::find($id);
-		$data = array(
-			'id' => $id, 
-			'dateLivraison'=>$livraison->dateLivraison,
-			'quantite'=>$livraison->quantite,
-			'amapien_id'=>$livraison->amapien_id,
-			'produit_id'=>$livraison->produit_id,
-			'producteur_id'=>$livraison->producteur_id,
-			'dateDeLivraison'=>$livraison->dateDeLivraison
-			);
-		return view('admin/livraisons/updateLivraison',$data);
-	}	
-	public function updateInsert(Request $request)
-	{
-		$element=Livraisons::find($request->input('id'));
-
-		$element->dateLivraison=($request->input('dateLivraison'));
-		$element->quantite=($request->input('quantite'));
-		$element->amapien_id=($request->input('amapien_id'));
-		$element->produit_id=($request->input('produit_id'));
-		$element->producteur_id=($request->input('producteur_id'));
-		$element->dateDeLivraison=($request->input('dateDeLivraison'));
-
-		$element->save();
-		return redirect('list-livraisons');
-	}
-
-	// ----- delete ----- 
-	public function delete($id)
-	{
-		$element=Livraisons::find($id);
-		$element->delete();
-		return redirect('list-livraisons');
-	}
+	
 
 	// ----- editer ----- 
-	public function editer($id)
+	public function editer($type,$id)
 	{
-		$element=Livraisons::find($id);
+		
+		$amapiens=array();
+		$catAmap=array();
+		$catProd=array();
+
+		if(session('role') == 2){
+				$element=Livraisons::find($id);
+				$categories=Categorie::where('producteur_id',Auth::user()->id)->get();
+				$paniers=array();
+				$categorie=array();
+				$amapiens=array();
+				$catReferent=array();
+				$pans=Panier::where('livraison_id',$id)->get();
+				foreach ($pans as $k => $v) {
+					$produits=Produit::find($v->produit_id);
+					$categorie=Categorie::find($produits->categorie_id);
+					if($categorie->producteur_id == Auth::user()->id){
+						$paniers[$k]=$v;
+						$amapiens[$k]=User::find($v->user_id);
+						$catReferent[$k]=$categorie;
+					}
+				}
+				//echo count($amapiens);
+				$data=array('element'=>$element,
+					'categories'=>$categories,
+					'amapiens'=>$amapiens,
+					'catAmapiens'=>$catReferent,
+					'paniers'=>$paniers,
+					'date'=>$element->dateLivraison);
+		if($type==1){			
+			return view('producteur/livraisons/fichelivraisons',$data);
+		}else if($type==2){
+			$pdf = PDF::loadView('producteur/livraisons/imprimerfiche', $data)->setPaper('a4')->setOrientation('landscape');
+			return  $pdf->stream();
+		}	
+
+		}
+		//di referent
+		if(session('role') == 3){
+				$element=Livraisons::find($id);
+				$categories=Categorie::where('referent_id',Auth::user()->id)->get();
+				$paniers=array();
+				$categorie=array();
+				$amapiens=array();
+				$catReferent=array();
+				$pans=Panier::where('livraison_id',$id)->get();
+				foreach ($pans as $k => $v) {
+					$produits=Produit::find($v->produit_id);
+					$categorie=Categorie::find($produits->categorie_id);
+					if($categorie->referent_id == Auth::user()->id){
+						$paniers[$k]=$v;
+						$amapiens[$k]=User::find($v->user_id);
+						$catReferent[$k]=$categorie;
+					}
+				}
+				//echo count($amapiens);
+				$data=array('element'=>$element,
+					'categories'=>$categories,
+					'amapiens'=>$amapiens,
+					'catAmapiens'=>$catReferent,
+					'paniers'=>$paniers,
+					'date'=>$element->dateLivraison);
+				if($type==1){
+					return view('referent/livraisons/fichelivraisons',$data);
+				}else if($type ==2){
+					$pdf = PDF::loadView('referent/livraisons/imprimerfiche', $data)->setPaper('a4')->setOrientation('landscape');
+					return  $pdf->stream();
+				}
+
+		}else{
+			$element=Livraisons::find($id);
 		$categories=Categorie::all();
 		$contrats=Contrat::all();
 		$paniers=Panier::where("livraison_id",$element->id)->get();
-		$amapiens=array();
-		$catAmap=array();
 		foreach ($paniers as $key => $value) {
 				$prod=Produit::find($value->produit_id);
 				$amapiens[$key]=User::find($value->user_id);
@@ -154,8 +204,15 @@ class LivraisonsController extends Controller
 					'categories'=>$categories,
 					'amapiens'=>$amapiens,
 					'catAmapiens'=>$catAmap,
-					'paniers'=>$paniers);
-		return view('admin/livraisons/fichelivraisons',$data);
+					'paniers'=>$paniers,
+					'date'=>$element->dateLivraison);
+		if($type==1){
+			return view('pages/livraisons/fichelivraisons',$data);
+		}else if($type==2){
+			$pdf = PDF::loadView('pages/livraisons/imprimerfiche', $data)->setPaper('a4')->setOrientation('landscape');
+			return  $pdf->stream();
+		}
+	}
 	}
 
 	/** Genération des semaines paire et imapaire à partir de la date de debut et la date de 
@@ -208,9 +265,10 @@ public function imprimer($id)
 					'categories'=>$categories,
 					'amapiens'=>$amapiens,
 					'catAmapiens'=>$catAmap,
-					'paniers'=>$paniers);
-	$pdf = PDF::loadView('admin/livraisons/fichelivraisons.html', $data);
-	return $pdf->download('invoice.pdf');
+					'paniers'=>$paniers,
+					'date'=>$element->dateLivraison);
+	
+	//$pdf->download('fiche.pdf');
 }
 
 }

@@ -14,17 +14,20 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @if(count($amapiens) >0)
+
                         @foreach ($elements as $key => $row)
+                           
                         <tr>
-                            <td>{{$contrats[$key]->titre}}</td>
-                            <td>{{$amapiens[$key]->prenom }} {{$amapiens[$key][0]->nom}}</td>
-                            <td>{{$periodicites[$key]->libelle}}</td>
+                            <td>{{$contrats[$key][0]->titre}}</td>
+                            <td>{{$amapiens[$key][0]->prenom }} {{$amapiens[$key][0]->nom}}</td>
+                            <td>{{$periodicites[$key][0]->libelle}}</td>
                             <td>
-                                <a href="{{ url('details-contratclient/'.$row->id) }} " class="btn btn-default" title="voir">VOIR</a>
+                                <a href="{{ url('details-contratclient/1/'.$row->id) }} " class="btn btn-default" title="voir">VOIR</a>
+                                <a href="{{ url('details-contratclient/2/   '.$row->id) }} " class="btn btn-info" title="imprimer">PDF</a>
                                 <a href="{{ url('update-contratsClients/'.$row->id) }}" class="btn btn-default" title="Modifier">MODIFIER </a>
                                 <a href="{{ url('delete-contratsClients/'.$row->id) }}" class="btn btn-danger btn-sm confirm" title="Supprimer">SUPPRIMER</a>
-
                             </td>
                         </tr>
                         @endforeach  

@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    
+                   
                     <div class="panel-body">
-                        <h1 class="text-center">Historique des paiement de {{$mois}}</h1>
+                        <h1 class="text-center">Historique des paiement </h1>
                         <br> 
                          <table class="table  table-bordered">
                             <h3 class="text-center"> {{$produit}}</h3>
@@ -17,12 +17,15 @@
                             <th>Titulaire</th>
                             <th>N° Cheque</th>
                             <th>Montant</th>
+                            <th>Action</th>
                           
                         </tr>
                         </thead>
                         <tbody>
+                        @if(count($paiements)>0)   
                         @foreach ($paiements as $key => $row)
                         <tr class="text-center">
+                            
                             <td>
                                {{$adherant[$key]->prenom." ".$adherant[$key]->nom}} 
                             </td>
@@ -30,7 +33,7 @@
                                {{$adherant[$key]->prenomCAdherant." ".$adherant[$key]->nomCAdherant}} 
                             </td>
                             <td>
-                                {{$row->banque}}
+                                {{$row->Banque}}
                                 
                             </td>
                             <td>
@@ -45,10 +48,15 @@
                           <td>
                                {{$row->montant."€"}} 
                             </td>
-                            
+                              
+                          <td>
+                              <a href="{{ url('update-paiement/'.$row->id) }}" class="btn btn-default" title="Modifier">MODIFIER </a>
+                                <a href="{{ url('delete-paiement/'.$row->id) }}" class="btn btn-danger btn-sm confirm" title="Supprimer">SUPPRIMER</a>
+                        </td>
                         </tr>
 
-                         @endforeach       
+                         @endforeach  
+                         @endif     
                         </tbody>
                         </table>
                     </div>

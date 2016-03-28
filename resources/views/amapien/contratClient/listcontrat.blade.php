@@ -18,9 +18,9 @@
                             <td>{{$contrats[$key][0]->titre}}</td>
                             <td>{{$periodicites[$key][0]->libelle}}</td>
                             <td>
-                                <a href="{{ url('details-contratclient/'.$row->id) }} " class="btn btn-info" title="Supprimer">VOIR</a>
-                                 <a href="{{ url('date-livraison/'.$row->id) }}" class="btn btn-info" title="panier">Prepaer mes panier</a>
-                             
+                                <a href="{{ url('details-contratclient/1/'.$row->id) }} " class="btn btn-info" title="voir">VOIR</a>
+                                <a href="{{ url('details-contratclient/2/   '.$row->id) }} " target="_blank" class="btn btn-info" title="imprimer">PDF</a>
+                                
                             </td>
                         </tr>
                         @endforeach       

@@ -28,14 +28,10 @@
                                 {{$row->nomProduit}}
                             </td>
                             <td>
-                                @foreach ($unites as $key => $unite)
-                                @if($row->unite_id==$unite->id)
-                                {{$unite->libelle}}
-                                @endif
-                                @endforeach
+                                {{$unites[$row->id]->libelle}}
                             </td>
                              <td>
-                                {{$categories[$row->id]->typePanier}}
+                                {{$typePaniers[$row->id]->libelle}}
                             </td>
                              <td>
                                 {{$row->prix}}€
