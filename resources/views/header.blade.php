@@ -1,19 +1,10 @@
 <?php  
 
-<<<<<<< HEAD
-    if(Session::has('role') and Auth::check()){
-        $niveau = session('role');
-    } else {
-        $niveau = 0;
-         Auth::logout();
-    }
-=======
 if(Session::has('role') and Auth::check()){
     $niveau = session('role');
 } else {
     $niveau = 0;
 }
->>>>>>> b8719925554ad1ba36752759cde660824abf570a
 
 ?>
 
@@ -28,19 +19,16 @@ if(Session::has('role') and Auth::check()){
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-        </button>
+        </button> -->
 
-<<<<<<< HEAD
     
-        <div class="collapse navbar-collapse">
-=======
+
         <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
->>>>>>> b8719925554ad1ba36752759cde660824abf570a
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accueil <span class="caret"></span></a>
