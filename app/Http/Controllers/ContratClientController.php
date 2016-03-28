@@ -44,6 +44,28 @@ class ContratClientController extends Controller
 		    return view('amapien/contratClient/listcontrat',$data);
 
 		}
+		//si producteur
+		else if(session('role')==2){
+			$iter=0;
+			$contratClient=ContratClient::all();
+			$contraClients=array();
+			foreach ($contratClient as $value) {
+				$ct=Contrat::find($value->contrat_id);
+				$contrats[$iter]=$ct;
+				$categorie=Categorie::find($ct->categorie_id);
+				 
+				if($categorie->producteur_id == Auth::user()->id){
+					$contrats[$iter]=Contrat::where("id",$value->contrat_id)->get();
+					$contratClients[$iter]=$value;
+					$periodicites[$iter]=Periodicite::where("id",$value->periodicite_id)->get();
+           			$amapiens[$iter] =User::where("id",$value->amapien_id)->get();
+           			$iter++;
+				}
+
+			}
+			$data = array('elements' => $contratClients,'periodicites'=>$periodicites,'amapiens'=>$amapiens, 'contrats'=>$contrats);
+		    return view('producteur/contratClient/contratClient',$data);
+		}
 		//-Referent
 		else if(session('role')==3){
 			$iter=0;

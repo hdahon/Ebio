@@ -11,6 +11,7 @@
         <li><a href="{{ url('liste-categorie') }}">Liste des Catégorie</a></li>
     </ul>
 </li>
+<li><a href="{{ url('list-contratsClients') }}">Contrats</a></li> 
 <li class="dropdown">
    <a href="{{ url('liste-paiement') }}">Paiement</a>
 </li> 
