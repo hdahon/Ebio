@@ -32,8 +32,8 @@ public function getnewPaiement(Request $request)
   
       foreach($contrats as $key=>$contrat){
         $modelC=Contrat::find($contrat->contrat_id);
-        $categories[$key]=Categorie::find($modelC->categorie_id);
         echo $key;
+        $categories[$key]=Categorie::find($modelC->categorie_id);
         print_r($categories);
         $amapien_id[$key]=User::find($contrat->amapien_id);
         $producteurs[$modelC->producteur_id]=User::find($modelC->producteur_id);  
