@@ -28,11 +28,13 @@ public function getnewPaiement(Request $request)
       $contrats = ContratClient::all();
 
 
-      $adherants= User::where('roleamapien_id',1)->get();
+      //$adherants= User::where('roleamapien_id',1)->get();
   
       foreach($contrats as $key=>$contrat){
         $modelC=Contrat::find($contrat->contrat_id);
         $categories[$key]=Categorie::find($modelC->categorie_id);
+        echo $key;
+        print_r($categories);
         $amapien_id[$key]=User::find($contrat->amapien_id);
         $producteurs[$modelC->producteur_id]=User::find($modelC->producteur_id);  
       }
