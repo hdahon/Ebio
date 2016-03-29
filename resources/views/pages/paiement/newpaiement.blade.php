@@ -41,8 +41,10 @@
                                     <select class=form-control id="prod" name="contrat" >
                                         <option selected>Selectionnez un contrat </option>
                                         @if(count($contrats)>0)
-                                        @foreach ($contrats as $key=>$c)                    
+                                        @foreach ($contrats as $key=>$c) 
+                                        @if(count($categories)>0 && count($adherants)>0)                   
                                         <option  value={{$c->id}} >{{$categories[$key]->libelle." - ".$adherants[$key]->prenom." ".$adherants[$key]->nom}}</option>
+                                        @endif
                                         @endforeach
                                         @endif
                                     </select>                                
