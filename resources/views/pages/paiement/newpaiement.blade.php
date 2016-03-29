@@ -40,10 +40,11 @@
                                 <div class="col-md-6">
                                     <select class=form-control id="prod" name="contrat" >
                                         <option selected>Selectionnez un contrat </option>
+                                        @if(count($contrats)>0)
                                         @foreach ($contrats as $key=>$c)                    
                                         <option  value={{$c->id}} >{{$categories[$key]->libelle." - ".$adherants[$key]->prenom." ".$adherants[$key]->nom}}</option>
                                         @endforeach
-                                        
+                                        @endif
                                     </select>                                
                                 </div>
                             </div>

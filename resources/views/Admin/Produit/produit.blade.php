@@ -28,18 +28,26 @@
                             <td>
                                 {{$row->nomProduit}}
                             </td>
-                            <td>
-                                {{$unites[$row->id]->libelle}}
+                             <td>           
+                                @foreach ($unites as $keyy => $unite)
+                                @if($row->unite_id==$unite->id)
+                                {{$unite->libelle}}
+                                @endif
+                                @endforeach
                             </td>
                              <td>
-                                {{$typePaniers[$row->id]->libelle}}
+                                @foreach ($typePaniers as $keyy => $tp)
+                                @if($categories[$key]->typePanier_id==$tp->id)
+                                {{$tp->libelle}}
+                                @endif
+                                @endforeach
                             </td>
                              <td>
                                 {{$row->prix}}€
                             </td>
                              <td>
-                            <a href="{{ url('categorie-details/'.$categories[$row->id]->id) }}">
-                                {{$categories[$row->id]->libelle}}
+                            <a href="{{ url('categorie-details/'.$categories[$key]->id) }}">
+                                {{$categories[$key]->libelle}}
                             </a>
                             </td>
                             <td>
