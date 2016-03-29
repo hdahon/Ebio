@@ -24,7 +24,9 @@ public function getnewPaiement(Request $request)
         "juillet", "août", "septembre", "octobre", "novembre", "décembre");
       $producteurs = array();
       $categories  = array();
+      $amapien_id=array();
       $contrats = ContratClient::all();
+
 
       $adherants= User::where('roleamapien_id',1)->get();
   
