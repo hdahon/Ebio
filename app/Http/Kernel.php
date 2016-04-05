@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'dashboard' => \App\Http\Middleware\Authenticate::class,
         'dashboard.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+         'timeout' => 'App\Http\Middleware\SessionTimeout'
     ];
 }

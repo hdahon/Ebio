@@ -120,14 +120,14 @@ class ProduitController extends Controller
         }else{
             $produits = Produit::all();
         
-         foreach ($produits as $produit) {
+         foreach ($produits as $key => $produit) {
             $cat=Categorie::find($produit->categorie_id);
-            $categories[$produit->id]=$cat;
+            $categories[$key]=$cat;
             $unites[$produit->id]=Unite::find($produit->unite_id);
             $typePaniers[$produit->id]=Typepanier::find($cat->typePanier_id);
-            $referents[$produit->id]=User::find($categories[$produit->id]->referent_id);
-            $producteurs[$produit->id]=User::find($categories[$produit->id]->producteur_id);
-            $periodicites[$produit->id]=Periodicite::find($categories[$produit->id]->periodicite_id);
+            $referents[$key]=User::find($cat->referent_id);
+            $producteurs[$key]=User::find($cat->producteur_id);
+            $periodicites[$key]=Periodicite::find($cat->periodicite_id);
          }
      
          $data = array('produits' => $produits,
@@ -135,8 +135,8 @@ class ProduitController extends Controller
                         'producteurs'=>$producteurs,
                         'referents'=>$referents,
                         'periodicites'=>$periodicites,
-                        'unites'=>$unites,
-                        'typePaniers'=>$typePaniers);
+                          'unites'=>Unite::All(),
+                        'typePaniers'=>Typepanier::All());
                 return view('admin/produit/produit',$data);
      }
  }
