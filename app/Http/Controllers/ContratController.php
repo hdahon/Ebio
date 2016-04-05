@@ -18,6 +18,7 @@ class ContratController extends Controller
 
   /* Liste des tous les modèle de contrat  */
      public function getAllContrat(){
+        var $contrat= null;
         //si referent ne recuperer que les contrats dont il est le referent
         if(Auth::user()->roleamapien_id == 3){  
          $referent = Auth::user()->id;
