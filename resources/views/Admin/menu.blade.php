@@ -35,10 +35,10 @@
 	<a  data-toggle="dropdown" class="dropdown-toggle" href="">Paramètres <b class="caret"></b></a>
 	<ul class="dropdown-menu">
 		<li><a href="{{ url('list-roles') }}">Rôles</a></li>
-		<li><a href="{{ url('list-periodicites') }}">Periodicité</a></li>
+		<li><a href="{{ url('list-periodicites') }}">Périodicité</a></li>
 		<li><a href="{{ url('list-contrat') }}">Souscrire un contrat</a></li>
 		<li><a href="{{ url('list-unite') }}">Unité</a></li>
 		<li><a href="{{ url('list-typepanier') }}">Type panier</a></li>
-		<li><a href="{{ url('create-livraisons') }}">Generer les dates de livraison livraison</a></li>
+		<li><a href="{{ url('create-livraisons') }}">Génerer les dates de livraisons</a></li>
 	</ul>
 </li>
