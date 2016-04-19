@@ -11,9 +11,9 @@
                         <thead class="thead-inverse text-center">
                         <tr >
                             <th>Catégorie</th>
-                            <th>Periodicite</th>
+                            <th>Périodicite</th>
                             <th>Producteur</th>
-                            <th>Referent</th>
+                            <th>Réferent</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
