@@ -43,7 +43,7 @@
                             </div>
                               <div class="form-group">
                                  <div class="col-xs-6">
-                                <label class="control-label">Debut & fin souscription </label>
+                                <label class="control-label">Début & fin souscription </label>
                             </div>
                              <div class="col-xs-6">
                                     <input class="form-control " type="date"  placeholder="jj-mm-yyyy"  name="debutS"  >
@@ -52,7 +52,7 @@
                                  </div>   
                                 </div>
                              <div class="form-group">
-                                <label for="dateDebut">Date de debut</label>
+                                <label for="dateDebut">Date de début</label>
                                 
                                     <input class="form-control input-lg date " type="date"  placeholder="jj-mm-yyyy" name="dateDebut" >
                                     
@@ -64,15 +64,15 @@
                                     <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"  name="dateFin"  >
                                 </div>
                              <div class="form-group">
-                                <label class="control-label">Vacance</label>
+                                <label class="control-label">Vacances</label>
                                     <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"   name="vacance" >
                                 </div>  
                               <div class="form-group">
-                                <label class="control-label">Vacance</label>
+                                <label class="control-label">Vacances</label>
                                     <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"   name="vacance1" >
                                 </div>  
                               <div class="form-group">
-                                <label class="control-label">Vacance</label>
+                                <label class="control-label">Vacances</label>
                                     <input class="form-control input-lg date" type="date"  placeholder="jj-mm-yyyy"   name="vacance2" >
                                 </div>        
                             <div class="form-group">
