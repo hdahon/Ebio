@@ -9,7 +9,7 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>nomRole</th>
-                            <th>niveau</th>
+                            <th>Niveau</th>
                             <th><a href="{{ url('create-roles') }}" title="Ajouter"  class="btn  btn-success btn-sm">AJOUTER</a></th>
                         </tr>
                     </thead>
