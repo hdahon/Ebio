@@ -14,7 +14,7 @@
                             <th>Catégories</th>
                             <th>Début Livrasion</th>
                             <th>Fin Livraison</th>
-                            <th>Debut & fin Souscription</th>
+                            <th>Début & fin Souscription</th>
                             <th>Vacances</th>
                             <th>Actions</th>
                         </tr>
