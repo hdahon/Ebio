@@ -8,8 +8,8 @@
                 <table class="table table-bordered">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>contrat</th>
-                            <th>periodicite</th>
+                            <th>Contrats</th>
+                            <th>Périodicité</th>
                             <th>Action</th>
                         </tr>
                     </thead>
