@@ -35,7 +35,7 @@ Reférent
                                 
                             </div>
                             <div class="form-group">
-                                <label>Categorie</label>
+                                <label>Catégorie</label>
                                 <select  class="form-control" name="categorie" >
                                     @foreach ($categories as $cat)                    
                                     <option value={{$cat->id}}>{{$cat->libelle}}</option>
@@ -44,7 +44,7 @@ Reférent
                             </div>
 
                             <div class="form-group">
-                                <label>Unite</label>
+                                <label>Unité</label>
                                 <select  class="form-control"  name="unite" >
                                     @foreach ($unites as $unite)                    
                                     <option value={{$unite->id}}>{{$unite->libelle}}</option>
