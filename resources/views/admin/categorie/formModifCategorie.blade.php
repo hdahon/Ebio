@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Referent</label>
+                                <label class="col-md-4 control-label">Réferent</label>
                                 <div class="col-md-6">
                                     <select class=form-control name="referent">
                                       <option  value="">Choix</option>       
@@ -82,7 +82,7 @@
                                 </div>
                             </div>  
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Periodicite</label>
+                                <label class="col-md-4 control-label">Périodicité</label>
                                 <div class="col-md-6">
                                      <select class=form-control name="periode">
                                       <option value="">Choix</option>       
@@ -98,7 +98,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Periodicite</label>
+                                <label class="col-md-4 control-label">Périodicité</label>
                                 <div class="col-md-6">
                                      <select class=form-control name="periode2">
                                       <option selected value="">Choix</option>       
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Periodicite</label>
+                                <label class="col-md-4 control-label">Périodicité</label>
                                 <div class="col-md-6">
                                      <select class=form-control name="periode3">
                                       <option selected value="">Choix</option>       
