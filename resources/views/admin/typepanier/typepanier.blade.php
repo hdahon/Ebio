@@ -10,7 +10,7 @@
                 <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>libelle</th>
+                            <th>Libellé</th>
                             <th><a href="{{ url('create-typepanier') }}" title="Ajouter" class="btn  btn-success btn-sm">AJOUTER</a></th>
                         </tr>
                     </thead>
