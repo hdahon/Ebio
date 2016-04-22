@@ -7,9 +7,9 @@
                 <table class="table table-bordered table-striped">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>contrat</th>
+                            <th>Contrat</th>
                             <th>Amapien</th>
-                            <th>periodicite</th>
+                            <th>Périodicité</th>
                             <th>Action</th>
                         </tr>
                     </thead>
