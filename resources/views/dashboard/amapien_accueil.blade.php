@@ -46,7 +46,7 @@ use App\User;
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-body">
-                        <h1>Bienvenue {{$user->prenom}} {{$user->nom}} sur la page d'accueil <?php echo $role; ?></h1>
+                        <h1>Page d'acceuil <?php echo $role; ?> '</br>' Bienvenue {{$user->prenom}} {{$user->nom}} </h1>
                         
                         <h3><span class="label label-default">Vos informations</span></h3>
                         <ul>
