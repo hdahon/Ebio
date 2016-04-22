@@ -5,7 +5,7 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-body">
-               <h2> Ajouter une catégorie de produit</h2>
+               <h2> Ajouter une catégorie de produits</h2>
                <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -28,7 +28,7 @@
 
 
                                     <div class="form-group">
-                                        <label for="libelle">Libelle</label>
+                                        <label for="libelle">Libellé</label>
                                         <input id="libelle" type="text" class="form-control" name="libelle" value="{{ old('libelle') }}">
 
                                     </div>
@@ -57,7 +57,7 @@
                                     </div>
                                     @if($referents)
                                     <div class="form-group">
-                                        <label>Referent</label><br><br>
+                                        <label>Réferent</label><br><br>
                                         <select class="form-control" name="referent">
                                             <option value="" selected>Choix</option>
                                             @foreach ($referents as $ref)                    
@@ -68,7 +68,7 @@
                                     @endif
 
                                     <div class="form-group">
-                                     <label>Periodicite</label><br><br>
+                                     <label>Périodicité</label><br><br>
                                      <select name="periode" class="form-control col-sm-">
                                         <option value=""> choix</option>
                                         <option value="1">Bi-mensuel semaine paire</option>
