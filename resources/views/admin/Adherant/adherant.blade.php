@@ -12,10 +12,10 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>Nom</th>
-                            <th>Prenom</th>
+                            <th>Prénom</th>
                             <th>Contact</th>
                             <th>Rôle</th>
-                            <th>Coadherant</th>
+                            <th>Co-contractant</th>
                             @if($role!="4")
                             <th>
                                 <a href="{{ url('create-users') }}" title="Ajouter" class="btn  btn-success btn-sm">AJOUTER</a>
