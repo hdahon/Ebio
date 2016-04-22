@@ -28,7 +28,7 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('modifier-contrat/'.$contrat->id) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                              <div class="form-group">
-                                <label class="col-md-6 control-label">Catégorie de produit</label>
+                                <label class="col-md-6 control-label">Catégorie de produits</label>
                                 <div class="col-md-8">
                                     <select class=form-control name="categorie">
                                         @foreach ($categories as $cat)  
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                               <div class="form-group">
-                                <label class="col-md-6 control-label">Date de debut</label>
+                                <label class="col-md-6 control-label">Date de début</label>
                                 <div class="col-md-8 ">
                                     <input class="form-control input-lg date " value="{{$dateDebut}}"   name="dateDebut" >
                                     </div>
