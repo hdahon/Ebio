@@ -18,7 +18,7 @@
 <li class="dropdown">
    <a  data-toggle="dropdown" class="dropdown-toggle" href="">Categories Produits<b class="caret"></b></a>
    <ul class="dropdown-menu">
-        <li><a href="{{ url('liste-categorie') }}">Liste des Catégorie</a></li>
+        <li><a href="{{ url('liste-categorie') }}">Liste des catégories</a></li>
         <li><a href="{{ url('create-categorie') }}">Ajouter une catégorie</a></li>
     </ul>
 </li>
